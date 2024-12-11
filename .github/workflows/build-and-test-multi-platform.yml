@@ -90,4 +90,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: depthmapXcli-${{ matrix.os }}-${{ matrix.cpp_compiler }}
-        path: ${{ steps.strings.outputs.build-output-dir }}/depthmapXcli/${{ matrix.build_type }}/
+        path: ${{ steps.strings.outputs.build-output-dir }}/depthmapXcli/
