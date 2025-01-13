@@ -63,7 +63,10 @@ class TestRunHelpers(unittest.TestCase):
             runhelpers.prepareDirectory(d.name())
             retcode, output = runhelpers.runExecutable( d.name(), [sys.executable, "-c", "raise Exception()"])
             self.assertFalse(retcode)
-            self.assertEqual(output, 'Traceback (most recent call last):\n  File "<string>", line 1, in <module>\nException\n')
+            if sys.version_info[0] >= 3.13:
+                self.assertEqual(output, 'Traceback (most recent call last):\n  File "<string>", line 1, in <module>\n    raise Exception()\nException\n')
+            else:
+                self.assertEqual(output, 'Traceback (most recent call last):\n  File "<string>", line 1, in <module>\nException\n')
             
 if __name__=="__main__":
     unittest.main()
