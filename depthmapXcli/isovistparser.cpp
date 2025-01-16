@@ -51,6 +51,8 @@ void IsovistParser::parse(size_t argc, char **argv) {
             }
             ENFORCE_ARGUMENT("-if", i);
             isovistFile = argv[i];
+        } else if (std::strcmp(argv[i], "-ic") == 0) {
+            m_closeIsovistPolys = true;
         }
     }
 
@@ -74,10 +76,11 @@ void IsovistParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
     std::cout << "Making " << m_isovists.size() << " isovists... " << std::flush;
     DO_TIMED("Make isovists",
              std::for_each(m_isovists.begin(), m_isovists.end(),
-                           [&metaGraph, &clp](const IsovistDefinition &isovist) -> void {
+                           [&metaGraph, &clp, this](const IsovistDefinition &isovist) -> void {
                                metaGraph.makeIsovist(dm_runmethods::getCommunicator(clp).get(),
                                                      isovist.getLocation(), isovist.getLeftAngle(),
-                                                     isovist.getRightAngle(), clp.simpleMode());
+                                                     isovist.getRightAngle(), clp.simpleMode(),
+                                                     m_closeIsovistPolys);
                            }))
     std::cout << " ok\nWriting out result..." << std::flush;
 
