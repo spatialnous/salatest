@@ -63,7 +63,7 @@ class TestRunHelpers(unittest.TestCase):
             runhelpers.prepareDirectory(d.name())
             retcode, output = runhelpers.runExecutable( d.name(), [sys.executable, "-c", "raise Exception()"])
             self.assertFalse(retcode)
-            self.assertTrue(output.startsWith('Traceback (most recent call last):\n  File "<string>", line 1, in <module>'))
+            self.assertTrue(output.startswith('Traceback (most recent call last):\n  File "<string>", line 1, in <module>'))
 
 if __name__=="__main__":
     unittest.main()
