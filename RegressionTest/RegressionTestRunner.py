@@ -63,12 +63,14 @@ class RegressionTestRunner():
     def run(self):
         if not os.path.exists(self.config.rundir):
             os.makedirs(self.config.rundir)
+        usesBaseBinary = True
         if self.config.performanceRegression.enabled:
             print("Performance regression runs enabled")
             runner = performancerunner.PerformanceRunner(self.runfunc, self.baseBinary, self.testBinary, self.config.rundir,self.config.performanceRegression )
         elif self.config.knownResultTesting.enabled:
             print("Known result test runs enabled")
             runner = knownresulttestrunner.KnownResultTestRunner(self.runfunc, self.testBinary, self.config.rundir,self.config.knownResultTesting )
+            usesBaseBinary = False
         else:
             print("Default regression runs - no performance")
             runner = depthmaprunner.DepthmapRegressionRunner( self.runfunc, self.baseBinary, self.testBinary, self.config.rundir )
@@ -84,7 +86,7 @@ class RegressionTestRunner():
             cmds = case["steps"]
             minVersion = dXversion(case["minVersion"])
 
-            if self.__baseVersion < minVersion:
+            if usesBaseBinary and self.__baseVersion < minVersion:
                 good = self.config.allowSkipCases
                 reason = ("Baseline binary can not run for test: " + name
                     + " (Binary version \"" + str(self.__baseVersion)
