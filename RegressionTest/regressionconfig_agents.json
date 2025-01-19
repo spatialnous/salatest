@@ -1,5 +1,8 @@
 {
-    "rundir": "rundir",
+    "rundir": [
+        "rundir",
+        "regression_agents"
+    ],
     "basebinlocation": "BaselineBinaries",
     "testbinlocation": "../build-RegressionTest",
     "allowskip": true,
@@ -11,7 +14,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -33,7 +36,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -55,7 +58,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.tsv",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -78,7 +81,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected_with_isovist.graph",
+                    "infile": "../../../../testdata/gallery_connected_with_isovist.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -100,7 +103,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -122,7 +125,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -144,7 +147,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -166,7 +169,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -188,7 +191,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -210,7 +213,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -232,7 +235,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -254,7 +257,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -276,7 +279,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.tsv",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -299,7 +302,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.cat",
                     "mode": "AGENTS",
                     "extraArgs": {
@@ -323,7 +326,7 @@
             ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.cat",
                     "mode": "AGENTS",
                     "extraArgs": {
