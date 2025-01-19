@@ -92,6 +92,12 @@ class RegressionTestRunner():
                     + " (Binary version \"" + str(self.__baseVersion)
                     + "\" < Test minimum version \"" + str(minVersion) + "\")");
                 print ("Skipping:\n" + reason)
+            elif self.__testVersion < minVersion:
+                good = self.config.allowSkipCases
+                reason = ("Test binary can not run for test: " + name
+                    + " (Test version \"" + str(self.__baseVersion)
+                    + "\" < Test minimum version \"" + str(minVersion) + "\")");
+                print ("Skipping:\n" + reason)
             else:
                 success, output = runner.runTestCase(name, cmds, extraArgs)
                 if not success:
