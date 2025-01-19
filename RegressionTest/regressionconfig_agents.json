@@ -6,6 +6,9 @@
     "testcases": {
         "agents_defaults": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -25,6 +28,9 @@
         },
         "agents_line_of_sight_length_look": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -44,6 +50,9 @@
         },
         "agents_line_of_sight_length_look_only_map": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.tsv"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -64,6 +73,9 @@
         },
         "agents_occluded_length_look": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected_with_isovist.graph",
@@ -83,6 +95,9 @@
         },
         "agents_any_occlusion_look": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -102,6 +117,9 @@
         },
         "agents_occlusion_group_bins_45_look": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -121,6 +139,9 @@
         },
         "agents_occlusion_group_bins_60_look": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -140,6 +161,9 @@
         },
         "agents_furthest_occlusion_per_bin_look": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -159,6 +183,9 @@
         },
         "agents_per_bin_far_distance_look": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -178,6 +205,9 @@
         },
         "agents_per_bin_angle_look": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -197,6 +227,9 @@
         },
         "agents_per_bin_far_distance_and_angle_look": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -216,6 +249,9 @@
         },
         "agents_per_bin_memory_look": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -235,6 +271,9 @@
         },
         "agents_gatecounts": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.tsv"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -255,6 +294,9 @@
         },
         "agents_trails_all": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.cat"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -276,6 +318,9 @@
         },
         "agents_trails_1": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.cat"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
