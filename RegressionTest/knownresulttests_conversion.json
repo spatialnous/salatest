@@ -1,0 +1,395 @@
+{
+    "rundir": [
+        "rundir",
+        "kr_conversion"
+    ],
+    "basebinlocation": "BaselineBinaries",
+    "testbinlocation": "../build-RegressionTest",
+    "allowskip": true,
+    "knownresult": {
+        "resultsdir": [
+            "expected",
+            "conversion"
+        ]
+    },
+    "testcases": {
+        "convert_drawing_axial": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_drawing.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "axial",
+                        "-con": "Axial Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_drawing_segment": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_drawing.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "segment",
+                        "-con": "Segment Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_drawing_convex": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/polygons_drawing.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "convex",
+                        "-con": "Convex Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_drawing_data_convex": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/polygons_drawing.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "data",
+                        "-con": "Data Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "convex",
+                        "-con": "Convex Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_axial_segment": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "segment",
+                        "-con": "Segment Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_axial_segment_remove_input": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "segment",
+                        "-con": "Segment Map Test",
+                        "-cir": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_axial_segment_trim_lines": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "segment",
+                        "-con": "Segment Map Test",
+                        "-crsl": "40"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_axial_segment_copy_attributes": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "segment",
+                        "-con": "Segment Map Test",
+                        "-coc": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_axial_segment_copy_attributes_non_cont_keys": {
+            "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "segment",
+                        "-con": "Segment Map Test",
+                        "-coc": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_axial_data_axial": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "data",
+                        "-con": "Data Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "axial",
+                        "-con": "Axial Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_axial_data_axial_copy_attributes": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "data",
+                        "-con": "Data Map Test",
+                        "-coc": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "axial",
+                        "-con": "Axial Map Test",
+                        "-coc": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_segment_data_segment": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "data",
+                        "-con": "Data Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "axial",
+                        "-con": "Segment Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "convert_segment_data_segment_copy_attributes": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "data",
+                        "-con": "Data Map Test",
+                        "-coc": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "axial",
+                        "-con": "Segment Map Test",
+                        "-coc": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        }
+    }
+}

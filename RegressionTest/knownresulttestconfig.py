@@ -3,6 +3,8 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import os
+
 class KnownResultTestConfig:
     """ Encapsulate known result tests config
         This takes an optional known result tests config. All Elements
@@ -21,4 +23,6 @@ class KnownResultTestConfig:
             return
         self.enabled = True;
         self.resultsdir = config.get("resultsdir", None)
+        if isinstance(self.resultsdir, list):
+            self.resultsdir = os.path.join(*self.resultsdir)
         self.tolerance = float(config.get("tolerance", 1))

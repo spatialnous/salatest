@@ -14,7 +14,12 @@ ln -s build build-RegressionTest
 cd RegressionTest/test && echo pwd && python3 -u test_main.py || exit 1
 cd .. && pwd
 echo running known result tests
-python3 -u RegressionTestRunner.py knownresulttests.json || exit 1
+python3 -u RegressionTestRunner.py knownresulttests_pointmap.json || exit 1
+python3 -u RegressionTestRunner.py knownresulttests_axial.json || exit 1
+python3 -u RegressionTestRunner.py knownresulttests_segment.json || exit 1
+python3 -u RegressionTestRunner.py knownresulttests_isovist.json || exit 1
+python3 -u RegressionTestRunner.py knownresulttests_conversion.json || exit 1
+python3 -u RegressionTestRunner.py knownresulttests_agents.json || exit 1
 echo running standard regression tests
 python3 -u RegressionTestRunner.py || exit 1
 echo running agent test

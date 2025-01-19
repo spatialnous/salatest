@@ -1,0 +1,343 @@
+{
+    "rundir": [
+        "rundir",
+        "kr"
+    ],
+    "basebinlocation": "BaselineBinaries",
+    "testbinlocation": "../build-RegressionTest",
+    "allowskip": true,
+    "knownresult": {
+        "resultsdir": [
+            "expected",
+            "pointmap"
+        ]
+    },
+    "testcases": {
+        "visibility_local": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "visibility",
+                        "-vl": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "visibility_global_3": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "visibility",
+                        "-vg": "",
+                        "-vr": "3"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "visibility_global_n": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "visibility",
+                        "-vg": "",
+                        "-vr": "n"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_isovist": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "isovist"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_angular": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "angular"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_metric": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "metric",
+                        "-vr": "n"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_thru_vision": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "thruvision"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_visual_step_depth": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "STEPDEPTH",
+                    "extraArgs": {
+                        "-sdp": "3,5",
+                        "-sdt": "visual"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_metric_step_depth": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "STEPDEPTH",
+                    "extraArgs": {
+                        "-sdp": "3,5",
+                        "-sdt": "metric"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_angular_step_depth": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "STEPDEPTH",
+                    "extraArgs": {
+                        "-sdp": "3,5",
+                        "-sdt": "angular"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "pointmap_create_fill_make_one_operation": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_empty.graph",
+                    "outfile": "out.graph",
+                    "mode": "VISPREP",
+                    "extraArgs": {
+                        "-pg": "0.04",
+                        "-pp": "1.32,7.24,4.88,5.24",
+                        "-pm": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "links_pointmap_manual": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "LINK",
+                    "extraArgs": {
+                        "-lnk": [
+                            "1.32,7.24,4.88,5.24",
+                            "1.16,5.28,3.28,7.12"
+                        ]
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-links-csv"
+                    }
+                }
+            ]
+        },
+        "links_pointmap_file": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "LINK",
+                    "extraArgs": {
+                        "-lf": "../../../../testdata/gallery_connected_merge_links.txt"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-links-csv"
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -1,14 +1,20 @@
 {
-    "rundir": "rundir",
+    "rundir": [
+        "rundir",
+        "regression"
+    ],
     "basebinlocation": "BaselineBinaries",
     "testbinlocation": "../build-RegressionTest",
     "allowskip": true,
     "testcases": {
         "links_pointmap_manual": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "LINK",
                     "extraArgs": {
@@ -22,22 +28,28 @@
         },
         "links_pointmap_file": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.graph",
                     "mode": "LINK",
                     "extraArgs": {
-                        "-lf": "../../../testdata/gallery_connected_merge_links.txt"
+                        "-lf": "../../../../testdata/gallery_connected_merge_links.txt"
                     }
                 }
             ]
         },
         "unlinks_shapegraph_coords": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "LINK",
                     "extraArgs": {
@@ -51,9 +63,12 @@
         },
         "unlinks_shapegraph_refs": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "LINK",
                     "extraArgs": {
@@ -67,9 +82,12 @@
         },
         "links_shapegraph_coords": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "LINK",
                     "extraArgs": {
@@ -83,9 +101,12 @@
         },
         "links_shapegraph_refs": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "LINK",
                     "extraArgs": {
@@ -99,9 +120,12 @@
         },
         "links_shapegraph_refs_non_cont_keys": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/axmap_noncont_keys.graph",
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
                     "outfile": "out.graph",
                     "mode": "LINK",
                     "extraArgs": {
@@ -115,9 +139,12 @@
         },
         "visibility_local": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -129,9 +156,12 @@
         },
         "visibility_local_only_map": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -151,9 +181,12 @@
         },
         "visibility_global_with_multiple_pointmaps": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_two_pointmaps.graph",
+                    "infile": "../../../../testdata/gallery_two_pointmaps.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -166,9 +199,12 @@
         },
         "visibility_global_3": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -181,9 +217,12 @@
         },
         "visibility_global_3_only_map": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -204,9 +243,12 @@
         },
         "pointmap_export_links": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_connected.graph",
+                    "infile": "../../../../testdata/gallery_connected.graph",
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
@@ -217,9 +259,12 @@
         },
         "axial_export_map_csv": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
@@ -230,9 +275,13 @@
         },
         "axial_export_map_mif_given_mif": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.mif",
+                "out.mid"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.mif",
                     "mode": "EXPORT",
                     "extraArgs": {
@@ -243,9 +292,13 @@
         },
         "axial_export_map_mif_given_mid": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.mid",
+                "out.mif"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.mid",
                     "mode": "EXPORT",
                     "extraArgs": {
@@ -256,9 +309,12 @@
         },
         "visibility_global_n": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -271,9 +327,12 @@
         },
         "visibility_global_n_only_map": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -294,9 +353,12 @@
         },
         "vga_isovist": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -307,9 +369,12 @@
         },
         "vga_isovist_only_map": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -328,9 +393,12 @@
         },
         "vga_angular": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/turns_connected.graph",
+                    "infile": "../../../../testdata/turns_connected.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -341,9 +409,12 @@
         },
         "vga_angular_only_map": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -362,9 +433,12 @@
         },
         "vga_metric": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/turns_connected.graph",
+                    "infile": "../../../../testdata/turns_connected.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -376,9 +450,12 @@
         },
         "vga_metric_only_map": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -398,9 +475,12 @@
         },
         "vga_thru_vision": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -411,9 +491,12 @@
         },
         "vga_thru_vision_only_map": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -432,9 +515,12 @@
         },
         "vga_visual_step_depth": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "STEPDEPTH",
                     "extraArgs": {
@@ -446,9 +532,12 @@
         },
         "vga_metric_step_depth": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "STEPDEPTH",
                     "extraArgs": {
@@ -460,9 +549,12 @@
         },
         "vga_angular_step_depth": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_0_6.graph",
+                    "infile": "../../../../testdata/gallery_0_6.graph",
                     "outfile": "out.graph",
                     "mode": "STEPDEPTH",
                     "extraArgs": {
@@ -474,9 +566,12 @@
         },
         "isovist_args": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_empty.graph",
+                    "infile": "../../../../testdata/gallery_empty.graph",
                     "outfile": "out.graph",
                     "mode": "ISOVIST",
                     "extraArgs": {
@@ -490,22 +585,28 @@
         },
         "isovist_file": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_empty.graph",
+                    "infile": "../../../../testdata/gallery_empty.graph",
                     "outfile": "out.graph",
                     "mode": "ISOVIST",
                     "extraArgs": {
-                        "-if": "../../../testdata/isovists.csv"
+                        "-if": "../../../../testdata/isovists.csv"
                     }
                 }
             ]
         },
         "axial_makelines": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_empty.graph",
+                    "infile": "../../../../testdata/gallery_empty.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -517,9 +618,12 @@
         },
         "axial_makelines_polywall": {
             "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/polywall.graph",
+                    "infile": "../../../../testdata/polywall.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -530,9 +634,12 @@
         },
         "axial_makelines_rooms": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/rooms.dxf",
+                    "infile": "../../../../testdata/rooms.dxf",
                     "outfile": "out.graph",
                     "mode": "IMPORT",
                     "extraArgs": {}
@@ -550,9 +657,12 @@
         },
         "axial_rn": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/simple_axlines.graph",
+                    "infile": "../../../../testdata/simple_axlines.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -563,9 +673,12 @@
         },
         "axial_r3": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/simple_axlines.graph",
+                    "infile": "../../../../testdata/simple_axlines.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -576,9 +689,12 @@
         },
         "axial_rn_length_weighted": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/simple_axlines.graph",
+                    "infile": "../../../../testdata/simple_axlines.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -590,9 +706,12 @@
         },
         "axial_rn_rra": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/simple_axlines.graph",
+                    "infile": "../../../../testdata/simple_axlines.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -604,9 +723,12 @@
         },
         "axial_rn_choice": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/simple_axlines.graph",
+                    "infile": "../../../../testdata/simple_axlines.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -618,9 +740,12 @@
         },
         "axial_rn_local": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/simple_axlines.graph",
+                    "infile": "../../../../testdata/simple_axlines.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -632,9 +757,12 @@
         },
         "axial_rn_noncont_keys": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/axmap_noncont_keys.graph",
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -645,9 +773,12 @@
         },
         "axial_r3_noncont_keys": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/axmap_noncont_keys.graph",
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -658,9 +789,12 @@
         },
         "axial_rn_rra_noncont_keys": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/axmap_noncont_keys.graph",
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -672,9 +806,12 @@
         },
         "axial_rn_choice_noncont_keys": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/axmap_noncont_keys.graph",
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -686,9 +823,12 @@
         },
         "axial_rn_local_noncont_keys": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/axmap_noncont_keys.graph",
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
                     "outfile": "out.graph",
                     "mode": "AXIAL",
                     "extraArgs": {
@@ -700,9 +840,12 @@
         },
         "segment_tulip_1024_rn_steps": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -716,9 +859,12 @@
         },
         "segment_tulip_1024_rn_steps_choice": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -733,9 +879,12 @@
         },
         "segment_tulip_1024_rn_steps_weighted": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -750,9 +899,12 @@
         },
         "segment_tulip_512_rn_steps": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -766,9 +918,12 @@
         },
         "segment_tulip_123_rn_steps": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -782,9 +937,12 @@
         },
         "segment_tulip_4_rn_steps": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -798,9 +956,12 @@
         },
         "segment_tulip_1024_r5_steps": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -814,9 +975,12 @@
         },
         "segment_tulip_1024_rn_r5_steps": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -830,9 +994,12 @@
         },
         "segment_tulip_1024_r500_metric": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -846,9 +1013,12 @@
         },
         "segment_tulip_1024_r180_angular": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -862,9 +1032,12 @@
         },
         "segment_angular_rn": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -876,9 +1049,12 @@
         },
         "segment_topological_rn": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -890,9 +1066,12 @@
         },
         "segment_metric_rn": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENT",
                     "extraArgs": {
@@ -904,9 +1083,12 @@
         },
         "import_dxf_to_drawing": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_extended1.dxf",
+                    "infile": "../../../../testdata/barnsbury_extended1.dxf",
                     "outfile": "out.graph",
                     "mode": "IMPORT",
                     "extraArgs": {}
@@ -915,9 +1097,12 @@
         },
         "import_csv_to_drawing": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_extended1_axial.csv",
+                    "infile": "../../../../testdata/barnsbury_extended1_axial.csv",
                     "outfile": "out.graph",
                     "mode": "IMPORT",
                     "extraArgs": {}
@@ -926,9 +1111,12 @@
         },
         "import_tsv_to_data": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_extended1_axial.tsv",
+                    "infile": "../../../../testdata/barnsbury_extended1_axial.tsv",
                     "outfile": "out.graph",
                     "mode": "IMPORT",
                     "extraArgs": {
@@ -939,9 +1127,12 @@
         },
         "convert_drawing_axial": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_drawing.graph",
+                    "infile": "../../../../testdata/barnsbury_drawing.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -953,9 +1144,12 @@
         },
         "convert_drawing_segment": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_drawing.graph",
+                    "infile": "../../../../testdata/barnsbury_drawing.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -967,9 +1161,12 @@
         },
         "convert_drawing_segment_only_map": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_drawing.graph",
+                    "infile": "../../../../testdata/barnsbury_drawing.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -989,9 +1186,12 @@
         },
         "convert_drawing_convex": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/polygons_drawing.graph",
+                    "infile": "../../../../testdata/polygons_drawing.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1003,9 +1203,12 @@
         },
         "convert_drawing_data_convex": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/polygons_drawing.graph",
+                    "infile": "../../../../testdata/polygons_drawing.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1026,9 +1229,12 @@
         },
         "convert_drawing_data_drawing_polygons": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/polygons_drawing.graph",
+                    "infile": "../../../../testdata/polygons_drawing.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1049,9 +1255,12 @@
         },
         "convert_drawing_data_drawing_lines": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_drawing.graph",
+                    "infile": "../../../../testdata/barnsbury_drawing.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1072,9 +1281,12 @@
         },
         "convert_axial_data": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1086,9 +1298,12 @@
         },
         "convert_axial_data_copy_attributes": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1101,9 +1316,12 @@
         },
         "convert_axial_drawing": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1115,9 +1333,12 @@
         },
         "convert_axial_segment": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1129,9 +1350,12 @@
         },
         "convert_axial_segment_remove_input": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1144,9 +1368,12 @@
         },
         "convert_axial_segment_trim_lines": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1159,9 +1386,12 @@
         },
         "convert_axial_segment_copy_attributes": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1174,9 +1404,12 @@
         },
         "convert_axial_segment_copy_attributes_non_cont_keys": {
             "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/axmap_noncont_keys.graph",
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1189,9 +1422,12 @@
         },
         "convert_axial_data_axial": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1212,9 +1448,12 @@
         },
         "convert_axial_data_axial_copy_attributes": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_axial.graph",
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1237,9 +1476,12 @@
         },
         "convert_segment_data": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1251,9 +1493,12 @@
         },
         "convert_segment_data_segment": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1274,9 +1519,12 @@
         },
         "convert_segment_data_segment_copy_attributes": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1299,9 +1547,12 @@
         },
         "convert_segment_drawing": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
                     "outfile": "out.graph",
                     "mode": "MAPCONVERT",
                     "extraArgs": {
@@ -1313,9 +1564,12 @@
         },
         "pointmap_create_fill_make_one_operation": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_empty.graph",
+                    "infile": "../../../../testdata/gallery_empty.graph",
                     "outfile": "out.graph",
                     "mode": "VISPREP",
                     "extraArgs": {
@@ -1328,9 +1582,12 @@
         },
         "dense_pointmap_create_fill": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/rect1x1.graph",
+                    "infile": "../../../../testdata/rect1x1.graph",
                     "outfile": "out.graph",
                     "mode": "VISPREP",
                     "extraArgs": {
@@ -1342,9 +1599,12 @@
         },
         "pointmap_create_fill_make_unmake": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_empty.graph",
+                    "infile": "../../../../testdata/gallery_empty.graph",
                     "outfile": "out.graph",
                     "mode": "VISPREP",
                     "extraArgs": {
@@ -1379,9 +1639,12 @@
         },
         "pointmap_create_fill_make_link_unmake": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_empty.graph",
+                    "infile": "../../../../testdata/gallery_empty.graph",
                     "outfile": "out.graph",
                     "mode": "VISPREP",
                     "extraArgs": {
@@ -1413,9 +1676,12 @@
         },
         "pointmap_create_fill_make_link_unmake_unlink": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/gallery_empty.graph",
+                    "infile": "../../../../testdata/gallery_empty.graph",
                     "outfile": "out.graph",
                     "mode": "VISPREP",
                     "extraArgs": {
@@ -1448,9 +1714,12 @@
         },
         "shortest_segment_metric_path": {
             "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_extended1_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_extended1_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENTSHORTESTPATH",
                     "extraArgs": {
@@ -1463,9 +1732,12 @@
         },
         "shortest_segment_tulip_path": {
             "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_extended1_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_extended1_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENTSHORTESTPATH",
                     "extraArgs": {
@@ -1478,9 +1750,12 @@
         },
         "shortest_segment_topological_path": {
             "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
-                    "infile": "../../../testdata/barnsbury_extended1_segment.graph",
+                    "infile": "../../../../testdata/barnsbury_extended1_segment.graph",
                     "outfile": "out.graph",
                     "mode": "SEGMENTSHORTESTPATH",
                     "extraArgs": {

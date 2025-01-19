@@ -93,7 +93,7 @@ class PerformanceRunner(depthmaprunner.DepthmapRegressionRunner):
         depthmaprunner.DepthmapRegressionRunner.__init__(self,runFunc,baseBinary,testBinary,workingDir)
         self.perfConfig = perfConfig
 
-    def runTestCase(self, name, cmds, extraArgs = {"base": [], "test": []}):
+    def runTestCase(self, name, cmds, compareFiles, extraArgs = {"base": [], "test": []}):
         runhelpers.prepareDirectory(self.makeBaseDir(name))
         runhelpers.prepareDirectory(self.makeTestDir(name))
 
@@ -102,7 +102,7 @@ class PerformanceRunner(depthmaprunner.DepthmapRegressionRunner):
             print ("Running test case {0}, run {1} of {2}".format(name, i, self.perfConfig.runsPerInstance))
             for j in range(len(cmds)):
                 cmds[j].timingFile = nameTemplate.format(i,j)
-            result, message = self.runTestCaseImpl(name, cmds, extraArgs)
+            result, message = self.runTestCaseImpl(name, cmds, compareFiles, extraArgs)
             if not result:
                 return (False, "Run {0} failed with message: {1}".format(i, message))
 

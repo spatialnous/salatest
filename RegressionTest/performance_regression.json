@@ -7,6 +7,9 @@
     "testcases": {
         "vis_prep_dense_pointmap": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/rect1x1.graph",
@@ -21,6 +24,9 @@
         },
         "visibility_local": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -35,6 +41,9 @@
         },
         "vga_isovist": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -48,6 +57,9 @@
         },
         "vga_angular": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/turns_connected.graph",
@@ -61,6 +73,9 @@
         },
         "vga_metric": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/turns_connected.graph",
@@ -75,6 +90,9 @@
         },
         "vga_thru_vision": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -88,6 +106,9 @@
         },
         "isovist_args": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_empty.graph",
@@ -104,6 +125,9 @@
         },
         "visibility_global_n": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_connected.graph",
@@ -119,6 +143,9 @@
         },
         "axial_makelines": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/gallery_empty.graph",
@@ -133,6 +160,9 @@
         },
         "axial_rn": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/barnsbury_extended2_axial.graph",
@@ -146,6 +176,9 @@
         },
         "axial_rn_choice": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/barnsbury_extended2_axial.graph",
@@ -160,6 +193,9 @@
         },
         "axial_rn_local": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/barnsbury_extended2_axial.graph",
@@ -174,6 +210,9 @@
         },
         "segment_tulip_1024_rn_steps": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/barnsbury_extended1_segment.graph",
@@ -190,6 +229,9 @@
         },
         "segment_tulip_1024_rn_steps_choice": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/barnsbury_extended1_segment.graph",
@@ -207,6 +249,9 @@
         },
         "segment_tulip_1024_rn_steps_weighted": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/barnsbury_extended1_segment.graph",
@@ -224,6 +269,9 @@
         },
         "segment_topological_rn": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/barnsbury_extended1_segment.graph",
@@ -238,6 +286,9 @@
         },
         "segment_metric_rn": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/barnsbury_extended1_segment.graph",
@@ -252,6 +303,9 @@
         },
         "convert_drawing_axial": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/barnsbury_extended2_drawing.graph",
@@ -266,6 +320,9 @@
         },
         "convert_axial_segment": {
             "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.graph"
+            ],
             "steps": [
                 {
                     "infile": "../../../testdata/barnsbury_extended2_axial.graph",

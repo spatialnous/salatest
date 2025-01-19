@@ -17,6 +17,7 @@ def writeConfig(filename, rundir):
         f.write('  "testcases": {\n')
         f.write('    "test1": {\n')
         f.write('      "minVersion": "0.8.0",\n')
+        f.write('      "compareFiles": ["outfile.graph"],\n')
         f.write('      "steps":[{\n')
         f.write('        "infile": "infile.graph",\n')
         f.write('        "outfile": "outfile.graph",\n')

@@ -44,7 +44,8 @@ class RegressionConfig():
         for (name, tc) in config["testcases"].items():
             self.testcases[name] = {
                 "steps": buildCmd(tc['steps']),
-                "minVersion": tc['minVersion']
+                "minVersion": tc['minVersion'],
+                "compareFiles": tc['compareFiles']
             }
 
 

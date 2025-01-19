@@ -45,7 +45,7 @@ class DepthmapRegressionRunner():
     def makeTestDir(self, name):
         return os.path.join(self.__workingDir, name + "_test")
 
-    def runTestCaseBase(self, name, cmds, extraArgs = []):
+    def runTestCaseBase(self, name, cmds, compareFiles, extraArgs = []):
         baseDir = self.makeBaseDir(name)
         for step,cmd in enumerate(cmds):
             (baseSuccess, baseOut) = self.__baseRunner.runDepthmap(cmd, baseDir, extraArgs)
@@ -53,16 +53,17 @@ class DepthmapRegressionRunner():
                 print("Baseline run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
                 print(baseOut)
                 return (None, None, "Baseline run failed at step: " + str(step))
-        
-        baseFile = os.path.join(baseDir, cmds[-1].outfile)
-        if not os.path.exists(baseFile):
-            message = "Baseline output {0} does not exist".format(baseFile)
-            print (message)
-            return (None, None, message)
 
-        return (baseDir, cmds[-1].outfile, None)
+        for compareFile in compareFiles:
+            baseFile = os.path.join(baseDir, compareFile)
+            if not os.path.exists(baseFile):
+                message = "Baseline output {0} does not exist".format(baseFile)
+                print (message)
+                return (None, None, message)
 
-    def runTestCaseTest(self, name, cmds, extraArgs = []):
+        return (baseDir, compareFiles, None)
+
+    def runTestCaseTest(self, name, cmds, compareFiles, extraArgs = []):
         testDir = self.makeTestDir(name)
         for step,cmd in enumerate(cmds):
             (testSuccess, testOut) = self.__testRunner.runDepthmap(cmd, testDir, extraArgs)
@@ -71,69 +72,37 @@ class DepthmapRegressionRunner():
                 print(testOut)
                 return (None, None, "Test run failed at step: " + str(step))
 
-        testFile = os.path.join(testDir, cmds[-1].outfile)
-        if not os.path.exists(testFile):
-            message = "Test output {0} does not exist".format(testFile)
-            print(message)
-            return (None, None, message)
+        for compareFile in compareFiles:
+            testFile = os.path.join(testDir, compareFile)
+            if not os.path.exists(testFile):
+                message = "Test output {0} does not exist".format(testFile)
+                print(message)
+                return (None, None, message)
 
-        return (testDir, cmds[-1].outfile, None)
+        return (testDir, compareFiles, None)
 
-    def runTestCase(self, name, cmds, extraArgs = {"base": [], "test": []}):
+    def runTestCase(self, name, cmds, compareFiles, extraArgs = {"base": [], "test": []}):
         runhelpers.prepareDirectory(self.makeBaseDir(name))
         runhelpers.prepareDirectory(self.makeTestDir(name))
-        return self.runTestCaseImpl(name, cmds, extraArgs)
+        return self.runTestCaseImpl(name, cmds, compareFiles, extraArgs)
     
-    def runTestCaseImpl(self, name, cmds, extraArgs = {"base": [], "test": []}):
-        baseDir, baseOutFile, message = self.runTestCaseBase(name, cmds, extraArgs["base"])
-        if baseOutFile is None:
-            return (False, message)
-        baseFile = os.path.join(baseDir, baseOutFile)
-
-        testDir, testOutFile, message = self.runTestCaseTest(name, cmds, extraArgs["test"])
-        if testOutFile is None:
-            return (False, message)
-        testFile = os.path.join(testDir, testOutFile)
-        
-        if not diffBinaryFiles(baseFile, testFile):
-            message = "Test outputs differ"
-            print (message)
+    def runTestCaseImpl(self, name, cmds, compareFiles, extraArgs = {"base": [], "test": []}):
+        baseDir, baseOutFiles, message = self.runTestCaseBase(name, cmds, compareFiles, extraArgs["base"])
+        if baseOutFiles is None:
             return (False, message)
 
-        return (True, "")
-    
-    def runTestCaseNoBase(self, name, cmds, extraArgs = {"base": [], "test": []}):
-        baseDir = self.makeBaseDir(name)
-        for step,cmd in enumerate(cmds):
-            (baseSuccess, baseOut) = self.__baseRunner.runDepthmap(cmd, baseDir, extraArgs["base"])
-            if not baseSuccess:
-                print("Baseline run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
-                print(baseOut)
-                return (False, "Baseline run failed at step: " + str(step))
+        testDir, testOutFiles, message = self.runTestCaseTest(name, cmds, compareFiles, extraArgs["test"])
+        if testOutFiles is None:
+            return (False, message)
 
-        testDir = self.makeTestDir(name)
-        for step,cmd in enumerate(cmds):
-            (testSuccess, testOut) = self.__testRunner.runDepthmap(cmd, testDir, extraArgs["test"])
-            if not testSuccess:
-                print("Test run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
-                print(testOut)
-                return (False, "Test run failed at step: " + str(step))
-
-        baseFile = os.path.join(baseDir, cmds[-1].outfile)
-        testFile = os.path.join(testDir, cmds[-1].outfile)
-        if not os.path.exists(baseFile):
-            message = "Baseline output {0} does not exist".format(baseFile)
-            print (message)
-            return (False, message)
-        if not os.path.exists(testFile):
-            message = "Test output {0} does not exist".format(testFile)
-            print(message)
-            return (False, message)
-        
-        if not diffBinaryFiles(baseFile, testFile):
-            message = "Test outputs differ"
-            print (message)
-            return (False, message)
+        for baseOutFile, testOutFile in zip(baseOutFiles, testOutFiles):
+            baseFile = os.path.join(baseDir, baseOutFile)
+            testFile = os.path.join(testDir, testOutFile)
+            
+            if not diffBinaryFiles(baseFile, testFile):
+                message = "Test outputs differ"
+                print (message)
+                return (False, message)
 
         return (True, "")
 

@@ -1,0 +1,442 @@
+{
+    "rundir": [
+        "rundir",
+        "kr_segment"
+    ],
+    "basebinlocation": "BaselineBinaries",
+    "testbinlocation": "../build-RegressionTest",
+    "allowskip": true,
+    "knownresult": {
+        "resultsdir": [
+            "expected",
+            "segment"
+        ]
+    },
+    "testcases": {
+        "segment_angular_rn": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "angular",
+                        "-sr": "n"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_metric_rn": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "metric",
+                        "-sr": "n"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_topological_rn": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "topological",
+                        "-sr": "n"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_tulip_4_rn_steps": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip",
+                        "-stb": "4",
+                        "-sr": "n",
+                        "-srt": "steps"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_tulip_123_rn_steps": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip",
+                        "-stb": "123",
+                        "-sr": "n",
+                        "-srt": "steps"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_tulip_512_rn_steps": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip",
+                        "-stb": "512",
+                        "-sr": "n",
+                        "-srt": "steps"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_tulip_1024_r5_steps": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip",
+                        "-stb": "1024",
+                        "-sr": "5",
+                        "-srt": "steps"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_tulip_1024_r180_angular": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip",
+                        "-stb": "1024",
+                        "-sr": "500",
+                        "-srt": "metric"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_tulip_1024_r500_metric": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip",
+                        "-stb": "1024",
+                        "-sr": "500",
+                        "-srt": "metric"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_tulip_1024_rn_r5_steps": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip",
+                        "-stb": "1024",
+                        "-sr": "5,n",
+                        "-srt": "steps"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_tulip_1024_rn_steps": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip",
+                        "-stb": "1024",
+                        "-sr": "n",
+                        "-srt": "steps"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_tulip_1024_rn_steps_choice": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip",
+                        "-stb": "1024",
+                        "-sr": "n",
+                        "-srt": "steps",
+                        "-sic": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "segment_tulip_1024_rn_steps_weighted": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip",
+                        "-stb": "1024",
+                        "-sr": "n",
+                        "-srt": "steps",
+                        "-swa": "Segment Length"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "shortest_segment_metric_path": {
+            "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_extended1_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENTSHORTESTPATH",
+                    "extraArgs": {
+                        "-sspo": "531074,185526",
+                        "-sspd": "534231,183853",
+                        "-sspt": "metric"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "shortest_segment_topological_path": {
+            "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_extended1_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENTSHORTESTPATH",
+                    "extraArgs": {
+                        "-sspo": "531074,185526",
+                        "-sspd": "534231,183853",
+                        "-sspt": "topological"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "shortest_segment_tulip_path": {
+            "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_extended1_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENTSHORTESTPATH",
+                    "extraArgs": {
+                        "-sspo": "531074,185526",
+                        "-sspd": "534231,183853",
+                        "-sspt": "tulip"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -85,6 +85,7 @@ class RegressionTestRunner():
 
             cmds = case["steps"]
             minVersion = dXversion(case["minVersion"])
+            compareFiles = case["compareFiles"]
 
             if usesBaseBinary and self.__baseVersion < minVersion:
                 good = self.config.allowSkipCases
@@ -99,7 +100,7 @@ class RegressionTestRunner():
                     + "\" < Test minimum version \"" + str(minVersion) + "\")");
                 print ("Skipping:\n" + reason)
             else:
-                success, output = runner.runTestCase(name, cmds, extraArgs)
+                success, output = runner.runTestCase(name, cmds, compareFiles, extraArgs)
                 if not success:
                     good = False
                     print ("Failed:\n" + output)

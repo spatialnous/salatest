@@ -26,8 +26,8 @@ class KnownResultTestRunner(depthmaprunner.DepthmapRegressionRunner):
         depthmaprunner.DepthmapRegressionRunner.__init__(self,runFunc,None,testBinary,workingDir)
         self.config = config
 
-    def runTestCase(self, name, cmds, extraArgs = {"test": []}):
-        if not os.path.exists(self.config.resultsdir):
+    def runTestCase(self, name, cmds, compareFiles, extraArgs = {"test": []}):
+        if not hasattr(self.config, 'resultsdir'):
             return (False, "Config does not specify expected results directory")
 
         knownResultDir = os.path.join(self.config.resultsdir, name)
@@ -39,23 +39,25 @@ class KnownResultTestRunner(depthmaprunner.DepthmapRegressionRunner):
 
         nameTemplate = "timings_{0}_{1}.csv"
 
-        testDir, testOutFile, message = self.runTestCaseTest(name, cmds, extraArgs["test"])
+        testDir, testOutFiles, message = self.runTestCaseTest(name, cmds, compareFiles, extraArgs["test"])
 
-        if testOutFile is None:
+        if testOutFiles is None:
             return (False, "Run failed with message: {0}".format(message))
 
-        if testOutFile.endswith(".graph"):
-            return (False, "Can not run with graph files ({0})".format(result))
-        
-        testFile = os.path.join(testDir, testOutFile)
-        knownResultFile = os.path.join(knownResultDir, testOutFile)
+            
+        for testOutFile in testOutFiles:
+            if testOutFile.endswith(".graph"):
+                return (False, "Can not run with graph files ({0})".format(testOutFile))
+                
+            testFile = os.path.join(testDir, testOutFile)
+            knownResultFile = os.path.join(knownResultDir, testOutFile)
 
-        if not os.path.exists(knownResultFile):
-            return (False, "Test {0} does not have known results (expected file {1})".format(name, knownResultFile))
+            if not os.path.exists(knownResultFile):
+                return (False, "Test {0} does not have known results (expected file {1})".format(name, knownResultFile))
 
-        if not diffBinaryFiles(knownResultFile, testFile):
-            message = "Test outputs differ"
-            print (message)
-            return (False, message)
+            if not diffBinaryFiles(knownResultFile, testFile):
+                message = "Test outputs differ"
+                print (message)
+                return (False, message)
 
         return (True, "")

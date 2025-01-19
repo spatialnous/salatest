@@ -1,0 +1,553 @@
+{
+    "rundir": [
+        "rundir",
+        "kr_axial"
+    ],
+    "basebinlocation": "BaselineBinaries",
+    "testbinlocation": "../build-RegressionTest",
+    "allowskip": true,
+    "knownresult": {
+        "resultsdir": [
+            "expected",
+            "axial"
+        ]
+    },
+    "testcases": {
+        "axial_export_map": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_export_map_mif_given_mif": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.mif",
+                "out.mid"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.mif",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-mif"
+                    }
+                }
+            ]
+        },
+        "axial_export_map_mif_given_mid": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.mid",
+                "out.mif"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.mid",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-mif"
+                    }
+                }
+            ]
+        },
+        "unlinks_shapegraph_coords": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.graph",
+                    "mode": "LINK",
+                    "extraArgs": {
+                        "-lmt": "shapegraphs",
+                        "-lm": "unlink",
+                        "-lt": "coords",
+                        "-lnk": "530797,184255"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-links-unlinks-csv"
+                    }
+                }
+            ]
+        },
+        "unlinks_shapegraph_refs": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.graph",
+                    "mode": "LINK",
+                    "extraArgs": {
+                        "-lmt": "shapegraphs",
+                        "-lm": "unlink",
+                        "-lt": "refs",
+                        "-lnk": "18,24"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-links-unlinks-csv"
+                    }
+                }
+            ]
+        },
+        "links_shapegraph_coords": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.graph",
+                    "mode": "LINK",
+                    "extraArgs": {
+                        "-lmt": "shapegraphs",
+                        "-lm": "link",
+                        "-lt": "coords",
+                        "-lnk": "530684,184098,531388,184353"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-links-unlinks-csv"
+                    }
+                }
+            ]
+        },
+        "links_shapegraph_refs": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "outfile": "out.graph",
+                    "mode": "LINK",
+                    "extraArgs": {
+                        "-lmt": "shapegraphs",
+                        "-lm": "link",
+                        "-lt": "refs",
+                        "-lnk": "1,41"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-links-unlinks-csv"
+                    }
+                }
+            ]
+        },
+        "links_shapegraph_refs_non_cont_keys": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
+                    "outfile": "out.graph",
+                    "mode": "LINK",
+                    "extraArgs": {
+                        "-lmt": "shapegraphs",
+                        "-lm": "link",
+                        "-lt": "refs",
+                        "-lnk": "17,11"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-links-unlinks-csv"
+                    }
+                }
+            ]
+        },
+        "axial_makelines": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_empty.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xl": "3,5",
+                        "-xf": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_makelines_polywall": {
+            "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/polywall.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xl": "4300,1500"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_makelines_rooms": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/rooms.dxf",
+                    "outfile": "out.graph",
+                    "mode": "IMPORT",
+                    "extraArgs": {}
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xl": "7.5,7.5",
+                        "-xf": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_rn": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/simple_axlines.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "n"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_r3": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/simple_axlines.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "3"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_rn_length_weighted": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/simple_axlines.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "n",
+                        "-xaw": "Line Length"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_rn_rra": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/simple_axlines.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "n",
+                        "-xar": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_rn_choice": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/simple_axlines.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "n",
+                        "-xac": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_rn_local": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/simple_axlines.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "n",
+                        "-xal": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_rn_noncont_keys": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "n"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_r3_noncont_keys": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "3"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_rn_rra_noncont_keys": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "n",
+                        "-xar": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_rn_choice_noncont_keys": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "n",
+                        "-xac": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "axial_rn_local_noncont_keys": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/axmap_noncont_keys.graph",
+                    "outfile": "out.graph",
+                    "mode": "AXIAL",
+                    "extraArgs": {
+                        "-xa": "n",
+                        "-xal": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        }
+    }
+}

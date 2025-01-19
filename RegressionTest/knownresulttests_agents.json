@@ -1,0 +1,441 @@
+{
+    "rundir": [
+        "rundir",
+        "kr_agents"
+    ],
+    "basebinlocation": "BaselineBinaries",
+    "testbinlocation": "../build-RegressionTest",
+    "allowskip": true,
+    "knownresult": {
+        "resultsdir": [
+            "expected",
+            "agents"
+        ]
+    },
+    "testcases": {
+        "agents_defaults": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "standard",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_line_of_sight_length_look": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "los-length",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_line_of_sight_length_look_only_map": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.tsv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.tsv",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "los-length",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0",
+                        "-ot": "gatecounts"
+                    }
+                }
+            ]
+        },
+        "agents_occluded_length_look": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected_with_isovist.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "occ-length",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_any_occlusion_look": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "occ-any",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_occlusion_group_bins_45_look": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "occ-group-45",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_occlusion_group_bins_60_look": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "occ-group-60",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_furthest_occlusion_per_bin_look": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "occ-furthest",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_per_bin_far_distance_look": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "bin-far-dist",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_per_bin_angle_look": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "bin-angle",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_per_bin_far_distance_and_angle_look": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "bin-far-dist-angle",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_per_bin_memory_look": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "bin-memory",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_gatecounts": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.tsv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.tsv",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "standard",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "5",
+                        "-ot": "gatecounts"
+                    }
+                }
+            ]
+        },
+        "agents_trails_all": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.cat"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.cat",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "standard",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0",
+                        "-atrails": "0",
+                        "-ot": "trails"
+                    }
+                }
+            ]
+        },
+        "agents_trails_1": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.cat"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.cat",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "standard",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0",
+                        "-atrails": "1",
+                        "-ot": "trails"
+                    }
+                }
+            ]
+        }
+    }
+}
