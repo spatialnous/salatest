@@ -32,7 +32,16 @@
                     }
                 },
                 {
-                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "infile": "out.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "convex",
+                        "-con": "Convex Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
                     "outfile": "out.mif",
                     "mode": "EXPORT",
                     "extraArgs": {
@@ -57,7 +66,16 @@
                     }
                 },
                 {
-                    "infile": "../../../../testdata/barnsbury_axial.graph",
+                    "infile": "out.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "convex",
+                        "-con": "Convex Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
                     "outfile": "out.mif",
                     "mode": "EXPORT",
                     "extraArgs": {
