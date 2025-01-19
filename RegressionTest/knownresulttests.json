@@ -1,0 +1,189 @@
+{
+    "rundir": [
+        "rundir",
+        "kr"
+    ],
+    "basebinlocation": "BaselineBinaries",
+    "testbinlocation": "../build-RegressionTest",
+    "allowskip": true,
+    "knownresult": {
+        "resultsdir": "expected"
+    },
+    "testcases": {
+        "convert_drawing_segment_csv": {
+            "minVersion": "0.8.0",
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_drawing.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "segment",
+                        "-con": "Segment Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
+        "visibility_local_csv": {
+            "minVersion": "0.8.0",
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "visibility",
+                        "-vl": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "visibility_global_3_csv": {
+            "minVersion": "0.8.0",
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "visibility",
+                        "-vg": "",
+                        "-vr": "3"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "visibility_global_n_csv": {
+            "minVersion": "0.8.0",
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "visibility",
+                        "-vg": "",
+                        "-vr": "n"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_isovist_csv": {
+            "minVersion": "0.8.0",
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "isovist"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_angular_csv": {
+            "minVersion": "0.8.0",
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "angular"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_metric_csv": {
+            "minVersion": "0.8.0",
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "metric",
+                        "-vr": "n"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        },
+        "vga_thru_vision_csv": {
+            "minVersion": "0.8.0",
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_0_6.graph",
+                    "outfile": "out.graph",
+                    "mode": "VGA",
+                    "extraArgs": {
+                        "-vm": "thruvision"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "pointmap-data-csv"
+                    }
+                }
+            ]
+        }
+    }
+}

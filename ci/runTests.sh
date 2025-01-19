@@ -12,8 +12,11 @@ echo testing regression test framework
 cd ..
 ln -s build build-RegressionTest
 cd RegressionTest/test && echo pwd && python3 -u test_main.py || exit 1
+cd .. && pwd
+echo running known result tests
+python3 -u RegressionTestRunner.py knownresulttests.json || exit 1
 echo running standard regression tests
-cd .. && pwd && python3 -u RegressionTestRunner.py || exit 1
+python3 -u RegressionTestRunner.py || exit 1
 echo running agent test
 python3 -u RegressionTestRunner.py regressionconfig_agents.json || exit 1
 # search the modules directory for regression tests and run them

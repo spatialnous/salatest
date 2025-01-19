@@ -19,7 +19,8 @@ class DepthmapRunner():
         self.__binary = binary
         
     def runDepthmap(self, cmdWrapper, runDir, extraArgs = []):
-        args = [os.path.join("..", "..", self.__binary)]
+        dirdepth = len(runDir.split(os.path.sep)) - 1
+        args = [os.path.join("..", *[".."] * dirdepth, self.__binary)]
         args.extend(cmdWrapper.toCmdArray())
         args.extend(extraArgs)
         return self.__runFunc(runDir, args)
@@ -44,12 +45,64 @@ class DepthmapRegressionRunner():
     def makeTestDir(self, name):
         return os.path.join(self.__workingDir, name + "_test")
 
+    def runTestCaseBase(self, name, cmds, extraArgs = []):
+        baseDir = self.makeBaseDir(name)
+        for step,cmd in enumerate(cmds):
+            (baseSuccess, baseOut) = self.__baseRunner.runDepthmap(cmd, baseDir, extraArgs)
+            if not baseSuccess:
+                print("Baseline run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
+                print(baseOut)
+                return (False, "Baseline run failed at step: " + str(step))
+        
+        baseFile = os.path.join(baseDir, cmds[-1].outfile)
+        if not os.path.exists(baseFile):
+            message = "Baseline output {0} does not exist".format(baseFile)
+            print (message)
+            return (None, None, message)
+
+        return (baseDir, cmds[-1].outfile, None)
+
+    def runTestCaseTest(self, name, cmds, extraArgs = []):
+        testDir = self.makeTestDir(name)
+        for step,cmd in enumerate(cmds):
+            (testSuccess, testOut) = self.__testRunner.runDepthmap(cmd, testDir, extraArgs)
+            if not testSuccess:
+                print("Test run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
+                print(testOut)
+                return (False, "Test run failed at step: " + str(step))
+
+        testFile = os.path.join(testDir, cmds[-1].outfile)
+        if not os.path.exists(testFile):
+            message = "Test output {0} does not exist".format(testFile)
+            print(message)
+            return (None, None, message)
+
+        return (testDir, cmds[-1].outfile, None)
+
     def runTestCase(self, name, cmds, extraArgs = {"base": [], "test": []}):
         runhelpers.prepareDirectory(self.makeBaseDir(name))
         runhelpers.prepareDirectory(self.makeTestDir(name))
         return self.runTestCaseImpl(name, cmds, extraArgs)
-            
+    
     def runTestCaseImpl(self, name, cmds, extraArgs = {"base": [], "test": []}):
+        baseDir, baseOutFile, message = self.runTestCaseBase(name, cmds, extraArgs["base"])
+        if baseOutFile is None:
+            return (False, message)
+        baseFile = os.path.join(baseDir, baseOutFile)
+
+        testDir, testOutFile, message = self.runTestCaseBase(name, cmds, extraArgs["test"])
+        if testOutFile is None:
+            return (False, message)
+        testFile = os.path.join(testDir, testOutFile)
+        
+        if not diffBinaryFiles(baseFile, testFile):
+            message = "Test outputs differ"
+            print (message)
+            return (False, message)
+
+        return (True, "")
+    
+    def runTestCaseNoBase(self, name, cmds, extraArgs = {"base": [], "test": []}):
         baseDir = self.makeBaseDir(name)
         for step,cmd in enumerate(cmds):
             (baseSuccess, baseOut) = self.__baseRunner.runDepthmap(cmd, baseDir, extraArgs["base"])

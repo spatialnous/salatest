@@ -6,6 +6,7 @@
 import config
 import depthmaprunner
 import performancerunner
+import knownresulttestrunner
 import os
 import sys
 
@@ -65,6 +66,9 @@ class RegressionTestRunner():
         if self.config.performanceRegression.enabled:
             print("Performance regression runs enabled")
             runner = performancerunner.PerformanceRunner(self.runfunc, self.baseBinary, self.testBinary, self.config.rundir,self.config.performanceRegression )
+        elif self.config.knownResultTesting.enabled:
+            print("Known result test runs enabled")
+            runner = knownresulttestrunner.KnownResultTestRunner(self.runfunc, self.testBinary, self.config.rundir,self.config.knownResultTesting )
         else:
             print("Default regression runs - no performance")
             runner = depthmaprunner.DepthmapRegressionRunner( self.runfunc, self.baseBinary, self.testBinary, self.config.rundir )

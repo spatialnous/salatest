@@ -7,6 +7,7 @@ import json
 import os.path
 import cmdlinewrapper
 from performanceregressionconfig import PerformanceRegressionConfig
+from knownresulttestconfig import KnownResultTestConfig
 
 
 class ConfigError(Exception):
@@ -32,10 +33,13 @@ class RegressionConfig():
             config = json.load(f)
         configdir = os.path.dirname(filename)
         self.rundir = config["rundir"]
+        if isinstance(self.rundir, list):
+            self.rundir = os.path.join(*self.rundir)
         self.basebinlocation = config["basebinlocation"]
         self.testbinlocation = config["testbinlocation"]
         self.allowSkipCases = config["allowskip"]
         self.performanceRegression = PerformanceRegressionConfig(config.get("performance", None))
+        self.knownResultTesting = KnownResultTestConfig(config.get("knownresult", None))
         self.testcases = {}
         for (name, tc) in config["testcases"].items():
             self.testcases[name] = {

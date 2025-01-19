@@ -19,7 +19,7 @@ Files: RegressionTest/*.json tools/build_image/Dockerfile
 Copyright: Christian Sailer, Petros Koutsolampros <commits@pklampros.io>
 License: GPL-3.0-or-later
 
-Files: testdata/*
+Files: testdata/* RegressionTest/expected/*
 Copyright: Public domain
 License: CC0-1.0
 
