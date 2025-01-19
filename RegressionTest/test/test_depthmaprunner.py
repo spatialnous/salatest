@@ -37,7 +37,7 @@ class DepthmapRunnerTest(unittest.TestCase):
 
         runner = depthmaprunner.DepthmapRunner(lambda d, a: self.runfunc(d, a), "bin")
         
-        self.__args = ["../../bin", "-f", "foo", "-o", "bar", "-m", "mode"]
+        self.__args = ["../bin", "-f", "foo", "-o", "bar", "-m", "mode"]
         self.__rundir = "dir"
         runner.runDepthmap(dcmd, "dir")
 

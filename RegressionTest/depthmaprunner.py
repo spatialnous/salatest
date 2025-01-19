@@ -19,8 +19,8 @@ class DepthmapRunner():
         self.__binary = binary
         
     def runDepthmap(self, cmdWrapper, runDir, extraArgs = []):
-        dirdepth = len(runDir.split(os.path.sep)) - 1
-        args = [os.path.join("..", *[".."] * dirdepth, self.__binary)]
+        dirdepth = len(runDir.split(os.path.sep))
+        args = [os.path.join(*[".."] * dirdepth, self.__binary)]
         args.extend(cmdWrapper.toCmdArray())
         args.extend(extraArgs)
         return self.__runFunc(runDir, args)
