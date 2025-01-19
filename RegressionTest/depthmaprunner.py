@@ -52,7 +52,7 @@ class DepthmapRegressionRunner():
             if not baseSuccess:
                 print("Baseline run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
                 print(baseOut)
-                return (False, "Baseline run failed at step: " + str(step))
+                return (None, None, "Baseline run failed at step: " + str(step))
         
         baseFile = os.path.join(baseDir, cmds[-1].outfile)
         if not os.path.exists(baseFile):
@@ -69,7 +69,7 @@ class DepthmapRegressionRunner():
             if not testSuccess:
                 print("Test run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
                 print(testOut)
-                return (False, "Test run failed at step: " + str(step))
+                return (None, None, "Test run failed at step: " + str(step))
 
         testFile = os.path.join(testDir, cmds[-1].outfile)
         if not os.path.exists(testFile):
@@ -90,7 +90,7 @@ class DepthmapRegressionRunner():
             return (False, message)
         baseFile = os.path.join(baseDir, baseOutFile)
 
-        testDir, testOutFile, message = self.runTestCaseBase(name, cmds, extraArgs["test"])
+        testDir, testOutFile, message = self.runTestCaseTest(name, cmds, extraArgs["test"])
         if testOutFile is None:
             return (False, message)
         testFile = os.path.join(testDir, testOutFile)
