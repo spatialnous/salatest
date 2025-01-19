@@ -42,7 +42,7 @@ class KnownResultTestRunner(depthmaprunner.DepthmapRegressionRunner):
         testDir, testOutFile, message = self.runTestCaseTest(name, cmds, extraArgs["test"])
 
         if testOutFile is None:
-            return (False, "Run {0} failed with message: {1}".format(i, message))
+            return (False, "Run failed with message: {1}".format(message))
 
         if testOutFile.endswith(".graph"):
             return (False, "Can not run with graph files ({0})".format(result))
