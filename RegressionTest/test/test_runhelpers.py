@@ -31,10 +31,11 @@ class TestRunHelpers(unittest.TestCase):
     def test_getBinary(self):
         result = runhelpers.getExecutable("foo")
         sys = platform.system()
+        machine = platform.machine()
         if sys == "Windows":
             self.assertEqual( result, "foo\\Windows\\depthmapXcli.exe")
         else:
-            self.assertEqual( result, "foo/" + sys + "/depthmapXcli" )
+            self.assertEqual( result, "foo/" + sys + "_" + machine + "/depthmapXcli" )
 
     def test_getTestBinary(self):
         result = runhelpers.getTestExecutable("foo")
