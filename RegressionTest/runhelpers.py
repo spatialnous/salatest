@@ -51,10 +51,11 @@ def runExecutable( workingDir, arguments ):
 
 def getExecutable(basedir):
     sys = platform.system()
+    machine = platform.machine()
     if sys == "Windows":
-        return os.path.join(basedir, sys, "depthmapXcli.exe")
+        return os.path.join(basedir, sys + "_" + machine, "depthmapXcli.exe")
     else:
-        return os.path.join(basedir, sys, "depthmapXcli")
+        return os.path.join(basedir, sys + "_" + machine, "depthmapXcli")
 
 def getTestExecutable(basedir):
     sys = platform.system()
