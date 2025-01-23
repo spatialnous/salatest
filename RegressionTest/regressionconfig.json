@@ -1432,7 +1432,8 @@
                     "mode": "MAPCONVERT",
                     "extraArgs": {
                         "-co": "data",
-                        "-con": "Data Map Test"
+                        "-con": "Data Map Test",
+                        "-cir": ""
                     }
                 },
                 {
@@ -1459,7 +1460,8 @@
                     "extraArgs": {
                         "-co": "data",
                         "-con": "Data Map Test",
-                        "-coc": ""
+                        "-coc": "",
+                        "-cir": ""
                     }
                 },
                 {
@@ -1503,7 +1505,8 @@
                     "mode": "MAPCONVERT",
                     "extraArgs": {
                         "-co": "data",
-                        "-con": "Data Map Test"
+                        "-con": "Data Map Test",
+                        "-cir": ""
                     }
                 },
                 {
@@ -1530,7 +1533,8 @@
                     "extraArgs": {
                         "-co": "data",
                         "-con": "Data Map Test",
-                        "-coc": ""
+                        "-coc": "",
+                        "-cir": ""
                     }
                 },
                 {

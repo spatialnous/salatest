@@ -5,6 +5,7 @@
 
 #include "runmethods.h"
 
+#include "exceptions.h"
 #include "printcommunicator.h"
 #include "simpletimer.h"
 
@@ -34,8 +35,69 @@ namespace dm_runmethods {
         }
         return nullptr;
     }
+
     void writeGraph(const CommandLineParser &clp, MetaGraphDX &metaGraph,
                     const std::string &filename, bool currentlayer) {
         metaGraph.write(filename, METAGRAPH_VERSION, currentlayer, clp.ignoreDisplayData());
+    }
+
+    ShapeMapDX &safeGetDisplayedDataMap(MetaGraphDX &mgraph) {
+        if (mgraph.hasDisplayedDataMap()) {
+            return mgraph.getDisplayedDataMap();
+        } else if (!mgraph.getDataMaps().empty()) {
+            return mgraph.getDataMaps().back();
+        } else {
+            throw depthmapX::CommandLineException("No available datamaps to process");
+        }
+    }
+
+    PointMapDX &safeGetDisplayedPointMap(MetaGraphDX &mgraph) {
+        if (mgraph.hasDisplayedPointMap()) {
+            return mgraph.getDisplayedPointMap();
+        } else if (!mgraph.getPointMaps().empty()) {
+            return mgraph.getPointMaps().back();
+        } else {
+            throw depthmapX::CommandLineException("No available pointmaps to process");
+        }
+    }
+
+    ShapeGraphDX &safeGetDisplayedShapeGraph(MetaGraphDX &mgraph) {
+        if (mgraph.hasDisplayedShapeGraph()) {
+            return mgraph.getDisplayedShapeGraph();
+        } else if (!mgraph.getShapeGraphs().empty()) {
+            return mgraph.getShapeGraphs().back();
+        } else {
+            throw depthmapX::CommandLineException("No available shapegraphs to process");
+        }
+    }
+
+    void enforceDisplayedDataMapSet(MetaGraphDX &mgraph) {
+        if (mgraph.hasDisplayedDataMap()) {
+            return;
+        } else if (!mgraph.getDataMaps().empty()) {
+            mgraph.setDisplayedDataMapRef(mgraph.getDataMaps().size() - 1);
+        } else {
+            throw depthmapX::CommandLineException("No available datamaps to process");
+        }
+    }
+
+    void enforceDisplayedPointMapSet(MetaGraphDX &mgraph) {
+        if (mgraph.hasDisplayedPointMap()) {
+            return;
+        } else if (!mgraph.getPointMaps().empty()) {
+            mgraph.setDisplayedPointMapRef(mgraph.getPointMaps().size() - 1);
+        } else {
+            throw depthmapX::CommandLineException("No available pointmaps to process");
+        }
+    }
+
+    void enforceDisplayedShapeGraphSet(MetaGraphDX &mgraph) {
+        if (mgraph.hasDisplayedShapeGraph()) {
+            return;
+        } else if (!mgraph.getShapeGraphs().empty()) {
+            mgraph.setDisplayedShapeGraphRef(mgraph.getShapeGraphs().size() - 1);
+        } else {
+            throw depthmapX::CommandLineException("No available shapegraphs to process");
+        }
     }
 } // namespace dm_runmethods

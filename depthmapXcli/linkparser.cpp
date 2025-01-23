@@ -80,7 +80,7 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
 
     if (getLinkMode() == LinkParser::LinkMode::UNLINK &&
         getMapTypeGroup() == LinkParser::MapTypeGroup::SHAPEGRAPHS &&
-        metaGraph.getDisplayedShapeGraph().getMapType() != ShapeMap::AXIALMAP) {
+        dm_runmethods::safeGetDisplayedShapeGraph(metaGraph).getMapType() != ShapeMap::AXIALMAP) {
         throw depthmapX::RuntimeException(
             "Unlinking is only available for axial maps and pointmaps");
     }
@@ -114,7 +114,7 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
     SimpleTimer t;
     if (getLinkMode() == LinkParser::LinkMode::LINK) {
         if (getMapTypeGroup() == LinkParser::MapTypeGroup::SHAPEGRAPHS) {
-            auto &shapeGraph = metaGraph.getDisplayedShapeGraph();
+            auto &shapeGraph = dm_runmethods::safeGetDisplayedShapeGraph(metaGraph);
             if (getLinkType() == LinkParser::LinkType::COORDS) {
                 std::vector<Line> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
                 for (const auto &line : mergeLines) {
@@ -131,7 +131,7 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
             }
         } else {
             std::vector<PixelRefPair> newLinks;
-            auto &currentMap = metaGraph.getDisplayedPointMap();
+            auto &currentMap = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
             if (getLinkType() == LinkParser::LinkType::COORDS) {
                 std::vector<Line> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
                 std::vector<PixelRefPair> linkPairsFromCoords =
@@ -148,7 +148,7 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
         }
     } else {
         if (getMapTypeGroup() == LinkParser::MapTypeGroup::SHAPEGRAPHS) {
-            auto &shapeGraph = metaGraph.getDisplayedShapeGraph();
+            auto &shapeGraph = dm_runmethods::safeGetDisplayedShapeGraph(metaGraph);
             if (getLinkType() == LinkParser::LinkType::COORDS) {
                 auto mergePoints = EntityParsing::parsePoints(linksStream, delimiter);
                 for (auto point : mergePoints) {
@@ -162,7 +162,7 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
             }
         } else {
             std::vector<PixelRefPair> newLinks;
-            auto &currentMap = metaGraph.getDisplayedPointMap();
+            auto &currentMap = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
             if (getLinkType() == LinkParser::LinkType::COORDS) {
                 std::vector<Line> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
                 std::vector<PixelRefPair> linkPairsFromCoords =

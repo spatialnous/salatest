@@ -176,7 +176,7 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
     }
 
     if (m_unmakeGraph) {
-        if (!metaGraph.getDisplayedPointMap().getInternalMap().isProcessed()) {
+        if (!dm_runmethods::safeGetDisplayedPointMap(metaGraph).getInternalMap().isProcessed()) {
             std::stringstream message;
             message << "Current map has not had its graph made so there's nothing to unmake"
                     << std::flush;
@@ -198,7 +198,7 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
 
             if (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0") {
                 /* legacy mode where the columns are sorted before stored */
-                auto &map = metaGraph.getDisplayedPointMap();
+                auto &map = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
                 auto displayedAttribute = map.getDisplayedAttribute();
 
                 auto sortedDisplayedAttribute =

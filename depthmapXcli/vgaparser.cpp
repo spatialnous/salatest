@@ -117,14 +117,16 @@ void VgaParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter) 
             // in this version vga isovist analysis does not change the
             // displayed attribute, so we have to reset it back to what
             // it was before the analysis
-            currentDisplayedAttribute = metaGraph.getDisplayedPointMap().getDisplayedAttribute();
+            currentDisplayedAttribute =
+                dm_runmethods::safeGetDisplayedPointMap(metaGraph).getDisplayedAttribute();
         }
 
         DO_TIMED("Run VGA", metaGraph.analyseGraph(dm_runmethods::getCommunicator(clp).get(),
                                                    *options, clp.simpleMode());)
 
         if (getVgaMode() == VgaParser::VgaMode::ISOVIST) {
-            metaGraph.getDisplayedPointMap().setDisplayedAttribute(currentDisplayedAttribute);
+            dm_runmethods::safeGetDisplayedPointMap(metaGraph).setDisplayedAttribute(
+                currentDisplayedAttribute);
         }
         /* legacy mode where the columns are sorted before stored */
         for (auto &map : metaGraph.getPointMaps()) {

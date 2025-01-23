@@ -43,6 +43,7 @@ class MapConvertParser : public IModeParser {
     double removeStubLength() const { return m_removeStubLengthPRC; }
 
   private:
+    std::string getMapTypeName(int mapType) const;
     int m_outMapType;
     std::string m_outMapName;
     bool m_removeInputMap;

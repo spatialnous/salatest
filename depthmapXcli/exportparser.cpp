@@ -53,14 +53,14 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
 
     switch (getExportMode()) {
     case ExportParser::POINTMAP_DATA_CSV: {
-        auto &currentMap = mgraph.getDisplayedPointMap();
+        auto &currentMap = dm_runmethods::safeGetDisplayedPointMap(mgraph);
         std::ofstream stream(clp.getOuputFile().c_str());
         DO_TIMED("Writing pointmap data", currentMap.getInternalMap().outputSummary(stream, ','))
         stream.close();
         break;
     }
     case ExportParser::POINTMAP_CONNECTIONS_CSV: {
-        auto &currentMap = mgraph.getDisplayedPointMap();
+        auto &currentMap = dm_runmethods::safeGetDisplayedPointMap(mgraph);
         std::ofstream stream(clp.getOuputFile().c_str());
         DO_TIMED("Writing pointmap connections",
                  currentMap.getInternalMap().outputConnectionsAsCSV(stream, ","))
@@ -68,7 +68,7 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
         break;
     }
     case ExportParser::POINTMAP_LINKS_CSV: {
-        auto &currentMap = mgraph.getDisplayedPointMap();
+        auto &currentMap = dm_runmethods::safeGetDisplayedPointMap(mgraph);
         std::ofstream stream(clp.getOuputFile().c_str());
         DO_TIMED("Writing pointmap connections",
                  currentMap.getInternalMap().outputLinksAsCSV(stream, ","))
@@ -76,14 +76,14 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
         break;
     }
     case ExportParser::SHAPEGRAPH_MAP_CSV: {
-        auto &currentMap = mgraph.getDisplayedShapeGraph();
+        auto &currentMap = dm_runmethods::safeGetDisplayedShapeGraph(mgraph);
         std::ofstream stream(clp.getOuputFile().c_str());
         DO_TIMED("Writing pointmap connections", currentMap.getInternalMap().output(stream, ','))
         stream.close();
         break;
     }
     case ExportParser::SHAPEGRAPH_MAP_MIF: {
-        auto &currentMap = mgraph.getDisplayedShapeGraph();
+        auto &currentMap = dm_runmethods::safeGetDisplayedShapeGraph(mgraph);
         std::string fileName = clp.getOuputFile().c_str();
         std::string mifFile = fileName + ".mif";
         std::string midFile = fileName + ".mid";
@@ -106,7 +106,7 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
         break;
     }
     case ExportParser::SHAPEGRAPH_CONNECTIONS_CSV: {
-        auto &currentMap = mgraph.getDisplayedShapeGraph();
+        auto &currentMap = dm_runmethods::safeGetDisplayedShapeGraph(mgraph);
         std::ofstream stream(clp.getOuputFile().c_str());
         DO_TIMED("Writing shapegraph connections",
                  currentMap.getInternalMap().isAxialMap()
@@ -116,7 +116,7 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
         break;
     }
     case ExportParser::SHAPEGRAPH_LINKS_UNLINKS_CSV: {
-        auto &currentMap = mgraph.getDisplayedShapeGraph();
+        auto &currentMap = dm_runmethods::safeGetDisplayedShapeGraph(mgraph);
         std::ofstream stream(clp.getOuputFile().c_str());
         DO_TIMED("Writing shapegraph links and unlinks",
                  currentMap.getInternalMap().writeLinksUnlinksAsPairsCSV(stream))

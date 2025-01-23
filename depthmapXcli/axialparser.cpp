@@ -117,7 +117,7 @@ void AxialParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
         options.weightedMeasureCol = -1;
 
         if (!getAttribute().empty()) {
-            const auto &map = metaGraph.getDisplayedShapeGraph();
+            const auto &map = dm_runmethods::safeGetDisplayedShapeGraph(metaGraph);
             const auto &table = map.getAttributeTable();
             for (size_t i = 0; i < table.getNumColumns(); i++) {
                 if (getAttribute() == table.getColumnName(i).c_str()) {
@@ -139,7 +139,7 @@ void AxialParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
 
     if (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0") {
         /* legacy mode where the columns are sorted before stored */
-        auto &map = metaGraph.getDisplayedShapeGraph();
+        auto &map = dm_runmethods::safeGetDisplayedShapeGraph(metaGraph);
         auto displayedAttribute = map.getDisplayedAttribute();
 
         auto sortedDisplayedAttribute = static_cast<int>(

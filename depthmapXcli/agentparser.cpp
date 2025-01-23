@@ -267,7 +267,7 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
 
     std::optional<std::string> mimicVersion = clp.getMimickVersion();
 
-    auto &currentMap = metaGraph.getDisplayedPointMap();
+    auto &currentMap = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
 
     int agentViewAlgorithm = AgentProgram::SEL_STANDARD;
 
@@ -352,7 +352,7 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
 
         if (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0") {
             /* legacy mode where the columns are sorted before stored */
-            auto &map = metaGraph.getDisplayedPointMap();
+            auto &map = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
             auto displayedAttribute = map.getDisplayedAttribute();
 
             auto sortedDisplayedAttribute =
@@ -373,7 +373,7 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
 
             if (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0") {
                 /* legacy mode where the columns are sorted before stored */
-                auto &map = metaGraph.getDisplayedPointMap();
+                auto &map = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
                 auto displayedAttribute = map.getDisplayedAttribute();
 
                 auto sortedDisplayedAttribute =
@@ -420,7 +420,7 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
                             static_cast<size_t>(displayedAttribute)));
                     map.setDisplayedAttribute(sortedDisplayedAttribute);
                 }
-                auto &map = metaGraph.getDisplayedPointMap();
+                auto &map = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
                 auto displayedAttribute = map.getDisplayedAttribute();
 
                 auto sortedDisplayedAttribute =

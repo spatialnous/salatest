@@ -27,4 +27,10 @@ namespace dm_runmethods {
     std::unique_ptr<Communicator> getCommunicator(const CommandLineParser &clp);
     void writeGraph(const CommandLineParser &clp, MetaGraphDX &metaGraph,
                     const std::string &filename, bool currentlayer);
+    PointMapDX &safeGetDisplayedPointMap(MetaGraphDX &mgraph);
+    ShapeGraphDX &safeGetDisplayedShapeGraph(MetaGraphDX &mgraph);
+
+    void enforceDisplayedDataMapSet(MetaGraphDX &mgraph);
+    void enforceDisplayedPointMapSet(MetaGraphDX &mgraph);
+    void enforceDisplayedShapeGraphSet(MetaGraphDX &mgraph);
 } // namespace dm_runmethods

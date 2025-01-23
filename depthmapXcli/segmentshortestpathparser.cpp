@@ -110,7 +110,7 @@ void SegmentShortestPathParser::run(const CommandLineParser &clp,
 
     switch (m_stepType) {
     case SegmentShortestPathParser::StepType::TULIP: {
-        auto &map = metaGraph.getDisplayedShapeGraph();
+        auto &map = dm_runmethods::safeGetDisplayedShapeGraph(metaGraph);
         DO_TIMED(
             "Calculating tulip shortest path",
             SegmentTulipShortestPath(map.getInternalMap(), 1024, refFrom, refTo).run(comm.get()))
@@ -119,7 +119,7 @@ void SegmentShortestPathParser::run(const CommandLineParser &clp,
         break;
     }
     case SegmentShortestPathParser::StepType::METRIC: {
-        auto &map = metaGraph.getDisplayedShapeGraph();
+        auto &map = dm_runmethods::safeGetDisplayedShapeGraph(metaGraph);
         DO_TIMED("Calculating metric shortest path",
                  SegmentMetricShortestPath(map.getInternalMap(), refFrom, refTo).run(comm.get()))
         map.overrideDisplayedAttribute(-2);
@@ -133,7 +133,7 @@ void SegmentShortestPathParser::run(const CommandLineParser &clp,
         break;
     }
     case SegmentShortestPathParser::StepType::TOPOLOGICAL: {
-        auto &map = metaGraph.getDisplayedShapeGraph();
+        auto &map = dm_runmethods::safeGetDisplayedShapeGraph(metaGraph);
         DO_TIMED(
             "Calculating topological shortest path",
             SegmentTopologicalShortestPath(map.getInternalMap(), refFrom, refTo).run(comm.get()))
@@ -149,7 +149,7 @@ void SegmentShortestPathParser::run(const CommandLineParser &clp,
 
     if (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0") {
         /* legacy mode where the columns are sorted before stored */
-        auto &map = metaGraph.getDisplayedShapeGraph();
+        auto &map = dm_runmethods::safeGetDisplayedShapeGraph(metaGraph);
         auto displayedAttribute = map.getDisplayedAttribute();
 
         auto sortedDisplayedAttribute = static_cast<int>(
