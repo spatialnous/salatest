@@ -5,6 +5,7 @@
 #pragma once
 
 #include "commandlineparser.h"
+#include "depthmapXcli/dxinterface/metagraphdx.h"
 #include "imodeparser.h"
 
 #include <string>
@@ -15,6 +16,7 @@ class ExportParser : public IModeParser {
 
     std::string getHelp() const override {
         return "Mode options for EXPORT:\n"
+               "-ei <export index> map index in type group\n"
                "-em <export mode> one of:\n"
                "    pointmap-data-csv\n"
                "    pointmap-connections-csv\n"
@@ -30,6 +32,8 @@ class ExportParser : public IModeParser {
     void parse(size_t argc, char *argv[]) override;
     void run(const CommandLineParser &clp, IPerformanceSink &perfWriter) const override;
 
+    std::optional<size_t> getExportMapIdx() const { return m_exportMapIdx; }
+
     enum ExportMode {
         NONE,
         POINTMAP_DATA_CSV,
@@ -43,5 +47,9 @@ class ExportParser : public IModeParser {
     ExportMode getExportMode() const { return m_exportMode; }
 
   private:
+    std::optional<size_t> m_exportMapIdx;
     ExportMode m_exportMode;
+
+    PointMapDX &getSelectedOrDisplayedPointMap(MetaGraphDX &mgraph) const;
+    ShapeGraphDX &getSelectedOrDisplayedShapeGraph(MetaGraphDX &mgraph) const;
 };
