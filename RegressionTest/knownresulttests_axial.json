@@ -199,7 +199,7 @@
             ]
         },
         "axial_makelines": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.9.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -218,7 +218,8 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "shapegraph-map-csv"
+                        "-em": "shapegraph-map-csv",
+                        "-ei": "1"
                     }
                 }
             ]
