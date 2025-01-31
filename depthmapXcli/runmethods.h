@@ -19,7 +19,7 @@
     code;                                                                                          \
     perfWriter.addData(message, CONCAT(t_, __LINE__).getTimeInSeconds());
 
-class Line;
+class Line4f;
 class Point2f;
 
 namespace dm_runmethods {

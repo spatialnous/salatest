@@ -92,7 +92,7 @@ void StepDepthParser::run(const CommandLineParser &clp, IPerformanceSink &perfWr
         if (!graphRegion.contains(point)) {
             throw depthmapX::RuntimeException("Point outside of target region");
         }
-        QtRegion r(point, point);
+        Region4f r(point, point);
         metaGraph.setCurSel(r, true);
     }
 

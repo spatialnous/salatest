@@ -16,19 +16,19 @@ TEST_CASE("Shortest paths working examples", "") {
     // construct an axial map which will result in three different paths for the three types
     ShapeGraph axialMap("Dummy drawing map", ShapeMap::AXIALMAP);
     axialMap.initialiseAttributesAxial();
-    std::vector<Line> lines;
-    lines.push_back(Line(Point2f(1.05000000, 1.00000000), Point2f(3.60000000, 1.00000000)));
-    lines.push_back(Line(Point2f(3.43455142, 2.92439257), Point2f(4.15448579, 3.75607430)));
-    lines.push_back(Line(Point2f(2.40000000, 3.00000000), Point2f(3.60000000, 3.00000000)));
-    lines.push_back(Line(Point2f(1.15022677, 0.90136061), Point2f(1.34977323, 2.09863939)));
-    lines.push_back(Line(Point2f(3.50000000, 3.10000000), Point2f(3.50000000, 0.90000000)));
-    lines.push_back(Line(Point2f(1.24560093, 1.95201016), Point2f(2.11199711, 2.42593102)));
-    lines.push_back(Line(Point2f(1.96351621, 2.29850806), Point2f(2.56074850, 3.07943312)));
+    std::vector<Line4f> lines;
+    lines.push_back(Line4f(Point2f(1.05000000, 1.00000000), Point2f(3.60000000, 1.00000000)));
+    lines.push_back(Line4f(Point2f(3.43455142, 2.92439257), Point2f(4.15448579, 3.75607430)));
+    lines.push_back(Line4f(Point2f(2.40000000, 3.00000000), Point2f(3.60000000, 3.00000000)));
+    lines.push_back(Line4f(Point2f(1.15022677, 0.90136061), Point2f(1.34977323, 2.09863939)));
+    lines.push_back(Line4f(Point2f(3.50000000, 3.10000000), Point2f(3.50000000, 0.90000000)));
+    lines.push_back(Line4f(Point2f(1.24560093, 1.95201016), Point2f(2.11199711, 2.42593102)));
+    lines.push_back(Line4f(Point2f(1.96351621, 2.29850806), Point2f(2.56074850, 3.07943312)));
 
-    lines.push_back(Line(Point2f(1.28848772, 1.91061952), Point2f(1.75546653, 2.84134127)));
-    lines.push_back(Line(Point2f(1.61521977, 2.72198377), Point2f(2.59540115, 3.02997701)));
-    lines.push_back(Line(Point2f(1.23737734, 1.07071068), Point2f(0.45955989, 0.29289322)));
-    for (const Line &line : lines) {
+    lines.push_back(Line4f(Point2f(1.28848772, 1.91061952), Point2f(1.75546653, 2.84134127)));
+    lines.push_back(Line4f(Point2f(1.61521977, 2.72198377), Point2f(2.59540115, 3.02997701)));
+    lines.push_back(Line4f(Point2f(1.23737734, 1.07071068), Point2f(0.45955989, 0.29289322)));
+    for (const Line4f &line : lines) {
         axialMap.makeLineShape(line);
     }
     axialMap.makeConnections();
@@ -41,7 +41,7 @@ TEST_CASE("Shortest paths working examples", "") {
     REQUIRE(segmentMap->getShapeCount() == 10);
 
     // select the two edges
-    QtRegion selRegion(lines[1].midpoint(), lines[1].midpoint());
+    Region4f selRegion(lines[1].midpoint(), lines[1].midpoint());
 
     auto shapesInRegion = segmentMap->getShapesInRegion(selRegion);
 
@@ -68,7 +68,7 @@ TEST_CASE("Shortest paths working examples", "") {
                                               -1, -1, 1.24219, 0.734375, 1.82422};
         std::vector<int> expectedOrder = {-1, 0, 1, 4, -1, -1, -1, 3, 2, 5};
         for (size_t i = 0; i < lines.size(); i++) {
-            QtRegion selRegion(lines[i].midpoint(), lines[i].midpoint());
+            Region4f selRegion(lines[i].midpoint(), lines[i].midpoint());
             AttributeRow &shapeRow = segmentMap->getAttributeRowFromShapeIndex(
                 static_cast<size_t>(segmentMap->getShapesInRegion(selRegion).begin()->first));
 
@@ -94,7 +94,7 @@ TEST_CASE("Shortest paths working examples", "") {
                                                  2.67689, 1.89156, -1, -1,      4.58446};
         std::vector<int> expectedOrder = {-1, 0, 1, 4, -1, 3, 2, -1, -1, 5};
         for (size_t i = 0; i < lines.size(); i++) {
-            QtRegion selRegion(lines[i].midpoint(), lines[i].midpoint());
+            Region4f selRegion(lines[i].midpoint(), lines[i].midpoint());
             AttributeRow &shapeRow = segmentMap->getAttributeRowFromShapeIndex(
                 static_cast<size_t>(segmentMap->getShapesInRegion(selRegion).begin()->first));
             REQUIRE(shapeRow.getValue(distanceColIdx) ==
@@ -118,7 +118,7 @@ TEST_CASE("Shortest paths working examples", "") {
         std::vector<double> expectedDepths = {2, 0, -1, -1, 1, -1, -1, -1, -1, 3};
         std::vector<int> expectedOrder = {2, 0, -1, -1, 1, -1, -1, -1, -1, 3};
         for (size_t i = 0; i < lines.size(); i++) {
-            QtRegion selRegion(lines[i].midpoint(), lines[i].midpoint());
+            Region4f selRegion(lines[i].midpoint(), lines[i].midpoint());
             AttributeRow &shapeRow = segmentMap->getAttributeRowFromShapeIndex(
                 static_cast<size_t>(segmentMap->getShapesInRegion(selRegion).begin()->first));
             REQUIRE(shapeRow.getValue(depthColIdx) ==

@@ -28,13 +28,13 @@ TEST_CASE("Test getVisibleLines", "") {
     spacePixels.emplace_back("Visible ShapeMap");
 
     // add a line to the first ShapeMap
-    spacePixels.back().makeLineShape(Line(visibleLineStart, visibleLineEnd));
+    spacePixels.back().makeLineShape(Line4f(visibleLineStart, visibleLineEnd));
 
     // push a ShapeMap in the SpacePixelFile
     spacePixels.emplace_back("Hidden ShapeMap");
 
     // add a line to the second ShapeMap
-    spacePixels.back().makeLineShape(Line(hiddenLineStart, hiddenLineEnd));
+    spacePixels.back().makeLineShape(Line4f(hiddenLineStart, hiddenLineEnd));
 
     SECTION("Get lines") {
 

@@ -4,7 +4,7 @@
 
 #include "../salalib/mapconverter.h"
 #include "catch_amalgamated.hpp"
-#include "salalib/genlib/p2dpoly.h"
+#include "salalib/genlib/point2f.h"
 #include "salalib/salaprogram.h"
 #include "salalib/shapegraph.h"
 #include "salalib/shapemapgroupdata.h"
@@ -147,11 +147,11 @@ TEST_CASE("Shapemap scripts") {
     auto &spacePixels = drawingFiles.back().second;
     spacePixels.emplace_back("Test ShapeMap");
 
-    spacePixels.back().makeLineShape(Line(line1Start, line1End));
-    spacePixels.back().makeLineShape(Line(line2Start, line2End));
-    spacePixels.back().makeLineShape(Line(line3Start, line3End));
-    spacePixels.back().makeLineShape(Line(line4Start, line4End));
-    spacePixels.back().makeLineShape(Line(line5Start, line5End));
+    spacePixels.back().makeLineShape(Line4f(line1Start, line1End));
+    spacePixels.back().makeLineShape(Line4f(line2Start, line2End));
+    spacePixels.back().makeLineShape(Line4f(line3Start, line3End));
+    spacePixels.back().makeLineShape(Line4f(line4Start, line4End));
+    spacePixels.back().makeLineShape(Line4f(line5Start, line5End));
 
     auto drawingMapRefs = ShapeMapGroupData::getAsRefMaps(drawingFiles);
     auto shapeGraph = MapConverter::convertDrawingToAxial(nullptr, "Test axial", drawingMapRefs);
@@ -250,11 +250,11 @@ TEST_CASE("Shapemap scripts with unexpected results") {
     auto &spacePixels = drawingFiles.back().second;
     spacePixels.emplace_back("Test ShapeMap");
 
-    spacePixels.back().makeLineShape(Line(line1Start, line1End));
-    spacePixels.back().makeLineShape(Line(line2Start, line2End));
-    spacePixels.back().makeLineShape(Line(line3Start, line3End));
-    spacePixels.back().makeLineShape(Line(line4Start, line4End));
-    spacePixels.back().makeLineShape(Line(line5Start, line5End));
+    spacePixels.back().makeLineShape(Line4f(line1Start, line1End));
+    spacePixels.back().makeLineShape(Line4f(line2Start, line2End));
+    spacePixels.back().makeLineShape(Line4f(line3Start, line3End));
+    spacePixels.back().makeLineShape(Line4f(line4Start, line4End));
+    spacePixels.back().makeLineShape(Line4f(line5Start, line5End));
 
     auto drawingMapRefs = ShapeMapGroupData::getAsRefMaps(drawingFiles);
     auto shapeGraph = MapConverter::convertDrawingToAxial(nullptr, "Test axial", drawingMapRefs);

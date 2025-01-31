@@ -4,47 +4,47 @@
 
 #include "salalib/genlib/bsptree.h"
 #include "salalib/genlib/comm.h"
-#include "salalib/genlib/p2dpoly.h"
+#include "salalib/genlib/line4f.h"
 
 #include "catch_amalgamated.hpp"
 
 TEST_CASE("BSPTree::pickMidpointLine") {
-    std::vector<Line> lines;
-    lines.push_back(Line(Point2f(1, 2), Point2f(2, 2)));
-    lines.push_back(Line(Point2f(2, 2), Point2f(3, 2)));
-    lines.push_back(Line(Point2f(3, 2), Point2f(4, 2)));
+    std::vector<Line4f> lines;
+    lines.push_back(Line4f(Point2f(1, 2), Point2f(2, 2)));
+    lines.push_back(Line4f(Point2f(2, 2), Point2f(3, 2)));
+    lines.push_back(Line4f(Point2f(3, 2), Point2f(4, 2)));
 
     BSPNode node;
 
     REQUIRE(BSPTree::pickMidpointLine(lines, nullptr) == 1);
 
     SECTION("Additional lines") {
-        lines.push_back(Line(Point2f(4, 2), Point2f(5, 2)));
+        lines.push_back(Line4f(Point2f(4, 2), Point2f(5, 2)));
         REQUIRE(BSPTree::pickMidpointLine(lines, nullptr) == 1);
 
-        lines.push_back(Line(Point2f(5, 1), Point2f(6, 1)));
+        lines.push_back(Line4f(Point2f(5, 1), Point2f(6, 1)));
         REQUIRE(BSPTree::pickMidpointLine(lines, nullptr) == 2);
 
         // the only line with height > width becomes chosen
-        lines.push_back(Line(Point2f(15, 4), Point2f(15, 0)));
+        lines.push_back(Line4f(Point2f(15, 4), Point2f(15, 0)));
         REQUIRE(BSPTree::pickMidpointLine(lines, nullptr) == 5);
     }
     SECTION("rotated middle") {
 
         // height > width, rotated, close to midpoint
-        lines.push_back(Line(Point2f(4.5, 1), Point2f(4.5, 3)));
+        lines.push_back(Line4f(Point2f(4.5, 1), Point2f(4.5, 3)));
 
-        lines.push_back(Line(Point2f(5, 2), Point2f(6, 2)));
-        lines.push_back(Line(Point2f(6, 2), Point2f(7, 2)));
+        lines.push_back(Line4f(Point2f(5, 2), Point2f(6, 2)));
+        lines.push_back(Line4f(Point2f(6, 2), Point2f(7, 2)));
 
         // height > width, rotated, not close to midpoint
-        lines.push_back(Line(Point2f(6.5, 1), Point2f(6.5, 3)));
+        lines.push_back(Line4f(Point2f(6.5, 1), Point2f(6.5, 3)));
 
         REQUIRE(BSPTree::pickMidpointLine(lines, nullptr) == 3);
     }
 }
 
-void compareLines(const Line &l1, const Line &l2, float epsilon) {
+void compareLines(const Line4f &l1, const Line4f &l2, float epsilon) {
     REQUIRE(l1.start().x == Catch::Approx(l2.start().x).epsilon(epsilon));
     REQUIRE(l1.start().y == Catch::Approx(l2.start().y).epsilon(epsilon));
     REQUIRE(l1.end().x == Catch::Approx(l2.end().x).epsilon(epsilon));
@@ -53,13 +53,13 @@ void compareLines(const Line &l1, const Line &l2, float epsilon) {
 
 TEST_CASE("BSPTree::makeLines") {
     const float epsilon = 0.001f;
-    typedef std::pair<std::vector<Line>, std::vector<Line>> LineVecPair;
+    typedef std::pair<std::vector<Line4f>, std::vector<Line4f>> LineVecPair;
 
-    std::vector<Line> lines;
-    lines.push_back(Line(Point2f(1, 2), Point2f(2, 2)));
-    lines.push_back(Line(Point2f(2, 2), Point2f(3, 2)));
-    lines.push_back(Line(Point2f(3, 2), Point2f(4, 2)));
-    lines.push_back(Line(Point2f(4, 2), Point2f(5, 2)));
+    std::vector<Line4f> lines;
+    lines.push_back(Line4f(Point2f(1, 2), Point2f(2, 2)));
+    lines.push_back(Line4f(Point2f(2, 2), Point2f(3, 2)));
+    lines.push_back(Line4f(Point2f(3, 2), Point2f(4, 2)));
+    lines.push_back(Line4f(Point2f(4, 2), Point2f(5, 2)));
 
     std::unique_ptr<BSPNode> node(new BSPNode());
 
@@ -73,7 +73,7 @@ TEST_CASE("BSPTree::makeLines") {
     compareLines(result.first[2], lines[3], epsilon);
 
     SECTION("One on the right") {
-        lines.push_back(Line(Point2f(5, 1), Point2f(6, 1)));
+        lines.push_back(Line4f(Point2f(5, 1), Point2f(6, 1)));
 
         result = BSPTree::makeLines(nullptr, 0, lines, node.get());
 
@@ -84,9 +84,9 @@ TEST_CASE("BSPTree::makeLines") {
     }
     SECTION("One line with height > width becomes chosen") {
         // height > width, rotated, not close to midpoint
-        lines.push_back(Line(Point2f(5.5, 1), Point2f(5.5, 3)));
+        lines.push_back(Line4f(Point2f(5.5, 1), Point2f(5.5, 3)));
 
-        lines.push_back(Line(Point2f(6, 2), Point2f(7, 2)));
+        lines.push_back(Line4f(Point2f(6, 2), Point2f(7, 2)));
 
         result = BSPTree::makeLines(nullptr, 0, lines, node.get());
 
@@ -102,15 +102,15 @@ TEST_CASE("BSPTree::makeLines") {
 
     SECTION("One broken between") {
         // height > width, rotated, close to midpoint
-        lines.push_back(Line(Point2f(5.5, 1), Point2f(5.5, 3)));
+        lines.push_back(Line4f(Point2f(5.5, 1), Point2f(5.5, 3)));
 
-        lines.push_back(Line(Point2f(6, 2), Point2f(7, 2)));
-        lines.push_back(Line(Point2f(7, 2), Point2f(8, 2)));
-        lines.push_back(Line(Point2f(8, 2), Point2f(9, 2)));
-        lines.push_back(Line(Point2f(9, 2), Point2f(10, 2)));
+        lines.push_back(Line4f(Point2f(6, 2), Point2f(7, 2)));
+        lines.push_back(Line4f(Point2f(7, 2), Point2f(8, 2)));
+        lines.push_back(Line4f(Point2f(8, 2), Point2f(9, 2)));
+        lines.push_back(Line4f(Point2f(9, 2), Point2f(10, 2)));
 
         // line with two points at different sides of chosen
-        lines.push_back(Line(Point2f(3, -2), Point2f(6, -2)));
+        lines.push_back(Line4f(Point2f(3, -2), Point2f(6, -2)));
 
         result = BSPTree::makeLines(nullptr, 0, lines, node.get());
 
@@ -128,19 +128,19 @@ TEST_CASE("BSPTree::makeLines") {
         compareLines(result.second[2], lines[7], epsilon);
         compareLines(result.second[3], lines[8], epsilon);
 
-        compareLines(result.first[4], Line(Point2f(3, -2), Point2f(5.5, -2)), epsilon);
-        compareLines(result.second[4], Line(Point2f(5.5, -2), Point2f(6, -2)), epsilon);
+        compareLines(result.first[4], Line4f(Point2f(3, -2), Point2f(5.5, -2)), epsilon);
+        compareLines(result.second[4], Line4f(Point2f(5.5, -2), Point2f(6, -2)), epsilon);
     }
 }
 
 TEST_CASE("BSPTree::make (all horizontal lines)", "all-left tree") {
     const float epsilon = 0.001f;
 
-    std::vector<Line> lines;
-    lines.push_back(Line(Point2f(1, 2), Point2f(2, 2)));
-    lines.push_back(Line(Point2f(2, 2), Point2f(3, 2)));
-    lines.push_back(Line(Point2f(3, 2), Point2f(4, 2)));
-    lines.push_back(Line(Point2f(4, 2), Point2f(5, 2)));
+    std::vector<Line4f> lines;
+    lines.push_back(Line4f(Point2f(1, 2), Point2f(2, 2)));
+    lines.push_back(Line4f(Point2f(2, 2), Point2f(3, 2)));
+    lines.push_back(Line4f(Point2f(3, 2), Point2f(4, 2)));
+    lines.push_back(Line4f(Point2f(4, 2), Point2f(5, 2)));
 
     std::unique_ptr<BSPNode> node(new BSPNode());
 
@@ -170,11 +170,11 @@ TEST_CASE("BSPTree::make (all horizontal lines)", "all-left tree") {
 TEST_CASE("BSPTree::make (all vertical lines)", "split tree") {
     const float epsilon = 0.001f;
 
-    std::vector<Line> lines;
-    lines.push_back(Line(Point2f(1.5, 1), Point2f(1.5, 3)));
-    lines.push_back(Line(Point2f(2.5, 1), Point2f(2.5, 3)));
-    lines.push_back(Line(Point2f(3.5, 1), Point2f(3.5, 3)));
-    lines.push_back(Line(Point2f(4.5, 1), Point2f(4.5, 3)));
+    std::vector<Line4f> lines;
+    lines.push_back(Line4f(Point2f(1.5, 1), Point2f(1.5, 3)));
+    lines.push_back(Line4f(Point2f(2.5, 1), Point2f(2.5, 3)));
+    lines.push_back(Line4f(Point2f(3.5, 1), Point2f(3.5, 3)));
+    lines.push_back(Line4f(Point2f(4.5, 1), Point2f(4.5, 3)));
 
     std::unique_ptr<BSPNode> node(new BSPNode());
 

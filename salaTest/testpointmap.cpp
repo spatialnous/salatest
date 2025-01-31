@@ -22,7 +22,7 @@ TEST_CASE("Test MetaGraph construction", "") {
         Point2f topRight(2, 4);
 
         // set region to the bounds
-        metaGraph.region = QtRegion(bottomLeft, topRight);
+        metaGraph.region = Region4f(bottomLeft, topRight);
 
         // check if the bounds are set correctly
         REQUIRE(metaGraph.region.bottomLeft.x == Catch::Approx(bottomLeft.x).epsilon(epsilon));
@@ -52,7 +52,7 @@ TEST_CASE("Test MetaGraph construction", "") {
 
         auto &newShapeMap = spacePixels.back();
         // add a line to the ShapeMap
-        newShapeMap.makeLineShape(Line(lineStart, lineEnd));
+        newShapeMap.makeLineShape(Line4f(lineStart, lineEnd));
 
         // check if the ShapeMap bounds are set correctly
         REQUIRE(newShapeMap.getRegion().bottomLeft.x ==
@@ -76,7 +76,7 @@ TEST_CASE("Test MetaGraph construction", "") {
         REQUIRE(spacePixelFileData.region.topRight.y == Catch::Approx(topRight.y).epsilon(epsilon));
 
         metaGraph.region =
-            QtRegion(spacePixelFileData.region.bottomLeft, spacePixelFileData.region.topRight);
+            Region4f(spacePixelFileData.region.bottomLeft, spacePixelFileData.region.topRight);
 
         // check if the MetaGraph bounds are set correctly
         REQUIRE(metaGraph.region.bottomLeft.x == Catch::Approx(bottomLeft.x).epsilon(epsilon));
@@ -105,7 +105,7 @@ TEST_CASE("Test grid filling", "") {
         Point2f topRight(2, 4);
 
         // set region to the bounds
-        metaGraph.region = QtRegion(bottomLeft, topRight);
+        metaGraph.region = Region4f(bottomLeft, topRight);
 
         // check if the bounds are set correctly
         REQUIRE(metaGraph.region.bottomLeft.x == Catch::Approx(bottomLeft.x).epsilon(epsilon));
@@ -147,7 +147,7 @@ TEST_CASE("Test grid filling", "") {
                          gridBottomLeft.y +
                              spacing *
                                  (floor(static_cast<double>(pointMap.getRows()) * 0.5) + 0.5));
-        std::vector<Line> lines;
+        std::vector<Line4f> lines;
         pointMap.blockLines(lines);
         bool pointsMade = pointMap.makePoints(midPoint, fillType);
         REQUIRE(pointsMade);
@@ -161,7 +161,7 @@ TEST_CASE("Test grid filling", "") {
         Point2f midPoint(
             gridBottomLeft.x + spacing * (floor(static_cast<double>(pointMap.getCols()) * 0.5)),
             gridBottomLeft.y + spacing * (floor(static_cast<double>(pointMap.getRows()) * 0.5)));
-        std::vector<Line> lines;
+        std::vector<Line4f> lines;
         pointMap.blockLines(lines);
         bool pointsMade = pointMap.makePoints(midPoint, fillType);
         REQUIRE(pointsMade);
@@ -266,7 +266,7 @@ TEST_CASE("Quirks in grid creation - Origin always at 0", "") {
     }
 
     MetaGraph metaGraph("Test MetaGraph");
-    metaGraph.region = QtRegion(bottomLeft, topRight);
+    metaGraph.region = Region4f(bottomLeft, topRight);
     PointMap pointMap(metaGraph.region, "Test PointMap");
     bool gridIsSet = pointMap.setGrid(spacing, offset);
 
@@ -296,7 +296,7 @@ TEST_CASE("Quirks in grid creation - Origin always at 0", "") {
                      gridBottomLeft.y + spacing * (floor(numCellsY * 0.5) + 0.5));
 
     int fillType = 0; // = QDepthmapView::FULLFILL
-    std::vector<Line> lines;
+    std::vector<Line4f> lines;
     pointMap.blockLines(lines);
     bool pointsMade = pointMap.makePoints(midPoint, fillType);
 
@@ -328,13 +328,13 @@ TEST_CASE("Test PointMap connections output", "") {
     auto &spacePixels = drawingFiles.back().second;
 
     spacePixels.emplace_back("Test ShapeMap");
-    spacePixels.back().makeLineShape(Line(line0Start, line0End));
-    spacePixels.back().makeLineShape(Line(line1Start, line1End));
-    spacePixels.back().makeLineShape(Line(line2Start, line2End));
-    spacePixels.back().makeLineShape(Line(line3Start, line3End));
+    spacePixels.back().makeLineShape(Line4f(line0Start, line0End));
+    spacePixels.back().makeLineShape(Line4f(line1Start, line1End));
+    spacePixels.back().makeLineShape(Line4f(line2Start, line2End));
+    spacePixels.back().makeLineShape(Line4f(line3Start, line3End));
     spacePixelFileData.region = spacePixels.back().getRegion();
     metaGraph.region =
-        QtRegion(spacePixelFileData.region.bottomLeft, spacePixelFileData.region.topRight);
+        Region4f(spacePixelFileData.region.bottomLeft, spacePixelFileData.region.topRight);
     PointMap pointMap(metaGraph.region, "Test PointMap");
 
     Point2f gridBottomLeft = pointMap.getRegion().bottomLeft;
@@ -348,7 +348,7 @@ TEST_CASE("Test PointMap connections output", "") {
 
     REQUIRE(gridIsSet);
 
-    std::vector<Line> lines = spacePixels.back().getAllShapesAsLines();
+    std::vector<Line4f> lines = spacePixels.back().getAllShapesAsLines();
     pointMap.blockLines(lines);
     bool pointsMade = pointMap.makePoints(midPoint, fillType);
 
@@ -457,18 +457,18 @@ TEST_CASE("Direct pointmap linking - fully filled grid (no geometry)", "") {
     int fillType = 0; // = QDepthmapView::FULLFILL
 
     MetaGraph metaGraph("Test MetaGraph");
-    metaGraph.region = QtRegion(bottomLeft, topRight);
+    metaGraph.region = Region4f(bottomLeft, topRight);
     PointMap pointMap(metaGraph.region, "Test PointMap");
     pointMap.setGrid(spacing, offset);
     Point2f gridBottomLeft = pointMap.getRegion().bottomLeft;
     Point2f midPoint(
         gridBottomLeft.x + spacing * (floor(static_cast<double>(pointMap.getCols()) * 0.5) + 0.5),
         gridBottomLeft.y + spacing * (floor(static_cast<double>(pointMap.getRows()) * 0.5) + 0.5));
-    std::vector<Line> lines;
+    std::vector<Line4f> lines;
     pointMap.blockLines(lines);
     pointMap.makePoints(midPoint, fillType);
 
-    std::vector<Line> mergeLines;
+    std::vector<Line4f> mergeLines;
 
     PixelRef bottomLeftPixel = pointMap.pixelate(bottomLeft);
     PixelRef topRightPixel = pointMap.pixelate(topRight);
@@ -549,15 +549,15 @@ TEST_CASE("Direct pointmap linking - fully filled grid (no geometry)", "") {
 }
 
 TEST_CASE("Pointmap copy()", "") {
-    std::vector<Line> lines;
-    lines.push_back(Line(Point2f(1.888668, 1.560937), Point2f(1.888668, 6.908548)));
-    lines.push_back(Line(Point2f(1.888668, 6.908548), Point2f(7.882500, 6.908548)));
-    lines.push_back(Line(Point2f(7.882500, 6.908548), Point2f(7.897130, 5.123703)));
-    lines.push_back(Line(Point2f(4.813618, 5.139680), Point2f(7.897130, 5.123703)));
-    lines.push_back(Line(Point2f(4.813618, 3.862943), Point2f(4.813618, 5.139680)));
-    lines.push_back(Line(Point2f(4.813618, 3.862943), Point2f(6.068108, 3.848524)));
-    lines.push_back(Line(Point2f(6.068108, 3.848524), Point2f(6.084223, 1.544019)));
-    lines.push_back(Line(Point2f(1.888668, 1.560937), Point2f(6.084223, 1.544019)));
+    std::vector<Line4f> lines;
+    lines.push_back(Line4f(Point2f(1.888668, 1.560937), Point2f(1.888668, 6.908548)));
+    lines.push_back(Line4f(Point2f(1.888668, 6.908548), Point2f(7.882500, 6.908548)));
+    lines.push_back(Line4f(Point2f(7.882500, 6.908548), Point2f(7.897130, 5.123703)));
+    lines.push_back(Line4f(Point2f(4.813618, 5.139680), Point2f(7.897130, 5.123703)));
+    lines.push_back(Line4f(Point2f(4.813618, 3.862943), Point2f(4.813618, 5.139680)));
+    lines.push_back(Line4f(Point2f(4.813618, 3.862943), Point2f(6.068108, 3.848524)));
+    lines.push_back(Line4f(Point2f(6.068108, 3.848524), Point2f(6.084223, 1.544019)));
+    lines.push_back(Line4f(Point2f(1.888668, 1.560937), Point2f(6.084223, 1.544019)));
     ShapeMap shp;
     for (const auto &line : lines) {
         shp.makeLineShape(line);
@@ -573,7 +573,7 @@ TEST_CASE("Pointmap copy()", "") {
     newPnt.copy(pnt, true, true);
 
     Point2f p(3.01, 6.7);
-    QtRegion region(p, p);
+    Region4f region(p, p);
     auto selSet = newPnt.getPointsInRegion(region);
 
     auto analysisResult = VGAMetricDepth(newPnt, selSet).run(nullptr);

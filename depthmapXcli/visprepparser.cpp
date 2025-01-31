@@ -154,7 +154,7 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
     }
     if (m_grid > 0) {
         // Create a new pointmap and set tha grid
-        QtRegion r = metaGraph.getRegion();
+        Region4f r = metaGraph.getRegion();
 
         GridProperties gp(__max(r.width(), r.height()));
         if (m_grid > gp.getMax() || m_grid < gp.getMin()) {

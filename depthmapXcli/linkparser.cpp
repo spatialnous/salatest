@@ -116,9 +116,9 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
         if (getMapTypeGroup() == LinkParser::MapTypeGroup::SHAPEGRAPHS) {
             auto &shapeGraph = dm_runmethods::safeGetDisplayedShapeGraph(metaGraph);
             if (getLinkType() == LinkParser::LinkType::COORDS) {
-                std::vector<Line> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
+                std::vector<Line4f> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
                 for (const auto &line : mergeLines) {
-                    QtRegion region(line.start(), line.start());
+                    Region4f region(line.start(), line.start());
                     shapeGraph.setCurSel(region);
                     shapeGraph.linkShapes(line.end());
                 }
@@ -133,7 +133,7 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
             std::vector<PixelRefPair> newLinks;
             auto &currentMap = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
             if (getLinkType() == LinkParser::LinkType::COORDS) {
-                std::vector<Line> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
+                std::vector<Line4f> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
                 std::vector<PixelRefPair> linkPairsFromCoords =
                     depthmapX::pixelateMergeLines(mergeLines, currentMap.getInternalMap());
                 newLinks.insert(newLinks.end(), linkPairsFromCoords.begin(),
@@ -164,7 +164,7 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
             std::vector<PixelRefPair> newLinks;
             auto &currentMap = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
             if (getLinkType() == LinkParser::LinkType::COORDS) {
-                std::vector<Line> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
+                std::vector<Line4f> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
                 std::vector<PixelRefPair> linkPairsFromCoords =
                     depthmapX::pixelateMergeLines(mergeLines, currentMap.getInternalMap());
                 newLinks.insert(newLinks.end(), linkPairsFromCoords.begin(),

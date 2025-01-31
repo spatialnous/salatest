@@ -6,7 +6,7 @@
 
 #include "imodeparser.h"
 
-#include "salalib/genlib/p2dpoly.h"
+#include "salalib/genlib/point2f.h"
 
 #include <vector>
 

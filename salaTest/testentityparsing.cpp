@@ -5,7 +5,7 @@
 
 #include "salalib/entityparsing.h"
 
-#include "salalib/genlib/p2dpoly.h"
+#include "salalib/genlib/line4f.h"
 
 #include "catch_amalgamated.hpp"
 
@@ -46,7 +46,7 @@ TEST_CASE("Successful line parser", "") {
         std::stringstream stream;
         stream << "x1,y1,x2,y2" << std::endl;
         stream << "1.2,3.4,5.6,7.8" << std::endl;
-        std::vector<Line> lines = EntityParsing::parseLines(stream, ',');
+        std::vector<Line4f> lines = EntityParsing::parseLines(stream, ',');
         REQUIRE(lines.size() == 1);
         REQUIRE(lines[0].start().x == Catch::Approx(1.2).epsilon(epsilon));
         REQUIRE(lines[0].start().y == Catch::Approx(3.4).epsilon(epsilon));
@@ -58,7 +58,7 @@ TEST_CASE("Successful line parser", "") {
         std::stringstream stream;
         stream << "x1\ty1\tx2\ty2" << std::endl;
         stream << "1.2\t3.4\t5.6\t7.8" << std::endl;
-        std::vector<Line> lines = EntityParsing::parseLines(stream, '\t');
+        std::vector<Line4f> lines = EntityParsing::parseLines(stream, '\t');
         REQUIRE(lines.size() == 1);
         REQUIRE(lines[0].start().x == Catch::Approx(1.2).epsilon(epsilon));
         REQUIRE(lines[0].start().y == Catch::Approx(3.4).epsilon(epsilon));
@@ -71,7 +71,7 @@ TEST_CASE("Successful line parser", "") {
         stream << "x1\ty1\tx2\ty2" << std::endl;
         stream << "1.2\t3.4\t5.6\t7.8" << std::endl;
         stream << "0.1\t0.2\t0.3\t0.4" << std::endl;
-        std::vector<Line> lines = EntityParsing::parseLines(stream, '\t');
+        std::vector<Line4f> lines = EntityParsing::parseLines(stream, '\t');
         REQUIRE(lines.size() == 2);
         REQUIRE(lines[0].start().x == Catch::Approx(1.2).epsilon(epsilon));
         REQUIRE(lines[0].start().y == Catch::Approx(3.4).epsilon(epsilon));

@@ -96,10 +96,10 @@ void SegmentShortestPathParser::run(const CommandLineParser &clp,
     if (!graphRegion.contains(m_destinationPoint)) {
         throw depthmapX::RuntimeException("Destination point outside of target region");
     }
-    QtRegion r(m_originPoint, m_originPoint);
+    Region4f r(m_originPoint, m_originPoint);
     metaGraph.setCurSel(r, false);
 
-    r = QtRegion(m_destinationPoint, m_destinationPoint);
+    r = Region4f(m_destinationPoint, m_destinationPoint);
     metaGraph.setCurSel(r, true);
 
     std::cout << "ok\nCalculating shortest path... " << std::flush;

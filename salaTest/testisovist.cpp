@@ -6,7 +6,7 @@
 #include "salalib/salashape.h"
 
 #include "salalib/genlib/comm.h"
-#include "salalib/genlib/p2dpoly.h"
+#include "salalib/genlib/line4f.h"
 
 #include "catch_amalgamated.hpp"
 
@@ -21,20 +21,20 @@ TEST_CASE("Simple Isovist") {
     // |   |
     // |_ _|
 
-    std::vector<Line> planLines = {
-        Line(Point2f(1, 1), Point2f(1, 3)), //
-        Line(Point2f(1, 3), Point2f(3, 3)), //
-        Line(Point2f(3, 3), Point2f(3, 2)), //
-        Line(Point2f(3, 2), Point2f(2, 2)), //
-        Line(Point2f(2, 2), Point2f(2, 1)), //
-        Line(Point2f(2, 1), Point2f(1, 1))  //
+    std::vector<Line4f> planLines = {
+        Line4f(Point2f(1, 1), Point2f(1, 3)), //
+        Line4f(Point2f(1, 3), Point2f(3, 3)), //
+        Line4f(Point2f(3, 3), Point2f(3, 2)), //
+        Line4f(Point2f(3, 2), Point2f(2, 2)), //
+        Line4f(Point2f(2, 2), Point2f(2, 1)), //
+        Line4f(Point2f(2, 1), Point2f(1, 1))  //
     };
 
     Point2f isovistOrigin(2.5, 2.5);
 
     ShapeMap shapeMap("Test ShapeMap");
 
-    for (Line &line : planLines) {
+    for (Line4f &line : planLines) {
         shapeMap.makeLineShape(line);
     }
 

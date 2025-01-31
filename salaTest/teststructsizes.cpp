@@ -15,6 +15,6 @@ TEST_CASE("Enforce struct sizes") {
     REQUIRE(sizeof(RadialKey) == 16);
     REQUIRE(sizeof(RadialLine) == 64);
     REQUIRE(sizeof(PolyConnector) == 56);
-    REQUIRE(sizeof(QtRegion) == 32);
-    REQUIRE(sizeof(Line) == 40);
+    REQUIRE(sizeof(Region4f) == 32);
+    REQUIRE(sizeof(Line4f) == 40);
 }

@@ -6,7 +6,7 @@
 #include "salalib/shapegraph.h"
 #include "salalib/shapemap.h"
 
-#include "salalib/genlib/p2dpoly.h"
+#include "salalib/genlib/line4f.h"
 
 #include "catch_amalgamated.hpp"
 #include "salalib/shapemapgroupdata.h"
@@ -30,9 +30,9 @@ TEST_CASE("Testing ShapeGraph::writeAxialConnections") {
     auto &spacePixels = drawingFiles.back().second;
     spacePixels.emplace_back("Test ShapeMap");
 
-    spacePixels.back().makeLineShape(Line(line1Start, line1End));
-    spacePixels.back().makeLineShape(Line(line2Start, line2End));
-    spacePixels.back().makeLineShape(Line(line3Start, line3End));
+    spacePixels.back().makeLineShape(Line4f(line1Start, line1End));
+    spacePixels.back().makeLineShape(Line4f(line2Start, line2End));
+    spacePixels.back().makeLineShape(Line4f(line3Start, line3End));
 
     auto drawingMapRefs = ShapeMapGroupData::getAsRefMaps(drawingFiles);
 
@@ -90,9 +90,9 @@ TEST_CASE("Testing ShapeGraph::writeSegmentConnections") {
     auto &spacePixels = drawingFiles.back().second;
     spacePixels.emplace_back("Test ShapeMap");
 
-    spacePixels.back().makeLineShape(Line(line1Start, line1End));
-    spacePixels.back().makeLineShape(Line(line2Start, line2End));
-    spacePixels.back().makeLineShape(Line(line3Start, line3End));
+    spacePixels.back().makeLineShape(Line4f(line1Start, line1End));
+    spacePixels.back().makeLineShape(Line4f(line2Start, line2End));
+    spacePixels.back().makeLineShape(Line4f(line3Start, line3End));
 
     auto drawingMapRefs = ShapeMapGroupData::getAsRefMaps(drawingFiles);
     auto shapegraph =
@@ -133,9 +133,9 @@ TEST_CASE("Testing ShapeMap::getAllLinkLines and ShapeMap::getAllUnlinkPoints()"
 
     std::unique_ptr<ShapeGraph> shapeGraph(new ShapeGraph("Test ShapeMap"));
 
-    shapeGraph->makeLineShape(Line(line0Start, line0End));
-    shapeGraph->makeLineShape(Line(line1Start, line1End));
-    shapeGraph->makeLineShape(Line(line2Start, line2End));
+    shapeGraph->makeLineShape(Line4f(line0Start, line0End));
+    shapeGraph->makeLineShape(Line4f(line1Start, line1End));
+    shapeGraph->makeLineShape(Line4f(line2Start, line2End));
 
     shapeGraph->makeShapeConnections();
 
@@ -160,7 +160,7 @@ TEST_CASE("Testing ShapeMap::getAllLinkLines and ShapeMap::getAllUnlinkPoints()"
     REQUIRE(unlinkPoints.size() == 1);
 
     Point2f intersection =
-        intersection_point(Line(line1Start, line1End), Line(line2Start, line2End), toleranceA);
+        Line4f(line1Start, line1End).intersection_point(Line4f(line2Start, line2End), toleranceA);
 
     REQUIRE(unlinkPoints[0].x == Catch::Approx(intersection.x).epsilon(epsilon));
     REQUIRE(unlinkPoints[0].y == Catch::Approx(intersection.y).epsilon(epsilon));

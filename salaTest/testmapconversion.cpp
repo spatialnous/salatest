@@ -78,9 +78,9 @@ TEST_CASE("Failing empty data map conversion", "") {
 TEST_CASE("Test drawing to segment conversion", "") {
     const float epsilon = 0.001f;
 
-    Line line1(Point2f(0, 0), Point2f(0, 1));
-    Line line2(Point2f(0, 1), Point2f(1, 1));
-    Line line3(Point2f(1, 1), Point2f(1, 0));
+    Line4f line1(Point2f(0, 0), Point2f(0, 1));
+    Line4f line2(Point2f(0, 1), Point2f(1, 1));
+    Line4f line3(Point2f(1, 1), Point2f(1, 0));
 
     std::vector<std::pair<ShapeMapGroupData, std::vector<ShapeMap>>> drawingFiles(1);
 
@@ -122,21 +122,21 @@ TEST_CASE("Test drawing to segment conversion", "") {
         REQUIRE(shapes.size() == 3);
         auto shapeIter = shapes.begin();
         REQUIRE(shapeIter->first == 0);
-        const Line &segmentLine1 = shapeIter->second.getLine();
+        const Line4f &segmentLine1 = shapeIter->second.getLine();
         REQUIRE(segmentLine1.ax() == Catch::Approx(line1.ax()).epsilon(epsilon));
         REQUIRE(segmentLine1.ay() == Catch::Approx(line1.ay()).epsilon(epsilon));
         REQUIRE(segmentLine1.bx() == Catch::Approx(line1.bx()).epsilon(epsilon));
         REQUIRE(segmentLine1.by() == Catch::Approx(line1.by()).epsilon(epsilon));
         shapeIter++;
         REQUIRE(shapeIter->first == 1);
-        const Line &segmentLine2 = shapeIter->second.getLine();
+        const Line4f &segmentLine2 = shapeIter->second.getLine();
         REQUIRE(segmentLine2.ax() == Catch::Approx(line2.ax()).epsilon(epsilon));
         REQUIRE(segmentLine2.ay() == Catch::Approx(line2.ay()).epsilon(epsilon));
         REQUIRE(segmentLine2.bx() == Catch::Approx(line2.bx()).epsilon(epsilon));
         REQUIRE(segmentLine2.by() == Catch::Approx(line2.by()).epsilon(epsilon));
         shapeIter++;
         REQUIRE(shapeIter->first == 2);
-        const Line &segmentLine3 = shapeIter->second.getLine();
+        const Line4f &segmentLine3 = shapeIter->second.getLine();
         REQUIRE(segmentLine3.ax() == Catch::Approx(line3.ax()).epsilon(epsilon));
         REQUIRE(segmentLine3.ay() == Catch::Approx(line3.ay()).epsilon(epsilon));
         REQUIRE(segmentLine3.bx() == Catch::Approx(line3.bx()).epsilon(epsilon));
@@ -151,12 +151,12 @@ TEST_CASE("Test data to segment conversion", "") {
     ShapeMap dataMap("Data map", ShapeMap::DATAMAP);
     auto newAttributeID = dataMap.addAttribute(newAttributeName);
 
-    std::vector<Line> lines;
+    std::vector<Line4f> lines;
     std::vector<std::map<int, float>> extraAttributes;
 
-    lines.push_back(Line(Point2f(0, 0), Point2f(0, 1)));
-    lines.push_back(Line(Point2f(0, 1), Point2f(1, 1)));
-    lines.push_back(Line(Point2f(1, 1), Point2f(1, 0)));
+    lines.push_back(Line4f(Point2f(0, 0), Point2f(0, 1)));
+    lines.push_back(Line4f(Point2f(0, 1), Point2f(1, 1)));
+    lines.push_back(Line4f(Point2f(1, 1), Point2f(1, 0)));
 
     for (size_t i = 0; i < lines.size(); i++) {
         extraAttributes.push_back(std::map<int, float>());
@@ -200,7 +200,7 @@ TEST_CASE("Test data to segment conversion", "") {
             AttributeRow &row = segmentMap->getAttributeRowFromShapeIndex(key);
             REQUIRE(row.getValue(segmentNewAttributeID) ==
                     extraAttributes[i][static_cast<int>(newAttributeID)]);
-            const Line &segmentLine = shapeIter->second.getLine();
+            const Line4f &segmentLine = shapeIter->second.getLine();
             REQUIRE(segmentLine.ax() == Catch::Approx(lines[i].ax()).epsilon(epsilon));
             REQUIRE(segmentLine.ay() == Catch::Approx(lines[i].ay()).epsilon(epsilon));
             REQUIRE(segmentLine.bx() == Catch::Approx(lines[i].bx()).epsilon(epsilon));
@@ -228,7 +228,7 @@ TEST_CASE("Test data to segment conversion", "") {
             AttributeRow &row = segmentMap->getAttributeRowFromShapeIndex(key);
             REQUIRE(row.getValue(segmentNewAttributeID) ==
                     extraAttributes[i][static_cast<int>(newAttributeID)]);
-            const Line &segmentLine = shapeIter->second.getLine();
+            const Line4f &segmentLine = shapeIter->second.getLine();
             REQUIRE(segmentLine.ax() == Catch::Approx(lines[i].ax()).epsilon(epsilon));
             REQUIRE(segmentLine.ay() == Catch::Approx(lines[i].ay()).epsilon(epsilon));
             REQUIRE(segmentLine.bx() == Catch::Approx(lines[i].bx()).epsilon(epsilon));

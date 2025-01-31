@@ -14,20 +14,20 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
     Point2f topRight(2, 4);
     int fillType = 0; // = QDepthmapView::FULLFILL
 
-    PointMap pointMap(QtRegion(bottomLeft, topRight), "Test PointMap");
+    PointMap pointMap(Region4f(bottomLeft, topRight), "Test PointMap");
     pointMap.setGrid(spacing, offset);
     Point2f gridBottomLeft = pointMap.getRegion().bottomLeft;
     Point2f midPoint(
         gridBottomLeft.x + spacing * (floor(static_cast<double>(pointMap.getCols()) * 0.5) + 0.5),
         gridBottomLeft.y + spacing * (floor(static_cast<double>(pointMap.getRows()) * 0.5) + 0.5));
-    std::vector<Line> lines;
+    std::vector<Line4f> lines;
     pointMap.blockLines(lines);
     pointMap.makePoints(midPoint, fillType);
 
-    std::vector<Line> mergeLines;
+    std::vector<Line4f> mergeLines;
 
     SECTION("Successful: bottom-left to top-right") {
-        mergeLines.push_back(Line(bottomLeft, topRight));
+        mergeLines.push_back(Line4f(bottomLeft, topRight));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE(links.size() == 1);
         REQUIRE(links[0].a.x == 0);
@@ -68,10 +68,10 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
     }
 
     SECTION("Successfull: bottom-left to top-right and bottom-right to top-left") {
-        mergeLines.push_back(Line(bottomLeft, topRight));
+        mergeLines.push_back(Line4f(bottomLeft, topRight));
         Point2f start(topRight.x, bottomLeft.y);
         Point2f end(bottomLeft.x, topRight.y);
-        mergeLines.push_back(Line(start, end));
+        mergeLines.push_back(Line4f(start, end));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE(links.size() == 2);
         REQUIRE(links[0].a.x == 0);
@@ -101,7 +101,7 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
 
     SECTION("Failing: merge line start out of grid") {
         Point2f start(bottomLeft.x - spacing, bottomLeft.y - spacing);
-        mergeLines.push_back(Line(start, topRight));
+        mergeLines.push_back(Line4f(start, topRight));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE_THROWS_WITH(
             depthmapX::mergePixelPairs(links, pointMap),
@@ -110,7 +110,7 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
 
     SECTION("Failing: merge line end out of grid") {
         Point2f end(topRight.x + spacing, topRight.y + spacing);
-        mergeLines.push_back(Line(bottomLeft, end));
+        mergeLines.push_back(Line4f(bottomLeft, end));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE_THROWS_WITH(
             depthmapX::mergePixelPairs(links, pointMap),
@@ -118,35 +118,35 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
     }
 
     SECTION("Failing: second link start overlapping") {
-        mergeLines.push_back(Line(bottomLeft, topRight));
+        mergeLines.push_back(Line4f(bottomLeft, topRight));
         Point2f start(bottomLeft.x, bottomLeft.y);
         Point2f end(topRight.x - 1, topRight.y);
-        mergeLines.push_back(Line(start, end));
+        mergeLines.push_back(Line4f(start, end));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE_THROWS_WITH(depthmapX::mergePixelPairs(links, pointMap),
                             Catch::Matchers::ContainsSubstring("Overlapping link found"));
     }
 
     SECTION("Failing: second link end overlapping") {
-        mergeLines.push_back(Line(bottomLeft, topRight));
+        mergeLines.push_back(Line4f(bottomLeft, topRight));
         Point2f start(bottomLeft.x + 1, bottomLeft.y);
         Point2f end(topRight.x, topRight.y);
-        mergeLines.push_back(Line(start, end));
+        mergeLines.push_back(Line4f(start, end));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE_THROWS_WITH(depthmapX::mergePixelPairs(links, pointMap),
                             Catch::Matchers::ContainsSubstring("Overlapping link found"));
     }
 
     SECTION("Failing: fully overlapping link (bottom-left to top-right)") {
-        mergeLines.push_back(Line(bottomLeft, topRight));
-        mergeLines.push_back(Line(bottomLeft, topRight));
+        mergeLines.push_back(Line4f(bottomLeft, topRight));
+        mergeLines.push_back(Line4f(bottomLeft, topRight));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE_THROWS_WITH(depthmapX::mergePixelPairs(links, pointMap),
                             Catch::Matchers::ContainsSubstring("Overlapping link found"));
     }
 
     SECTION("Failing: link overlapping to previously merged") {
-        mergeLines.push_back(Line(bottomLeft, topRight));
+        mergeLines.push_back(Line4f(bottomLeft, topRight));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE(links.size() == 1);
         REQUIRE(links[0].a.x == 0);
@@ -191,25 +191,25 @@ TEST_CASE("Test linking - half filled grid", "") {
     auto &spacePixels = drawingFiles.back().second;
     spacePixels.emplace_back("Test ShapeMap");
 
-    spacePixels.back().makeLineShape(Line(lineStart, lineEnd));
+    spacePixels.back().makeLineShape(Line4f(lineStart, lineEnd));
     spacePixelFileData.region = spacePixels.back().getRegion();
 
-    PointMap pointMap(QtRegion(bottomLeft, topRight), "Test PointMap");
+    PointMap pointMap(Region4f(bottomLeft, topRight), "Test PointMap");
     pointMap.setGrid(spacing, offset);
 
     Point2f gridBottomLeft = pointMap.getRegion().bottomLeft;
     Point2f gridTopRight = pointMap.getRegion().topRight;
     Point2f topLeftFillPoint(gridBottomLeft.x + spacing, gridTopRight.y - spacing);
-    std::vector<Line> lines = spacePixels.back().getAllShapesAsLines();
+    std::vector<Line4f> lines = spacePixels.back().getAllShapesAsLines();
     pointMap.blockLines(lines);
     pointMap.makePoints(topLeftFillPoint, fillType);
 
-    std::vector<Line> mergeLines;
+    std::vector<Line4f> mergeLines;
 
     SECTION("Successful: top-left pixel to one to its right") {
         Point2f start(bottomLeft.x, topRight.y);
         Point2f end(bottomLeft.x + spacing, topRight.y);
-        mergeLines.push_back(Line(start, end));
+        mergeLines.push_back(Line4f(start, end));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE(links.size() == 1);
         REQUIRE(links[0].a.x == 0);
@@ -232,7 +232,7 @@ TEST_CASE("Test linking - half filled grid", "") {
     SECTION("Failing: merge line (bottom-right to the one its left) completely out of grid") {
         Point2f start(topRight.x, bottomLeft.y);
         Point2f end(topRight.x - 1, bottomLeft.y);
-        mergeLines.push_back(Line(start, end));
+        mergeLines.push_back(Line4f(start, end));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE_THROWS_WITH(
             depthmapX::mergePixelPairs(links, pointMap),
@@ -242,7 +242,7 @@ TEST_CASE("Test linking - half filled grid", "") {
     SECTION("Failing: merge line (bottom-right to top-left) start out of grid") {
         Point2f start(topRight.x, bottomLeft.y);
         Point2f end(bottomLeft.x, topRight.y);
-        mergeLines.push_back(Line(start, end));
+        mergeLines.push_back(Line4f(start, end));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE_THROWS_WITH(
             depthmapX::mergePixelPairs(links, pointMap),
@@ -252,7 +252,7 @@ TEST_CASE("Test linking - half filled grid", "") {
     SECTION("Failing: merge line (top-left to bottom-right) end out of grid") {
         Point2f start(bottomLeft.x, topRight.y);
         Point2f end(topRight.x, bottomLeft.y);
-        mergeLines.push_back(Line(start, end));
+        mergeLines.push_back(Line4f(start, end));
         std::vector<PixelRefPair> links = depthmapX::pixelateMergeLines(mergeLines, pointMap);
         REQUIRE_THROWS_WITH(
             depthmapX::mergePixelPairs(links, pointMap),

@@ -13,10 +13,10 @@ TEST_CASE("Testing deleting shapes from shapemaps") {
     std::unique_ptr<ShapeMap> shapeMap(new ShapeMap("Test ShapeMap"));
 
     // This is a hash (#) shape for simplicity
-    shapeMap->makeLineShape(Line(Point2f(0.0, 0.5), Point2f(1.5, 0.5)));
-    shapeMap->makeLineShape(Line(Point2f(0.5, 0.0), Point2f(0.5, 1.5)));
-    shapeMap->makeLineShape(Line(Point2f(0.0, 1.0), Point2f(1.5, 1.0)));
-    shapeMap->makeLineShape(Line(Point2f(1.0, 0.0), Point2f(1.0, 1.5)));
+    shapeMap->makeLineShape(Line4f(Point2f(0.0, 0.5), Point2f(1.5, 0.5)));
+    shapeMap->makeLineShape(Line4f(Point2f(0.5, 0.0), Point2f(0.5, 1.5)));
+    shapeMap->makeLineShape(Line4f(Point2f(0.0, 1.0), Point2f(1.5, 1.0)));
+    shapeMap->makeLineShape(Line4f(Point2f(1.0, 0.0), Point2f(1.0, 1.5)));
 
     REQUIRE(shapeMap->getAllShapes().size() == 4);
 
@@ -52,10 +52,10 @@ TEST_CASE("Testing deleting shapes from axial maps") {
     std::unique_ptr<ShapeMap> shapeMap(new ShapeMap("Test ShapeMap"));
 
     // This is a hash (#) shape for simplicity
-    shapeMap->makeLineShape(Line(Point2f(0.0, 0.5), Point2f(1.5, 0.5)));
-    shapeMap->makeLineShape(Line(Point2f(0.5, 0.0), Point2f(0.5, 1.5)));
-    shapeMap->makeLineShape(Line(Point2f(0.0, 1.0), Point2f(1.5, 1.0)));
-    shapeMap->makeLineShape(Line(Point2f(1.0, 0.0), Point2f(1.0, 1.5)));
+    shapeMap->makeLineShape(Line4f(Point2f(0.0, 0.5), Point2f(1.5, 0.5)));
+    shapeMap->makeLineShape(Line4f(Point2f(0.5, 0.0), Point2f(0.5, 1.5)));
+    shapeMap->makeLineShape(Line4f(Point2f(0.0, 1.0), Point2f(1.5, 1.0)));
+    shapeMap->makeLineShape(Line4f(Point2f(1.0, 0.0), Point2f(1.0, 1.5)));
 
     std::unique_ptr<ShapeGraph> axialMap =
         MapConverter::convertDataToAxial(nullptr, "Axial map", *shapeMap.get(), false);
@@ -204,10 +204,10 @@ TEST_CASE("Testing deleting shapes from segment maps") {
     std::unique_ptr<ShapeMap> shapeMap(new ShapeMap("Test ShapeMap"));
 
     // This is a hash (#) shape for simplicity
-    shapeMap->makeLineShape(Line(Point2f(0.0, 0.5), Point2f(1.5, 0.5)));
-    shapeMap->makeLineShape(Line(Point2f(0.5, 1.5), Point2f(0.5, 0.0)));
-    shapeMap->makeLineShape(Line(Point2f(0.0, 1.0), Point2f(1.5, 1.0)));
-    shapeMap->makeLineShape(Line(Point2f(1.0, 0.0), Point2f(1.0, 1.5)));
+    shapeMap->makeLineShape(Line4f(Point2f(0.0, 0.5), Point2f(1.5, 0.5)));
+    shapeMap->makeLineShape(Line4f(Point2f(0.5, 1.5), Point2f(0.5, 0.0)));
+    shapeMap->makeLineShape(Line4f(Point2f(0.0, 1.0), Point2f(1.5, 1.0)));
+    shapeMap->makeLineShape(Line4f(Point2f(1.0, 0.0), Point2f(1.0, 1.5)));
 
     std::unique_ptr<ShapeGraph> axialMap =
         MapConverter::convertDataToAxial(nullptr, "Axial map", *shapeMap.get(), false);

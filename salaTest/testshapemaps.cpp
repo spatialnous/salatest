@@ -5,7 +5,7 @@
 #include "salalib/mapconverter.h"
 #include "salalib/shapemap.h"
 
-#include "salalib/genlib/p2dpoly.h"
+#include "salalib/genlib/line4f.h"
 
 #include "catch_amalgamated.hpp"
 
@@ -17,64 +17,64 @@ TEST_CASE("Test ShapeMap::copy()") {
     std::unique_ptr<ShapeMap> shapeMap(new ShapeMap("Test ShapeMap"));
 
     // Barnsbury
-    shapeMap->makeLineShape(Line(Point2f(984, -1684), Point2f(1346, -1523)));
-    shapeMap->makeLineShape(Line(Point2f(1306, -1497), Point2f(1379, -1746)));
-    shapeMap->makeLineShape(Line(Point2f(1257, -1772), Point2f(1494, -1712)));
-    shapeMap->makeLineShape(Line(Point2f(1200, -1581), Point2f(1271, -1779)));
-    shapeMap->makeLineShape(Line(Point2f(1174, -1684), Point2f(1537, -1588)));
-    shapeMap->makeLineShape(Line(Point2f(1223, -1898), Point2f(1269, -1760)));
-    shapeMap->makeLineShape(Line(Point2f(946, -1386), Point2f(1032, -1976)));
-    shapeMap->makeLineShape(Line(Point2f(1350, -1896), Point2f(1372, -1692)));
-    shapeMap->makeLineShape(Line(Point2f(1117, -1979), Point2f(1120, -1594)));
-    shapeMap->makeLineShape(Line(Point2f(988, -1876), Point2f(1261, -1867)));
-    shapeMap->makeLineShape(Line(Point2f(1353, -1804), Point2f(1354, -2090)));
-    shapeMap->makeLineShape(Line(Point2f(1202, -2146), Point2f(1232, -1856)));
-    shapeMap->makeLineShape(Line(Point2f(1167, -1874), Point2f(1359, -1850)));
-    shapeMap->makeLineShape(Line(Point2f(1170, -1756), Point2f(1377, -1702)));
-    shapeMap->makeLineShape(Line(Point2f(988, -1715), Point2f(1218, -1613)));
-    shapeMap->makeLineShape(Line(Point2f(1006, -2177), Point2f(1027, -1900)));
-    shapeMap->makeLineShape(Line(Point2f(1236, -1847), Point2f(1271, -2058)));
-    shapeMap->makeLineShape(Line(Point2f(988, -1966), Point2f(1150, -1977)));
-    shapeMap->makeLineShape(Line(Point2f(1111, -1795), Point2f(1263, -1797)));
-    shapeMap->makeLineShape(Line(Point2f(973, -1752), Point2f(1199, -1753)));
-    shapeMap->makeLineShape(Line(Point2f(1149, -1715), Point2f(1367, -1670)));
-    shapeMap->makeLineShape(Line(Point2f(1048, -1648), Point2f(1061, -1722)));
-    shapeMap->makeLineShape(Line(Point2f(1218, -1644), Point2f(1344, -1600)));
-    shapeMap->makeLineShape(Line(Point2f(1128, -1970), Point2f(1279, -2046)));
-    shapeMap->makeLineShape(Line(Point2f(1283, -1542), Point2f(1297, -1589)));
-    shapeMap->makeLineShape(Line(Point2f(1254, -2044), Point2f(1359, -2012)));
-    shapeMap->makeLineShape(Line(Point2f(1287, -1759), Point2f(1321, -1812)));
-    shapeMap->makeLineShape(Line(Point2f(1287, -1819), Point2f(1300, -1755)));
-    shapeMap->makeLineShape(Line(Point2f(1296, -1949), Point2f(1365, -1921)));
-    shapeMap->makeLineShape(Line(Point2f(1329, -1748), Point2f(1337, -1792)));
-    shapeMap->makeLineShape(Line(Point2f(1065, -1818), Point2f(1069, -1977)));
-    shapeMap->makeLineShape(Line(Point2f(1184, -1671), Point2f(1195, -1714)));
-    shapeMap->makeLineShape(Line(Point2f(1155, -1670), Point2f(1196, -1684)));
-    shapeMap->makeLineShape(Line(Point2f(1298, -1863), Point2f(1319, -1801)));
-    shapeMap->makeLineShape(Line(Point2f(1283, -1804), Point2f(1317, -1859)));
-    shapeMap->makeLineShape(Line(Point2f(1190, -1824), Point2f(1198, -1883)));
-    shapeMap->makeLineShape(Line(Point2f(1205, -1835), Point2f(1256, -1841)));
-    shapeMap->makeLineShape(Line(Point2f(1171, -1860), Point2f(1175, -1884)));
-    shapeMap->makeLineShape(Line(Point2f(1179, -1744), Point2f(1195, -1801)));
-    shapeMap->makeLineShape(Line(Point2f(1344, -1782), Point2f(1368, -1793)));
-    shapeMap->makeLineShape(Line(Point2f(1060, -1941), Point2f(1123, -1936)));
-    shapeMap->makeLineShape(Line(Point2f(1151, -1887), Point2f(1160, -1826)));
-    shapeMap->makeLineShape(Line(Point2f(1299, -1917), Point2f(1360, -1941)));
-    shapeMap->makeLineShape(Line(Point2f(1147, -1669), Point2f(1162, -1776)));
-    shapeMap->makeLineShape(Line(Point2f(1304, -1818), Point2f(1308, -1927)));
-    shapeMap->makeLineShape(Line(Point2f(1244, -1924), Point2f(1315, -1949)));
-    shapeMap->makeLineShape(Line(Point2f(1274, -1853), Point2f(1276, -1877)));
-    shapeMap->makeLineShape(Line(Point2f(1054, -1703), Point2f(1091, -1755)));
-    shapeMap->makeLineShape(Line(Point2f(1026, -1755), Point2f(1065, -1703)));
-    shapeMap->makeLineShape(Line(Point2f(1220, -1732), Point2f(1229, -1762)));
-    shapeMap->makeLineShape(Line(Point2f(1245, -1939), Point2f(1317, -1918)));
-    shapeMap->makeLineShape(Line(Point2f(1306, -1937), Point2f(1308, -2036)));
-    shapeMap->makeLineShape(Line(Point2f(1032, -1731), Point2f(1048, -1830)));
-    shapeMap->makeLineShape(Line(Point2f(1079, -1827), Point2f(1080, -1726)));
-    shapeMap->makeLineShape(Line(Point2f(1330, -1789), Point2f(1350, -1783)));
-    shapeMap->makeLineShape(Line(Point2f(1044, -1824), Point2f(1085, -1822)));
-    shapeMap->makeLineShape(Line(Point2f(1154, -1829), Point2f(1197, -1829)));
-    shapeMap->makeLineShape(Line(Point2f(1199, -1766), Point2f(1234, -1757)));
+    shapeMap->makeLineShape(Line4f(Point2f(984, -1684), Point2f(1346, -1523)));
+    shapeMap->makeLineShape(Line4f(Point2f(1306, -1497), Point2f(1379, -1746)));
+    shapeMap->makeLineShape(Line4f(Point2f(1257, -1772), Point2f(1494, -1712)));
+    shapeMap->makeLineShape(Line4f(Point2f(1200, -1581), Point2f(1271, -1779)));
+    shapeMap->makeLineShape(Line4f(Point2f(1174, -1684), Point2f(1537, -1588)));
+    shapeMap->makeLineShape(Line4f(Point2f(1223, -1898), Point2f(1269, -1760)));
+    shapeMap->makeLineShape(Line4f(Point2f(946, -1386), Point2f(1032, -1976)));
+    shapeMap->makeLineShape(Line4f(Point2f(1350, -1896), Point2f(1372, -1692)));
+    shapeMap->makeLineShape(Line4f(Point2f(1117, -1979), Point2f(1120, -1594)));
+    shapeMap->makeLineShape(Line4f(Point2f(988, -1876), Point2f(1261, -1867)));
+    shapeMap->makeLineShape(Line4f(Point2f(1353, -1804), Point2f(1354, -2090)));
+    shapeMap->makeLineShape(Line4f(Point2f(1202, -2146), Point2f(1232, -1856)));
+    shapeMap->makeLineShape(Line4f(Point2f(1167, -1874), Point2f(1359, -1850)));
+    shapeMap->makeLineShape(Line4f(Point2f(1170, -1756), Point2f(1377, -1702)));
+    shapeMap->makeLineShape(Line4f(Point2f(988, -1715), Point2f(1218, -1613)));
+    shapeMap->makeLineShape(Line4f(Point2f(1006, -2177), Point2f(1027, -1900)));
+    shapeMap->makeLineShape(Line4f(Point2f(1236, -1847), Point2f(1271, -2058)));
+    shapeMap->makeLineShape(Line4f(Point2f(988, -1966), Point2f(1150, -1977)));
+    shapeMap->makeLineShape(Line4f(Point2f(1111, -1795), Point2f(1263, -1797)));
+    shapeMap->makeLineShape(Line4f(Point2f(973, -1752), Point2f(1199, -1753)));
+    shapeMap->makeLineShape(Line4f(Point2f(1149, -1715), Point2f(1367, -1670)));
+    shapeMap->makeLineShape(Line4f(Point2f(1048, -1648), Point2f(1061, -1722)));
+    shapeMap->makeLineShape(Line4f(Point2f(1218, -1644), Point2f(1344, -1600)));
+    shapeMap->makeLineShape(Line4f(Point2f(1128, -1970), Point2f(1279, -2046)));
+    shapeMap->makeLineShape(Line4f(Point2f(1283, -1542), Point2f(1297, -1589)));
+    shapeMap->makeLineShape(Line4f(Point2f(1254, -2044), Point2f(1359, -2012)));
+    shapeMap->makeLineShape(Line4f(Point2f(1287, -1759), Point2f(1321, -1812)));
+    shapeMap->makeLineShape(Line4f(Point2f(1287, -1819), Point2f(1300, -1755)));
+    shapeMap->makeLineShape(Line4f(Point2f(1296, -1949), Point2f(1365, -1921)));
+    shapeMap->makeLineShape(Line4f(Point2f(1329, -1748), Point2f(1337, -1792)));
+    shapeMap->makeLineShape(Line4f(Point2f(1065, -1818), Point2f(1069, -1977)));
+    shapeMap->makeLineShape(Line4f(Point2f(1184, -1671), Point2f(1195, -1714)));
+    shapeMap->makeLineShape(Line4f(Point2f(1155, -1670), Point2f(1196, -1684)));
+    shapeMap->makeLineShape(Line4f(Point2f(1298, -1863), Point2f(1319, -1801)));
+    shapeMap->makeLineShape(Line4f(Point2f(1283, -1804), Point2f(1317, -1859)));
+    shapeMap->makeLineShape(Line4f(Point2f(1190, -1824), Point2f(1198, -1883)));
+    shapeMap->makeLineShape(Line4f(Point2f(1205, -1835), Point2f(1256, -1841)));
+    shapeMap->makeLineShape(Line4f(Point2f(1171, -1860), Point2f(1175, -1884)));
+    shapeMap->makeLineShape(Line4f(Point2f(1179, -1744), Point2f(1195, -1801)));
+    shapeMap->makeLineShape(Line4f(Point2f(1344, -1782), Point2f(1368, -1793)));
+    shapeMap->makeLineShape(Line4f(Point2f(1060, -1941), Point2f(1123, -1936)));
+    shapeMap->makeLineShape(Line4f(Point2f(1151, -1887), Point2f(1160, -1826)));
+    shapeMap->makeLineShape(Line4f(Point2f(1299, -1917), Point2f(1360, -1941)));
+    shapeMap->makeLineShape(Line4f(Point2f(1147, -1669), Point2f(1162, -1776)));
+    shapeMap->makeLineShape(Line4f(Point2f(1304, -1818), Point2f(1308, -1927)));
+    shapeMap->makeLineShape(Line4f(Point2f(1244, -1924), Point2f(1315, -1949)));
+    shapeMap->makeLineShape(Line4f(Point2f(1274, -1853), Point2f(1276, -1877)));
+    shapeMap->makeLineShape(Line4f(Point2f(1054, -1703), Point2f(1091, -1755)));
+    shapeMap->makeLineShape(Line4f(Point2f(1026, -1755), Point2f(1065, -1703)));
+    shapeMap->makeLineShape(Line4f(Point2f(1220, -1732), Point2f(1229, -1762)));
+    shapeMap->makeLineShape(Line4f(Point2f(1245, -1939), Point2f(1317, -1918)));
+    shapeMap->makeLineShape(Line4f(Point2f(1306, -1937), Point2f(1308, -2036)));
+    shapeMap->makeLineShape(Line4f(Point2f(1032, -1731), Point2f(1048, -1830)));
+    shapeMap->makeLineShape(Line4f(Point2f(1079, -1827), Point2f(1080, -1726)));
+    shapeMap->makeLineShape(Line4f(Point2f(1330, -1789), Point2f(1350, -1783)));
+    shapeMap->makeLineShape(Line4f(Point2f(1044, -1824), Point2f(1085, -1822)));
+    shapeMap->makeLineShape(Line4f(Point2f(1154, -1829), Point2f(1197, -1829)));
+    shapeMap->makeLineShape(Line4f(Point2f(1199, -1766), Point2f(1234, -1757)));
 
     auto shapeGraph = MapConverter::convertDataToAxial(nullptr, "aa", *shapeMap);
 
@@ -91,7 +91,7 @@ TEST_CASE("Test ShapeMap::copy()") {
 
     Point2f p1(0982.8, -1620.3);
     Point2f p2(1217.1, -1977.3);
-    QtRegion region(p1, p1);
+    Region4f region(p1, p1);
     auto selSet = shapeGraph->getShapesInRegion(region);
     REQUIRE(selSet.size() == 1);
     REQUIRE(selSet.begin()->first == 6);
@@ -114,8 +114,8 @@ TEST_CASE("Testing ShapeMap::getAllShapes variants") {
 
     std::unique_ptr<ShapeMap> shapeMap(new ShapeMap("Test ShapeMap"));
 
-    shapeMap->makeLineShape(Line(line0Start, line0End));
-    shapeMap->makeLineShape(Line(line1Start, line1End));
+    shapeMap->makeLineShape(Line4f(line0Start, line0End));
+    shapeMap->makeLineShape(Line4f(line1Start, line1End));
 
     std::vector<Point2f> polyVertices;
     polyVertices.push_back(Point2f(-1, -1));

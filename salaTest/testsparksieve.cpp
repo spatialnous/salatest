@@ -11,10 +11,10 @@
 TEST_CASE("One block garbage") {
     Point2f centre(1, 1);
     sparkSieve2 sieve(centre);
-    std::vector<Line> lines;
+    std::vector<Line4f> lines;
     // these lines get turned into "blocks" based by a tanify function based on q and the centre
     // given above. Given q=4 and centre 1,1 this line will be from 0.625 to something bigger than 1
-    lines.push_back(Line(Point2f(0.5, 0.2), Point2f(0.5, 0.7)));
+    lines.push_back(Line4f(Point2f(0.5, 0.2), Point2f(0.5, 0.7)));
     sieve.block(lines, 4);
     sieve.collectgarbage();
     REQUIRE(sieve.gaps.size() == 1);
@@ -25,11 +25,11 @@ TEST_CASE("One block garbage") {
 TEST_CASE("Shift start and end") {
     Point2f centre(1, 1);
     sparkSieve2 sieve(centre);
-    std::vector<Line> lines;
+    std::vector<Line4f> lines;
     // .625 -> > 1
-    lines.push_back(Line(Point2f(0.5, 0.2), Point2f(0.5, 0.7)));
+    lines.push_back(Line4f(Point2f(0.5, 0.2), Point2f(0.5, 0.7)));
     // < 0 -> 0.55555557
-    lines.push_back(Line(Point2f(0.5, 0.1), Point2f(1.1, 0.9)));
+    lines.push_back(Line4f(Point2f(0.5, 0.1), Point2f(1.1, 0.9)));
     sieve.block(lines, 4);
     sieve.collectgarbage();
     REQUIRE(sieve.gaps.size() == 1);
@@ -40,9 +40,9 @@ TEST_CASE("Shift start and end") {
 TEST_CASE("delete gap") {
     Point2f centre(1, 1);
     sparkSieve2 sieve(centre);
-    std::vector<Line> lines;
+    std::vector<Line4f> lines;
     // < 0 -> > 1 the block covers the whole gap
-    lines.push_back(Line(Point2f(1.1, 0.2), Point2f(0.5, 0.7)));
+    lines.push_back(Line4f(Point2f(1.1, 0.2), Point2f(0.5, 0.7)));
     sieve.block(lines, 4);
     sieve.collectgarbage();
     REQUIRE(sieve.gaps.empty());
@@ -51,11 +51,11 @@ TEST_CASE("delete gap") {
 TEST_CASE("add gap") {
     Point2f centre(1, 1);
     sparkSieve2 sieve(centre);
-    std::vector<Line> lines;
+    std::vector<Line4f> lines;
     // 0.55555 -> .625 the block splits the gap
-    lines.push_back(Line(Point2f(0.5, 0.2), Point2f(0.5, 0.1)));
+    lines.push_back(Line4f(Point2f(0.5, 0.2), Point2f(0.5, 0.1)));
     //  0.71428571 -> > 1
-    lines.push_back(Line(Point2f(0.5, 0.3), Point2f(0.5, 0.7)));
+    lines.push_back(Line4f(Point2f(0.5, 0.3), Point2f(0.5, 0.7)));
     sieve.block(lines, 4);
     sieve.collectgarbage();
     REQUIRE(sieve.gaps.size() == 2);
