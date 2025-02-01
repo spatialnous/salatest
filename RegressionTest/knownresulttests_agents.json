@@ -390,6 +390,30 @@
             ]
         },
         "agents_trails_all": {
+            "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.cat"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.cat",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "standard",
+                        "-ats": "1200",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0",
+                        "-atrails": "0",
+                        "-ot": "trails"
+                    }
+                }
+            ]
+        },
+        "agents_trails_50": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.cat"
@@ -407,7 +431,7 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "0",
-                        "-atrails": "0",
+                        "-atrails": "50",
                         "-ot": "trails"
                     }
                 }
