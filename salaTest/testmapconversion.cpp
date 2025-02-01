@@ -97,9 +97,9 @@ TEST_CASE("Test drawing to segment conversion", "") {
         drawingLayer.makeLineShape(line1);
 
         // TODO: This fails with std::bad_alloc because there's only 1 line in the drawing
-        REQUIRE_THROWS_WITH(
+        REQUIRE_THROWS_AS(
             MapConverter::convertDrawingToSegment(nullptr, "Segment map", drawingMapRefs),
-            Catch::Matchers::ContainsSubstring("std::bad_alloc"));
+            std::bad_alloc);
     }
 
     SECTION("Two lines") {
@@ -107,9 +107,9 @@ TEST_CASE("Test drawing to segment conversion", "") {
         drawingLayer.makeLineShape(line2);
 
         // TODO: This fails with std::bad_alloc because there's only 2 lines in the drawing
-        REQUIRE_THROWS_WITH(
+        REQUIRE_THROWS_AS(
             MapConverter::convertDrawingToSegment(nullptr, "Segment map", drawingMapRefs),
-            Catch::Matchers::ContainsSubstring("std::bad_alloc"));
+            std::bad_alloc);
     }
 
     SECTION("Three lines") {
@@ -168,9 +168,8 @@ TEST_CASE("Test data to segment conversion", "") {
         dataMap.makeLineShape(lines[0], false, false, extraAttributes[0]);
 
         // TODO: This fails with std::bad_alloc because there's only 1 line in the data map
-        REQUIRE_THROWS_WITH(
-            MapConverter::convertDataToSegment(nullptr, "Segment map", dataMap, true),
-            Catch::Matchers::ContainsSubstring("std::bad_alloc"));
+        REQUIRE_THROWS_AS(MapConverter::convertDataToSegment(nullptr, "Segment map", dataMap, true),
+                          std::bad_alloc);
     }
 
     SECTION("Two lines with extra attributes") {
@@ -178,9 +177,8 @@ TEST_CASE("Test data to segment conversion", "") {
         dataMap.makeLineShape(lines[1], false, false, extraAttributes[1]);
 
         // TODO: This fails with std::bad_alloc because there's only 2 lines in the data map
-        REQUIRE_THROWS_WITH(
-            MapConverter::convertDataToSegment(nullptr, "Segment map", dataMap, true),
-            Catch::Matchers::ContainsSubstring("std::bad_alloc"));
+        REQUIRE_THROWS_AS(MapConverter::convertDataToSegment(nullptr, "Segment map", dataMap, true),
+                          std::bad_alloc);
     }
 
     SECTION("Three lines") {
