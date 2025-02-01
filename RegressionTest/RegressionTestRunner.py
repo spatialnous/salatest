@@ -51,7 +51,11 @@ class RegressionTestRunner():
     def getExtraArgs(self):
         extraBaseArgs = []
         extraTestArgs = []
-        if self.__baseCanIDD and self.__testCanIDD:
+        if self.config.knownResultTesting.enabled:
+            if self.__testCanIDD:
+                extraTestArgs = ["-idd"]
+                print("Known result testing and test binary can drop display data. Dropping");
+        elif self.__baseCanIDD and self.__testCanIDD:
             extraBaseArgs = ["-idd"]
             extraTestArgs = ["-idd"]
             print("Both test and base binaries can drop display data. Dropping");
