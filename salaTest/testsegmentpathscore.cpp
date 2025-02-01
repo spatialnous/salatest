@@ -68,9 +68,9 @@ TEST_CASE("Shortest paths working examples", "") {
                                               -1, -1, 1.24219, 0.734375, 1.82422};
         std::vector<int> expectedOrder = {-1, 0, 1, 4, -1, -1, -1, 3, 2, 5};
         for (size_t i = 0; i < lines.size(); i++) {
-            Region4f selRegion(lines[i].midpoint(), lines[i].midpoint());
+            Region4f selSubRegion(lines[i].midpoint(), lines[i].midpoint());
             AttributeRow &shapeRow = segmentMap->getAttributeRowFromShapeIndex(
-                static_cast<size_t>(segmentMap->getShapesInRegion(selRegion).begin()->first));
+                static_cast<size_t>(segmentMap->getShapesInRegion(selSubRegion).begin()->first));
 
             REQUIRE(shapeRow.getValue(angleColIdx) ==
                     Catch::Approx(expectedAngles[i]).epsilon(epsilon));
@@ -94,9 +94,9 @@ TEST_CASE("Shortest paths working examples", "") {
                                                  2.67689, 1.89156, -1, -1,      4.58446};
         std::vector<int> expectedOrder = {-1, 0, 1, 4, -1, 3, 2, -1, -1, 5};
         for (size_t i = 0; i < lines.size(); i++) {
-            Region4f selRegion(lines[i].midpoint(), lines[i].midpoint());
+            Region4f selSubRegion(lines[i].midpoint(), lines[i].midpoint());
             AttributeRow &shapeRow = segmentMap->getAttributeRowFromShapeIndex(
-                static_cast<size_t>(segmentMap->getShapesInRegion(selRegion).begin()->first));
+                static_cast<size_t>(segmentMap->getShapesInRegion(selSubRegion).begin()->first));
             REQUIRE(shapeRow.getValue(distanceColIdx) ==
                     Catch::Approx(expectedDistances[i]).epsilon(epsilon));
             REQUIRE(shapeRow.getValue(orderColIdx) == static_cast<double>(expectedOrder[i]));
@@ -118,9 +118,9 @@ TEST_CASE("Shortest paths working examples", "") {
         std::vector<double> expectedDepths = {2, 0, -1, -1, 1, -1, -1, -1, -1, 3};
         std::vector<int> expectedOrder = {2, 0, -1, -1, 1, -1, -1, -1, -1, 3};
         for (size_t i = 0; i < lines.size(); i++) {
-            Region4f selRegion(lines[i].midpoint(), lines[i].midpoint());
+            Region4f selSubRegion(lines[i].midpoint(), lines[i].midpoint());
             AttributeRow &shapeRow = segmentMap->getAttributeRowFromShapeIndex(
-                static_cast<size_t>(segmentMap->getShapesInRegion(selRegion).begin()->first));
+                static_cast<size_t>(segmentMap->getShapesInRegion(selSubRegion).begin()->first));
             REQUIRE(shapeRow.getValue(depthColIdx) ==
                     Catch::Approx(expectedDepths[i]).epsilon(epsilon));
             REQUIRE(shapeRow.getValue(orderColIdx) == static_cast<double>(expectedOrder[i]));

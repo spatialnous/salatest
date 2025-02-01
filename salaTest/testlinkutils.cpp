@@ -55,16 +55,16 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
         REQUIRE(mergedPixelPairs[0].second.x == 4);
         REQUIRE(mergedPixelPairs[0].second.y == 8);
 
-        const std::vector<SimpleLine> &mergeLines = depthmapX::getMergedPixelsAsLines(pointMap);
+        const std::vector<SimpleLine> &newMergeLines = depthmapX::getMergedPixelsAsLines(pointMap);
 
         Point2f p1position = pointMap.depixelate(links[0].a);
         Point2f p2position = pointMap.depixelate(links[0].b);
 
-        REQUIRE(mergeLines.size() == 1);
-        REQUIRE(mergeLines[0].start().x == p1position.x);
-        REQUIRE(mergeLines[0].start().y == p1position.y);
-        REQUIRE(mergeLines[0].end().x == p2position.x);
-        REQUIRE(mergeLines[0].end().y == p2position.y);
+        REQUIRE(newMergeLines.size() == 1);
+        REQUIRE(newMergeLines[0].start().x == p1position.x);
+        REQUIRE(newMergeLines[0].start().y == p1position.y);
+        REQUIRE(newMergeLines[0].end().x == p2position.x);
+        REQUIRE(newMergeLines[0].end().y == p2position.y);
     }
 
     SECTION("Successfull: bottom-left to top-right and bottom-right to top-left") {

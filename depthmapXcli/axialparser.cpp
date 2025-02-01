@@ -77,7 +77,7 @@ void AxialParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
 
     auto state = metaGraph.getState();
     if (runAllLines()) {
-        if (~state & MetaGraphDX::LINEDATA) {
+        if (~state & MetaGraphDX::DX_LINEDATA) {
             throw depthmapX::RuntimeException(
                 "Line drawing must be loaded before axial map can be constructed");
         }
@@ -92,7 +92,7 @@ void AxialParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
     }
 
     if (runFewestLines()) {
-        if (~state & MetaGraphDX::LINEDATA) {
+        if (~state & MetaGraphDX::DX_LINEDATA) {
             throw depthmapX::RuntimeException(
                 "Line drawing must be loaded before fewest line map can be constructed");
         }

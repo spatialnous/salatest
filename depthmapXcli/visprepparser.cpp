@@ -149,7 +149,7 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
 
     std::cout << "Initial checks... " << std::flush;
     auto state = metaGraph.getState();
-    if (~state & MetaGraphDX::LINEDATA) {
+    if (~state & MetaGraphDX::DX_LINEDATA) {
         throw depthmapX::RuntimeException("Graph must have line data before preparing VGA");
     }
     if (m_grid > 0) {

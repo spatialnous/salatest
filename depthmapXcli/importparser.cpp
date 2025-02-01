@@ -51,7 +51,7 @@ void ImportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
 
     std::optional<std::string> mimicVersion = clp.getMimickVersion();
 
-    if (metaGraph.getReadStatus() == MetaGraphReadWrite::ReadStatus::NOT_A_GRAPH) {
+    if (metaGraph.getReadStatus() == MetaGraphReadWrite::ReadWriteStatus::NOT_A_GRAPH) {
         // not a graph, try to import the file
         std::string ext = clp.getFileName().substr(clp.getFileName().length() - 4,
                                                    clp.getFileName().length() - 1);
@@ -85,13 +85,13 @@ void ImportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
                 }
                 if (!metaGraph.getDataMaps().empty()) {
                     metaGraph.setDisplayedDataMapRef(metaGraph.getDataMaps().size() - 1);
-                    metaGraph.setState(metaGraph.getState() | MetaGraphDX::DATAMAPS);
-                    metaGraph.setViewClass(MetaGraphDX::SHOWHIDESHAPE);
+                    metaGraph.setState(metaGraph.getState() | MetaGraphDX::DX_DATAMAPS);
+                    metaGraph.setViewClass(MetaGraphDX::DX_SHOWHIDESHAPE);
                 }
             } else {
                 auto newDrawingFile =
                     metaGraph.addDrawingFile(clp.getFileName(), std::move(newMaps));
-                metaGraph.setState(metaGraph.getState() | MetaGraphDX::LINEDATA);
+                metaGraph.setState(metaGraph.getState() | MetaGraphDX::DX_LINEDATA);
                 if (mimicVersion.has_value() && *mimicVersion == "depthmapX 0.8.0") {
                     // this version does not actually set the map type of the space pixels
                     for (auto &map : metaGraph.getDrawingFiles()[newDrawingFile].maps) {
@@ -100,7 +100,7 @@ void ImportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
                 }
             }
         }
-    } else if (metaGraph.getReadStatus() == MetaGraphReadWrite::ReadStatus::OK) {
+    } else if (metaGraph.getReadStatus() == MetaGraphReadWrite::ReadWriteStatus::OK) {
         if (toImportAsAttrbiutes()) {
 
             if (metaGraph.getDisplayedMapType() == ShapeMap::EMPTYMAP) {

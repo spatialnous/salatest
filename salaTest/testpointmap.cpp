@@ -371,13 +371,13 @@ TEST_CASE("Test PointMap connections output", "") {
 
         REQUIRE(stream.good());
         char line[1000];
-        std::vector<std::string> lines;
+        std::vector<std::string> streamLines;
         while (!stream.eof()) {
             stream.getline(line, 1000);
-            lines.push_back(line);
+            streamLines.push_back(line);
         }
         std::vector<std::string> expected{"RefFrom,RefTo", "65537,131074", "65538,131073"};
-        REQUIRE(lines == expected);
+        REQUIRE(streamLines == expected);
     }
 
     SECTION("PointMap::outputConnectionsAsCSV") {
@@ -386,15 +386,15 @@ TEST_CASE("Test PointMap connections output", "") {
 
         REQUIRE(stream.good());
         char line[1000];
-        std::vector<std::string> lines;
+        std::vector<std::string> streamLines;
         while (!stream.eof()) {
             stream.getline(line, 1000);
-            lines.push_back(line);
+            streamLines.push_back(line);
         }
         std::vector<std::string> expected{"RefFrom,RefTo", "65537,131073", "65537,131074",
                                           "65537,65538",   "65538,131074", "65538,131073",
                                           "131073,131074"};
-        REQUIRE(lines == expected);
+        REQUIRE(streamLines == expected);
     }
 
     SECTION("PointMap::outputConnections") {
@@ -403,10 +403,10 @@ TEST_CASE("Test PointMap connections output", "") {
 
         REQUIRE(stream.good());
         char line[1000];
-        std::vector<std::string> lines;
+        std::vector<std::string> streamLines;
         while (!stream.eof()) {
             stream.getline(line, 1000);
-            lines.push_back(line);
+            streamLines.push_back(line);
         }
         std::vector<std::string> expected{"#graph v1.0",
                                           "node {",
@@ -446,7 +446,7 @@ TEST_CASE("Test PointMap connections output", "") {
                                           "  ]",
                                           "}",
                                           ""};
-        REQUIRE(lines == expected);
+        REQUIRE(streamLines == expected);
     }
 }
 TEST_CASE("Direct pointmap linking - fully filled grid (no geometry)", "") {

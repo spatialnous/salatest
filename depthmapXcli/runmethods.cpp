@@ -19,7 +19,7 @@ namespace dm_runmethods {
         MetaGraphDX mgraph("Test mgraph");
         DO_TIMED("Load graph file", mgraph.readFromFile(filename);)
 
-        if (mgraph.getReadStatus() != MetaGraphReadWrite::ReadStatus::OK) {
+        if (mgraph.getReadStatus() != MetaGraphReadWrite::ReadWriteStatus::OK) {
             std::stringstream message;
             message << "Failed to load graph from file " << filename << ", error "
                     << MetaGraphReadWrite::getReadMessage(mgraph.getReadStatus()) << std::flush;
