@@ -45,7 +45,7 @@ jobs:
           - os: ubuntu-latest
             c_compiler: cl
           - os: ubuntu-24.04-arm
-            c_compiler: cl
+            c_compiler: [cl, clang]
           - os: macos-13
             c_compiler: cl
           - os: macos-13
