@@ -9,6 +9,7 @@ from cmdlinewrapper import DepthmapCmd
 import unittest
 from disposablefile import DisposableFile, DisposableDirectory
 import os.path
+import os.name
 
 class BinaryDiffTest(unittest.TestCase):
     def test_binaryDiff(self):
@@ -36,8 +37,11 @@ class DepthmapRunnerTest(unittest.TestCase):
         dcmd.modeLines = []
 
         runner = depthmaprunner.DepthmapRunner(lambda d, a: self.runfunc(d, a), "bin")
-        
-        self.__args = ["../bin", "-f", "foo", "-o", "bar", "-m", "mode"]
+        binDir = "../bin"
+        if os.name == 'nt':
+            binDir = "..\\bin"
+
+        self.__args = [binDir, "-f", "foo", "-o", "bar", "-m", "mode"]
         self.__rundir = "dir"
         runner.runDepthmap(dcmd, "dir")
 
@@ -120,28 +124,32 @@ class DepthmapRegressioRunnerTest(unittest.TestCase):
 
     def testBaseRunOutputMissing(self):
         with DisposableDirectory("testdir", True) as dir:
-            runner = depthmaprunner.DepthmapRegressionRunner(lambda d, a: self.runfuncWriteNoFile(d,a, "../../basebin"), "basebin", "testbin", dir.name())
+            binPath = os.path.join("..", "..", "basebin")
+            runner = depthmaprunner.DepthmapRegressionRunner(lambda d, a: self.runfuncWriteNoFile(d,a, binPath), "basebin", "testbin", dir.name())
             (result, message) = runner.runTestCase("testname", self.makeCommand("infile.graph", "outfile.graph", "visibility"), ["outfile.graph"])
             self.assertFalse(result)
             self.assertEqual(message, "Baseline output {0} does not exist".format(os.path.join(dir.name(), "testname" + "_base", "outfile.graph")))
 
     def testTestRunOutputMissing(self):
         with DisposableDirectory("testdir", True) as dir:
-            runner = depthmaprunner.DepthmapRegressionRunner(lambda d, a: self.runfuncWriteNoFile(d,a, "../../testbin"), "basebin", "testbin", dir.name())
+            binPath = os.path.join("..", "..", "testbin")
+            runner = depthmaprunner.DepthmapRegressionRunner(lambda d, a: self.runfuncWriteNoFile(d,a, binPath), "basebin", "testbin", dir.name())
             (result, message) = runner.runTestCase("testname", self.makeCommand("infile.graph", "outfile.graph", "visibility"), ["outfile.graph"])
             self.assertFalse(result)
             self.assertEqual(message, "Test output {0} does not exist".format(os.path.join(dir.name(), "testname" + "_test", "outfile.graph")))
 
     def testBaseRunFail(self):
         with DisposableDirectory("testdir", True) as dir:
-            runner = depthmaprunner.DepthmapRegressionRunner(lambda d, a: self.runfuncFail(d,a, "../../basebin", False), "basebin", "testbin", dir.name())
+            binPath = os.path.join("..", "..", "basebin")
+            runner = depthmaprunner.DepthmapRegressionRunner(lambda d, a: self.runfuncFail(d,a, binPath, False), "basebin", "testbin", dir.name())
             (result, message) = runner.runTestCase("testname", self.makeCommand("infile.graph", "outfile.graph", "visibility"), ["outfile.graph"])
             self.assertFalse(result)
             self.assertEqual(message, "Baseline run failed at step: 0")
 
     def testTestRunFail(self):
         with DisposableDirectory("testdir", True) as dir:
-            runner = depthmaprunner.DepthmapRegressionRunner(lambda d, a: self.runfuncFail(d,a, "../../testbin", True), "basebin", "testbin", dir.name())
+            binPath = os.path.join("..", "..", "testbin")
+            runner = depthmaprunner.DepthmapRegressionRunner(lambda d, a: self.runfuncFail(d,a, binPath, True), "basebin", "testbin", dir.name())
             (result, message) = runner.runTestCase("testname", self.makeCommand("infile.graph", "outfile.graph", "visibility"), ["outfile.graph"])
             self.assertFalse(result)
             self.assertEqual(message, "Test run failed at step: 0")
