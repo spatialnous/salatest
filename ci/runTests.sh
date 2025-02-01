@@ -5,8 +5,21 @@
 
 #!/bin/sh
 
+EXEPREFIXDIR=""
+EXESUFFIX=""
+if [[ "$OSTYPE" == "cygwin" ]]; then
+    EXEPREFIXDIR="/Release"
+    EXESUFFIX=".exe"
+elif [[ "$OSTYPE" == "msys" ]]; then
+    EXEPREFIXDIR="/Release"
+    EXESUFFIX=".exe"
+fi
+
 echo Running unit tests
-./cliTest/cliTest && ./salaTest/salaTest && ./genlibTest/genlibTest && ./moduleTest/moduleTest --allow-running-no-tests || exit 1
+./cliTest$EXEPREFIXDIR/cliTest$EXESUFFIX && \
+    ./salaTest$EXEPREFIXDIR/salaTest$EXESUFFIX && \
+    ./genlibTest$EXEPREFIXDIR/genlibTest$EXESUFFIX && \
+    ./moduleTest$EXEPREFIXDIR/moduleTest$EXESUFFIX --allow-running-no-tests || exit 1
 # if that succeeds, run regression tests
 echo testing regression test framework
 cd ..
