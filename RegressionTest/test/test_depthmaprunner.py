@@ -8,8 +8,7 @@ import cmdlinewrapper
 from cmdlinewrapper import DepthmapCmd
 import unittest
 from disposablefile import DisposableFile, DisposableDirectory
-import os.path
-import os.name
+import os
 
 class BinaryDiffTest(unittest.TestCase):
     def test_binaryDiff(self):

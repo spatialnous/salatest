@@ -33,7 +33,7 @@ class TestRunHelpers(unittest.TestCase):
         sys = platform.system()
         machine = platform.machine()
         if sys == "Windows":
-            self.assertEqual( result, "foo\\Windows\\depthmapXcli.exe")
+            self.assertEqual( result, "foo\\" + sys + "_" + machine + "\\depthmapXcli.exe")
         else:
             self.assertEqual( result, "foo/" + sys + "_" + machine + "/depthmapXcli" )
 
