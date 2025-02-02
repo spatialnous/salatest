@@ -152,16 +152,15 @@ TEST_CASE("Test data to segment conversion", "") {
     auto newAttributeID = dataMap.addAttribute(newAttributeName);
 
     std::vector<Line4f> lines;
-    std::vector<std::map<int, float>> extraAttributes;
+    std::vector<std::map<size_t, float>> extraAttributes;
 
     lines.push_back(Line4f(Point2f(0, 0), Point2f(0, 1)));
     lines.push_back(Line4f(Point2f(0, 1), Point2f(1, 1)));
     lines.push_back(Line4f(Point2f(1, 1), Point2f(1, 0)));
 
     for (size_t i = 0; i < lines.size(); i++) {
-        extraAttributes.push_back(std::map<int, float>());
-        extraAttributes.back()[static_cast<int>(newAttributeID)] =
-            static_cast<float>(extraAttributes.size());
+        extraAttributes.push_back(std::map<size_t, float>());
+        extraAttributes.back()[newAttributeID] = static_cast<float>(extraAttributes.size());
     }
 
     SECTION("Single line with extra attributes") {
@@ -196,8 +195,7 @@ TEST_CASE("Test data to segment conversion", "") {
             auto key = static_cast<size_t>(shapeIter->first);
             REQUIRE(key == i);
             AttributeRow &row = segmentMap->getAttributeRowFromShapeIndex(key);
-            REQUIRE(row.getValue(segmentNewAttributeID) ==
-                    extraAttributes[i][static_cast<int>(newAttributeID)]);
+            REQUIRE(row.getValue(segmentNewAttributeID) == extraAttributes[i][newAttributeID]);
             const Line4f &segmentLine = shapeIter->second.getLine();
             REQUIRE(segmentLine.ax() == Catch::Approx(lines[i].ax()).epsilon(epsilon));
             REQUIRE(segmentLine.ay() == Catch::Approx(lines[i].ay()).epsilon(epsilon));
@@ -224,8 +222,7 @@ TEST_CASE("Test data to segment conversion", "") {
             auto key = static_cast<size_t>(shapeIter->first);
             REQUIRE(key == i);
             AttributeRow &row = segmentMap->getAttributeRowFromShapeIndex(key);
-            REQUIRE(row.getValue(segmentNewAttributeID) ==
-                    extraAttributes[i][static_cast<int>(newAttributeID)]);
+            REQUIRE(row.getValue(segmentNewAttributeID) == extraAttributes[i][newAttributeID]);
             const Line4f &segmentLine = shapeIter->second.getLine();
             REQUIRE(segmentLine.ax() == Catch::Approx(lines[i].ax()).epsilon(epsilon));
             REQUIRE(segmentLine.ay() == Catch::Approx(lines[i].ay()).epsilon(epsilon));
