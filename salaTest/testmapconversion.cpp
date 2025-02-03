@@ -96,20 +96,14 @@ TEST_CASE("Test drawing to segment conversion", "") {
     SECTION("Single line") {
         drawingLayer.makeLineShape(line1);
 
-        // TODO: This fails with std::bad_alloc because there's only 1 line in the drawing
-        REQUIRE_THROWS_AS(
-            MapConverter::convertDrawingToSegment(nullptr, "Segment map", drawingMapRefs),
-            std::bad_alloc);
+        MapConverter::convertDrawingToSegment(nullptr, "Segment map", drawingMapRefs);
     }
 
     SECTION("Two lines") {
         drawingLayer.makeLineShape(line1);
         drawingLayer.makeLineShape(line2);
 
-        // TODO: This fails with std::bad_alloc because there's only 2 lines in the drawing
-        REQUIRE_THROWS_AS(
-            MapConverter::convertDrawingToSegment(nullptr, "Segment map", drawingMapRefs),
-            std::bad_alloc);
+        MapConverter::convertDrawingToSegment(nullptr, "Segment map", drawingMapRefs);
     }
 
     SECTION("Three lines") {
@@ -166,18 +160,14 @@ TEST_CASE("Test data to segment conversion", "") {
     SECTION("Single line with extra attributes") {
         dataMap.makeLineShape(lines[0], false, false, extraAttributes[0]);
 
-        // TODO: This fails with std::bad_alloc because there's only 1 line in the data map
-        REQUIRE_THROWS_AS(MapConverter::convertDataToSegment(nullptr, "Segment map", dataMap, true),
-                          std::bad_alloc);
+        MapConverter::convertDataToSegment(nullptr, "Segment map", dataMap, true);
     }
 
     SECTION("Two lines with extra attributes") {
         dataMap.makeLineShape(lines[0], false, false, extraAttributes[0]);
         dataMap.makeLineShape(lines[1], false, false, extraAttributes[1]);
 
-        // TODO: This fails with std::bad_alloc because there's only 2 lines in the data map
-        REQUIRE_THROWS_AS(MapConverter::convertDataToSegment(nullptr, "Segment map", dataMap, true),
-                          std::bad_alloc);
+        MapConverter::convertDataToSegment(nullptr, "Segment map", dataMap, true);
     }
 
     SECTION("Three lines") {
