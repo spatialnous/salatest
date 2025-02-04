@@ -119,7 +119,7 @@ void VisPrepParser::parse(size_t argc, char **argv) {
             message << "Failed to load file " << pointFile << ", error ";
 
             // See https://en.cppreference.com/w/c/string/byte/strerror
-#ifdef __STDC_LIB_EXT1__
+#if defined(_MSC_VER)
             size_t errmsglen = strerrorlen_s(errno) + 1;
             char errmsg[errmsglen];
             strerror_s(errmsg, errmsglen, errno);
