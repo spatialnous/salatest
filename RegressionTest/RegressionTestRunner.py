@@ -11,7 +11,7 @@ import os
 import sys
 
 import runhelpers
-from runhelpers import TestResult
+from runhelpers import TestResult, bcolours
 from dxversion import dXversion
 
 defaultConfigFile = "regressionconfig.json"
@@ -51,11 +51,7 @@ class RegressionTestRunner():
     def getExtraArgs(self):
         extraBaseArgs = []
         extraTestArgs = []
-        if self.config.knownResultTesting.enabled:
-            if self.__testCanIDD:
-                extraTestArgs = ["-idd"]
-                print("Known result testing and test binary can drop display data. Dropping");
-        elif self.__baseCanIDD and self.__testCanIDD:
+        if self.__baseCanIDD and self.__testCanIDD:
             extraBaseArgs = ["-idd"]
             extraTestArgs = ["-idd"]
             print("Both test and base binaries can drop display data. Dropping");
@@ -69,14 +65,14 @@ class RegressionTestRunner():
             os.makedirs(self.config.rundir)
         usesBaseBinary = True
         if self.config.performanceRegression.enabled:
-            print("Performance regression runs enabled")
+            print(f"{bcolours.HEADER}Performance regression runs enabled{bcolours.ENDC}")
             runner = performancerunner.PerformanceRunner(self.runfunc, self.baseBinary, self.testBinary, self.config.rundir,self.config.performanceRegression )
         elif self.config.knownResultTesting.enabled:
-            print("Known result test runs enabled")
+            print(f"{bcolours.HEADER}Known result test runs enabled{bcolours.ENDC}")
             runner = knownresulttestrunner.KnownResultTestRunner(self.runfunc, self.testBinary, self.config.rundir,self.config.knownResultTesting )
             usesBaseBinary = False
         else:
-            print("Default regression runs - no performance")
+            print(f"{bcolours.HEADER}Default regression runs - no performance{bcolours.ENDC}")
             runner = depthmaprunner.DepthmapRegressionRunner( self.runfunc, self.baseBinary, self.testBinary, self.config.rundir )
         if self.config.allowSkipCases:
             print("Skipping cases allowed")
@@ -85,7 +81,7 @@ class RegressionTestRunner():
         extraArgs = self.getExtraArgs();
         good = True
         for name, case in self.config.testcases.items():
-            print("Running test case " + name)
+            print(f"- Running test case {bcolours.BOLD}" + name + f"{bcolours.ENDC}")
 
             cmds = case["steps"]
             minVersion = dXversion(case["minVersion"])
@@ -96,20 +92,20 @@ class RegressionTestRunner():
                 reason = ("Baseline binary can not run for test: " + name
                     + " (Binary version \"" + str(self.__baseVersion)
                     + "\" < Test minimum version \"" + str(minVersion) + "\")");
-                print ("Skipping:\n" + reason)
+                print (f"  {bcolours.WARNING}Skipping: " + reason + f"{bcolours.ENDC}")
             elif self.__testVersion < minVersion:
                 good = self.config.allowSkipCases
                 reason = ("Test binary can not run for test: " + name
                     + " (Test version \"" + str(self.__baseVersion)
                     + "\" < Test minimum version \"" + str(minVersion) + "\")");
-                print ("Skipping:\n" + reason)
+                print (f"  {bcolours.WARNING}Skipping: " + reason + f"{bcolours.ENDC}")
             else:
                 success, output = runner.runTestCase(name, cmds, compareFiles, extraArgs)
                 if not success:
                     good = False
-                    print ("Failed:\n" + output)
+                    print (f"  {bcolours.FAIL}Failed: " + output+ f"{bcolours.ENDC}")
                 else:
-                    print("ok")
+                    print(f"  {bcolours.OKGREEN}Ok{bcolours.ENDC}")
         return good        
 
 if __name__ == "__main__":

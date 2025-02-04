@@ -17,6 +17,18 @@ class TestResult(Enum):
     SKIP = 2
     FAIL = 3
 
+# For terminal colours https://stackoverflow.com/a/287944
+class bcolours:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 class cd:
     """Context manager for changing the current working directory"""
     def __init__(self, newPath):
