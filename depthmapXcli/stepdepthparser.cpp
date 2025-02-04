@@ -60,8 +60,19 @@ void StepDepthParser::parse(size_t argc, char **argv) {
         std::ifstream pointsStream(pointFile);
         if (!pointsStream) {
             std::stringstream message;
-            message << "Failed to load file " << pointFile << ", error " << std::strerror(errno)
-                    << std::flush;
+            message << "Failed to load file " << pointFile << ", error ";
+
+            // See https://en.cppreference.com/w/c/string/byte/strerror
+#ifdef __STDC_LIB_EXT1__
+            size_t errmsglen = strerrorlen_s(errno) + 1;
+            char errmsg[errmsglen];
+            strerror_s(errmsg, errmsglen, errno);
+            message << errmsg;
+#else
+            message << strerror(errno);
+#endif
+
+            message << std::flush;
             throw depthmapX::RuntimeException(message.str().c_str());
         }
         std::vector<Point2f> parsed = EntityParsing::parsePoints(pointsStream, '\t');
