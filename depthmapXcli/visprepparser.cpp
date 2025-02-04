@@ -120,10 +120,11 @@ void VisPrepParser::parse(size_t argc, char **argv) {
 
             // See https://en.cppreference.com/w/c/string/byte/strerror
 #if defined(_MSC_VER)
-            size_t errmsglen = strerrorlen_s(errno) + 1;
-            char errmsg[errmsglen];
-            strerror_s(errmsg, errmsglen, errno);
-            message << errmsg;
+            char buffer[100];
+            if (strerror_s(buffer, errno)) {
+                throw depthmapX::RuntimeException("Could not translate errno to a string");
+            }
+            message << buffer;
 #else
             message << strerror(errno);
 #endif
