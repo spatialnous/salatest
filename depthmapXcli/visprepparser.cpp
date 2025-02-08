@@ -197,6 +197,9 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
     } else {
         if (m_fillPoints.size() > 0) {
             std::cout << "ok\nFilling grid... " << std::flush;
+            if (!metaGraph.hasDisplayedPointMap()) {
+                metaGraph.setDisplayedPointMapRef(metaGraph.getPointMaps().size() - 1);
+            }
             DO_TIMED("Filling grid", for_each(m_fillPoints.begin(), m_fillPoints.end(),
                                               [&metaGraph](const Point2f &point) -> void {
                                                   fillGraph(metaGraph, point);
@@ -204,6 +207,9 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
         }
         if (m_makeGraph) {
             std::cout << "ok\nMaking graph... " << std::flush;
+            if (!metaGraph.hasDisplayedPointMap()) {
+                metaGraph.setDisplayedPointMapRef(metaGraph.getPointMaps().size() - 1);
+            }
             DO_TIMED("Making graph", metaGraph.makeGraph(dm_runmethods::getCommunicator(clp).get(),
                                                          m_boundaryGraph ? 1 : 0, m_maxVisibility))
 
