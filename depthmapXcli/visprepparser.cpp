@@ -187,6 +187,9 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
     }
 
     if (m_unmakeGraph) {
+        if (!metaGraph.hasDisplayedPointMap()) {
+            metaGraph.setDisplayedPointMapRef(metaGraph.getPointMaps().size() - 1);
+        }
         if (!dm_runmethods::safeGetDisplayedPointMap(metaGraph).getInternalMap().isProcessed()) {
             std::stringstream message;
             message << "Current map has not had its graph made so there's nothing to unmake"
