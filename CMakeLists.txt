@@ -23,6 +23,11 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     add_compile_options(/EHsc /W4)
 endif()
 
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /fp:strict")
+endif()
+
+
 # policy for target sources - we don't expect any old CMakes
 cmake_policy(SET CMP0076 NEW)
 
