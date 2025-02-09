@@ -47,17 +47,19 @@ def prepareDirectory(dirname):
         shutil.rmtree(dirname)
     os.makedirs(dirname)
 
-def runExecutable( workingDir, arguments ):
+def runExecutable( workingDir, arguments, step = 0 ):
     """ Prepares a clean run directoy and runs the process in this """
     with cd(workingDir):
-        with open("out.txt", "w") as outfile:
+        outfilename = "out-" + str(step) + ".txt"
+        errfilename = "err-" + str(step) + ".txt"
+        with open(outfilename, "w") as outfile:
             result = subprocess.run(arguments, stdout = outfile, stderr = subprocess.STDOUT )
         output = ""
-        if os.path.exists( "out.txt"):
-            with open( "out.txt", "r" ) as f:
+        if os.path.exists(outfilename):
+            with open( outfilename, "r" ) as f:
                 output = f.read()
-        if os.path.exists( "err.txt" ):
-            with open( "err.txt", "r") as f:
+        if os.path.exists( errfilename ):
+            with open( errfilename, "r") as f:
                 error = f.read();
         return (result.returncode == 0, output)
 

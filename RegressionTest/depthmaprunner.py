@@ -18,12 +18,12 @@ class DepthmapRunner():
         self.__runFunc = runFunc
         self.__binary = binary
         
-    def runDepthmap(self, cmdWrapper, runDir, extraArgs = []):
+    def runDepthmap(self, cmdWrapper, runDir, extraArgs = [], step = 0):
         dirdepth = len(runDir.split(os.path.sep))
         args = [os.path.join(*[".."] * dirdepth, self.__binary)]
         args.extend(cmdWrapper.toCmdArray())
         args.extend(extraArgs)
-        return self.__runFunc(runDir, args)
+        return self.__runFunc(runDir, args, step)
 
 def diffBinaryFiles(file1, file2):
     with open(file1, "rb") as f:
@@ -47,8 +47,8 @@ class DepthmapRegressionRunner():
 
     def runTestCaseBase(self, name, cmds, compareFiles, extraArgs = []):
         baseDir = self.makeBaseDir(name)
-        for step,cmd in enumerate(cmds):
-            (baseSuccess, baseOut) = self.__baseRunner.runDepthmap(cmd, baseDir, extraArgs)
+        for step, cmd in enumerate(cmds):
+            (baseSuccess, baseOut) = self.__baseRunner.runDepthmap(cmd, baseDir, extraArgs, step)
             if not baseSuccess:
                 print("Baseline run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
                 print(baseOut)
@@ -65,8 +65,8 @@ class DepthmapRegressionRunner():
 
     def runTestCaseTest(self, name, cmds, compareFiles, extraArgs = []):
         testDir = self.makeTestDir(name)
-        for step,cmd in enumerate(cmds):
-            (testSuccess, testOut) = self.__testRunner.runDepthmap(cmd, testDir, extraArgs)
+        for step, cmd in enumerate(cmds):
+            (testSuccess, testOut) = self.__testRunner.runDepthmap(cmd, testDir, extraArgs, step)
             if not testSuccess:
                 print("Test run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
                 print(testOut)

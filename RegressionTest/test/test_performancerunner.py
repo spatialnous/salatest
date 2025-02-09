@@ -120,7 +120,7 @@ class test_PerformanceRunner(test_depthmaprunner.DepthmapRegressioRunnerTest):
     def testSuccessfullRun(self):
         with DisposableDirectory("testdir", True) as testDir, DisposableDirectory("basedir") as baseDir:
             conf = performanceregressionconfig.PerformanceRegressionConfig({})
-            runner = performancerunner.PerformanceRunner(lambda d, a: self.runfuncSucceedAlwaysSame(d,a), "basebin", "testbin", testDir.name(), conf)
+            runner = performancerunner.PerformanceRunner(lambda d, a, s: self.runfuncSucceedAlwaysSame(d,a), "basebin", "testbin", testDir.name(), conf)
             (result, message) = runner.runTestCase("testname", self.makeCommand("infile.graph", "outfile.graph","visibility"), ["outfile.graph"])
             self.assertTrue(result)
 
