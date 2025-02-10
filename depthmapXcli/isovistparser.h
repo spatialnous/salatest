@@ -25,5 +25,5 @@ class IsovistParser : public IModeParser {
 
   private:
     std::vector<IsovistDefinition> m_isovists;
-    bool m_closeIsovistPolys;
+    bool m_closeIsovistPolys = false;
 };

@@ -50,6 +50,44 @@
                 }
             ]
         },
+        "isovist_args_force_close": {
+            "minVersion": "0.9.0",
+            "compareFiles": [
+                "out.mif",
+                "out.mid"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_empty.graph",
+                    "outfile": "out.graph",
+                    "mode": "ISOVIST",
+                    "extraArgs": {
+                        "-ii": [
+                            "1.77,6.6,90,30",
+                            "3.1,5.6,270,90"
+                        ],
+                        "-ic": ""
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.graph",
+                    "mode": "MAPCONVERT",
+                    "extraArgs": {
+                        "-co": "convex",
+                        "-con": "Convex Map Test"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.mif",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-mif"
+                    }
+                }
+            ]
+        },
         "isovist_file": {
             "minVersion": "0.8.0",
             "compareFiles": [
