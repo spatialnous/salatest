@@ -86,18 +86,6 @@ TEST_CASE("Simple Isovist") {
     REQUIRE(isovist.points[i].x == Catch::Approx(2.0).epsilon(epsilon));
     REQUIRE(isovist.points[i].y == Catch::Approx(2.0).epsilon(epsilon));
 
-    //    i++;
-    //    REQUIRE(isovist.points[i].x == Catch::Approx(1.0).epsilon(epsilon));
-    //    REQUIRE(isovist.points[i].y == Catch::Approx(1.0).epsilon(epsilon));
-
-    //    i++;
-    //    REQUIRE(isovist.points[i].x == Catch::Approx(1.0).epsilon(epsilon));
-    //    REQUIRE(isovist.points[i].y == Catch::Approx(1.0).epsilon(epsilon));
-
-    //    i++;
-    //    REQUIRE(isovist.points[i].x == Catch::Approx(2.0).epsilon(epsilon));
-    //    REQUIRE(isovist.points[i].y == Catch::Approx(2.0).epsilon(epsilon));
-
     i++;
     REQUIRE(isovist.points[i].x == Catch::Approx(3.0).epsilon(epsilon));
     REQUIRE(isovist.points[i].y == Catch::Approx(2.0).epsilon(epsilon));
