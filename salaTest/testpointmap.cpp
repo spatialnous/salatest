@@ -272,11 +272,11 @@ TEST_CASE("Quirks in grid creation - Origin always at 0", "") {
 
     REQUIRE(gridIsSet);
 
-    int bottomLeftPixelIndexX = int(floor(bottomLeft.x / spacing - 0.5)) + 1;
-    int bottomLeftPixelIndexY = int(floor(bottomLeft.y / spacing - 0.5)) + 1;
+    int bottomLeftPixelIndexX = static_cast<int>(floor(bottomLeft.x / spacing - 0.5)) + 1;
+    int bottomLeftPixelIndexY = static_cast<int>(floor(bottomLeft.y / spacing - 0.5)) + 1;
 
-    int topRightPixelIndexX = int(floor(topRight.x / spacing - 0.5)) + 1;
-    int topRightPixelIndexY = int(floor(topRight.y / spacing - 0.5)) + 1;
+    auto topRightPixelIndexX = static_cast<int>(floor(topRight.x / spacing - 0.5)) + 1;
+    auto topRightPixelIndexY = static_cast<int>(floor(topRight.y / spacing - 0.5)) + 1;
 
     int numCellsX = topRightPixelIndexX - bottomLeftPixelIndexX + 1;
     int numCellsY = topRightPixelIndexY - bottomLeftPixelIndexY + 1;

@@ -124,7 +124,7 @@ TEST_CASE("Test segment mode parsing", "") {
         REQUIRE(parser.getAnalysisType() == SegmentParser::InAnalysisType::METRIC);
         REQUIRE(parser.getRadiusType() == SegmentParser::InRadiusType::NONE);
         REQUIRE(parser.getRadii().size() == 1);
-        REQUIRE(int(parser.getRadii()[0]) == -1);
+        REQUIRE(static_cast<int>(parser.getRadii()[0]) == -1);
     }
     SECTION("Analysis Angular Full") {
         ArgumentHolder ah{"prog", "-st", "angular", "-sr", "n"};
@@ -134,7 +134,7 @@ TEST_CASE("Test segment mode parsing", "") {
         REQUIRE(parser.getAnalysisType() == SegmentParser::InAnalysisType::ANGULAR_FULL);
         REQUIRE(parser.getRadiusType() == SegmentParser::InRadiusType::NONE);
         REQUIRE(parser.getRadii().size() == 1);
-        REQUIRE(int(parser.getRadii()[0]) == -1);
+        REQUIRE(static_cast<int>(parser.getRadii()[0]) == -1);
     }
     SECTION("Analysis Topological") {
         ArgumentHolder ah{"prog", "-st", "topological", "-sr", "n"};
@@ -144,7 +144,7 @@ TEST_CASE("Test segment mode parsing", "") {
         REQUIRE(parser.getAnalysisType() == SegmentParser::InAnalysisType::TOPOLOGICAL);
         REQUIRE(parser.getRadiusType() == SegmentParser::InRadiusType::NONE);
         REQUIRE(parser.getRadii().size() == 1);
-        REQUIRE(int(parser.getRadii()[0]) == -1);
+        REQUIRE(static_cast<int>(parser.getRadii()[0]) == -1);
     }
     SECTION("Analysis Tulip") {
         ArgumentHolder ah{"prog", "-st",   "tulip", "-sr",  "n",
@@ -155,6 +155,6 @@ TEST_CASE("Test segment mode parsing", "") {
         REQUIRE(parser.getAnalysisType() == SegmentParser::InAnalysisType::ANGULAR_TULIP);
         REQUIRE(parser.getRadiusType() == SegmentParser::InRadiusType::SEGMENT_STEPS);
         REQUIRE(parser.getRadii().size() == 1);
-        REQUIRE(int(parser.getRadii()[0]) == -1);
+        REQUIRE(static_cast<int>(parser.getRadii()[0]) == -1);
     }
 }

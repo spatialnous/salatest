@@ -167,7 +167,7 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
         // Create a new pointmap and set tha grid
         Region4f r = metaGraph.getRegion();
 
-        GridProperties gp(__max(r.width(), r.height()));
+        GridProperties gp(std::max(r.width(), r.height()));
         if (m_grid > gp.getMax() || m_grid < gp.getMin()) {
             std::stringstream message;
             message << "Chosen grid spacing " << m_grid
