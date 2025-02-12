@@ -52,9 +52,9 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-# generate version_defs.h
+# generate version_defs.hpp
 include_directories(${CMAKE_BINARY_DIR})
-configure_file("${CMAKE_SOURCE_DIR}/version_defs.h.in" "${CMAKE_BINARY_DIR}/version_defs.h" @ONLY)
+configure_file("${CMAKE_SOURCE_DIR}/version_defs.hpp.in" "${CMAKE_BINARY_DIR}/version_defs.hpp" @ONLY)
 
 string(TIMESTAMP APP_DATE %Y-%m-%d)
 

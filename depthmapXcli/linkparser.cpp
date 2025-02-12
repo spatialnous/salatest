@@ -2,15 +2,15 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "linkparser.h"
+#include "linkparser.hpp"
 
-#include "exceptions.h"
-#include "parsingutils.h"
-#include "runmethods.h"
-#include "simpletimer.h"
+#include "exceptions.hpp"
+#include "parsingutils.hpp"
+#include "runmethods.hpp"
+#include "simpletimer.hpp"
 
-#include "salalib/entityparsing.h"
-#include "salalib/linkutils.h"
+#include "salalib/entityparsing.hpp"
+#include "salalib/linkutils.hpp"
 
 #include <cstring>
 #include <memory>

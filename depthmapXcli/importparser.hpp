@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "commandlineparser.h"
-#include "imodeparser.h"
+#include "commandlineparser.hpp"
+#include "imodeparser.hpp"
 
-#include "salalib/importtypedefs.h"
+#include "salalib/importtypedefs.hpp"
 
 #include <string>
 #include <vector>

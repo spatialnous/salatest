@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/mapconverter.h"
-#include "salalib/segmmodules/segmmetricshortestpath.h"
-#include "salalib/segmmodules/segmtopologicalshortestpath.h"
-#include "salalib/segmmodules/segmtulipshortestpath.h"
-#include "salalib/shapegraph.h"
+#include "salalib/mapconverter.hpp"
+#include "salalib/segmmodules/segmmetricshortestpath.hpp"
+#include "salalib/segmmodules/segmtopologicalshortestpath.hpp"
+#include "salalib/segmmodules/segmtulipshortestpath.hpp"
+#include "salalib/shapegraph.hpp"
 
 #include "catch_amalgamated.hpp"
 

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/isovistdef.h"
+#include "salalib/isovistdef.hpp"
 
 #include "catch_amalgamated.hpp"
 

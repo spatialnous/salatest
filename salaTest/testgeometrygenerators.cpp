@@ -3,9 +3,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/geometrygenerators.h"
+#include "salalib/geometrygenerators.hpp"
 
-#include "salalib/genlib/point2f.h"
+#include "salalib/genlib/point2f.hpp"
 
 #include "catch_amalgamated.hpp"
 

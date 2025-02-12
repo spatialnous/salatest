@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "performancewriter.h"
+#include "performancewriter.hpp"
 
 #include <algorithm>
 #include <fstream>

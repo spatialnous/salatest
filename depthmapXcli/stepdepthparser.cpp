@@ -2,13 +2,13 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "stepdepthparser.h"
-#include "exceptions.h"
-#include "parsingutils.h"
-#include "runmethods.h"
-#include "simpletimer.h"
+#include "stepdepthparser.hpp"
+#include "exceptions.hpp"
+#include "parsingutils.hpp"
+#include "runmethods.hpp"
+#include "simpletimer.hpp"
 
-#include "salalib/entityparsing.h"
+#include "salalib/entityparsing.hpp"
 
 #include <cstring>
 #include <sstream>

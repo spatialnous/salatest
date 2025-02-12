@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/mapconverter.h"
+#include "salalib/mapconverter.hpp"
 
 #include "catch_amalgamated.hpp"
-#include "salalib/shapemapgroupdata.h"
+#include "salalib/shapemapgroupdata.hpp"
 
 TEST_CASE("Failing empty drawing map conversion", "") {
     {

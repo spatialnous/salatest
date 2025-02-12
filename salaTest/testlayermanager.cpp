@@ -3,9 +3,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/layermanagerimpl.h"
+#include "salalib/layermanagerimpl.hpp"
 
-#include "cliTest/selfcleaningfile.h"
+#include "cliTest/selfcleaningfile.hpp"
 
 #include "catch_amalgamated.hpp"
 

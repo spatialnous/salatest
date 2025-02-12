@@ -7,8 +7,8 @@
 // Interface to encapsulate handling command line and invoking the respective
 // depthmapX mode
 
-#include "commandlineparser.h"
-#include "performancesink.h"
+#include "commandlineparser.hpp"
+#include "performancesink.hpp"
 
 class IModeParser {
   public:

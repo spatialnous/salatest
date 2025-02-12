@@ -2,14 +2,14 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "visprepparser.h"
-#include "exceptions.h"
-#include "parsingutils.h"
-#include "runmethods.h"
-#include "simpletimer.h"
+#include "visprepparser.hpp"
+#include "exceptions.hpp"
+#include "parsingutils.hpp"
+#include "runmethods.hpp"
+#include "simpletimer.hpp"
 
-#include "salalib/entityparsing.h"
-#include "salalib/gridproperties.h"
+#include "salalib/entityparsing.hpp"
+#include "salalib/gridproperties.hpp"
 
 #include <cstring>
 #include <sstream>

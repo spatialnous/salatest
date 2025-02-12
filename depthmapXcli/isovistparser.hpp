@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "imodeparser.h"
+#include "imodeparser.hpp"
 
-#include "salalib/isovistdef.h"
+#include "salalib/isovistdef.hpp"
 
 #include <vector>
 

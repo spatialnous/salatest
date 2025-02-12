@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "imodeparser.h"
+#include "imodeparser.hpp"
 
 class SegmentParser : public IModeParser {
   public:

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "depthmapXcli/simpletimer.h"
+#include "depthmapXcli/simpletimer.hpp"
 
 #include "catch_amalgamated.hpp"
 

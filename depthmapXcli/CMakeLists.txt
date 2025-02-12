@@ -6,35 +6,35 @@
 set(dxproject depthmapXcli)
 
 set(depthmapXcli_HDRS
-    agentparser.h
-    exportparser.h
-    interfaceversion.h
-    modeparserregistry.h
-    printcommunicator.h
-    segmentshortestpathparser.h
-    visprepparser.h
-    axialparser.h
-    imodeparserfactory.h
-    isovistparser.h
-    parsingutils.h
-    radiusconverter.h
-    simpletimer.h
-    commandlineparser.h
-    imodeparser.h
-    linkparser.h
-    performancesink.h
-    runmethods.h
-    stepdepthparser.h
-    exceptions.h
-    importparser.h
-    mapconvertparser.h
-    performancewriter.h
-    segmentparser.h
-    vgaparser.h
+    agentparser.hpp
+    exportparser.hpp
+    interfaceversion.hpp
+    modeparserregistry.hpp
+    printcommunicator.hpp
+    segmentshortestpathparser.hpp
+    visprepparser.hpp
+    axialparser.hpp
+    imodeparserfactory.hpp
+    isovistparser.hpp
+    parsingutils.hpp
+    radiusconverter.hpp
+    simpletimer.hpp
+    commandlineparser.hpp
+    imodeparser.hpp
+    linkparser.hpp
+    performancesink.hpp
+    runmethods.hpp
+    stepdepthparser.hpp
+    exceptions.hpp
+    importparser.hpp
+    mapconvertparser.hpp
+    performancewriter.hpp
+    segmentparser.hpp
+    vgaparser.hpp
 )
 set(depthmapXcli_SRCS
     main.cpp
-    interfaceversion.h
+    interfaceversion.hpp
     printcommunicator.cpp
     commandlineparser.cpp
     runmethods.cpp

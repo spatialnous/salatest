@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "argumentholder.h"
+#include "argumentholder.hpp"
 
-#include "depthmapXcli/linkparser.h"
+#include "depthmapXcli/linkparser.hpp"
 
 #include "catch_amalgamated.hpp"
 

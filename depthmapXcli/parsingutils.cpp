@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "parsingutils.h"
+#include "parsingutils.hpp"
 
-#include "exceptions.h"
+#include "exceptions.hpp"
 
 #include <algorithm>
 #include <cstring>

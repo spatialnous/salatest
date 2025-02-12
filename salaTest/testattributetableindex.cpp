@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/attributetableindex.h"
+#include "salalib/attributetableindex.hpp"
 
 #include "catch_amalgamated.hpp"
 

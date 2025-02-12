@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "commandlineparser.h"
-#include "imodeparser.h"
+#include "commandlineparser.hpp"
+#include "imodeparser.hpp"
 
-#include "salalib/genlib/point2f.h"
+#include "salalib/genlib/point2f.hpp"
 
 #include <string>
 

@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "salalib/genlib/comm.h"
+#include "salalib/genlib/comm.hpp"
 
 class PrintCommunicator : public ICommunicator {
   public:

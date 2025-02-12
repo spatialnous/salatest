@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "imodeparser.h"
+#include "imodeparser.hpp"
 
-#include "salalib/genlib/point2f.h"
+#include "salalib/genlib/point2f.hpp"
 
 #include <vector>
 

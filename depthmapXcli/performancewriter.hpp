@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "performancesink.h"
+#include "performancesink.hpp"
 
 #include <string>
 #include <vector>

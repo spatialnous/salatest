@@ -2,16 +2,16 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "agentparser.h"
+#include "agentparser.hpp"
 
-#include "exceptions.h"
-#include "parsingutils.h"
-#include "runmethods.h"
-#include "simpletimer.h"
+#include "exceptions.hpp"
+#include "parsingutils.hpp"
+#include "runmethods.hpp"
+#include "simpletimer.hpp"
 
-#include "salalib/agents/agentanalysis.h"
-#include "salalib/entityparsing.h"
-#include "salalib/exportutils.h"
+#include "salalib/agents/agentanalysis.hpp"
+#include "salalib/entityparsing.hpp"
+#include "salalib/exportutils.hpp"
 
 #include <cstring>
 #include <sstream>

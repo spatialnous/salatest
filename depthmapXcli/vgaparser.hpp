@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "commandlineparser.h"
-#include "imodeparser.h"
+#include "commandlineparser.hpp"
+#include "imodeparser.hpp"
 
 #include <string>
 

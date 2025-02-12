@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/pointmap.h"
-#include "salalib/pushvalues.h"
-#include "salalib/shapegraph.h"
-#include "salalib/shapemap.h"
-#include "salalib/shapemapgroupdata.h"
+#include "salalib/pointmap.hpp"
+#include "salalib/pushvalues.hpp"
+#include "salalib/shapegraph.hpp"
+#include "salalib/shapemap.hpp"
+#include "salalib/shapemapgroupdata.hpp"
 
 #include "catch_amalgamated.hpp"
 

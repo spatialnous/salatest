@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "commandlineparser.h"
-#include "dxinterface/metagraphdx.h"
-#include "performancesink.h"
+#include "commandlineparser.hpp"
+#include "dxinterface/metagraphdx.hpp"
+#include "performancesink.hpp"
 
 #include <string>
 #include <vector>

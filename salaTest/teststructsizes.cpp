@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/axialpolygons.h"
+#include "salalib/axialpolygons.hpp"
 
 #include "catch_amalgamated.hpp"
 

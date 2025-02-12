@@ -2,20 +2,20 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "modeparserregistry.h"
+#include "modeparserregistry.hpp"
 
-#include "agentparser.h"
-#include "axialparser.h"
-#include "exportparser.h"
-#include "importparser.h"
-#include "isovistparser.h"
-#include "linkparser.h"
-#include "mapconvertparser.h"
-#include "segmentparser.h"
-#include "segmentshortestpathparser.h"
-#include "stepdepthparser.h"
-#include "vgaparser.h"
-#include "visprepparser.h"
+#include "agentparser.hpp"
+#include "axialparser.hpp"
+#include "exportparser.hpp"
+#include "importparser.hpp"
+#include "isovistparser.hpp"
+#include "linkparser.hpp"
+#include "mapconvertparser.hpp"
+#include "segmentparser.hpp"
+#include "segmentshortestpathparser.hpp"
+#include "stepdepthparser.hpp"
+#include "vgaparser.hpp"
+#include "visprepparser.hpp"
 
 void ModeParserRegistry::populateParsers() {
     // Register any mode parsers here

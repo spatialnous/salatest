@@ -2,12 +2,12 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "commandlineparser.h"
+#include "commandlineparser.hpp"
 
-#include "exceptions.h"
-#include "imodeparserfactory.h"
-#include "interfaceversion.h"
-#include "parsingutils.h"
+#include "exceptions.hpp"
+#include "imodeparserfactory.hpp"
+#include "interfaceversion.hpp"
+#include "parsingutils.hpp"
 
 #include <algorithm>
 #include <cstring>

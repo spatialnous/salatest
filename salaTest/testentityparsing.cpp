@@ -3,9 +3,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/entityparsing.h"
+#include "salalib/entityparsing.hpp"
 
-#include "salalib/genlib/line4f.h"
+#include "salalib/genlib/line4f.hpp"
 
 #include "catch_amalgamated.hpp"
 

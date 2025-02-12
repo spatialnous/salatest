@@ -2,12 +2,12 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "exportparser.h"
+#include "exportparser.hpp"
 
-#include "exceptions.h"
-#include "parsingutils.h"
-#include "runmethods.h"
-#include "simpletimer.h"
+#include "exceptions.hpp"
+#include "parsingutils.hpp"
+#include "runmethods.hpp"
+#include "simpletimer.hpp"
 
 #include <cstring>
 #include <sstream>

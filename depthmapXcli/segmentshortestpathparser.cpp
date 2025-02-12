@@ -2,17 +2,17 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "segmentshortestpathparser.h"
+#include "segmentshortestpathparser.hpp"
 
-#include "exceptions.h"
-#include "parsingutils.h"
-#include "runmethods.h"
-#include "simpletimer.h"
+#include "exceptions.hpp"
+#include "parsingutils.hpp"
+#include "runmethods.hpp"
+#include "simpletimer.hpp"
 
-#include "salalib/entityparsing.h"
-#include "salalib/segmmodules/segmmetricshortestpath.h"
-#include "salalib/segmmodules/segmtopologicalshortestpath.h"
-#include "salalib/segmmodules/segmtulipshortestpath.h"
+#include "salalib/entityparsing.hpp"
+#include "salalib/segmmodules/segmmetricshortestpath.hpp"
+#include "salalib/segmmodules/segmtopologicalshortestpath.hpp"
+#include "salalib/segmmodules/segmtulipshortestpath.hpp"
 
 #include <cstring>
 #include <sstream>

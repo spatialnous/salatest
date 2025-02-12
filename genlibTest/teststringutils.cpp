@@ -3,9 +3,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/genlib/stringutils.h"
+#include "salalib/genlib/stringutils.hpp"
 
-#include "../cliTest/selfcleaningfile.h"
+#include "../cliTest/selfcleaningfile.hpp"
 #include "catch_amalgamated.hpp"
 
 #include <fstream>

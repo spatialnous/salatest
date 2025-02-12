@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/linkutils.h"
+#include "salalib/linkutils.hpp"
 
 #include "catch_amalgamated.hpp"
-#include "salalib/shapemapgroupdata.h"
+#include "salalib/shapemapgroupdata.hpp"
 
 TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
     double spacing = 0.5;

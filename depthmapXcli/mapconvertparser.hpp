@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "imodeparser.h"
+#include "imodeparser.hpp"
 
-#include "salalib/shapemap.h"
+#include "salalib/shapemap.hpp"
 
 class MapConvertParser : public IModeParser {
   public:

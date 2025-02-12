@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/metagraph.h"
-#include "salalib/shapemapgroupdata.h"
-#include "salalib/vgamodules/vgametricdepth.h"
+#include "salalib/metagraph.hpp"
+#include "salalib/shapemapgroupdata.hpp"
+#include "salalib/vgamodules/vgametricdepth.hpp"
 
 #include "catch_amalgamated.hpp"
 

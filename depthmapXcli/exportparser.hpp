@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "commandlineparser.h"
-#include "depthmapXcli/dxinterface/metagraphdx.h"
-#include "imodeparser.h"
+#include "commandlineparser.hpp"
+#include "depthmapXcli/dxinterface/metagraphdx.hpp"
+#include "imodeparser.hpp"
 
 #include <string>
 

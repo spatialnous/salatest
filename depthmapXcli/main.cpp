@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "commandlineparser.h"
-#include "modeparserregistry.h"
-#include "performancewriter.h"
+#include "commandlineparser.hpp"
+#include "modeparserregistry.hpp"
+#include "performancewriter.hpp"
 
 #include <iostream>
 

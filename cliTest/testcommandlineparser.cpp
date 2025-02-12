@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "argumentholder.h"
+#include "argumentholder.hpp"
 
-#include "depthmapXcli/commandlineparser.h"
-#include "depthmapXcli/imodeparser.h"
-#include "depthmapXcli/imodeparserfactory.h"
+#include "depthmapXcli/commandlineparser.hpp"
+#include "depthmapXcli/imodeparser.hpp"
+#include "depthmapXcli/imodeparserfactory.hpp"
 
 #include "catch_amalgamated.hpp"
 

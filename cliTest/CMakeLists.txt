@@ -6,8 +6,8 @@
 set(cliTest cliTest)
 
 set(cliTest_HDRS
-    argumentholder.h
-    selfcleaningfile.h
+    argumentholder.hpp
+    selfcleaningfile.hpp
 )
 
 set(cliTest_SRCS

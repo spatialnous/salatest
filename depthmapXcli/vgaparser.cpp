@@ -2,12 +2,12 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "vgaparser.h"
-#include "exceptions.h"
-#include "parsingutils.h"
-#include "radiusconverter.h"
-#include "runmethods.h"
-#include "simpletimer.h"
+#include "vgaparser.hpp"
+#include "exceptions.hpp"
+#include "parsingutils.hpp"
+#include "radiusconverter.hpp"
+#include "runmethods.hpp"
+#include "simpletimer.hpp"
 
 #include <cstring>
 

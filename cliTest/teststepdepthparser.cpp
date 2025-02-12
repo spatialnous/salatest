@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "argumentholder.h"
-#include "selfcleaningfile.h"
+#include "argumentholder.hpp"
+#include "selfcleaningfile.hpp"
 
-#include "depthmapXcli/stepdepthparser.h"
+#include "depthmapXcli/stepdepthparser.hpp"
 
 #include "catch_amalgamated.hpp"
 

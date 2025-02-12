@@ -3,10 +3,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/attributetable.h"
-#include "salalib/layermanagerimpl.h"
+#include "salalib/attributetable.hpp"
+#include "salalib/layermanagerimpl.hpp"
 
-#include "cliTest/selfcleaningfile.h"
+#include "cliTest/selfcleaningfile.hpp"
 
 #include "catch_amalgamated.hpp"
 
@@ -358,7 +358,7 @@ TEST_CASE("attibute table iterations") {
     REQUIRE(table.getRow(AttributeKey(1)).getValue(1) == Catch::Approx(3.2));
 }
 
-#include "salalib/attributetablehelpers.h"
+#include "salalib/attributetablehelpers.hpp"
 
 TEST_CASE("Attribute Table - serialisation") {
     LayerManagerImpl layerManager;

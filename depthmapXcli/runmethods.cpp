@@ -3,11 +3,11 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "runmethods.h"
+#include "runmethods.hpp"
 
-#include "exceptions.h"
-#include "printcommunicator.h"
-#include "simpletimer.h"
+#include "exceptions.hpp"
+#include "printcommunicator.hpp"
+#include "simpletimer.hpp"
 
 #include <memory>
 #include <sstream>

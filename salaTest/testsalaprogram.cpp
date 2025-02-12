@@ -2,12 +2,12 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "../salalib/mapconverter.h"
+#include "../salalib/mapconverter.hpp"
 #include "catch_amalgamated.hpp"
-#include "salalib/genlib/point2f.h"
-#include "salalib/salaprogram.h"
-#include "salalib/shapegraph.h"
-#include "salalib/shapemapgroupdata.h"
+#include "salalib/genlib/point2f.hpp"
+#include "salalib/salaprogram.hpp"
+#include "salalib/shapegraph.hpp"
+#include "salalib/shapemapgroupdata.hpp"
 #include <sstream>
 
 // Most of these test cases are adapted from salalib/salascript-tests.txt
