@@ -398,7 +398,7 @@ TEST_CASE("AgentParserSuccess", "Read successfully") {
                           alife.str(), "-alocseed", "0"};
         parser.parse(ah.argc(), ah.argv());
 
-        auto points = parser.getReleasePoints();
+        const auto &points = parser.getReleasePoints();
         REQUIRE(points.size() == 0);
         REQUIRE(parser.randomReleaseLocationSeed() == 0);
     }
@@ -409,7 +409,7 @@ TEST_CASE("AgentParserSuccess", "Read successfully") {
                           alife.str(), "-alocseed", "1"};
         parser.parse(ah.argc(), ah.argv());
 
-        auto points = parser.getReleasePoints();
+        const auto &points = parser.getReleasePoints();
         REQUIRE(points.size() == 0);
         REQUIRE(parser.randomReleaseLocationSeed() == 1);
     }
