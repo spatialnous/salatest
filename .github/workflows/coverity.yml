@@ -26,7 +26,6 @@ jobs:
 
     - uses: vapier/coverity-scan-action@v1
       with:
-        command: 'cmake --build . --config Release'
-        working-directory: '${{ github.workspace }}/build'
+        command: 'cmake --build ${{ github.workspace }}/build --config Release'
         email: ${{ secrets.COVERITY_SCAN_EMAIL }}
         token: ${{ secrets.COVERITY_SCAN_TOKEN }}
