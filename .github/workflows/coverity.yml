@@ -18,15 +18,15 @@ jobs:
 
     - name: Configure CMake
       run: >
-        cmake -B /src/build
+        cmake -B ${{ github.workspace }}/build
         -DCMAKE_CXX_COMPILER=g++
         -DCMAKE_C_COMPILER=gcc
         -DCMAKE_BUILD_TYPE=Release
-        -S /src
+        -S ${{ github.workspace }}
 
     - uses: vapier/coverity-scan-action@v1
       with:
         command: 'cmake --build . --config Release'
-        working-directory: '/src/build'
+        working-directory: '${{ github.workspace }}/build'
         email: ${{ secrets.COVERITY_SCAN_EMAIL }}
         token: ${{ secrets.COVERITY_SCAN_TOKEN }}
