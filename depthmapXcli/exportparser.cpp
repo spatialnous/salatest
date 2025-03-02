@@ -135,7 +135,7 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
         } else if (0 == fileName.compare(fileName.length() - 4, 4, ".mid")) {
             // we are given the .mid
             mifFile = fileName.substr(0, fileName.length() - 4) + ".mif";
-            midFile = fileName;
+            midFile = std::move(fileName);
         }
         std::ofstream mifStream(mifFile);
         std::ofstream midStream(midFile);

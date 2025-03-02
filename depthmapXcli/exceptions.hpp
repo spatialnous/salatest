@@ -11,11 +11,11 @@
 namespace depthmapX {
     class CommandLineException : public depthmapX::BaseException {
       public:
-        CommandLineException(std::string message) : depthmapX::BaseException(message) {}
+        CommandLineException(std::string message) : depthmapX::BaseException(std::move(message)) {}
     };
 
     class SetupCheckException : public depthmapX::BaseException {
       public:
-        SetupCheckException(std::string message) : depthmapX::BaseException(message) {}
+        SetupCheckException(std::string message) : depthmapX::BaseException(std::move(message)) {}
     };
 } // namespace depthmapX
