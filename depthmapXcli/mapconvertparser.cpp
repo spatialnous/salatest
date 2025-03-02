@@ -142,12 +142,12 @@ void MapConvertParser::run(const CommandLineParser &clp, IPerformanceSink &perfW
             dm_runmethods::enforceDisplayedDataMapSet(metaGraph);
             DO_TIMED("Converting data to drawing",
                      metaGraph.convertToDrawing(dm_runmethods::getCommunicator(clp).get(),
-                                                outputMapName(), true));
+                                                outputMapName(), true))
         } else {
             dm_runmethods::enforceDisplayedShapeGraphSet(metaGraph);
             DO_TIMED("Converting shapegraph to drawing",
                      metaGraph.convertToDrawing(dm_runmethods::getCommunicator(clp).get(),
-                                                outputMapName(), false));
+                                                outputMapName(), false))
         }
 
         if (mimicVersion.has_value() && *mimicVersion == "depthmapX 0.8.0") {
@@ -163,7 +163,7 @@ void MapConvertParser::run(const CommandLineParser &clp, IPerformanceSink &perfW
         case ShapeMap::DRAWINGMAP: {
             DO_TIMED("Converting from drawing to axial",
                      metaGraph.convertDrawingToAxial(dm_runmethods::getCommunicator(clp).get(),
-                                                     outputMapName()));
+                                                     outputMapName()))
             break;
         }
         case ShapeMap::DATAMAP: {
@@ -171,7 +171,7 @@ void MapConvertParser::run(const CommandLineParser &clp, IPerformanceSink &perfW
             DO_TIMED("Converting from data to axial",
                      metaGraph.convertDataToAxial(dm_runmethods::getCommunicator(clp).get(),
                                                   outputMapName(), !removeInputMap(),
-                                                  copyAttributes()));
+                                                  copyAttributes()))
             break;
         }
         default: {
@@ -196,7 +196,7 @@ void MapConvertParser::run(const CommandLineParser &clp, IPerformanceSink &perfW
         case ShapeMap::DRAWINGMAP: {
             DO_TIMED("Converting from drawing to segment",
                      metaGraph.convertDrawingToSegment(dm_runmethods::getCommunicator(clp).get(),
-                                                       outputMapName()));
+                                                       outputMapName()))
             break;
         }
         case ShapeMap::AXIALMAP: {
@@ -204,7 +204,7 @@ void MapConvertParser::run(const CommandLineParser &clp, IPerformanceSink &perfW
             DO_TIMED("Converting from axial to segment",
                      metaGraph.convertAxialToSegment(dm_runmethods::getCommunicator(clp).get(),
                                                      outputMapName(), !removeInputMap(),
-                                                     copyAttributes(), removeStubLength() / 100.0));
+                                                     copyAttributes(), removeStubLength() / 100.0))
             break;
         }
         case ShapeMap::DATAMAP: {
@@ -212,7 +212,7 @@ void MapConvertParser::run(const CommandLineParser &clp, IPerformanceSink &perfW
             DO_TIMED("Converting from data to segment",
                      metaGraph.convertDataToSegment(dm_runmethods::getCommunicator(clp).get(),
                                                     outputMapName(), !removeInputMap(),
-                                                    copyAttributes()));
+                                                    copyAttributes()))
             break;
         }
         default: {
@@ -236,13 +236,13 @@ void MapConvertParser::run(const CommandLineParser &clp, IPerformanceSink &perfW
             DO_TIMED("Converting drawing to data",
                      metaGraph.convertToData(dm_runmethods::getCommunicator(clp).get(),
                                              outputMapName(), !removeInputMap(),
-                                             ShapeMap::DRAWINGMAP, copyAttributes()));
+                                             ShapeMap::DRAWINGMAP, copyAttributes()))
         } else {
             dm_runmethods::enforceDisplayedShapeGraphSet(metaGraph);
             DO_TIMED("Converting shapegraph to data",
                      metaGraph.convertToData(dm_runmethods::getCommunicator(clp).get(),
                                              outputMapName(), !removeInputMap(), currentMapType,
-                                             copyAttributes()));
+                                             copyAttributes()))
         }
         if (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0") {
             /* legacy mode where the columns are sorted before stored */
@@ -261,13 +261,13 @@ void MapConvertParser::run(const CommandLineParser &clp, IPerformanceSink &perfW
             DO_TIMED("Converting drawing to convex",
                      metaGraph.convertToConvex(dm_runmethods::getCommunicator(clp).get(),
                                                outputMapName(), !removeInputMap(),
-                                               ShapeMap::DRAWINGMAP, copyAttributes()));
+                                               ShapeMap::DRAWINGMAP, copyAttributes()))
         } else if (currentMapType == ShapeMap::DATAMAP) {
             dm_runmethods::enforceDisplayedDataMapSet(metaGraph);
             DO_TIMED("Converting data to convex",
                      metaGraph.convertToConvex(dm_runmethods::getCommunicator(clp).get(),
                                                outputMapName(), !removeInputMap(),
-                                               ShapeMap::DATAMAP, copyAttributes()));
+                                               ShapeMap::DATAMAP, copyAttributes()))
         } else {
             throw depthmapX::CommandLineException(
                 "Can only convert to convex from drawing or data maps");

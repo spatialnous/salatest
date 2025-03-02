@@ -4,6 +4,7 @@
 
 #include "axialparser.hpp"
 
+#include "depthmapXcli/dxinterface/options.hpp"
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "runmethods.hpp"
@@ -130,10 +131,11 @@ void AxialParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
             }
         }
 
-        DO_TIMED(
-            "Axial analysis",
-            metaGraph.analyseAxial(dm_runmethods::getCommunicator(clp).get(), options,
-                                   (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0")))
+        DO_TIMED("Axial analysis",
+                 metaGraph.analyseAxial(
+                     dm_runmethods::getCommunicator(clp).get(), options.radiusSet,
+                     options.weightedMeasureCol, options.choice, options.fulloutput, options.local,
+                     (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0")))
         std::cout << "ok\n" << std::flush;
     }
 

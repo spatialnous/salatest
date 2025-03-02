@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "vgaparser.hpp"
+#include "depthmapXcli/dxinterface/options.hpp"
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "radiusconverter.hpp"
@@ -108,8 +109,11 @@ void VgaParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter) 
 
     if (!mimicVersion.has_value()) {
         // current version
-        DO_TIMED("Run VGA", metaGraph.analyseGraph(dm_runmethods::getCommunicator(clp).get(),
-                                                   *options, clp.simpleMode());)
+        DO_TIMED("Run VGA",
+                 metaGraph.analyseGraph(dm_runmethods::getCommunicator(clp).get(),
+                                        options->pointDepthSelection, options->outputType,
+                                        options->local, options->gatesOnly, options->global,
+                                        options->radius, clp.simpleMode());)
 
     } else if (*mimicVersion == "depthmapX 0.8.0") {
         int currentDisplayedAttribute = -1;
@@ -121,8 +125,11 @@ void VgaParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter) 
                 dm_runmethods::safeGetDisplayedPointMap(metaGraph).getDisplayedAttribute();
         }
 
-        DO_TIMED("Run VGA", metaGraph.analyseGraph(dm_runmethods::getCommunicator(clp).get(),
-                                                   *options, clp.simpleMode());)
+        DO_TIMED("Run VGA",
+                 metaGraph.analyseGraph(dm_runmethods::getCommunicator(clp).get(),
+                                        options->pointDepthSelection, options->outputType,
+                                        options->local, options->gatesOnly, options->global,
+                                        options->radius, clp.simpleMode());)
 
         if (getVgaMode() == VgaParser::VgaMode::ISOVIST) {
             dm_runmethods::safeGetDisplayedPointMap(metaGraph).setDisplayedAttribute(

@@ -77,7 +77,7 @@ void VisPrepParser::parse(size_t argc, char **argv) {
             ENFORCE_ARGUMENT("-pf", i)
             pointFile = argv[i];
         } else if (std::strcmp("-pr", argv[i]) == 0) {
-            ENFORCE_ARGUMENT("-pr", i);
+            ENFORCE_ARGUMENT("-pr", i)
             m_maxVisibility = std::atof(argv[i]);
             if (m_maxVisibility == 0.0) {
                 std::stringstream message;

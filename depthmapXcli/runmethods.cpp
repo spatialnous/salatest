@@ -41,16 +41,6 @@ namespace dm_runmethods {
         metaGraph.write(filename, METAGRAPH_VERSION, currentlayer, clp.ignoreDisplayData());
     }
 
-    ShapeMapDX &safeGetDisplayedDataMap(MetaGraphDX &mgraph) {
-        if (mgraph.hasDisplayedDataMap()) {
-            return mgraph.getDisplayedDataMap();
-        } else if (!mgraph.getDataMaps().empty()) {
-            return mgraph.getDataMaps().back();
-        } else {
-            throw depthmapX::CommandLineException("No available datamaps to process");
-        }
-    }
-
     PointMapDX &safeGetDisplayedPointMap(MetaGraphDX &mgraph) {
         if (mgraph.hasDisplayedPointMap()) {
             return mgraph.getDisplayedPointMap();

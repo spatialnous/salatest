@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "segmentparser.hpp"
+#include "depthmapXcli/dxinterface/options.hpp"
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "runmethods.hpp"
@@ -165,26 +166,31 @@ void SegmentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
     case InAnalysisType::ANGULAR_TULIP: {
         DO_TIMED("Segment tulip analysis",
                  metaGraph.analyseSegmentsTulip(
-                     dm_runmethods::getCommunicator(clp).get(), options,
+                     dm_runmethods::getCommunicator(clp).get(), options.radiusSet, options.selOnly,
+                     options.tulipBins, options.weightedMeasureCol, options.radiusType,
+                     options.choice,
                      (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0")))
         break;
     }
     case InAnalysisType::ANGULAR_FULL: {
-        DO_TIMED(
-            "Segment angular analysis",
-            metaGraph.analyseSegmentsAngular(dm_runmethods::getCommunicator(clp).get(), options))
+        DO_TIMED("Segment angular analysis",
+                 metaGraph.analyseSegmentsAngular(dm_runmethods::getCommunicator(clp).get(),
+                                                  options.radiusSet))
         break;
     }
     case InAnalysisType::TOPOLOGICAL: {
         options.outputType = AnalysisType::ISOVIST;
-        DO_TIMED("Segment topological", metaGraph.analyseTopoMetMultipleRadii(
-                                            dm_runmethods::getCommunicator(clp).get(), options))
+        DO_TIMED("Segment topological",
+                 metaGraph.analyseTopoMetMultipleRadii(dm_runmethods::getCommunicator(clp).get(),
+                                                       options.radiusSet, options.outputType,
+                                                       options.radius, options.selOnly))
         break;
     }
     case InAnalysisType::METRIC: {
         options.outputType = AnalysisType::VISUAL;
         DO_TIMED("Segment metric", metaGraph.analyseTopoMetMultipleRadii(
-                                       dm_runmethods::getCommunicator(clp).get(), options))
+                                       dm_runmethods::getCommunicator(clp).get(), options.radiusSet,
+                                       options.outputType, options.radius, options.selOnly))
         break;
     }
     case InAnalysisType::NONE:

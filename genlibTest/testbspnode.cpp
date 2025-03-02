@@ -44,7 +44,7 @@ TEST_CASE("BSPTree::pickMidpointLine") {
     }
 }
 
-void compareLines(const Line4f &l1, const Line4f &l2, float epsilon) {
+static void compareLines(const Line4f &l1, const Line4f &l2, float epsilon) {
     REQUIRE(l1.start().x == Catch::Approx(l2.start().x).epsilon(epsilon));
     REQUIRE(l1.start().y == Catch::Approx(l2.start().y).epsilon(epsilon));
     REQUIRE(l1.end().x == Catch::Approx(l2.end().x).epsilon(epsilon));

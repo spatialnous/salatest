@@ -17,7 +17,9 @@ void compareMatrixContent(depthmapX::BaseMatrix<T> const &matrix, std::vector<T>
     REQUIRE(result == expected);
 }
 
-TEST_CASE("Row matrix test assignemnt copy and move") {
+// Function declared separately as it performs unsafe operations (accessing fields
+// of moved objects) and will thus be easier to exclude from static analysis
+void testUnsafeRowMatrixCopyMove() {
     depthmapX::RowMatrix<std::string> matrix(2, 3);
     matrix(0, 0) = "0,0";
     matrix(1, 0) = "1,0";
@@ -49,6 +51,8 @@ TEST_CASE("Row matrix test assignemnt copy and move") {
     REQUIRE(copy.size() == 0);
 }
 
+TEST_CASE("Row matrix test assignemnt copy and move") { testUnsafeRowMatrixCopyMove(); }
+
 TEST_CASE("Row matrix test exceptions") {
     depthmapX::RowMatrix<int> matrix(2, 3);
     matrix(0, 0) = 1;
@@ -66,7 +70,9 @@ TEST_CASE("Row matrix test exceptions") {
     REQUIRE_THROWS_WITH(matrix(0, 5), Catch::Matchers::ContainsSubstring("column out of range"));
 }
 
-TEST_CASE("Column matrix test assignemnt copy and move") {
+// Function declared separately as it performs unsafe operations (accessing fields
+// of moved objects) and will thus be easier to exclude from static analysis
+void testUnsafeColumnMatrixCopyMove() {
     depthmapX::ColumnMatrix<std::string> matrix(2, 3);
     matrix(0, 0) = "0,0";
     matrix(1, 0) = "1,0";
@@ -97,6 +103,7 @@ TEST_CASE("Column matrix test assignemnt copy and move") {
     compareMatrixContent(assignMove, expected);
     REQUIRE(copy.size() == 0);
 }
+TEST_CASE("Column matrix test assignemnt copy and move") { testUnsafeColumnMatrixCopyMove(); }
 
 TEST_CASE("Column matrix test exceptions") {
     depthmapX::ColumnMatrix<int> matrix(2, 3);

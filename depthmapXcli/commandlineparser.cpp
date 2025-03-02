@@ -41,8 +41,8 @@ void CommandLineParser::printHelp() {
 void CommandLineParser::printVersion() { std::cout << TITLE_BASE << "\n" << std::flush; }
 
 CommandLineParser::CommandLineParser(const IModeParserFactory &parserFactory)
-    : m_valid(false), m_simpleMode(false), m_printProgress(false), m_parserFactory(parserFactory),
-      m_modeParser(nullptr) {}
+    : m_valid(false), m_printVersionMode(false), m_simpleMode(false), m_printProgress(false),
+      m_parserFactory(parserFactory), m_modeParser(nullptr) {}
 
 void CommandLineParser::parse(size_t argc, char *argv[]) {
     m_valid = false;

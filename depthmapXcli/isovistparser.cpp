@@ -40,7 +40,7 @@ void IsovistParser::parse(size_t argc, char **argv) {
             if (!isovistFile.empty()) {
                 throw CommandLineException("-ii cannot be used together with -if");
             }
-            ENFORCE_ARGUMENT("-ii", i);
+            ENFORCE_ARGUMENT("-ii", i)
             m_isovists.push_back(EntityParsing::parseIsovist(argv[i]));
         } else if (std::strcmp(argv[i], "-if") == 0) {
             if (!isovistFile.empty()) {
@@ -49,7 +49,7 @@ void IsovistParser::parse(size_t argc, char **argv) {
             if (!m_isovists.empty()) {
                 throw depthmapX::CommandLineException("-if cannot be used together with -ii");
             }
-            ENFORCE_ARGUMENT("-if", i);
+            ENFORCE_ARGUMENT("-if", i)
             isovistFile = argv[i];
         } else if (std::strcmp(argv[i], "-ic") == 0) {
             m_closeIsovistPolys = true;

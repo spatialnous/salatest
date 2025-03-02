@@ -37,7 +37,7 @@ std::vector<double> depthmapX::parseRadiusList(const std::string &radiusList) {
                 message << "Found non integer radius " << value << std::flush;
                 throw CommandLineException(message.str());
             }
-            result.push_back((double)val);
+            result.push_back(static_cast<double>(val));
         }
     }
 

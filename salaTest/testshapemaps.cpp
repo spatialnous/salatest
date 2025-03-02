@@ -103,7 +103,7 @@ TEST_CASE("Test ShapeMap::copy()") {
     REQUIRE(newSelSet.begin()->first == 6);
     newShapeGraph->linkShapes(p2, newSelSet.begin()->first);
     REQUIRE(newShapeGraph->getLinks().size() == 1);
-};
+}
 
 TEST_CASE("Testing ShapeMap::getAllShapes variants") {
     const float epsilon = 0.001f;

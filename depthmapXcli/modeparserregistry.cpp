@@ -19,17 +19,17 @@
 
 void ModeParserRegistry::populateParsers() {
     // Register any mode parsers here
-    REGISTER_PARSER(VgaParser);
-    REGISTER_PARSER(LinkParser);
-    REGISTER_PARSER(VisPrepParser);
-    REGISTER_PARSER(AxialParser);
-    REGISTER_PARSER(SegmentParser);
-    REGISTER_PARSER(AgentParser);
-    REGISTER_PARSER(IsovistParser);
-    REGISTER_PARSER(ExportParser);
-    REGISTER_PARSER(ImportParser);
-    REGISTER_PARSER(StepDepthParser);
-    REGISTER_PARSER(MapConvertParser);
-    REGISTER_PARSER(SegmentShortestPathParser);
+    REGISTER_PARSER(VgaParser)
+    REGISTER_PARSER(LinkParser)
+    REGISTER_PARSER(VisPrepParser)
+    REGISTER_PARSER(AxialParser)
+    REGISTER_PARSER(SegmentParser)
+    REGISTER_PARSER(AgentParser)
+    REGISTER_PARSER(IsovistParser)
+    REGISTER_PARSER(ExportParser)
+    REGISTER_PARSER(ImportParser)
+    REGISTER_PARSER(StepDepthParser)
+    REGISTER_PARSER(MapConvertParser)
+    REGISTER_PARSER(SegmentShortestPathParser)
     // *********
 }

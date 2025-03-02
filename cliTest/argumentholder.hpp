@@ -15,7 +15,7 @@ class ArgumentHolder {
         }
     }
 
-    char **argv() const { return (char **)m_argv.data(); }
+    char **argv() const { return const_cast<char **>(m_argv.data()); }
 
     size_t argc() const { return m_argv.size(); }
 

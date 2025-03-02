@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "stepdepthparser.hpp"
+#include "depthmapXcli/dxinterface/options.hpp"
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "runmethods.hpp"
@@ -129,7 +130,9 @@ void StepDepthParser::run(const CommandLineParser &clp, IPerformanceSink &perfWr
     }
 
     DO_TIMED("Calculating step-depth",
-             metaGraph.analyseGraph(dm_runmethods::getCommunicator(clp).get(), options, false);)
+             metaGraph.analyseGraph(dm_runmethods::getCommunicator(clp).get(),
+                                    options.pointDepthSelection, options.outputType, options.local,
+                                    options.gatesOnly, options.global, options.radius, false);)
 
     std::optional<std::string> mimicVersion = clp.getMimickVersion();
 

@@ -27,7 +27,7 @@ class CommandLineParser {
     bool printProgress() const { return m_printProgress; }
     bool ignoreDisplayData() const { return m_ignoreDisplayData; }
     const std::optional<std::string> &getMimickVersion() const { return m_mimicVersion; }
-    const IModeParser &modeOptions() const { return *m_modeParser; };
+    const IModeParser &modeOptions() const { return *m_modeParser; }
 
     void printHelp();
     void printVersion();
