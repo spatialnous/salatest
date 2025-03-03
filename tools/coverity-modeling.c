@@ -6,5 +6,5 @@
 // falso positives
 
 // Disable checking of deliberately unsafe functions
-void testUnsafeRowMatrixCopyMove() {}
-void testUnsafeColumnMatrixCopyMove() {}
+void testUnsafeRowMatrixCopyMove() { __coverity_panic__(); }
+void testUnsafeColumnMatrixCopyMove() { __coverity_panic__(); }
