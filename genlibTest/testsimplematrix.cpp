@@ -35,6 +35,10 @@ TEST_CASE("Row matrix test assignemnt copy and move") {
 
     depthmapX::RowMatrix<std::string> clone(std::move(copy));
     compareMatrixContent(clone, expected);
+    // PK: The intention here is indeed to check if the copy that has been
+    // moved from stops existing. However this check triggers coverity's
+    // use_after_move (which is reasonable), so we should disable it as
+    // it is intentional
     /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
 
@@ -47,6 +51,10 @@ TEST_CASE("Row matrix test assignemnt copy and move") {
     depthmapX::RowMatrix<std::string> assignMove(1, 1);
     assignMove = std::move(copy);
     compareMatrixContent(assignMove, expected);
+    // PK: The intention here is indeed to check if the copy that has been
+    // moved from stops existing. However this check triggers coverity's
+    // use_after_move (which is reasonable), so we should disable it as
+    // it is intentional
     /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
 }
@@ -86,6 +94,10 @@ TEST_CASE("Column matrix test assignemnt copy and move") {
 
     depthmapX::ColumnMatrix<std::string> clone(std::move(copy));
     compareMatrixContent(clone, expected);
+    // PK: The intention here is indeed to check if the copy that has been
+    // moved from stops existing. However this check triggers coverity's
+    // use_after_move (which is reasonable), so we should disable it as
+    // it is intentional
     /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
 
@@ -98,6 +110,10 @@ TEST_CASE("Column matrix test assignemnt copy and move") {
     depthmapX::ColumnMatrix<std::string> assignMove(1, 1);
     assignMove = std::move(copy);
     compareMatrixContent(assignMove, expected);
+    // PK: The intention here is indeed to check if the copy that has been
+    // moved from stops existing. However this check triggers coverity's
+    // use_after_move (which is reasonable), so we should disable it as
+    // it is intentional
     /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
 }
