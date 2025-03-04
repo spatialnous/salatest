@@ -7,6 +7,7 @@ cmake_minimum_required(VERSION 3.15.0)
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.13" CACHE STRING "Minimum macOS deployment version")
 project(salatest)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
@@ -68,9 +69,9 @@ set(MODULES_CLI_TEST FALSE)
 set(MODULES_CORE TRUE)
 set(MODULES_CORE_TEST FALSE)
 
-add_subdirectory(genlibTest)
 add_subdirectory(salalib)
 add_subdirectory(modules) # only the core modules are loaded here
+add_subdirectory(genlibTest)
 add_subdirectory(salaTest)
 add_subdirectory(depthmapXcli)
 add_subdirectory(cliTest)
