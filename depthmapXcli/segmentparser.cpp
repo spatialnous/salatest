@@ -168,7 +168,7 @@ void SegmentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
                  metaGraph.analyseSegmentsTulip(
                      dm_runmethods::getCommunicator(clp).get(), options.radiusSet, options.selOnly,
                      options.tulipBins, options.weightedMeasureCol, options.radiusType,
-                     options.choice, options.weightedMeasureCol2, options.routeweightCol,
+                     options.choice, options.weightedMeasureCol2, options.routeweightCol, false,
                      (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0")))
         break;
     }
