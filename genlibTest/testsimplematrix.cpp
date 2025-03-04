@@ -17,9 +17,7 @@ void compareMatrixContent(depthmapX::BaseMatrix<T> const &matrix, std::vector<T>
     REQUIRE(result == expected);
 }
 
-// Function declared separately as it performs unsafe operations (accessing fields
-// of moved objects) and will thus be easier to exclude from static analysis
-void testUnsafeRowMatrixCopyMove() {
+TEST_CASE("Row matrix test assignemnt copy and move") {
     depthmapX::RowMatrix<std::string> matrix(2, 3);
     matrix(0, 0) = "0,0";
     matrix(1, 0) = "1,0";
@@ -37,6 +35,7 @@ void testUnsafeRowMatrixCopyMove() {
 
     depthmapX::RowMatrix<std::string> clone(std::move(copy));
     compareMatrixContent(clone, expected);
+    /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
 
     copy = clone;
@@ -48,10 +47,9 @@ void testUnsafeRowMatrixCopyMove() {
     depthmapX::RowMatrix<std::string> assignMove(1, 1);
     assignMove = std::move(copy);
     compareMatrixContent(assignMove, expected);
+    /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
 }
-
-TEST_CASE("Row matrix test assignemnt copy and move") { testUnsafeRowMatrixCopyMove(); }
 
 TEST_CASE("Row matrix test exceptions") {
     depthmapX::RowMatrix<int> matrix(2, 3);
@@ -70,9 +68,7 @@ TEST_CASE("Row matrix test exceptions") {
     REQUIRE_THROWS_WITH(matrix(0, 5), Catch::Matchers::ContainsSubstring("column out of range"));
 }
 
-// Function declared separately as it performs unsafe operations (accessing fields
-// of moved objects) and will thus be easier to exclude from static analysis
-void testUnsafeColumnMatrixCopyMove() {
+TEST_CASE("Column matrix test assignemnt copy and move") {
     depthmapX::ColumnMatrix<std::string> matrix(2, 3);
     matrix(0, 0) = "0,0";
     matrix(1, 0) = "1,0";
@@ -90,6 +86,7 @@ void testUnsafeColumnMatrixCopyMove() {
 
     depthmapX::ColumnMatrix<std::string> clone(std::move(copy));
     compareMatrixContent(clone, expected);
+    /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
 
     copy = clone;
@@ -101,9 +98,9 @@ void testUnsafeColumnMatrixCopyMove() {
     depthmapX::ColumnMatrix<std::string> assignMove(1, 1);
     assignMove = std::move(copy);
     compareMatrixContent(assignMove, expected);
+    /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
 }
-TEST_CASE("Column matrix test assignemnt copy and move") { testUnsafeColumnMatrixCopyMove(); }
 
 TEST_CASE("Column matrix test exceptions") {
     depthmapX::ColumnMatrix<int> matrix(2, 3);
