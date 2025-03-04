@@ -574,7 +574,6 @@ TEST_CASE("Pointmap copy()", "") {
 
     Point2f p(3.01, 6.7);
     Region4f region(p, p);
-    auto selSet = newPnt.getPointsInRegion(region);
 
-    auto analysisResult = VGAMetricDepth(newPnt, selSet).run(nullptr);
+    VGAMetricDepth(newPnt, newPnt.getPointsInRegion(region)).run(nullptr);
 }
