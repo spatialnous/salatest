@@ -295,7 +295,7 @@ TEST_CASE("Testing deleting shapes from segment maps") {
         for (int otherShapeRef : expectedForConnections) {
             bool inForConnections =
                 std::find_if(connector.forwardSegconns.begin(), connector.forwardSegconns.end(),
-                             [&otherShapeRef](const std::pair<SegmentRef, int> &segmentRef) {
+                             [&otherShapeRef](const std::pair<SegmentRef, float> &segmentRef) {
                                  return segmentRef.first.ref == otherShapeRef;
                              }) != connector.forwardSegconns.end();
             REQUIRE(inForConnections);
