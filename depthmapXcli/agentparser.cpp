@@ -4,16 +4,17 @@
 
 #include "agentparser.hpp"
 
+#include "depthmapXcli/simpletimer.hpp"
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "runmethods.hpp"
-#include "simpletimer.hpp"
 
 #include "salalib/agents/agentanalysis.hpp"
 #include "salalib/entityparsing.hpp"
 #include "salalib/exportutils.hpp"
 
 #include <cstring>
+#include <iostream>
 #include <sstream>
 
 using namespace depthmapX;
