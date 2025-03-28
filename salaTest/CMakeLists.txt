@@ -42,7 +42,8 @@ include_directories(SYSTEM "../ThirdParty/Catch" "../ThirdParty/FakeIt")
 
 set(LINK_LIBS salalib)
 
-add_executable(${salaTest} ${salaTest_SRCS})
+add_executable(${salaTest} ${salaTest_SRCS}
+  comm.hpp)
 
 target_sources(${salaTest} PRIVATE ${external_SRCS})
 

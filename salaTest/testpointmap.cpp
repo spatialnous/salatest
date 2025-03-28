@@ -2,6 +2,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include "comm.hpp"
+
 #include "salalib/metagraph.hpp"
 #include "salalib/shapemapgroupdata.hpp"
 #include "salalib/vgamodules/vgametricdepth.hpp"

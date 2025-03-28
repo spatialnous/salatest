@@ -4,6 +4,7 @@
 
 #include "segmentshortestpathparser.hpp"
 
+#include "dxinterface/comm.hpp"
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "runmethods.hpp"
