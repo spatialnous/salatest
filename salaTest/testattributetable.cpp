@@ -6,7 +6,7 @@
 #include "salalib/attributetable.hpp"
 #include "salalib/layermanagerimpl.hpp"
 
-#include "cliTest/selfcleaningfile.hpp"
+#include "dmpcliTest/selfcleaningfile.hpp"
 
 #include "catch_amalgamated.hpp"
 

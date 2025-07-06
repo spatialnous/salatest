@@ -10,7 +10,7 @@
 #include <vector>
 
 template <typename T>
-void compareMatrixContent(depthmapX::BaseMatrix<T> const &matrix, std::vector<T> const &expected) {
+void compareMatrixContent(genlib::BaseMatrix<T> const &matrix, std::vector<T> const &expected) {
     REQUIRE(matrix.size() == expected.size());
     std::vector<T> result(matrix.size());
     std::copy(matrix.begin(), matrix.end(), result.begin());
@@ -18,7 +18,7 @@ void compareMatrixContent(depthmapX::BaseMatrix<T> const &matrix, std::vector<T>
 }
 
 TEST_CASE("Row matrix test assignemnt copy and move") {
-    depthmapX::RowMatrix<std::string> matrix(2, 3);
+    genlib::RowMatrix<std::string> matrix(2, 3);
     matrix(0, 0) = "0,0";
     matrix(1, 0) = "1,0";
     matrix(0, 1) = "0,1";
@@ -29,11 +29,11 @@ TEST_CASE("Row matrix test assignemnt copy and move") {
     std::vector<std::string> expected{"0,0", "0,1", "0,2", "1,0", "1,1", "1,2"};
     compareMatrixContent(matrix, expected);
 
-    depthmapX::RowMatrix<std::string> copy(matrix);
+    genlib::RowMatrix<std::string> copy(matrix);
     compareMatrixContent(matrix, expected);
     compareMatrixContent(copy, expected);
 
-    depthmapX::RowMatrix<std::string> clone(std::move(copy));
+    genlib::RowMatrix<std::string> clone(std::move(copy));
     compareMatrixContent(clone, expected);
     // PK: The intention here is indeed to check if the copy that has been
     // moved from stops existing. However this check triggers coverity's
@@ -48,7 +48,7 @@ TEST_CASE("Row matrix test assignemnt copy and move") {
     REQUIRE(copy.rows() == 2);
     compareMatrixContent(clone, expected);
 
-    depthmapX::RowMatrix<std::string> assignMove(1, 1);
+    genlib::RowMatrix<std::string> assignMove(1, 1);
     assignMove = std::move(copy);
     compareMatrixContent(assignMove, expected);
     // PK: The intention here is indeed to check if the copy that has been
@@ -60,7 +60,7 @@ TEST_CASE("Row matrix test assignemnt copy and move") {
 }
 
 TEST_CASE("Row matrix test exceptions") {
-    depthmapX::RowMatrix<int> matrix(2, 3);
+    genlib::RowMatrix<int> matrix(2, 3);
     matrix(0, 0) = 1;
     matrix(1, 2) = -1;
     matrix(0, 1) = 2;
@@ -77,7 +77,7 @@ TEST_CASE("Row matrix test exceptions") {
 }
 
 TEST_CASE("Column matrix test assignemnt copy and move") {
-    depthmapX::ColumnMatrix<std::string> matrix(2, 3);
+    genlib::ColumnMatrix<std::string> matrix(2, 3);
     matrix(0, 0) = "0,0";
     matrix(1, 0) = "1,0";
     matrix(0, 1) = "0,1";
@@ -88,11 +88,11 @@ TEST_CASE("Column matrix test assignemnt copy and move") {
     std::vector<std::string> expected{"0,0", "1,0", "0,1", "1,1", "0,2", "1,2"};
     compareMatrixContent(matrix, expected);
 
-    depthmapX::ColumnMatrix<std::string> copy(matrix);
+    genlib::ColumnMatrix<std::string> copy(matrix);
     compareMatrixContent(matrix, expected);
     compareMatrixContent(copy, expected);
 
-    depthmapX::ColumnMatrix<std::string> clone(std::move(copy));
+    genlib::ColumnMatrix<std::string> clone(std::move(copy));
     compareMatrixContent(clone, expected);
     // PK: The intention here is indeed to check if the copy that has been
     // moved from stops existing. However this check triggers coverity's
@@ -107,7 +107,7 @@ TEST_CASE("Column matrix test assignemnt copy and move") {
     REQUIRE(copy.rows() == 2);
     compareMatrixContent(clone, expected);
 
-    depthmapX::ColumnMatrix<std::string> assignMove(1, 1);
+    genlib::ColumnMatrix<std::string> assignMove(1, 1);
     assignMove = std::move(copy);
     compareMatrixContent(assignMove, expected);
     // PK: The intention here is indeed to check if the copy that has been
@@ -119,7 +119,7 @@ TEST_CASE("Column matrix test assignemnt copy and move") {
 }
 
 TEST_CASE("Column matrix test exceptions") {
-    depthmapX::ColumnMatrix<int> matrix(2, 3);
+    genlib::ColumnMatrix<int> matrix(2, 3);
     matrix(0, 0) = 1;
     matrix(1, 2) = -1;
     matrix(0, 1) = 2;
@@ -136,7 +136,7 @@ TEST_CASE("Column matrix test exceptions") {
 }
 
 TEST_CASE("Fill and reset") {
-    depthmapX::ColumnMatrix<int> matrix(2, 3);
+    genlib::ColumnMatrix<int> matrix(2, 3);
     matrix.initialiseValues(-42);
     compareMatrixContent(matrix, std::vector<int>(6, -42));
 

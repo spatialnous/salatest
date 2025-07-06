@@ -5,7 +5,7 @@
 
 #include "salalib/genlib/stringutils.hpp"
 
-#include "../cliTest/selfcleaningfile.hpp"
+#include "../dmpcliTest/selfcleaningfile.hpp"
 #include "catch_amalgamated.hpp"
 
 #include <fstream>

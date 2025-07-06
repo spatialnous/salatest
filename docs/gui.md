@@ -1,6 +1,6 @@
-# depthmapX Graphical User Interface
+# depthmap Graphical User Interface
 
-The graphical user interface is the standard way of interacting with depthmapX.
+The graphical user interface is the standard way of interacting with the sala library.
 It allows to load files, import plans, runs analyses and explore the data in
 an interactive way.
 

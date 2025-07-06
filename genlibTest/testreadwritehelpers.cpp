@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "cliTest/selfcleaningfile.hpp"
+#include "dmpcliTest/selfcleaningfile.hpp"
 
 #include "salalib/genlib/readwritehelpers.hpp"
 

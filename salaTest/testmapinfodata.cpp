@@ -116,9 +116,9 @@ TEST_CASE("MapInfo MID file with empty column", "") {
     REQUIRE(att.getColumn(3).getName() == "Width_M");
 
     std::map<int, SalaShape> shapes = shapeMap.getAllShapes();
-    auto shapeRef0 = depthmapX::getMapAtIndex(shapes, 0);
-    auto shapeRef1 = depthmapX::getMapAtIndex(shapes, 1);
-    auto shapeRef2 = depthmapX::getMapAtIndex(shapes, 2);
+    auto shapeRef0 = genlib::getMapAtIndex(shapes, 0);
+    auto shapeRef1 = genlib::getMapAtIndex(shapes, 1);
+    auto shapeRef2 = genlib::getMapAtIndex(shapes, 2);
 
     REQUIRE(att.getNumRows() == 3);
     auto &row0 = att.getRow(AttributeKey(shapeRef0->first));
@@ -183,9 +183,9 @@ TEST_CASE("Complete proper MapInfo file", "") {
     REQUIRE(mapinfodata.import(mifstream, midstream, shapeMap) == MINFO_OK);
 
     std::map<int, SalaShape> shapes = shapeMap.getAllShapes();
-    auto shapeRef0 = depthmapX::getMapAtIndex(shapes, 0);
-    auto shapeRef1 = depthmapX::getMapAtIndex(shapes, 1);
-    auto shapeRef2 = depthmapX::getMapAtIndex(shapes, 2);
+    auto shapeRef0 = genlib::getMapAtIndex(shapes, 0);
+    auto shapeRef1 = genlib::getMapAtIndex(shapes, 1);
+    auto shapeRef2 = genlib::getMapAtIndex(shapes, 2);
 
     auto &shape0 = shapeRef0->second;
     auto &shape1 = shapeRef1->second;

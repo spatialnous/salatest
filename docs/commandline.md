@@ -1,7 +1,7 @@
-# depthmapX Command Line Interface
+# depthmap Command Line Interface (dmpcli)
 
 ## Overview
-The depthmapX command line interface allows to run steps that are traditionally
+The depthmap command line interface allows to run steps that are traditionally
 executed by loading a file into the GUI and clicking buttons/menu entries
 by running a command from a command line/shell.
 
@@ -12,7 +12,7 @@ semi-automatically, do not require user input via mouse/GUI and can be
 parallelised into multiple processes or on multiple machines.
 
 The general idea is that each call to the command line interface reads in a
-depthmapX graph file, then applies some transformation/analysis to it and saves
+depthmap graph file, then applies some transformation/analysis to it and saves
 the result into a different file. Thus, a pipeline of operations can be
 created where each step reads in the input of the previous step, and in the end
 we have the end result and all intermediate steps.  This is particularly helpful
@@ -25,13 +25,13 @@ output can be run programmatically.
 
 ## The Command Line
 
-The functionality in the depthmapX cli is split up into execution modes - each
+The functionality in the depthmap cli is split up into execution modes - each
 mode roughly represents a class of functionalities in the UI. The overall 
 commandline looks like:
 
-Mac/Linux: `./depthmapXcli -f <infile.graph> -o <outfile.graph> -m <mode> [mode 
+Mac/Linux: `./depthmapcli -f <infile.graph> -o <outfile.graph> -m <mode> [mode 
 options]`  
-Windows: `depthmapXcli.exe -f <infile.graph> -o <outfile.graph> -m <mode>
+Windows: `depthmapcli.exe -f <infile.graph> -o <outfile.graph> -m <mode>
 [mode options]`
 
 ### Global option
@@ -39,7 +39,7 @@ Windows: `depthmapXcli.exe -f <infile.graph> -o <outfile.graph> -m <mode>
 These are command line parameters that can be used for any run of the 
 application, no matter what the used mode is.
 
-- `-m <mode>` This chooses the mode (what depthmapX operation to execute). 
+- `-m <mode>` This chooses the mode (what depthmap operation to execute). 
 Available modes are
   - `VGA` run visual graph analysis
   - `LINK` create extra links between pixels
@@ -97,7 +97,7 @@ x1  y1  x2  y2
 ### Mode options for `VISPREP`
 
 This mode can be used to run the preparation steps required after a map (dxf) 
-has been imported into depthmapX, but before a VGA or agent analysis can be
+has been imported into depthmap, but before a VGA or agent analysis can be
 run. It will define a grid, fill the graph, and run the connectivity 
 calculation. It takes the following options
 - `-pg <gridsize>` defines the grid size in units of your drawing
@@ -110,12 +110,12 @@ separated, headers `X` and `Y`). This option cannot be combined with `-pp`
 calculation to the given value. The default value is unrestricted (`-1`)
 - `-pb` Enables creating a boundary graph.
 
-Example: `./depthmapXcli_macos -f gallery.graph -o gallery_prep.graph -m VISPREP
+Example: `./depthmapcli_macos -f gallery.graph -o gallery_prep.graph -m VISPREP
 -pg 0.4 -pf 3.0,4.0 -pr 5`
 
 ### Mode options for `AXIAL`
 
-This modes runs the various things that depthmapX can do around axial analysis.
+This modes runs the various things that depthmap can do around axial analysis.
 It has two different kinds of options: command options that specify what to run,
 and modifiers that impact how these are run. 
 
@@ -195,4 +195,4 @@ graph, a new graph will be created and the file will be imported.
 
 Example for importing a dxf:
 
-`./depthmapXcli -f in.dxf -o out.graph`
+`./depthmapcli -f in.dxf -o out.graph`

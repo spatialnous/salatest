@@ -39,9 +39,9 @@ TEST_CASE("Testing deleting shapes from shapemaps") {
     SECTION("Delete from simple shapemap from the middle") {
         auto shapeCount = shapeMap->getAllShapes().size();
         for (size_t idx = shapeCount; idx > 0; idx--) {
-            int shapeRef = depthmapX::getMapAtIndex(shapeMap->getAllShapes(),
-                                                    shapeMap->getAllShapes().size() / 2)
-                               ->first;
+            int shapeRef =
+                genlib::getMapAtIndex(shapeMap->getAllShapes(), shapeMap->getAllShapes().size() / 2)
+                    ->first;
             shapeMap->removeShape(shapeRef, false);
             REQUIRE(shapeMap->getAllShapes().size() == idx - 1);
         }
@@ -175,9 +175,9 @@ TEST_CASE("Testing deleting shapes from axial maps") {
 
         auto shapeCount = axialMap->getAllShapes().size();
         for (size_t idx = shapeCount; idx > 0; idx--) {
-            int shapeRef = depthmapX::getMapAtIndex(axialMap->getAllShapes(),
-                                                    axialMap->getAllShapes().size() / 2)
-                               ->first;
+            int shapeRef =
+                genlib::getMapAtIndex(axialMap->getAllShapes(), axialMap->getAllShapes().size() / 2)
+                    ->first;
             axialMap->removeShape(shapeRef, false);
             REQUIRE(axialMap->getAllShapes().size() == idx - 1);
             REQUIRE(axialMap->getConnections().size() == idx - 1);
@@ -357,8 +357,8 @@ TEST_CASE("Testing deleting shapes from segment maps") {
 
         auto shapeCount = segmentMap->getAllShapes().size();
         for (size_t idx = shapeCount; idx > 0; idx--) {
-            int shapeRef = depthmapX::getMapAtIndex(segmentMap->getAllShapes(),
-                                                    segmentMap->getAllShapes().size() / 2)
+            int shapeRef = genlib::getMapAtIndex(segmentMap->getAllShapes(),
+                                                 segmentMap->getAllShapes().size() / 2)
                                ->first;
             segmentMap->removeShape(shapeRef, false);
             REQUIRE(segmentMap->getAllShapes().size() == idx - 1);
