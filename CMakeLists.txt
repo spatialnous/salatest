@@ -73,7 +73,7 @@ add_subdirectory(salalib)
 add_subdirectory(modules) # only the core modules are loaded here
 add_subdirectory(genlibTest)
 add_subdirectory(salaTest)
-add_subdirectory(dmpcli)
-add_subdirectory(dmpcliTest)
+add_subdirectory(dmcli)
+add_subdirectory(dmcliTest)
 add_subdirectory(moduleTest)
 

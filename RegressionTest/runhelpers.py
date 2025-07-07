@@ -67,15 +67,15 @@ def getExecutable(basedir):
     sys = platform.system()
     machine = platform.machine()
     if sys == "Windows":
-        return os.path.join(basedir, sys + "_" + machine, "dpmcli.exe")
+        return os.path.join(basedir, sys + "_" + machine, "dmcli.exe")
     else:
-        return os.path.join(basedir, sys + "_" + machine, "dpmcli")
+        return os.path.join(basedir, sys + "_" + machine, "dmcli")
 
 def getTestExecutable(basedir):
     sys = platform.system()
     if sys == "Windows":
-        return os.path.join(basedir, "dpmcli", "release", "dpmcli.exe")
+        return os.path.join(basedir, "dmcli", "release", "dmcli.exe")
     else:
-        return os.path.join(basedir, "dpmcli", "dpmcli")
+        return os.path.join(basedir, "dmcli", "dmcli")
 
 

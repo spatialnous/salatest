@@ -97,5 +97,5 @@ jobs:
     - name: Store the executable
       uses: actions/upload-artifact@v4
       with:
-        name: dpmcli-${{ matrix.os }}-${{ matrix.cpp_compiler }}
-        path: ${{ steps.strings.outputs.build-output-dir }}/dpmcli/
+        name: dmcli-${{ matrix.os }}-${{ matrix.cpp_compiler }}
+        path: ${{ steps.strings.outputs.build-output-dir }}/dmcli/

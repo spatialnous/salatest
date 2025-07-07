@@ -1,4 +1,4 @@
-# depthmap Command Line Interface (dmpcli)
+# depthmap Command Line Interface (dmcli)
 
 ## Overview
 The depthmap command line interface allows to run steps that are traditionally

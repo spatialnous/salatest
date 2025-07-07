@@ -5,7 +5,7 @@
 
 #include "salalib/layermanagerimpl.hpp"
 
-#include "dmpcliTest/selfcleaningfile.hpp"
+#include "dmcliTest/selfcleaningfile.hpp"
 
 #include "catch_amalgamated.hpp"
 

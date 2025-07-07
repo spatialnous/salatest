@@ -1,6 +1,6 @@
 [submodule "salalib"]
 	path = salalib
 	url = ../../spatialnous/salalib
-[submodule "dmpcli/dminterface"]
-	path = dmpcli/dminterface
+[submodule "dmcli/dminterface"]
+	path = dmcli/dminterface
 	url = ../../spatialnous/dminterface.git
