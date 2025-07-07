@@ -9,9 +9,9 @@
 #include "version_defs.hpp"
 
 // use these to define the depthmap versions
-#define DEPTHMAPX_MAJOR_VERSION 0
-#define DEPTHMAPX_MINOR_VERSION 9
-#define DEPTHMAPX_REVISION_VERSION 0
+#define DEPTHMAP_MAJOR_VERSION 0
+#define DEPTHMAP_MINOR_VERSION 9
+#define DEPTHMAP_REVISION_VERSION 0
 
 #define DEPTHMAP_MODULE_VERSION 10.04
 

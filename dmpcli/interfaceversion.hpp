@@ -11,9 +11,9 @@
 
 #include "consts.hpp"
 
-#define INTERFACE_MAJOR_VERSION DEPTHMAPX_MAJOR_VERSION
-#define INTERFACE_MINOR_VERSION DEPTHMAPX_MINOR_VERSION
-#define INTERFACE_REVISION_VERSION DEPTHMAPX_REVISION_VERSION
+#define INTERFACE_MAJOR_VERSION DEPTHMAP_MAJOR_VERSION
+#define INTERFACE_MINOR_VERSION DEPTHMAP_MINOR_VERSION
+#define INTERFACE_REVISION_VERSION DEPTHMAP_REVISION_VERSION
 
 // leave these alone - C Preprocessor magic to get stuff to the right format
 #define TITLE_BASE                                                                                 \

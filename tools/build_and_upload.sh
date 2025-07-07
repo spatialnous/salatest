@@ -15,10 +15,10 @@ gitpath=$2
 uploadpath=$3
 
 cd "$(dirname "$0")"
-rm -rf depthmapX/
+rm -rf depthmap/
 git clone $gitpath
 currentcommit=$(git rev-parse HEAD)
-cd depthmapX
+cd depthmap
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
@@ -30,7 +30,7 @@ mkdir -p runs
 cd runs
 rundir=run-$timestamp
 mkdir $rundir
-cp -r ../depthmapX/RegressionTest/rundir/* $rundir/
+cp -r ../depthmap/RegressionTest/rundir/* $rundir/
 
 cd $rundir
 

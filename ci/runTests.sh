@@ -16,7 +16,7 @@ elif [[ "$OSTYPE" == "msys" ]]; then
 fi
 
 echo Running unit tests
-./cliTest$EXEPREFIXDIR/cliTest$EXESUFFIX && \
+./dpmcliTest$EXEPREFIXDIR/dpmcliTest$EXESUFFIX && \
     ./salaTest$EXEPREFIXDIR/salaTest$EXESUFFIX && \
     ./genlibTest$EXEPREFIXDIR/genlibTest$EXESUFFIX && \
     ./moduleTest$EXEPREFIXDIR/moduleTest$EXESUFFIX --allow-running-no-tests || exit 1

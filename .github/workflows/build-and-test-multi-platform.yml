@@ -91,11 +91,11 @@ jobs:
       if: always() && (steps.testBuild.outcome == 'failure')
       uses: actions/upload-artifact@v4
       with:
-        name: depthmapX-${{ matrix.os }}-${{ matrix.cpp_compiler }}-RegressionTestData
+        name: depthmap-${{ matrix.os }}-${{ matrix.cpp_compiler }}-RegressionTestData
         path: ${{ github.workspace }}/
         
     - name: Store the executable
       uses: actions/upload-artifact@v4
       with:
-        name: depthmapXcli-${{ matrix.os }}-${{ matrix.cpp_compiler }}
-        path: ${{ steps.strings.outputs.build-output-dir }}/depthmapXcli/
+        name: dpmcli-${{ matrix.os }}-${{ matrix.cpp_compiler }}
+        path: ${{ steps.strings.outputs.build-output-dir }}/dpmcli/
