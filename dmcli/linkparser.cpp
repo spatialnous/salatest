@@ -13,15 +13,14 @@
 #include "salalib/linkutils.hpp"
 
 #include <cstring>
-#include <memory>
 #include <sstream>
 
 void LinkParser::parse(size_t argc, char *argv[]) {
     for (size_t i = 1; i < argc;) {
         if (std::strcmp("-lmt", argv[i]) == 0) {
             ENFORCE_ARGUMENT("-lmt", i)
-            if (std::strcmp(argv[i], "pointmaps") == 0) {
-                m_mapTypeGroup = MapTypeGroup::POINTMAPS;
+            if (std::strcmp(argv[i], "latticemaps") == 0) {
+                m_mapTypeGroup = MapTypeGroup::LATTICEMAPS;
             } else if (std::strcmp(argv[i], "shapegraphs") == 0) {
                 m_mapTypeGroup = MapTypeGroup::SHAPEGRAPHS;
             } else {
@@ -80,7 +79,8 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
     if (getLinkMode() == LinkParser::LinkMode::UNLINK &&
         getMapTypeGroup() == LinkParser::MapTypeGroup::SHAPEGRAPHS &&
         dm_runmethods::safeGetDisplayedShapeGraph(metaGraph).getMapType() != ShapeMap::AXIALMAP) {
-        throw genlib::RuntimeException("Unlinking is only available for axial maps and pointmaps");
+        throw genlib::RuntimeException(
+            "Unlinking is only available for axial maps and lattice maps");
     }
 
     char delimiter = '\t';
@@ -129,7 +129,7 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
             }
         } else {
             std::vector<PixelRefPair> newLinks;
-            auto &currentMap = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
+            auto &currentMap = dm_runmethods::safeGetDisplayedLatticeMap(metaGraph);
             if (getLinkType() == LinkParser::LinkType::COORDS) {
                 std::vector<Line4f> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
                 std::vector<PixelRefPair> linkPairsFromCoords =
@@ -160,7 +160,7 @@ void LinkParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter)
             }
         } else {
             std::vector<PixelRefPair> newLinks;
-            auto &currentMap = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
+            auto &currentMap = dm_runmethods::safeGetDisplayedLatticeMap(metaGraph);
             if (getLinkType() == LinkParser::LinkType::COORDS) {
                 std::vector<Line4f> mergeLines = EntityParsing::parseLines(linksStream, delimiter);
                 std::vector<PixelRefPair> linkPairsFromCoords =

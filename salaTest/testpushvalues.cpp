@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/pointmap.hpp"
+#include "salalib/latticemap.hpp"
 #include "salalib/pushvalues.hpp"
 #include "salalib/shapegraph.hpp"
 #include "salalib/shapemap.hpp"
@@ -18,9 +18,10 @@ TEST_CASE("Push values from shapemaps to VGA", "") {
     float vgaMaxY = 6.00;
     float cellSize = 1.0;
     float minorOffset =
-        cellSize * 0.05f; // used to make sure that shapes don't fall exactly on the pointmap pixels
+        cellSize *
+        0.05f; // used to make sure that shapes don't fall exactly on the lattice map pixels
 
-    // The testing pointmap looks like below, filled at the 'o'
+    // The testing lattice map looks like below, filled at the 'o'
     //
     //         1   2   3   4   5
     //       |   |   |   |   |   |
@@ -48,7 +49,7 @@ TEST_CASE("Push values from shapemaps to VGA", "") {
 
     ShapeMap &drawingMap = spacePixels.back();
 
-    // rectangle containing the filled area of the pointmap offset by 0.5 to
+    // rectangle containing the filled area of the lattice map offset by 0.5 to
     // make sure it falls exactly on the edge of the 1.0-sized cell
     drawingMap.makePolyShape(
         {
@@ -60,7 +61,7 @@ TEST_CASE("Push values from shapemaps to VGA", "") {
         false);
     //    mgraph->updateParentRegions(drawingMap);
 
-    PointMap vgaMap(drawingMap.getRegion(), "VGA Map");
+    LatticeMap vgaMap(drawingMap.getRegion(), "VGA Map");
     vgaMap.setGrid(1.0);
     std::vector<Line4f> lines = drawingMap.getAllShapesAsLines();
     vgaMap.blockLines(lines);
@@ -103,7 +104,7 @@ TEST_CASE("Push values from shapemaps to VGA", "") {
         SECTION("Single polygon input") {
 
             // main testing shape. drawn in a way so that it contains the pixels
-            // that are not on the outer-edge of the pointmap
+            // that are not on the outer-edge of the lattice map
             sourceMap.makePolyShape(
                 {
                     Point2f(vgaMinX + cellSize * 1.5 - minorOffset,

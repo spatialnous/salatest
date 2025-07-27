@@ -120,7 +120,7 @@ void VgaParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter) 
             // displayed attribute, so we have to reset it back to what
             // it was before the analysis
             currentDisplayedAttribute =
-                dm_runmethods::safeGetDisplayedPointMap(metaGraph).getDisplayedAttribute();
+                dm_runmethods::safeGetDisplayedLatticeMap(metaGraph).getDisplayedAttribute();
         }
 
         DO_TIMED("Run VGA",
@@ -130,11 +130,11 @@ void VgaParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter) 
                                         options->radius, clp.simpleMode());)
 
         if (getVgaMode() == VgaParser::VgaMode::ISOVIST) {
-            dm_runmethods::safeGetDisplayedPointMap(metaGraph).setDisplayedAttribute(
+            dm_runmethods::safeGetDisplayedLatticeMap(metaGraph).setDisplayedAttribute(
                 currentDisplayedAttribute);
         }
         /* legacy mode where the columns are sorted before stored */
-        for (auto &map : metaGraph.getPointMaps()) {
+        for (auto &map : metaGraph.getLatticeMaps()) {
             auto displayedAttribute = map.getDisplayedAttribute();
 
             auto sortedDisplayedAttribute =

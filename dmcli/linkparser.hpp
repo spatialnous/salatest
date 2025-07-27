@@ -12,18 +12,18 @@
 
 class LinkParser : public IModeParser {
   public:
-    enum MapTypeGroup { POINTMAPS, SHAPEGRAPHS };
+    enum MapTypeGroup { LATTICEMAPS, SHAPEGRAPHS };
     enum LinkMode { LINK, UNLINK };
     enum LinkType { COORDS, REFS };
 
-    LinkParser() : m_mapTypeGroup(POINTMAPS), m_linkMode(LINK), m_linkType(COORDS) {}
+    LinkParser() : m_mapTypeGroup(LATTICEMAPS), m_linkMode(LINK), m_linkType(COORDS) {}
 
     std::string getModeName() const override { return "LINK"; }
 
     std::string getHelp() const override {
         return "Mode options for LINK:\n"
                "  -lmt <type> Map type group to select displayed map from. One of:\n"
-               "       pointmaps (default, vga: link)\n"
+               "       latticemaps (default, vga: link)\n"
                "       shapegraphs (axial:link/unlink, segment:link, convex:link)\n"
                "  -lm  <mode> one of:\n"
                "       link (default)\n"

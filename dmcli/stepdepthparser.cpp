@@ -137,7 +137,7 @@ void StepDepthParser::run(const CommandLineParser &clp, IPerformanceSink &perfWr
     if (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0") {
         /* legacy mode where the columns are sorted before stored */
 
-        auto &map = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
+        auto &map = dm_runmethods::safeGetDisplayedLatticeMap(metaGraph);
         auto displayedAttribute = map.getDisplayedAttribute();
 
         auto sortedDisplayedAttribute = static_cast<int>(

@@ -81,7 +81,7 @@ TEST_CASE("Trivial scripts") {
     }
 
     SalaGrf graph;
-    SalaObj context = SalaObj(SalaObj::S_POINTMAPOBJ, graph);
+    SalaObj context = SalaObj(SalaObj::S_LATTICEMAPOBJ, graph);
     SalaProgram program(context);
     program.parse(script);
     SalaObj result = program.evaluate();
@@ -100,7 +100,7 @@ TEST_CASE("Trivial errors") {
     }
 
     SalaGrf graph;
-    SalaObj context = SalaObj(SalaObj::S_POINTMAPOBJ, graph);
+    SalaObj context = SalaObj(SalaObj::S_LATTICEMAPOBJ, graph);
     SalaProgram program(context);
     program.parse(script);
     REQUIRE_THROWS_WITH(program.evaluate(), "Unknown exception");
@@ -118,7 +118,7 @@ TEST_CASE("Variables from outer scope are accessible in inner scope") {
     }
 
     SalaGrf graph;
-    SalaObj context = SalaObj(SalaObj::S_POINTMAPOBJ, graph);
+    SalaObj context = SalaObj(SalaObj::S_LATTICEMAPOBJ, graph);
     SalaProgram program(context);
     program.parse(script);
     SalaObj result = program.evaluate();
@@ -362,9 +362,9 @@ TEST_CASE("Shapemap scripts with unexpected results") {
 }
 
 TEST_CASE("Performance tests") {
-    //# For a graph with 100000 segments for cpu timing:
-    // x=value("Angular Connectivity")*value("Angular Step Depth")+value("Axial Line
-    // Ref")+value("Connectivity")/value("Segment Length")^value("T1024 Choice R1000 metric")
-    // y=value("T1024 Choice R3000 metric")*value("T1024 Choice R4000 metric")/value("T1024 Choice
-    // R5000 metric")^value("T1024 Total Depth [Segment Length Wgt] R4000 metric") y/x
+    // # For a graph with 100000 segments for cpu timing:
+    //  x=value("Angular Connectivity")*value("Angular Step Depth")+value("Axial Line
+    //  Ref")+value("Connectivity")/value("Segment Length")^value("T1024 Choice R1000 metric")
+    //  y=value("T1024 Choice R3000 metric")*value("T1024 Choice R4000 metric")/value("T1024 Choice
+    //  R5000 metric")^value("T1024 Total Depth [Segment Length Wgt] R4000 metric") y/x
 }

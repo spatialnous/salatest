@@ -67,7 +67,7 @@ std::string MapConvertParser::getMapTypeName(int mapType) const {
     switch (mapType) {
     case ShapeMap::EMPTYMAP:
         return "Empty";
-    case ShapeMap::POINTMAP:
+    case ShapeMap::LATTICEMAP:
         return "Point";
     case ShapeMap::DRAWINGMAP:
         return "Drawing";
@@ -92,8 +92,8 @@ void MapConvertParser::run(const CommandLineParser &clp, IPerformanceSink &perfW
             currentMapType = metaGraph.getShapeGraphs().back().getMapType();
         } else if (!metaGraph.getDataMaps().empty()) {
             currentMapType = ShapeMap::DATAMAP;
-        } else if (!metaGraph.getPointMaps().empty()) {
-            currentMapType = ShapeMap::POINTMAP;
+        } else if (!metaGraph.getLatticeMaps().empty()) {
+            currentMapType = ShapeMap::LATTICEMAP;
         } else {
             currentMapType = ShapeMap::DRAWINGMAP;
         }

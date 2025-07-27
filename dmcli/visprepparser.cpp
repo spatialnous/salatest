@@ -164,7 +164,7 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
         throw genlib::RuntimeException("Graph must have line data before preparing VGA");
     }
     if (m_grid > 0) {
-        // Create a new pointmap and set tha grid
+        // Create a new lattice map and set tha grid
         Region4f r = metaGraph.getRegion();
 
         GridProperties gp(std::max(r.width(), r.height()));
@@ -177,9 +177,9 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
         }
 
         std::cout << "ok\nSetting up grid... " << std::flush;
-        metaGraph.addNewPointMap();
+        metaGraph.addNewLatticeMap();
         DO_TIMED("Setting grid", metaGraph.setGrid(m_grid, Point2f(0.0, 0.0)))
-    } else if (metaGraph.getPointMaps().empty()) {
+    } else if (metaGraph.getLatticeMaps().empty()) {
         std::stringstream message;
         message << "No map exists to use. Please create a new one by providing a grid size"
                 << std::flush;
@@ -187,10 +187,10 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
     }
 
     if (m_unmakeGraph) {
-        if (!metaGraph.hasDisplayedPointMap()) {
-            metaGraph.setDisplayedPointMapRef(metaGraph.getPointMaps().size() - 1);
+        if (!metaGraph.hasDisplayedLatticeMap()) {
+            metaGraph.setDisplayedLatticeMapRef(metaGraph.getLatticeMaps().size() - 1);
         }
-        if (!dm_runmethods::safeGetDisplayedPointMap(metaGraph).getInternalMap().isProcessed()) {
+        if (!dm_runmethods::safeGetDisplayedLatticeMap(metaGraph).getInternalMap().isProcessed()) {
             std::stringstream message;
             message << "Current map has not had its graph made so there's nothing to unmake"
                     << std::flush;
@@ -200,8 +200,8 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
     } else {
         if (m_fillPoints.size() > 0) {
             std::cout << "ok\nFilling grid... " << std::flush;
-            if (!metaGraph.hasDisplayedPointMap()) {
-                metaGraph.setDisplayedPointMapRef(metaGraph.getPointMaps().size() - 1);
+            if (!metaGraph.hasDisplayedLatticeMap()) {
+                metaGraph.setDisplayedLatticeMapRef(metaGraph.getLatticeMaps().size() - 1);
             }
             DO_TIMED("Filling grid", for_each(m_fillPoints.begin(), m_fillPoints.end(),
                                               [&metaGraph](const Point2f &point) -> void {
@@ -210,15 +210,15 @@ void VisPrepParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
         }
         if (m_makeGraph) {
             std::cout << "ok\nMaking graph... " << std::flush;
-            if (!metaGraph.hasDisplayedPointMap()) {
-                metaGraph.setDisplayedPointMapRef(metaGraph.getPointMaps().size() - 1);
+            if (!metaGraph.hasDisplayedLatticeMap()) {
+                metaGraph.setDisplayedLatticeMapRef(metaGraph.getLatticeMaps().size() - 1);
             }
             DO_TIMED("Making graph", metaGraph.makeGraph(dm_runmethods::getCommunicator(clp).get(),
                                                          m_boundaryGraph ? 1 : 0, m_maxVisibility))
 
             if (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0") {
                 /* legacy mode where the columns are sorted before stored */
-                auto &map = dm_runmethods::safeGetDisplayedPointMap(metaGraph);
+                auto &map = dm_runmethods::safeGetDisplayedLatticeMap(metaGraph);
                 auto displayedAttribute = map.getDisplayedAttribute();
 
                 auto sortedDisplayedAttribute =

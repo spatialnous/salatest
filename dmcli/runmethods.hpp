@@ -26,10 +26,10 @@ namespace dm_runmethods {
     std::unique_ptr<Communicator> getCommunicator(const CommandLineParser &clp);
     void writeGraph(const CommandLineParser &clp, MetaGraphDM &metaGraph,
                     const std::string &filename, bool currentlayer);
-    PointMapDM &safeGetDisplayedPointMap(MetaGraphDM &mgraph);
+    LatticeMapDM &safeGetDisplayedLatticeMap(MetaGraphDM &mgraph);
     ShapeGraphDM &safeGetDisplayedShapeGraph(MetaGraphDM &mgraph);
 
     void enforceDisplayedDataMapSet(MetaGraphDM &mgraph);
-    void enforceDisplayedPointMapSet(MetaGraphDM &mgraph);
+    void enforceDisplayedLatticeMapSet(MetaGraphDM &mgraph);
     void enforceDisplayedShapeGraphSet(MetaGraphDM &mgraph);
 } // namespace dm_runmethods

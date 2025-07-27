@@ -14,7 +14,7 @@ set(target_HDRS
 set(target_SRCS
     main.cpp
     ../${testable_target_NAME}/dminterface/shapemapdm.cpp
-    ../${testable_target_NAME}/dminterface/pointmapdm.cpp
+    ../${testable_target_NAME}/dminterface/latticemapdm.cpp
     ../${testable_target_NAME}/dminterface/shapegraphdm.cpp
     ../${testable_target_NAME}/dminterface/metagraphdm.cpp
     ../${testable_target_NAME}/printcommunicator.cpp

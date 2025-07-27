@@ -5,7 +5,7 @@
     "allowskip": true,
     "performance": {},
     "testcases": {
-        "vis_prep_dense_pointmap": {
+        "vis_prep_dense_latticemap": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.graph"

@@ -14,21 +14,22 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
     Point2f topRight(2, 4);
     int fillType = 0; // = QDepthmapView::FULLFILL
 
-    PointMap pointMap(Region4f(bottomLeft, topRight), "Test PointMap");
-    pointMap.setGrid(spacing, offset);
-    Point2f gridBottomLeft = pointMap.getRegion().bottomLeft;
-    Point2f midPoint(
-        gridBottomLeft.x + spacing * (floor(static_cast<double>(pointMap.getCols()) * 0.5) + 0.5),
-        gridBottomLeft.y + spacing * (floor(static_cast<double>(pointMap.getRows()) * 0.5) + 0.5));
+    LatticeMap latticeMap(Region4f(bottomLeft, topRight), "Test LatticeMap");
+    latticeMap.setGrid(spacing, offset);
+    Point2f gridBottomLeft = latticeMap.getRegion().bottomLeft;
+    Point2f midPoint(gridBottomLeft.x +
+                         spacing * (floor(static_cast<double>(latticeMap.getCols()) * 0.5) + 0.5),
+                     gridBottomLeft.y +
+                         spacing * (floor(static_cast<double>(latticeMap.getRows()) * 0.5) + 0.5));
     std::vector<Line4f> lines;
-    pointMap.blockLines(lines);
-    pointMap.makePoints(midPoint, fillType);
+    latticeMap.blockLines(lines);
+    latticeMap.makePoints(midPoint, fillType);
 
     std::vector<Line4f> mergeLines;
 
     SECTION("Successful: bottom-left to top-right") {
         mergeLines.push_back(Line4f(bottomLeft, topRight));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
         REQUIRE(links.size() == 1);
         REQUIRE(links[0].a.x == 0);
         REQUIRE(links[0].a.y == 0);
@@ -36,18 +37,18 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
         REQUIRE(links[0].b.y == 8);
 
         // make sure pixels are not already merged
-        REQUIRE(!pointMap.isPixelMerged(links[0].a));
-        REQUIRE(!pointMap.isPixelMerged(links[0].b));
+        REQUIRE(!latticeMap.isPixelMerged(links[0].a));
+        REQUIRE(!latticeMap.isPixelMerged(links[0].b));
 
         // merge
-        sala::mergePixelPairs(links, pointMap);
+        sala::mergePixelPairs(links, latticeMap);
 
         // make sure pixels are merged
-        REQUIRE(pointMap.isPixelMerged(links[0].a));
-        REQUIRE(pointMap.isPixelMerged(links[0].b));
+        REQUIRE(latticeMap.isPixelMerged(links[0].a));
+        REQUIRE(latticeMap.isPixelMerged(links[0].b));
 
         const std::vector<std::pair<PixelRef, PixelRef>> &mergedPixelPairs =
-            pointMap.getMergedPixelPairs();
+            latticeMap.getMergedPixelPairs();
 
         REQUIRE(mergedPixelPairs.size() == 1);
         REQUIRE(mergedPixelPairs[0].first.x == 0);
@@ -55,10 +56,10 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
         REQUIRE(mergedPixelPairs[0].second.x == 4);
         REQUIRE(mergedPixelPairs[0].second.y == 8);
 
-        const std::vector<SimpleLine> &newMergeLines = sala::getMergedPixelsAsLines(pointMap);
+        const std::vector<SimpleLine> &newMergeLines = sala::getMergedPixelsAsLines(latticeMap);
 
-        Point2f p1position = pointMap.depixelate(links[0].a);
-        Point2f p2position = pointMap.depixelate(links[0].b);
+        Point2f p1position = latticeMap.depixelate(links[0].a);
+        Point2f p2position = latticeMap.depixelate(links[0].b);
 
         REQUIRE(newMergeLines.size() == 1);
         REQUIRE(newMergeLines[0].start().x == p1position.x);
@@ -72,7 +73,7 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
         Point2f start(topRight.x, bottomLeft.y);
         Point2f end(bottomLeft.x, topRight.y);
         mergeLines.push_back(Line4f(start, end));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
         REQUIRE(links.size() == 2);
         REQUIRE(links[0].a.x == 0);
         REQUIRE(links[0].a.y == 0);
@@ -84,36 +85,36 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
         REQUIRE(links[1].b.y == 0);
 
         // make sure pixels are not already merged
-        REQUIRE(!pointMap.isPixelMerged(links[0].a));
-        REQUIRE(!pointMap.isPixelMerged(links[0].b));
-        REQUIRE(!pointMap.isPixelMerged(links[1].a));
-        REQUIRE(!pointMap.isPixelMerged(links[1].b));
+        REQUIRE(!latticeMap.isPixelMerged(links[0].a));
+        REQUIRE(!latticeMap.isPixelMerged(links[0].b));
+        REQUIRE(!latticeMap.isPixelMerged(links[1].a));
+        REQUIRE(!latticeMap.isPixelMerged(links[1].b));
 
         // merge
-        sala::mergePixelPairs(links, pointMap);
+        sala::mergePixelPairs(links, latticeMap);
 
         // make sure pixels are merged
-        REQUIRE(pointMap.isPixelMerged(links[0].a));
-        REQUIRE(pointMap.isPixelMerged(links[0].b));
-        REQUIRE(pointMap.isPixelMerged(links[1].a));
-        REQUIRE(pointMap.isPixelMerged(links[1].b));
+        REQUIRE(latticeMap.isPixelMerged(links[0].a));
+        REQUIRE(latticeMap.isPixelMerged(links[0].b));
+        REQUIRE(latticeMap.isPixelMerged(links[1].a));
+        REQUIRE(latticeMap.isPixelMerged(links[1].b));
     }
 
     SECTION("Failing: merge line start out of grid") {
         Point2f start(bottomLeft.x - spacing, bottomLeft.y - spacing);
         mergeLines.push_back(Line4f(start, topRight));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
         REQUIRE_THROWS_WITH(
-            sala::mergePixelPairs(links, pointMap),
+            sala::mergePixelPairs(links, latticeMap),
             Catch::Matchers::ContainsSubstring("Line ends not both on painted analysis space"));
     }
 
     SECTION("Failing: merge line end out of grid") {
         Point2f end(topRight.x + spacing, topRight.y + spacing);
         mergeLines.push_back(Line4f(bottomLeft, end));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
         REQUIRE_THROWS_WITH(
-            sala::mergePixelPairs(links, pointMap),
+            sala::mergePixelPairs(links, latticeMap),
             Catch::Matchers::ContainsSubstring("Line ends not both on painted analysis space"));
     }
 
@@ -122,8 +123,8 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
         Point2f start(bottomLeft.x, bottomLeft.y);
         Point2f end(topRight.x - 1, topRight.y);
         mergeLines.push_back(Line4f(start, end));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
-        REQUIRE_THROWS_WITH(sala::mergePixelPairs(links, pointMap),
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
+        REQUIRE_THROWS_WITH(sala::mergePixelPairs(links, latticeMap),
                             Catch::Matchers::ContainsSubstring("Overlapping link found"));
     }
 
@@ -132,22 +133,22 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
         Point2f start(bottomLeft.x + 1, bottomLeft.y);
         Point2f end(topRight.x, topRight.y);
         mergeLines.push_back(Line4f(start, end));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
-        REQUIRE_THROWS_WITH(sala::mergePixelPairs(links, pointMap),
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
+        REQUIRE_THROWS_WITH(sala::mergePixelPairs(links, latticeMap),
                             Catch::Matchers::ContainsSubstring("Overlapping link found"));
     }
 
     SECTION("Failing: fully overlapping link (bottom-left to top-right)") {
         mergeLines.push_back(Line4f(bottomLeft, topRight));
         mergeLines.push_back(Line4f(bottomLeft, topRight));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
-        REQUIRE_THROWS_WITH(sala::mergePixelPairs(links, pointMap),
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
+        REQUIRE_THROWS_WITH(sala::mergePixelPairs(links, latticeMap),
                             Catch::Matchers::ContainsSubstring("Overlapping link found"));
     }
 
     SECTION("Failing: link overlapping to previously merged") {
         mergeLines.push_back(Line4f(bottomLeft, topRight));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
         REQUIRE(links.size() == 1);
         REQUIRE(links[0].a.x == 0);
         REQUIRE(links[0].a.y == 0);
@@ -155,18 +156,18 @@ TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
         REQUIRE(links[0].b.y == 8);
 
         // make sure pixels are not already merged
-        REQUIRE(!pointMap.isPixelMerged(links[0].a));
-        REQUIRE(!pointMap.isPixelMerged(links[0].b));
+        REQUIRE(!latticeMap.isPixelMerged(links[0].a));
+        REQUIRE(!latticeMap.isPixelMerged(links[0].b));
 
         // merge
-        sala::mergePixelPairs(links, pointMap);
+        sala::mergePixelPairs(links, latticeMap);
 
         // make sure pixels are merged
-        REQUIRE(pointMap.isPixelMerged(links[0].a));
-        REQUIRE(pointMap.isPixelMerged(links[0].b));
+        REQUIRE(latticeMap.isPixelMerged(links[0].a));
+        REQUIRE(latticeMap.isPixelMerged(links[0].b));
 
         // now try to merge the same link again
-        REQUIRE_THROWS_WITH(sala::mergePixelPairs(links, pointMap),
+        REQUIRE_THROWS_WITH(sala::mergePixelPairs(links, latticeMap),
                             Catch::Matchers::ContainsSubstring(
                                 "Link pixel found that is already linked on the map"));
     }
@@ -194,15 +195,15 @@ TEST_CASE("Test linking - half filled grid", "") {
     spacePixels.back().makeLineShape(Line4f(lineStart, lineEnd));
     spacePixelFileData.region = spacePixels.back().getRegion();
 
-    PointMap pointMap(Region4f(bottomLeft, topRight), "Test PointMap");
-    pointMap.setGrid(spacing, offset);
+    LatticeMap latticeMap(Region4f(bottomLeft, topRight), "Test LatticeMap");
+    latticeMap.setGrid(spacing, offset);
 
-    Point2f gridBottomLeft = pointMap.getRegion().bottomLeft;
-    Point2f gridTopRight = pointMap.getRegion().topRight;
+    Point2f gridBottomLeft = latticeMap.getRegion().bottomLeft;
+    Point2f gridTopRight = latticeMap.getRegion().topRight;
     Point2f topLeftFillPoint(gridBottomLeft.x + spacing, gridTopRight.y - spacing);
     std::vector<Line4f> lines = spacePixels.back().getAllShapesAsLines();
-    pointMap.blockLines(lines);
-    pointMap.makePoints(topLeftFillPoint, fillType);
+    latticeMap.blockLines(lines);
+    latticeMap.makePoints(topLeftFillPoint, fillType);
 
     std::vector<Line4f> mergeLines;
 
@@ -210,7 +211,7 @@ TEST_CASE("Test linking - half filled grid", "") {
         Point2f start(bottomLeft.x, topRight.y);
         Point2f end(bottomLeft.x + spacing, topRight.y);
         mergeLines.push_back(Line4f(start, end));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
         REQUIRE(links.size() == 1);
         REQUIRE(links[0].a.x == 0);
         REQUIRE(links[0].a.y == 8);
@@ -218,24 +219,24 @@ TEST_CASE("Test linking - half filled grid", "") {
         REQUIRE(links[0].b.y == 8);
 
         // make sure pixels are not already merged
-        REQUIRE(!pointMap.isPixelMerged(links[0].a));
-        REQUIRE(!pointMap.isPixelMerged(links[0].b));
+        REQUIRE(!latticeMap.isPixelMerged(links[0].a));
+        REQUIRE(!latticeMap.isPixelMerged(links[0].b));
 
         // merge
-        sala::mergePixelPairs(links, pointMap);
+        sala::mergePixelPairs(links, latticeMap);
 
         // make sure pixels are merged
-        REQUIRE(pointMap.isPixelMerged(links[0].a));
-        REQUIRE(pointMap.isPixelMerged(links[0].b));
+        REQUIRE(latticeMap.isPixelMerged(links[0].a));
+        REQUIRE(latticeMap.isPixelMerged(links[0].b));
     }
 
     SECTION("Failing: merge line (bottom-right to the one its left) completely out of grid") {
         Point2f start(topRight.x, bottomLeft.y);
         Point2f end(topRight.x - 1, bottomLeft.y);
         mergeLines.push_back(Line4f(start, end));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
         REQUIRE_THROWS_WITH(
-            sala::mergePixelPairs(links, pointMap),
+            sala::mergePixelPairs(links, latticeMap),
             Catch::Matchers::ContainsSubstring("Line ends not both on painted analysis space"));
     }
 
@@ -243,9 +244,9 @@ TEST_CASE("Test linking - half filled grid", "") {
         Point2f start(topRight.x, bottomLeft.y);
         Point2f end(bottomLeft.x, topRight.y);
         mergeLines.push_back(Line4f(start, end));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
         REQUIRE_THROWS_WITH(
-            sala::mergePixelPairs(links, pointMap),
+            sala::mergePixelPairs(links, latticeMap),
             Catch::Matchers::ContainsSubstring("Line ends not both on painted analysis space"));
     }
 
@@ -253,9 +254,9 @@ TEST_CASE("Test linking - half filled grid", "") {
         Point2f start(bottomLeft.x, topRight.y);
         Point2f end(topRight.x, bottomLeft.y);
         mergeLines.push_back(Line4f(start, end));
-        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, pointMap);
+        std::vector<PixelRefPair> links = sala::pixelateMergeLines(mergeLines, latticeMap);
         REQUIRE_THROWS_WITH(
-            sala::mergePixelPairs(links, pointMap),
+            sala::mergePixelPairs(links, latticeMap),
             Catch::Matchers::ContainsSubstring("Line ends not both on painted analysis space"));
     }
 }

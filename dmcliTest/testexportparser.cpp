@@ -22,21 +22,21 @@ TEST_CASE("ExportParser Fail", "Parsing errors") {
 TEST_CASE("ExportParser Success", "Read successfully") {
     ExportParser parser;
 
-    SECTION("Correctly parse mode pointmap-connections-csv") {
-        ArgumentHolder ah{"prog", "-em", "pointmap-connections-csv"};
+    SECTION("Correctly parse mode latticemap-connections-csv") {
+        ArgumentHolder ah{"prog", "-em", "latticemap-connections-csv"};
         parser.parse(ah.argc(), ah.argv());
-        REQUIRE(parser.getExportMode() == ExportParser::POINTMAP_CONNECTIONS_CSV);
+        REQUIRE(parser.getExportMode() == ExportParser::LATTICEMAP_CONNECTIONS_CSV);
     }
 
-    SECTION("Correctly parse mode pointmap-data-csv") {
-        ArgumentHolder ah{"prog", "-em", "pointmap-data-csv"};
+    SECTION("Correctly parse mode latticemap-data-csv") {
+        ArgumentHolder ah{"prog", "-em", "latticemap-data-csv"};
         parser.parse(ah.argc(), ah.argv());
-        REQUIRE(parser.getExportMode() == ExportParser::POINTMAP_DATA_CSV);
+        REQUIRE(parser.getExportMode() == ExportParser::LATTICEMAP_DATA_CSV);
     }
 
-    SECTION("Correctly parse mode pointmap-links-csv") {
-        ArgumentHolder ah{"prog", "-em", "pointmap-links-csv"};
+    SECTION("Correctly parse mode latticemap-links-csv") {
+        ArgumentHolder ah{"prog", "-em", "latticemap-links-csv"};
         parser.parse(ah.argc(), ah.argv());
-        REQUIRE(parser.getExportMode() == ExportParser::POINTMAP_LINKS_CSV);
+        REQUIRE(parser.getExportMode() == ExportParser::LATTICEMAP_LINKS_CSV);
     }
 }

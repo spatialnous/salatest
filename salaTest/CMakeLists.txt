@@ -8,7 +8,7 @@ set(salaTest salaTest)
 set(salaTest_SRCS
     main.cpp
     testentityparsing.cpp
-    testpointmap.cpp
+    testlatticemap.cpp
     testlinkutils.cpp
     testgridproperties.cpp
     testisovistdef.cpp

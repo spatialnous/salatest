@@ -18,9 +18,9 @@ class ExportParser : public IModeParser {
         return "Mode options for EXPORT:\n"
                "-ei <export index> map index in type group\n"
                "-em <export mode> one of:\n"
-               "    pointmap-data-csv\n"
-               "    pointmap-connections-csv\n"
-               "    pointmap-links-csv\n"
+               "    latticemap-data-csv\n"
+               "    latticemap-connections-csv\n"
+               "    latticemap-links-csv\n"
                "    shapegraph-map-csv\n"
                "    shapegraph-map-mif\n"
                "    shapegraph-connections-csv\n"
@@ -36,9 +36,9 @@ class ExportParser : public IModeParser {
 
     enum ExportMode {
         NONE,
-        POINTMAP_DATA_CSV,
-        POINTMAP_CONNECTIONS_CSV,
-        POINTMAP_LINKS_CSV,
+        LATTICEMAP_DATA_CSV,
+        LATTICEMAP_CONNECTIONS_CSV,
+        LATTICEMAP_LINKS_CSV,
         SHAPEGRAPH_MAP_CSV,
         SHAPEGRAPH_MAP_MIF,
         SHAPEGRAPH_CONNECTIONS_CSV,
@@ -50,6 +50,6 @@ class ExportParser : public IModeParser {
     std::optional<size_t> m_exportMapIdx;
     ExportMode m_exportMode;
 
-    PointMapDM &getSelectedOrDisplayedPointMap(MetaGraphDM &mgraph) const;
+    LatticeMapDM &getSelectedOrDisplayedLatticeMap(MetaGraphDM &mgraph) const;
     ShapeGraphDM &getSelectedOrDisplayedShapeGraph(MetaGraphDM &mgraph) const;
 };

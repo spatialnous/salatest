@@ -30,7 +30,7 @@ cd .. && pwd
 regression_error=0
 
 echo running known result tests
-python3 -u RegressionTestRunner.py knownresulttests_pointmap.json || regression_error=1
+python3 -u RegressionTestRunner.py knownresulttests_latticemap.json || regression_error=1
 python3 -u RegressionTestRunner.py knownresulttests_axial.json || regression_error=1
 python3 -u RegressionTestRunner.py knownresulttests_segment.json || regression_error=1
 python3 -u RegressionTestRunner.py knownresulttests_isovist.json || regression_error=1

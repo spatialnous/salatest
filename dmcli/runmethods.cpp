@@ -41,13 +41,13 @@ namespace dm_runmethods {
         metaGraph.write(filename, METAGRAPH_VERSION, currentlayer, clp.ignoreDisplayData());
     }
 
-    PointMapDM &safeGetDisplayedPointMap(MetaGraphDM &mgraph) {
-        if (mgraph.hasDisplayedPointMap()) {
-            return mgraph.getDisplayedPointMap();
-        } else if (!mgraph.getPointMaps().empty()) {
-            return mgraph.getPointMaps().back();
+    LatticeMapDM &safeGetDisplayedLatticeMap(MetaGraphDM &mgraph) {
+        if (mgraph.hasDisplayedLatticeMap()) {
+            return mgraph.getDisplayedLatticeMap();
+        } else if (!mgraph.getLatticeMaps().empty()) {
+            return mgraph.getLatticeMaps().back();
         } else {
-            throw dmcli::CommandLineException("No available pointmaps to process");
+            throw dmcli::CommandLineException("No available lattice maps to process");
         }
     }
 
@@ -71,13 +71,13 @@ namespace dm_runmethods {
         }
     }
 
-    void enforceDisplayedPointMapSet(MetaGraphDM &mgraph) {
-        if (mgraph.hasDisplayedPointMap()) {
+    void enforceDisplayedLatticeMapSet(MetaGraphDM &mgraph) {
+        if (mgraph.hasDisplayedLatticeMap()) {
             return;
-        } else if (!mgraph.getPointMaps().empty()) {
-            mgraph.setDisplayedPointMapRef(mgraph.getPointMaps().size() - 1);
+        } else if (!mgraph.getLatticeMaps().empty()) {
+            mgraph.setDisplayedLatticeMapRef(mgraph.getLatticeMaps().size() - 1);
         } else {
-            throw dmcli::CommandLineException("No available pointmaps to process");
+            throw dmcli::CommandLineException("No available lattice maps to process");
         }
     }
 

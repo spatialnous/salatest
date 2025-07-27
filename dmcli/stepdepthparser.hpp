@@ -17,7 +17,7 @@ class StepDepthParser : public IModeParser {
     std::string getModeName() const override { return "STEPDEPTH"; }
 
     std::string getHelp() const override {
-        return "Mode options for pointmap STEPDEPTH are:\n"
+        return "Mode options for lattice map STEPDEPTH are:\n"
                "  -sdp <step depth point> point where to calculate step depth from. Can be "
                "repeated\n"
                "  -sdf <step depth point file> a file with a point per line to calculate step "

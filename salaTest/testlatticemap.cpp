@@ -15,7 +15,7 @@ TEST_CASE("Test MetaGraph construction", "") {
     Point2f offset(0, 0); // seems that this is always set to 0,0
 
     // create a new MetaGraph
-    // The PointMap needs the region variable from this
+    // The LatticeMap needs the region variable from this
     // object as a definition of the area the grid needs to cover
     MetaGraph metaGraph("Test MetaGraph");
 
@@ -87,8 +87,8 @@ TEST_CASE("Test MetaGraph construction", "") {
         REQUIRE(metaGraph.region.topRight.y == Catch::Approx(topRight.y).epsilon(epsilon));
     }
 
-    // construct a sample pointMap
-    PointMap pointMap(metaGraph.region, "Test PointMap");
+    // construct a sample lattice map
+    LatticeMap latticeMap(metaGraph.region, "Test LatticeMap");
 }
 
 TEST_CASE("Test grid filling", "") {
@@ -97,7 +97,7 @@ TEST_CASE("Test grid filling", "") {
     Point2f offset(0, 0); // seems that this is always set to 0,0
 
     // create a new MetaGraph
-    // The PointMap needs the region variable from this
+    // The LatticeMap needs the region variable from this
     // object as a definition of the area the grid needs to cover
     MetaGraph metaGraph("Test MetaGraph");
 
@@ -116,42 +116,42 @@ TEST_CASE("Test grid filling", "") {
         REQUIRE(metaGraph.region.topRight.y == Catch::Approx(topRight.y).epsilon(epsilon));
     }
 
-    // construct a sample pointMap
-    PointMap pointMap(metaGraph.region, "Test PointMap");
+    // construct a sample lattice map
+    LatticeMap latticeMap(metaGraph.region, "Test LatticeMap");
 
     // set the grid
 
     // create the grid with bounds as set above
-    bool gridIsSet = pointMap.setGrid(spacing, offset);
+    bool gridIsSet = latticeMap.setGrid(spacing, offset);
 
     // check if the grid was set
     REQUIRE(gridIsSet);
 
     // check if the spacing is correct
-    REQUIRE(spacing == pointMap.getSpacing());
+    REQUIRE(spacing == latticeMap.getSpacing());
 
     // fill the grid
 
     // seems like fill_type is actually connected to the
     // QDepthmapView class which is a GUI class (depthmapview.h)
-    // TODO Disentangle GUI enum from pointMap.makePoints
+    // TODO Disentangle GUI enum from latticeMap.makePoints
     int fillType = 0; // = QDepthmapView::FULLFILL
 
-    Point2f gridBottomLeft = pointMap.getRegion().bottomLeft;
+    Point2f gridBottomLeft = latticeMap.getRegion().bottomLeft;
 
     SECTION("Check if the points are made when fill selection in a cell") {
         // Check if the points are made (grid filled) when
         // the selected position is certainly in a cell
         // This calculation should make the point directly
         // at the centre of a central cell
-        Point2f midPoint(gridBottomLeft.x +
-                             spacing * (floor(static_cast<double>(pointMap.getCols()) * 0.5) + 0.5),
-                         gridBottomLeft.y +
-                             spacing *
-                                 (floor(static_cast<double>(pointMap.getRows()) * 0.5) + 0.5));
+        Point2f midPoint(
+            gridBottomLeft.x +
+                spacing * (floor(static_cast<double>(latticeMap.getCols()) * 0.5) + 0.5),
+            gridBottomLeft.y +
+                spacing * (floor(static_cast<double>(latticeMap.getRows()) * 0.5) + 0.5));
         std::vector<Line4f> lines;
-        pointMap.blockLines(lines);
-        bool pointsMade = pointMap.makePoints(midPoint, fillType);
+        latticeMap.blockLines(lines);
+        bool pointsMade = latticeMap.makePoints(midPoint, fillType);
         REQUIRE(pointsMade);
     }
 
@@ -161,16 +161,16 @@ TEST_CASE("Test grid filling", "") {
         // This calculation should make the point directly
         // at the edge of a central cell
         Point2f midPoint(
-            gridBottomLeft.x + spacing * (floor(static_cast<double>(pointMap.getCols()) * 0.5)),
-            gridBottomLeft.y + spacing * (floor(static_cast<double>(pointMap.getRows()) * 0.5)));
+            gridBottomLeft.x + spacing * (floor(static_cast<double>(latticeMap.getCols()) * 0.5)),
+            gridBottomLeft.y + spacing * (floor(static_cast<double>(latticeMap.getRows()) * 0.5)));
         std::vector<Line4f> lines;
-        pointMap.blockLines(lines);
-        bool pointsMade = pointMap.makePoints(midPoint, fillType);
+        latticeMap.blockLines(lines);
+        bool pointsMade = latticeMap.makePoints(midPoint, fillType);
         REQUIRE(pointsMade);
     }
 }
 
-// PointMap::setGrid is quite convoluted with various parameters
+// LatticeMap::setGrid is quite convoluted with various parameters
 // affecting the result, such as the limits of the region to be
 // covered (bottomLeft, topRight), the spacing and the location
 // of the plan in space. For example every grid created will be
@@ -269,8 +269,8 @@ TEST_CASE("Quirks in grid creation - Origin always at 0", "") {
 
     MetaGraph metaGraph("Test MetaGraph");
     metaGraph.region = Region4f(bottomLeft, topRight);
-    PointMap pointMap(metaGraph.region, "Test PointMap");
-    bool gridIsSet = pointMap.setGrid(spacing, offset);
+    LatticeMap latticeMap(metaGraph.region, "Test LatticeMap");
+    bool gridIsSet = latticeMap.setGrid(spacing, offset);
 
     REQUIRE(gridIsSet);
 
@@ -284,29 +284,31 @@ TEST_CASE("Quirks in grid creation - Origin always at 0", "") {
     int numCellsY = topRightPixelIndexY - bottomLeftPixelIndexY + 1;
 
     // check if the size of the grid is as expected
-    REQUIRE(static_cast<int>(pointMap.getCols()) == numCellsX);
-    REQUIRE(static_cast<int>(pointMap.getRows()) == numCellsY);
+    REQUIRE(static_cast<int>(latticeMap.getCols()) == numCellsX);
+    REQUIRE(static_cast<int>(latticeMap.getRows()) == numCellsY);
 
     Point2f gridBottomLeft(bottomLeftPixelIndexX * spacing - 0.5 * spacing,
                            bottomLeftPixelIndexY * spacing - 0.5 * spacing);
 
     // check if the bottom-left corner of the bottom-left pixel is as expected
-    REQUIRE(pointMap.getRegion().bottomLeft.x == Catch::Approx(gridBottomLeft.x).epsilon(epsilon));
-    REQUIRE(pointMap.getRegion().bottomLeft.y == Catch::Approx(gridBottomLeft.y).epsilon(epsilon));
+    REQUIRE(latticeMap.getRegion().bottomLeft.x ==
+            Catch::Approx(gridBottomLeft.x).epsilon(epsilon));
+    REQUIRE(latticeMap.getRegion().bottomLeft.y ==
+            Catch::Approx(gridBottomLeft.y).epsilon(epsilon));
 
     Point2f midPoint(gridBottomLeft.x + spacing * (floor(numCellsX * 0.5) + 0.5),
                      gridBottomLeft.y + spacing * (floor(numCellsY * 0.5) + 0.5));
 
     int fillType = 0; // = QDepthmapView::FULLFILL
     std::vector<Line4f> lines;
-    pointMap.blockLines(lines);
-    bool pointsMade = pointMap.makePoints(midPoint, fillType);
+    latticeMap.blockLines(lines);
+    bool pointsMade = latticeMap.makePoints(midPoint, fillType);
 
     // check if the grid is filled
     REQUIRE(pointsMade);
 }
 
-TEST_CASE("Test PointMap connections output", "") {
+TEST_CASE("Test LatticeMap connections output", "") {
     double spacing = 0.5;
     Point2f offset(0, 0); // seems that this is always set to 0,0
 
@@ -337,22 +339,23 @@ TEST_CASE("Test PointMap connections output", "") {
     spacePixelFileData.region = spacePixels.back().getRegion();
     metaGraph.region =
         Region4f(spacePixelFileData.region.bottomLeft, spacePixelFileData.region.topRight);
-    PointMap pointMap(metaGraph.region, "Test PointMap");
+    LatticeMap latticeMap(metaGraph.region, "Test LatticeMap");
 
-    Point2f gridBottomLeft = pointMap.getRegion().bottomLeft;
+    Point2f gridBottomLeft = latticeMap.getRegion().bottomLeft;
 
-    Point2f midPoint(
-        gridBottomLeft.x + spacing * (floor(static_cast<double>(pointMap.getCols()) * 0.5) + 0.5),
-        gridBottomLeft.y + spacing * (floor(static_cast<double>(pointMap.getRows()) * 0.5) + 0.5));
+    Point2f midPoint(gridBottomLeft.x +
+                         spacing * (floor(static_cast<double>(latticeMap.getCols()) * 0.5) + 0.5),
+                     gridBottomLeft.y +
+                         spacing * (floor(static_cast<double>(latticeMap.getRows()) * 0.5) + 0.5));
 
     int fillType = 0; // = QDepthmapView::FULLFILL
-    bool gridIsSet = pointMap.setGrid(spacing, offset);
+    bool gridIsSet = latticeMap.setGrid(spacing, offset);
 
     REQUIRE(gridIsSet);
 
     std::vector<Line4f> lines = spacePixels.back().getAllShapesAsLines();
-    pointMap.blockLines(lines);
-    bool pointsMade = pointMap.makePoints(midPoint, fillType);
+    latticeMap.blockLines(lines);
+    bool pointsMade = latticeMap.makePoints(midPoint, fillType);
 
     REQUIRE(pointsMade);
 
@@ -361,15 +364,15 @@ TEST_CASE("Test PointMap connections output", "") {
     // a communicator is required in order to create the connections between the pixels
     std::unique_ptr<Communicator> comm(new ICommunicator());
 
-    bool graphMade = pointMap.sparkGraph2(comm.get(), boundaryGraph, maxDist);
+    bool graphMade = latticeMap.sparkGraph2(comm.get(), boundaryGraph, maxDist);
 
     REQUIRE(graphMade);
 
-    SECTION("PointMap::outputLinksAsCSV") {
+    SECTION("LatticeMap::outputLinksAsCSV") {
         std::stringstream stream;
-        pointMap.mergePixels(65537, 131074);
-        pointMap.mergePixels(131073, 65538);
-        pointMap.outputLinksAsCSV(stream);
+        latticeMap.mergePixels(65537, 131074);
+        latticeMap.mergePixels(131073, 65538);
+        latticeMap.outputLinksAsCSV(stream);
 
         REQUIRE(stream.good());
         char line[1000];
@@ -382,9 +385,9 @@ TEST_CASE("Test PointMap connections output", "") {
         REQUIRE(streamLines == expected);
     }
 
-    SECTION("PointMap::outputConnectionsAsCSV") {
+    SECTION("LatticeMap::outputConnectionsAsCSV") {
         std::stringstream stream;
-        pointMap.outputConnectionsAsCSV(stream);
+        latticeMap.outputConnectionsAsCSV(stream);
 
         REQUIRE(stream.good());
         char line[1000];
@@ -399,9 +402,9 @@ TEST_CASE("Test PointMap connections output", "") {
         REQUIRE(streamLines == expected);
     }
 
-    SECTION("PointMap::outputConnections") {
+    SECTION("LatticeMap::outputConnections") {
         std::stringstream stream;
-        pointMap.outputConnections(stream);
+        latticeMap.outputConnections(stream);
 
         REQUIRE(stream.good());
         char line[1000];
@@ -451,7 +454,7 @@ TEST_CASE("Test PointMap connections output", "") {
         REQUIRE(streamLines == expected);
     }
 }
-TEST_CASE("Direct pointmap linking - fully filled grid (no geometry)", "") {
+TEST_CASE("Direct LatticeMap linking - fully filled grid (no geometry)", "") {
     double spacing = 0.5;
     Point2f offset(0, 0); // seems that this is always set to 0,0
     Point2f bottomLeft(0, 0);
@@ -460,97 +463,99 @@ TEST_CASE("Direct pointmap linking - fully filled grid (no geometry)", "") {
 
     MetaGraph metaGraph("Test MetaGraph");
     metaGraph.region = Region4f(bottomLeft, topRight);
-    PointMap pointMap(metaGraph.region, "Test PointMap");
-    pointMap.setGrid(spacing, offset);
-    Point2f gridBottomLeft = pointMap.getRegion().bottomLeft;
-    Point2f midPoint(
-        gridBottomLeft.x + spacing * (floor(static_cast<double>(pointMap.getCols()) * 0.5) + 0.5),
-        gridBottomLeft.y + spacing * (floor(static_cast<double>(pointMap.getRows()) * 0.5) + 0.5));
+    LatticeMap latticeMap(metaGraph.region, "Test LatticeMap");
+    latticeMap.setGrid(spacing, offset);
+    Point2f gridBottomLeft = latticeMap.getRegion().bottomLeft;
+    Point2f midPoint(gridBottomLeft.x +
+                         spacing * (floor(static_cast<double>(latticeMap.getCols()) * 0.5) + 0.5),
+                     gridBottomLeft.y +
+                         spacing * (floor(static_cast<double>(latticeMap.getRows()) * 0.5) + 0.5));
     std::vector<Line4f> lines;
-    pointMap.blockLines(lines);
-    pointMap.makePoints(midPoint, fillType);
+    latticeMap.blockLines(lines);
+    latticeMap.makePoints(midPoint, fillType);
 
     std::vector<Line4f> mergeLines;
 
-    PixelRef bottomLeftPixel = pointMap.pixelate(bottomLeft);
-    PixelRef topRightPixel = pointMap.pixelate(topRight);
+    PixelRef bottomLeftPixel = latticeMap.pixelate(bottomLeft);
+    PixelRef topRightPixel = latticeMap.pixelate(topRight);
 
     // make sure pixels are not already merged
-    REQUIRE(!pointMap.isPixelMerged(bottomLeftPixel));
-    REQUIRE(!pointMap.isPixelMerged(topRightPixel));
+    REQUIRE(!latticeMap.isPixelMerged(bottomLeftPixel));
+    REQUIRE(!latticeMap.isPixelMerged(topRightPixel));
 
     // merge
-    pointMap.mergePixels(bottomLeftPixel, topRightPixel);
+    latticeMap.mergePixels(bottomLeftPixel, topRightPixel);
 
     // make sure pixels are merged
-    REQUIRE(pointMap.isPixelMerged(bottomLeftPixel));
-    REQUIRE(pointMap.isPixelMerged(topRightPixel));
+    REQUIRE(latticeMap.isPixelMerged(bottomLeftPixel));
+    REQUIRE(latticeMap.isPixelMerged(topRightPixel));
 
     SECTION("Make sure we get the correct number of merged pixel pairs") {
         const std::vector<std::pair<PixelRef, PixelRef>> &pixelPairs =
-            pointMap.getMergedPixelPairs();
+            latticeMap.getMergedPixelPairs();
         REQUIRE(pixelPairs.size() == 1);
         REQUIRE(pixelPairs[0].first == bottomLeftPixel);
         REQUIRE(pixelPairs[0].second == topRightPixel);
     }
 
     SECTION("Overwrite the pixelpair by re-merging the first pixel of the pair") {
-        PixelRef aboveBottomLeftPixel = pointMap.pixelate(Point2f(bottomLeft.x, bottomLeft.y + 1));
+        PixelRef aboveBottomLeftPixel =
+            latticeMap.pixelate(Point2f(bottomLeft.x, bottomLeft.y + 1));
 
         // merge
-        pointMap.mergePixels(aboveBottomLeftPixel, topRightPixel);
+        latticeMap.mergePixels(aboveBottomLeftPixel, topRightPixel);
 
         // make sure pixels are merged
-        REQUIRE(pointMap.isPixelMerged(aboveBottomLeftPixel));
-        REQUIRE(pointMap.isPixelMerged(topRightPixel));
+        REQUIRE(latticeMap.isPixelMerged(aboveBottomLeftPixel));
+        REQUIRE(latticeMap.isPixelMerged(topRightPixel));
 
         // and previous pixel is not merged any more
-        REQUIRE(!pointMap.isPixelMerged(bottomLeftPixel));
+        REQUIRE(!latticeMap.isPixelMerged(bottomLeftPixel));
 
         // make sure we get the correct number of merged pixel pairs
         const std::vector<std::pair<PixelRef, PixelRef>> &pixelPairs =
-            pointMap.getMergedPixelPairs();
+            latticeMap.getMergedPixelPairs();
         REQUIRE(pixelPairs.size() == 1);
         REQUIRE(pixelPairs[0].first == aboveBottomLeftPixel);
         REQUIRE(pixelPairs[0].second == topRightPixel);
     }
 
     SECTION("Overwrite the pixelpair by re-merging the second pixel of the pair") {
-        PixelRef belowTopRightPixel = pointMap.pixelate(Point2f(topRight.x, topRight.y - 1));
+        PixelRef belowTopRightPixel = latticeMap.pixelate(Point2f(topRight.x, topRight.y - 1));
 
         // merge
-        pointMap.mergePixels(bottomLeftPixel, belowTopRightPixel);
+        latticeMap.mergePixels(bottomLeftPixel, belowTopRightPixel);
 
         // make sure pixels are merged
-        REQUIRE(pointMap.isPixelMerged(bottomLeftPixel));
-        REQUIRE(pointMap.isPixelMerged(belowTopRightPixel));
+        REQUIRE(latticeMap.isPixelMerged(bottomLeftPixel));
+        REQUIRE(latticeMap.isPixelMerged(belowTopRightPixel));
 
         // and previous pixel is not merged any more
-        REQUIRE(!pointMap.isPixelMerged(topRightPixel));
+        REQUIRE(!latticeMap.isPixelMerged(topRightPixel));
 
         // make sure we get the correct number of merged pixel pairs
         const std::vector<std::pair<PixelRef, PixelRef>> &pixelPairs2 =
-            pointMap.getMergedPixelPairs();
+            latticeMap.getMergedPixelPairs();
         REQUIRE(pixelPairs2.size() == 1);
         REQUIRE(pixelPairs2[0].first == bottomLeftPixel);
         REQUIRE(pixelPairs2[0].second == belowTopRightPixel);
     }
 
     SECTION("Merge the same pixel twice to erase the pair") {
-        pointMap.mergePixels(bottomLeftPixel, bottomLeftPixel);
+        latticeMap.mergePixels(bottomLeftPixel, bottomLeftPixel);
 
         // make sure no pixel is merged
-        REQUIRE(!pointMap.isPixelMerged(bottomLeftPixel));
-        REQUIRE(!pointMap.isPixelMerged(topRightPixel));
+        REQUIRE(!latticeMap.isPixelMerged(bottomLeftPixel));
+        REQUIRE(!latticeMap.isPixelMerged(topRightPixel));
 
         // make sure we get the correct number of merged pixel pairs
         const std::vector<std::pair<PixelRef, PixelRef>> &pixelPairs3 =
-            pointMap.getMergedPixelPairs();
+            latticeMap.getMergedPixelPairs();
         REQUIRE(pixelPairs3.size() == 0);
     }
 }
 
-TEST_CASE("Pointmap copy()", "") {
+TEST_CASE("LatticeMap copy()", "") {
     std::vector<Line4f> lines;
     lines.push_back(Line4f(Point2f(1.888668, 1.560937), Point2f(1.888668, 6.908548)));
     lines.push_back(Line4f(Point2f(1.888668, 6.908548), Point2f(7.882500, 6.908548)));
@@ -565,13 +570,13 @@ TEST_CASE("Pointmap copy()", "") {
         shp.makeLineShape(line);
     }
 
-    PointMap pnt(shp.getRegion());
+    LatticeMap pnt(shp.getRegion());
     pnt.setGrid(0.5);
     pnt.blockLines(lines);
     pnt.fillPoint(Point2f(3.0, 6.0));
     pnt.sparkGraph2(nullptr, false, -1);
 
-    PointMap newPnt(shp.getRegion());
+    LatticeMap newPnt(shp.getRegion());
     newPnt.copy(pnt, true, true);
 
     Point2f p(3.01, 6.7);

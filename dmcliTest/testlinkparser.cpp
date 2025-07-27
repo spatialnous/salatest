@@ -83,7 +83,7 @@ TEST_CASE("LINK args valid", "valid") {
     {
         ArgumentHolder ah{"prog",   "-f",   "infile",          "-o",   "outfile",         "-m",
                           "LINK",   "-lnk", "1.2,3.4,5.6,7.8", "-lnk", "0.1,0.2,0.3,0.4", "-lm",
-                          "unlink", "-lmt", "pointmaps"};
+                          "unlink", "-lmt", "latticemaps"};
         LinkParser cmdP;
         cmdP.parse(ah.argc(), ah.argv());
         REQUIRE(cmdP.getManualLinks().size() == 2);

@@ -185,8 +185,9 @@ This mode exports data from a graph file to a csv for further analysis in
 other tools, e.g. Excel or a statistics package. Thus, the output file (`-o` 
 argument) should be a csv file, not a graph file in this mode.
 - `-em <export mode>` one of
-  - `pointmap-data-csv`
-  - `pointmap-connections-csv`
+  - `latticemap-data-csv`
+  - `latticemap-connections-csv`
+  - `latticemap-links-csv`
 
 ### Mode options for `IMPORT`
 The file provided by -f here will be used as the base. If that fileis not a 

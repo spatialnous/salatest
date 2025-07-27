@@ -1,7 +1,7 @@
 {
     "rundir": [
         "rundir",
-        "kr_pointmap"
+        "kr_latticemap"
     ],
     "basebinlocation": "BaselineBinaries",
     "testbinlocation": "../build-RegressionTest",
@@ -9,7 +9,7 @@
     "knownresult": {
         "resultsdir": [
             "expected",
-            "pointmap"
+            "latticemap"
         ]
     },
     "testcases": {
@@ -33,7 +33,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -59,7 +59,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -85,7 +85,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -109,7 +109,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -133,7 +133,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -158,7 +158,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -182,7 +182,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -207,7 +207,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -232,7 +232,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -257,12 +257,12 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
         },
-        "pointmap_create_fill_make_one_operation": {
+        "latticemap_create_fill_make_one_operation": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.csv"
@@ -283,12 +283,12 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
         },
-        "links_pointmap_manual": {
+        "links_latticemap_manual": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.csv"
@@ -310,12 +310,12 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-links-csv"
+                        "-em": "latticemap-links-csv"
                     }
                 }
             ]
         },
-        "links_pointmap_file": {
+        "links_latticemap_file": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.csv"
@@ -334,7 +334,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-links-csv"
+                        "-em": "latticemap-links-csv"
                     }
                 }
             ]

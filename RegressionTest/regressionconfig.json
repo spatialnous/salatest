@@ -7,7 +7,7 @@
     "testbinlocation": "../build-RegressionTest",
     "allowskip": true,
     "testcases": {
-        "links_pointmap_manual": {
+        "links_latticemap_manual": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.graph"
@@ -26,7 +26,7 @@
                 }
             ]
         },
-        "links_pointmap_file": {
+        "links_latticemap_file": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.graph"
@@ -179,14 +179,14 @@
                 }
             ]
         },
-        "visibility_global_with_multiple_pointmaps": {
+        "visibility_global_with_multiple_latticemaps": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.graph"
             ],
             "steps": [
                 {
-                    "infile": "../../../../testdata/gallery_two_pointmaps.graph",
+                    "infile": "../../../../testdata/gallery_two_latticemaps.graph",
                     "outfile": "out.graph",
                     "mode": "VGA",
                     "extraArgs": {
@@ -241,7 +241,7 @@
                 }
             ]
         },
-        "pointmap_export_links": {
+        "latticemap_export_links": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.csv"
@@ -1566,7 +1566,7 @@
                 }
             ]
         },
-        "pointmap_create_fill_make_one_operation": {
+        "latticemap_create_fill_make_one_operation": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.graph"
@@ -1584,7 +1584,7 @@
                 }
             ]
         },
-        "dense_pointmap_create_fill": {
+        "dense_latticemap_create_fill": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.graph"
@@ -1601,7 +1601,7 @@
                 }
             ]
         },
-        "pointmap_create_fill_make_unmake": {
+        "latticemap_create_fill_make_unmake": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.graph"
@@ -1641,7 +1641,7 @@
                 }
             ]
         },
-        "pointmap_create_fill_make_link_unmake": {
+        "latticemap_create_fill_make_link_unmake": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.graph"
@@ -1678,7 +1678,7 @@
                 }
             ]
         },
-        "pointmap_create_fill_make_link_unmake_unlink": {
+        "latticemap_create_fill_make_link_unmake_unlink": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.graph"

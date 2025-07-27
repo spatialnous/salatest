@@ -33,12 +33,17 @@ void ExportParser::parse(size_t argc, char *argv[]) {
                     "-em can only be used once, modes are mutually exclusive");
             }
             ENFORCE_ARGUMENT("-em", i)
-            if (std::strcmp(argv[i], "pointmap-data-csv") == 0) {
-                m_exportMode = ExportMode::POINTMAP_DATA_CSV;
-            } else if (std::strcmp(argv[i], "pointmap-connections-csv") == 0) {
-                m_exportMode = ExportMode::POINTMAP_CONNECTIONS_CSV;
-            } else if (std::strcmp(argv[i], "pointmap-links-csv") == 0) {
-                m_exportMode = ExportMode::POINTMAP_LINKS_CSV;
+            // still accepts the old pointmap- prefix, for a few versions
+            // until the regression test binary CLIs are updated
+            if (std::strcmp(argv[i], "pointmap-data-csv") == 0 ||
+                std::strcmp(argv[i], "latticemap-data-csv") == 0) {
+                m_exportMode = ExportMode::LATTICEMAP_DATA_CSV;
+            } else if (std::strcmp(argv[i], "pointmap-connections-csv") == 0 ||
+                       std::strcmp(argv[i], "latticemap-connections-csv") == 0) {
+                m_exportMode = ExportMode::LATTICEMAP_CONNECTIONS_CSV;
+            } else if (std::strcmp(argv[i], "pointmap-links-csv") == 0 ||
+                       std::strcmp(argv[i], "latticemap-links-csv") == 0) {
+                m_exportMode = ExportMode::LATTICEMAP_LINKS_CSV;
             } else if (std::strcmp(argv[i], "shapegraph-map-csv") == 0) {
                 m_exportMode = ExportMode::SHAPEGRAPH_MAP_CSV;
             } else if (std::strcmp(argv[i], "shapegraph-map-mif") == 0) {
@@ -55,19 +60,19 @@ void ExportParser::parse(size_t argc, char *argv[]) {
     }
 }
 
-PointMapDM &ExportParser::getSelectedOrDisplayedPointMap(MetaGraphDM &mgraph) const {
-    if (mgraph.getPointMaps().size() == 0) {
-        throw dmcli::CommandLineException("No pointmaps available.");
+LatticeMapDM &ExportParser::getSelectedOrDisplayedLatticeMap(MetaGraphDM &mgraph) const {
+    if (mgraph.getLatticeMaps().size() == 0) {
+        throw dmcli::CommandLineException("No lattice maps available.");
     }
     if (m_exportMapIdx.has_value()) {
-        if (mgraph.getPointMaps().size() <= m_exportMapIdx) {
+        if (mgraph.getLatticeMaps().size() <= m_exportMapIdx) {
             throw dmcli::CommandLineException(
                 "Invalid map index selected: " + std::to_string(m_exportMapIdx.value()) +
-                ", only " + std::to_string(mgraph.getPointMaps().size()) + " available.");
+                ", only " + std::to_string(mgraph.getLatticeMaps().size()) + " available.");
         }
-        return mgraph.getPointMaps()[m_exportMapIdx.value()];
+        return mgraph.getLatticeMaps()[m_exportMapIdx.value()];
     }
-    return dm_runmethods::safeGetDisplayedPointMap(mgraph);
+    return dm_runmethods::safeGetDisplayedLatticeMap(mgraph);
 }
 
 ShapeGraphDM &ExportParser::getSelectedOrDisplayedShapeGraph(MetaGraphDM &mgraph) const {
@@ -90,25 +95,25 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
     auto mgraph = dm_runmethods::loadGraph(clp.getFileName().c_str(), perfWriter);
 
     switch (getExportMode()) {
-    case ExportParser::POINTMAP_DATA_CSV: {
-        auto &currentMap = getSelectedOrDisplayedPointMap(mgraph);
+    case ExportParser::LATTICEMAP_DATA_CSV: {
+        auto &currentMap = getSelectedOrDisplayedLatticeMap(mgraph);
         std::ofstream stream(clp.getOuputFile().c_str());
-        DO_TIMED("Writing pointmap data", currentMap.getInternalMap().outputSummary(stream, ','))
+        DO_TIMED("Writing lattice map data", currentMap.getInternalMap().outputSummary(stream, ','))
         stream.close();
         break;
     }
-    case ExportParser::POINTMAP_CONNECTIONS_CSV: {
-        auto &currentMap = getSelectedOrDisplayedPointMap(mgraph);
+    case ExportParser::LATTICEMAP_CONNECTIONS_CSV: {
+        auto &currentMap = getSelectedOrDisplayedLatticeMap(mgraph);
         std::ofstream stream(clp.getOuputFile().c_str());
-        DO_TIMED("Writing pointmap connections",
+        DO_TIMED("Writing lattice map connections",
                  currentMap.getInternalMap().outputConnectionsAsCSV(stream, ","))
         stream.close();
         break;
     }
-    case ExportParser::POINTMAP_LINKS_CSV: {
-        auto &currentMap = getSelectedOrDisplayedPointMap(mgraph);
+    case ExportParser::LATTICEMAP_LINKS_CSV: {
+        auto &currentMap = getSelectedOrDisplayedLatticeMap(mgraph);
         std::ofstream stream(clp.getOuputFile().c_str());
-        DO_TIMED("Writing pointmap connections",
+        DO_TIMED("Writing lattice map connections",
                  currentMap.getInternalMap().outputLinksAsCSV(stream, ","))
         stream.close();
         break;
@@ -116,7 +121,7 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
     case ExportParser::SHAPEGRAPH_MAP_CSV: {
         auto &currentMap = getSelectedOrDisplayedShapeGraph(mgraph);
         std::ofstream stream(clp.getOuputFile().c_str());
-        DO_TIMED("Writing pointmap connections", currentMap.getInternalMap().output(stream, ','))
+        DO_TIMED("Writing lattice map connections", currentMap.getInternalMap().output(stream, ','))
         stream.close();
         break;
     }
@@ -137,7 +142,7 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
         }
         std::ofstream mifStream(mifFile);
         std::ofstream midStream(midFile);
-        DO_TIMED("Writing pointmap connections",
+        DO_TIMED("Writing lattice map connections",
                  currentMap.getInternalMap().outputMifMap(mifStream, midStream))
         mifStream.close();
         midStream.close();

@@ -38,7 +38,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -68,7 +68,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -121,7 +121,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -151,7 +151,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -181,7 +181,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -211,7 +211,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -241,7 +241,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -271,7 +271,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -301,7 +301,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -331,7 +331,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
@@ -361,7 +361,7 @@
                     "outfile": "out.csv",
                     "mode": "EXPORT",
                     "extraArgs": {
-                        "-em": "pointmap-data-csv"
+                        "-em": "latticemap-data-csv"
                     }
                 }
             ]
