@@ -25,17 +25,21 @@ class TestRegressionTestRunner(unittest.TestCase):
 
     def test_RegressionTestRunnerAllGoesWell(self):
         with DisposableFile("testconfig.json") as f, DisposableDirectory("testrundir") as d:
+            print("Running Test where all goes well..")
             writeConfig(f.filename(), d.name())
             runner = RegressionTestRunner(f.filename(), lambda w, a, s: self.runfunc(w, a))
             self.counter = -1
             self.assertTrue(runner.run())
+            print()
 
     def test_RegressionTestRunnerOneRunFails(self):
         with DisposableFile("testconfig.json") as f, DisposableDirectory("testrundir") as d:
+            print("Running Test where one fails..")
             writeConfig(f.filename(), d.name())
             runner = RegressionTestRunner(f.filename(), lambda w, a, s: self.runfunc(w, a))
             self.counter = 2
             self.assertFalse(runner.run())
+            print()
 
 if __name__ == "__main__":
     unittest.main()
