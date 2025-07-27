@@ -4,31 +4,56 @@ SPDX-PackageSupplier = "Petros Koutsolampros <commits@pklampros.io>"
 SPDX-PackageDownloadLocation = "https://github.com/spatialnous/gensalatest"
 
 [[annotations]]
-path = [".gitignore", "README.md", ".clang-format", ".clang-tidy", ".gitmodules", ".mailmap", "ThirdParty/.clang-tidy", ".github/FUNDING.yml"]
+path = [
+    ".gitignore",
+    "README.md",
+    ".clang-format",
+    ".clang-tidy",
+    ".gitmodules",
+    ".mailmap",
+    "ThirdParty/.clang-tidy",
+    ".github/FUNDING.yml",
+    "REUSE.toml"
+    ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Petros Koutsolampros <commits@pklampros.io>"
 SPDX-License-Identifier = "GPL-3.0-or-later"
 
 [[annotations]]
-path = ["RegressionTest/BaselineBinaries/**", "dist/**", "docs/**.md", "RegressionTest/.gitignore"]
+path = [
+    "RegressionTest/BaselineBinaries/**",
+    "dist/**",
+    "docs/**.md",
+    "RegressionTest/.gitignore"
+    ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "depthmap authors"
 SPDX-License-Identifier = "GPL-3.0-or-later"
 
 [[annotations]]
-path = [".travis.yml", "ci/.gitattributes", "tools/build_image/readme.txt"]
+path = [
+    ".travis.yml",
+    "ci/.gitattributes",
+    "tools/build_image/readme.txt"
+    ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Christian Sailer"
 SPDX-License-Identifier = "GPL-3.0-or-later"
 
 [[annotations]]
-path = ["RegressionTest/**.json", "tools/build_image/Dockerfile"]
+path = [
+    "RegressionTest/**.json",
+    "tools/build_image/Dockerfile"
+    ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Christian Sailer, Petros Koutsolampros <commits@pklampros.io>"
 SPDX-License-Identifier = "GPL-3.0-or-later"
 
 [[annotations]]
-path = ["testdata/**", "RegressionTest/expected/**"]
+path = [
+    "testdata/**",
+    "RegressionTest/expected/**"
+    ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Public domain"
 SPDX-License-Identifier = "CC0-1.0"
