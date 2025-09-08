@@ -17,7 +17,14 @@ class SegmentParser : public IModeParser {
     void parse(size_t argc, char **argv) override;
     void run(const CommandLineParser &clp, IPerformanceSink &perfWriter) const override;
 
-    enum class InAnalysisType { NONE, ANGULAR_TULIP, ANGULAR_FULL, TOPOLOGICAL, METRIC };
+    enum class InAnalysisType {
+        NONE,
+        ANGULAR_TULIP,
+        ANGULAR_FULL,
+        TOPOLOGICAL,
+        METRIC,
+        TULIP_LEAF_CHOICE
+    };
 
     enum class InRadiusType { NONE, SEGMENT_STEPS, ANGULAR, METRIC };
 

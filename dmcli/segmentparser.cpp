@@ -26,6 +26,7 @@ std::string SegmentParser::getHelp() const {
            "       angular (Angular Full - Slower)\n"
            "       topological\n"
            "       metric\n"
+           "       tulip-leaf-choice\n"
            "  -sr  <radius/list of radii>\n"
            "  -srt <radius type> (only for Tulip) one of:\n"
            "       steps\n"
@@ -53,6 +54,8 @@ void SegmentParser::parse(size_t argc, char **argv) {
                 m_analysisType = InAnalysisType::TOPOLOGICAL;
             } else if (std::strcmp(argv[i], "metric") == 0) {
                 m_analysisType = InAnalysisType::METRIC;
+            } else if (std::strcmp(argv[i], "tulip-leaf-choice") == 0) {
+                m_analysisType = InAnalysisType::TULIP_LEAF_CHOICE;
             } else {
                 throw dmcli::CommandLineException(std::string("Invalid SEGMENT mode: ") + argv[i]);
             }
@@ -103,19 +106,26 @@ void SegmentParser::parse(size_t argc, char **argv) {
         throw dmcli::CommandLineException("At least one radius must be provided");
     }
 
-    if (getAnalysisType() == InAnalysisType::ANGULAR_TULIP &&
+    if ((getAnalysisType() == InAnalysisType::ANGULAR_TULIP ||
+         getAnalysisType() == InAnalysisType::TULIP_LEAF_CHOICE) &&
         getRadiusType() == InRadiusType::NONE) {
         throw dmcli::CommandLineException("Radius type is required for tulip analysis");
     }
 
-    if (getAnalysisType() == InAnalysisType::ANGULAR_TULIP && getTulipBins() == 0) {
+    if ((getAnalysisType() == InAnalysisType::ANGULAR_TULIP ||
+         getAnalysisType() == InAnalysisType::TULIP_LEAF_CHOICE) &&
+        getTulipBins() == 0) {
         throw dmcli::CommandLineException("Tulip bins are required for tulip analysis");
     }
 
-    if (getAnalysisType() != InAnalysisType::ANGULAR_TULIP &&
-        (getTulipBins() != 0 || getRadiusType() != InRadiusType::NONE || m_includeChoice)) {
+    if (!(getAnalysisType() == InAnalysisType::ANGULAR_TULIP ||
+          getAnalysisType() == InAnalysisType::TULIP_LEAF_CHOICE) &&
+        (getTulipBins() != 0 || getRadiusType() != InRadiusType::NONE)) {
         throw dmcli::CommandLineException(
-            "-stb, -srt and -sic can only be used with tulip analysis");
+            "-stb and -srt can only be used with tulip and tulip-leaf-choice analysis");
+    }
+    if (getAnalysisType() != InAnalysisType::ANGULAR_TULIP && m_includeChoice) {
+        throw dmcli::CommandLineException("-sic can only be used with tulip analysis");
     }
 }
 
@@ -191,6 +201,15 @@ void SegmentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
         DO_TIMED("Segment metric", metaGraph.analyseTopoMetMultipleRadii(
                                        dm_runmethods::getCommunicator(clp).get(), options.radiusSet,
                                        options.outputType, options.radius, options.selOnly))
+        break;
+    }
+    case InAnalysisType::TULIP_LEAF_CHOICE: {
+        DO_TIMED("Segment tulip leaf choice analysis",
+                 metaGraph.analyseSegmentsTulipLeafChoice(
+                     dm_runmethods::getCommunicator(clp).get(), options.radiusSet, options.selOnly,
+                     options.tulipBins, options.weightedMeasureCol, options.radiusType,
+                     options.weightedMeasureCol2, options.routeweightCol, false,
+                     (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0")))
         break;
     }
     case InAnalysisType::NONE:
