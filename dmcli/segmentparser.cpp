@@ -32,7 +32,7 @@ std::string SegmentParser::getHelp() const {
            "       steps\n"
            "       metric\n"
            "       angular\n"
-           "  -sic to include choice (only for Tulip)\n"
+           "  -sic to include choice (only for Angular Tulip)\n"
            "  -stb <tulip bins> (4 to 1024, 1024 approximates full angular)\n"
            "  -swa <map attribute name> perform weighted analysis using this attribute (only for "
            "Tulip)\n";
@@ -179,7 +179,7 @@ void SegmentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
                      dm_runmethods::getCommunicator(clp).get(), options.radiusSet, options.selOnly,
                      options.tulipBins, options.weightedMeasureCol, options.radiusType,
                      options.choice, options.weightedMeasureCol2, options.routeweightCol, false,
-                     (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0")))
+                     (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0"), true))
         break;
     }
     case InAnalysisType::ANGULAR_FULL: {
