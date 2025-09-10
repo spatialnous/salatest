@@ -105,15 +105,7 @@ void VgaParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter) 
 
     std::optional<std::string> mimicVersion = clp.getMimickVersion();
 
-    if (!mimicVersion.has_value()) {
-        // current version
-        DO_TIMED("Run VGA",
-                 metaGraph.analyseGraph(dm_runmethods::getCommunicator(clp).get(),
-                                        options->pointDepthSelection, options->outputType,
-                                        options->local, options->gatesOnly, options->global,
-                                        options->radius, clp.simpleMode());)
-
-    } else if (*mimicVersion == "depthmapX 0.8.0") {
+    if (mimicVersion.has_value() && *mimicVersion == "depthmapX 0.8.0") {
         int currentDisplayedAttribute = -1;
         if (getVgaMode() == VgaParser::VgaMode::ISOVIST) {
             // in this version vga isovist analysis does not change the
@@ -142,6 +134,13 @@ void VgaParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter) 
                     static_cast<size_t>(displayedAttribute)));
             map.setDisplayedAttribute(sortedDisplayedAttribute);
         }
+    } else {
+        // current version
+        DO_TIMED("Run VGA",
+                 metaGraph.analyseGraph(dm_runmethods::getCommunicator(clp).get(),
+                                        options->pointDepthSelection, options->outputType,
+                                        options->local, options->gatesOnly, options->global,
+                                        options->radius, clp.simpleMode());)
     }
 
     std::cout << " ok\nWriting out result..." << std::flush;

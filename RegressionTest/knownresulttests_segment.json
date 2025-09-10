@@ -332,6 +332,33 @@
                 }
             ]
         },
+        "segment_tulip_1024_rn_steps_leaf_choice": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/barnsbury_segment.graph",
+                    "outfile": "out.graph",
+                    "mode": "SEGMENT",
+                    "extraArgs": {
+                        "-st": "tulip-leaf-choice",
+                        "-stb": "1024",
+                        "-sr": "n",
+                        "-srt": "steps"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "shapegraph-map-csv"
+                    }
+                }
+            ]
+        },
         "segment_tulip_1024_rn_steps_weighted": {
             "minVersion": "0.8.0",
             "compareFiles": [

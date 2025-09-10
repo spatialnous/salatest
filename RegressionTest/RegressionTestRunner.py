@@ -59,8 +59,10 @@ class RegressionTestRunner():
             extraBaseArgs = ["-idd"]
             extraTestArgs = ["-idd"]
             print("Both test and base binaries can drop display data. Dropping");
-        elif self.canMimicVersion(".", self.testBinary):
-            extraTestArgs = ["-mmv", str(self.__baseVersion)]
+        if (not self.config.knownResultTesting.enabled and
+            self.__baseVersion != self.__testVersion and
+            self.canMimicVersion(".", self.testBinary)):
+            extraTestArgs.extend(["-mmv", str(self.__baseVersion)])
             print("Test binary can mimic older versions. Mimicking base's \"" + str(self.__baseVersion) + "\"");
         return {"base": extraBaseArgs, "test": extraTestArgs}
 

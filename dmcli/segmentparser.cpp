@@ -179,7 +179,10 @@ void SegmentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrit
                      dm_runmethods::getCommunicator(clp).get(), options.radiusSet, options.selOnly,
                      options.tulipBins, options.weightedMeasureCol, options.radiusType,
                      options.choice, options.weightedMeasureCol2, options.routeweightCol, false,
-                     (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0"), true))
+                     (mimicVersion.has_value() && mimicVersion == "depthmapX 0.8.0"),
+                     (mimicVersion.has_value() && (mimicVersion == "depthmapX 0.8.0" || //
+                                                   mimicVersion == "depthmapX 0.9.0" || //
+                                                   mimicVersion == "depthmapXcli 0.9.0"))))
         break;
     }
     case InAnalysisType::ANGULAR_FULL: {
