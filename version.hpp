@@ -10,7 +10,7 @@
 
 // use these to define the depthmap versions
 #define DEPTHMAP_MAJOR_VERSION 0
-#define DEPTHMAP_MINOR_VERSION 10
+#define DEPTHMAP_MINOR_VERSION 11
 #define DEPTHMAP_REVISION_VERSION 0
 
 #define DEPTHMAP_MODULE_VERSION 10.04
