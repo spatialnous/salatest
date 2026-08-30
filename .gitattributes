@@ -1,0 +1,24 @@
+# Source, scripts and docs: LF in the repository and working tree
+*.c     text eol=lf
+*.cpp   text eol=lf
+*.hpp   text eol=lf
+*.in    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.php   text eol=lf
+*.py    text eol=lf
+*.sh    text eol=lf
+*.toml  text eol=lf
+*.txt   text eol=lf
+*.yml   text eol=lf
+
+# Test fixtures and baseline binaries: byte-for-byte, never converted.
+# The .dxf files are CRLF and two of them feed regression tests; the .graph
+# files are binary.
+testdata/**                         -text
+RegressionTest/BaselineBinaries/**  -text
+
+# Expected regression outputs: dmcli writes platform-native line endings via
+# plain std::ofstream, so these must convert on checkout to match it.
+# Do NOT pin these to eol=lf until dmcli writes in binary mode.
+RegressionTest/expected/**          text
