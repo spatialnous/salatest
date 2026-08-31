@@ -8,6 +8,9 @@
 
 #include "salalib/genlib/point2f.hpp"
 
+#include <cstddef>
+#include <string>
+
 class SegmentShortestPathParser : public IModeParser {
   public:
     SegmentShortestPathParser() : m_stepType(StepType::NONE) {}

@@ -7,6 +7,7 @@
 #include "commandlineparser.hpp"
 #include "imodeparser.hpp"
 
+#include <cstddef>
 #include <string>
 #include <vector>
 

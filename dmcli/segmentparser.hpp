@@ -6,6 +6,10 @@
 
 #include "imodeparser.hpp"
 
+#include <cstddef>
+#include <string>
+#include <vector>
+
 class SegmentParser : public IModeParser {
   public:
     SegmentParser();

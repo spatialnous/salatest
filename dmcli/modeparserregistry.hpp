@@ -6,9 +6,6 @@
 
 #include "imodeparserfactory.hpp"
 
-#include <memory>
-#include <vector>
-
 class ModeParserRegistry : public IModeParserFactory {
   public:
     ModeParserRegistry() { populateParsers(); }

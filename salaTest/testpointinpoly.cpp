@@ -5,6 +5,7 @@
 #include "salalib/shapemap.hpp"
 
 #include "catch_amalgamated.hpp"
+
 #include <memory>
 #include <vector>
 

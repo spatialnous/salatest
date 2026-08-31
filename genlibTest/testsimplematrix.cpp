@@ -37,12 +37,15 @@ TEST_CASE("Row matrix test assignemnt copy and move") {
 
     genlib::RowMatrix<std::string> clone(std::move(copy));
     compareMatrixContent(clone, expected);
+
+#ifndef __clang_analyzer__
     // PK: The intention here is indeed to check if the copy that has been
     // moved from stops existing. However this check triggers coverity's
     // use_after_move (which is reasonable), so we should disable it as
     // it is intentional
     /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
+#endif
 
     copy = clone;
     compareMatrixContent(copy, expected);
@@ -53,12 +56,15 @@ TEST_CASE("Row matrix test assignemnt copy and move") {
     genlib::RowMatrix<std::string> assignMove(1, 1);
     assignMove = std::move(copy);
     compareMatrixContent(assignMove, expected);
+
+#ifndef __clang_analyzer__
     // PK: The intention here is indeed to check if the copy that has been
     // moved from stops existing. However this check triggers coverity's
     // use_after_move (which is reasonable), so we should disable it as
     // it is intentional
     /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
+#endif
 }
 
 TEST_CASE("Row matrix test exceptions") {
@@ -96,12 +102,15 @@ TEST_CASE("Column matrix test assignemnt copy and move") {
 
     genlib::ColumnMatrix<std::string> clone(std::move(copy));
     compareMatrixContent(clone, expected);
+
+#ifndef __clang_analyzer__
     // PK: The intention here is indeed to check if the copy that has been
     // moved from stops existing. However this check triggers coverity's
     // use_after_move (which is reasonable), so we should disable it as
     // it is intentional
     /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
+#endif
 
     copy = clone;
     compareMatrixContent(copy, expected);
@@ -112,12 +121,15 @@ TEST_CASE("Column matrix test assignemnt copy and move") {
     genlib::ColumnMatrix<std::string> assignMove(1, 1);
     assignMove = std::move(copy);
     compareMatrixContent(assignMove, expected);
+
+#ifndef __clang_analyzer__
     // PK: The intention here is indeed to check if the copy that has been
     // moved from stops existing. However this check triggers coverity's
     // use_after_move (which is reasonable), so we should disable it as
     // it is intentional
     /* coverity[use_after_move] */
     REQUIRE(copy.size() == 0);
+#endif
 }
 
 TEST_CASE("Column matrix test exceptions") {

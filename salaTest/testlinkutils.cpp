@@ -6,6 +6,7 @@
 
 #include "catch_amalgamated.hpp"
 #include "salalib/shapemapgroupdata.hpp"
+
 #include <algorithm>
 #include <cmath>
 #include <utility>

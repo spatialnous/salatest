@@ -4,8 +4,8 @@
 
 #pragma once
 
+#include <cstdio>
 #include <iostream>
-#include <stdio.h>
 #include <string>
 
 class SelfCleaningFile {

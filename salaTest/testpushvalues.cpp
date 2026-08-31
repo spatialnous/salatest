@@ -9,6 +9,7 @@
 #include "salalib/shapemapgroupdata.hpp"
 
 #include "catch_amalgamated.hpp"
+
 #include <cmath>
 #include <limits>
 #include <utility>

@@ -7,6 +7,7 @@
 #include "salalib/genlib/exceptions.hpp"
 
 #include <string>
+#include <utility>
 
 namespace dmcli {
     class CommandLineException : public genlib::BaseException {

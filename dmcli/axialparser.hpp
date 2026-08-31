@@ -8,6 +8,10 @@
 
 #include "salalib/genlib/point2f.hpp"
 
+#include <cstddef>
+#include <string>
+#include <vector>
+
 class AxialParser : public IModeParser {
   public:
     AxialParser();

@@ -10,6 +10,9 @@
 #include "commandlineparser.hpp"
 #include "performancesink.hpp"
 
+#include <cstddef>
+#include <string>
+
 class IModeParser {
   public:
     virtual std::string getModeName() const = 0;

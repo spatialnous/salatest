@@ -8,6 +8,8 @@
 
 #include "salalib/isovistdef.hpp"
 
+#include <cstddef>
+#include <string>
 #include <vector>
 
 class IsovistParser : public IModeParser {

@@ -8,6 +8,7 @@
 #include "salalib/salaprogram.hpp"
 #include "salalib/shapegraph.hpp"
 #include "salalib/shapemapgroupdata.hpp"
+
 #include <sstream>
 #include <utility>
 #include <vector>

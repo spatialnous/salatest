@@ -6,6 +6,8 @@
 
 #include "catch_amalgamated.hpp"
 
+#include <math.h>
+
 TEST_CASE("Full Isovist") {
     IsovistDefinition isovist(1.0, 1.0);
     REQUIRE(isovist.getLocation().x == Catch::Approx(1.0));

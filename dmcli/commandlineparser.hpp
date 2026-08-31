@@ -4,10 +4,9 @@
 
 #pragma once
 
-#include <memory>
+#include <cstddef>
 #include <optional>
 #include <string>
-#include <vector>
 
 class IModeParserFactory;
 class IModeParser;

@@ -9,6 +9,7 @@
 
 #include "salalib/importtypedefs.hpp"
 
+#include <cstddef>
 #include <string>
 #include <vector>
 

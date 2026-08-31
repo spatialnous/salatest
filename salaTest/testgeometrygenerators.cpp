@@ -8,6 +8,7 @@
 #include "salalib/genlib/point2f.hpp"
 
 #include "catch_amalgamated.hpp"
+
 #include <cstddef>
 #include <vector>
 

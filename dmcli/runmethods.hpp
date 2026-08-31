@@ -9,6 +9,7 @@
 #include "dminterface/metagraphdm.hpp"
 #include "performancesink.hpp"
 
+#include <memory>
 #include <string>
 
 #define CONCAT_(x, y) x##y

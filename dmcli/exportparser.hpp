@@ -8,6 +8,8 @@
 #include "dminterface/metagraphdm.hpp"
 #include "imodeparser.hpp"
 
+#include <cstddef>
+#include <optional>
 #include <string>
 
 class ExportParser : public IModeParser {

@@ -9,6 +9,7 @@
 #include "salalib/shapegraph.hpp"
 
 #include "catch_amalgamated.hpp"
+
 #include <cstddef>
 #include <memory>
 #include <vector>

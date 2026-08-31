@@ -9,6 +9,7 @@
 #include "salalib/vgamodules/vgametricdepth.hpp"
 
 #include "catch_amalgamated.hpp"
+
 #include <algorithm>
 #include <cmath>
 #include <memory>

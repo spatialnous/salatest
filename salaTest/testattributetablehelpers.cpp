@@ -7,6 +7,7 @@
 #include "catch_amalgamated.hpp"
 
 #include "Catch/fakeit.hpp"
+
 #include <cstddef>
 #include <set>
 #include <string>

@@ -9,6 +9,7 @@
 
 #include "catch_amalgamated.hpp"
 
+#include <math.h>
 #include <ostream>
 #include <sstream>
 #include <vector>

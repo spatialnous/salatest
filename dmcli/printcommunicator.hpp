@@ -6,6 +6,8 @@
 
 #include "dminterface/comm.hpp"
 
+#include <cstddef>
+
 class PrintCommunicator : public ICommunicator {
   public:
     PrintCommunicator() {

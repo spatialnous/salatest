@@ -7,6 +7,7 @@
 #include "dmcli/segmentshortestpathparser.hpp"
 
 #include "catch_amalgamated.hpp"
+
 #include <ostream>
 #include <sstream>
 

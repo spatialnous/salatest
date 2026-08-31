@@ -14,6 +14,7 @@
 //  ----------------------------------------------------------
 
 #include "ThirdParty/Catch/catch_amalgamated.hpp"
+
 #include <string_view>
 #include <memory>
 #include <initializer_list>

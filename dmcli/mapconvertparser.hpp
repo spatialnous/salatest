@@ -8,6 +8,8 @@
 
 #include "salalib/shapemap.hpp"
 
+#include <cstddef>
+
 class MapConvertParser : public IModeParser {
   public:
     MapConvertParser()
