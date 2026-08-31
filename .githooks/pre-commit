@@ -50,7 +50,6 @@ fi
 if [ -n "$CPP_FILES" ]; then
     TIDY_OUTPUT=$(clang-tidy --quiet \
         -checks='-*,misc-include-cleaner' \
-        -config='{CheckOptions: [{key: misc-include-cleaner.IgnoreHeaders, value: ".*[.]hpp;.*[.]h"}]}' \
         $CPP_FILES -- -std=c++17 $TIDY_INC 2>&1 || true)
 
     # A file that fails to parse produces no include-cleaner findings, so a
