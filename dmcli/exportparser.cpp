@@ -12,6 +12,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <fstream>
+#include <ios>
 #include <optional>
 #include <string>
 #include <utility>
@@ -101,14 +102,14 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
     switch (getExportMode()) {
     case ExportParser::LATTICEMAP_DATA_CSV: {
         auto &currentMap = getSelectedOrDisplayedLatticeMap(mgraph);
-        std::ofstream stream(clp.getOuputFile().c_str());
+        std::ofstream stream(clp.getOuputFile().c_str(), std::ios::binary);
         DO_TIMED("Writing lattice map data", currentMap.getInternalMap().outputSummary(stream, ','))
         stream.close();
         break;
     }
     case ExportParser::LATTICEMAP_CONNECTIONS_CSV: {
         auto &currentMap = getSelectedOrDisplayedLatticeMap(mgraph);
-        std::ofstream stream(clp.getOuputFile().c_str());
+        std::ofstream stream(clp.getOuputFile().c_str(), std::ios::binary);
         DO_TIMED("Writing lattice map connections",
                  currentMap.getInternalMap().outputConnectionsAsCSV(stream, ","))
         stream.close();
@@ -116,7 +117,7 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
     }
     case ExportParser::LATTICEMAP_LINKS_CSV: {
         auto &currentMap = getSelectedOrDisplayedLatticeMap(mgraph);
-        std::ofstream stream(clp.getOuputFile().c_str());
+        std::ofstream stream(clp.getOuputFile().c_str(), std::ios::binary);
         DO_TIMED("Writing lattice map connections",
                  currentMap.getInternalMap().outputLinksAsCSV(stream, ","))
         stream.close();
@@ -124,7 +125,7 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
     }
     case ExportParser::SHAPEGRAPH_MAP_CSV: {
         auto &currentMap = getSelectedOrDisplayedShapeGraph(mgraph);
-        std::ofstream stream(clp.getOuputFile().c_str());
+        std::ofstream stream(clp.getOuputFile().c_str(), std::ios::binary);
         DO_TIMED("Writing lattice map connections", currentMap.getInternalMap().output(stream, ','))
         stream.close();
         break;
@@ -144,8 +145,8 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
             mifFile = fileName.substr(0, fileName.length() - 4) + ".mif";
             midFile = std::move(fileName);
         }
-        std::ofstream mifStream(mifFile);
-        std::ofstream midStream(midFile);
+        std::ofstream mifStream(mifFile, std::ios::binary);
+        std::ofstream midStream(midFile, std::ios::binary);
         DO_TIMED("Writing lattice map connections",
                  currentMap.getInternalMap().outputMifMap(mifStream, midStream))
         mifStream.close();
@@ -154,7 +155,7 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
     }
     case ExportParser::SHAPEGRAPH_CONNECTIONS_CSV: {
         auto &currentMap = getSelectedOrDisplayedShapeGraph(mgraph);
-        std::ofstream stream(clp.getOuputFile().c_str());
+        std::ofstream stream(clp.getOuputFile().c_str(), std::ios::binary);
         DO_TIMED("Writing shapegraph connections",
                  currentMap.getInternalMap().isAxialMap()
                      ? currentMap.getInternalMap().writeAxialConnectionsAsPairsCSV(stream)
@@ -164,7 +165,7 @@ void ExportParser::run(const CommandLineParser &clp, IPerformanceSink &perfWrite
     }
     case ExportParser::SHAPEGRAPH_LINKS_UNLINKS_CSV: {
         auto &currentMap = getSelectedOrDisplayedShapeGraph(mgraph);
-        std::ofstream stream(clp.getOuputFile().c_str());
+        std::ofstream stream(clp.getOuputFile().c_str(), std::ios::binary);
         DO_TIMED("Writing shapegraph links and unlinks",
                  currentMap.getInternalMap().writeLinksUnlinksAsPairsCSV(stream))
         stream.close();

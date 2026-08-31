@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <fstream>
+#include <ios>
 #include <ostream>
 #include <sstream>
 #include <string>
@@ -20,7 +21,7 @@ void PerformanceWriter::addData(const std::string &message, double timeInSeconds
 
 void PerformanceWriter::write() const {
     if (!m_filename.empty()) {
-        std::ofstream outfile(m_filename);
+        std::ofstream outfile(m_filename, std::ios::binary);
         outfile << "\"action\",\"duration\"\n";
         std::for_each(m_data.begin(), m_data.end(),
                       [&outfile](const std::string &line) mutable -> void { (outfile) << line; });

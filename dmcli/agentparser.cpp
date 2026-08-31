@@ -417,13 +417,13 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
             break;
         }
         case AgentParser::OutputType::GATECOUNTS: {
-            std::ofstream gatecountStream(clp.getOuputFile().c_str());
+            std::ofstream gatecountStream(clp.getOuputFile().c_str(), std::ios::binary);
             DO_TIMED("Writing gatecounts",
                      currentMap.getInternalMap().outputSummary(gatecountStream, ','))
             break;
         }
         case AgentParser::OutputType::TRAILS: {
-            std::ofstream trailStream(clp.getOuputFile().c_str());
+            std::ofstream trailStream(clp.getOuputFile().c_str(), std::ios::binary);
             DO_TIMED("Writing trails",
                      exportUtils::writeMapShapesAsCat(recordTrails->map, trailStream))
 
@@ -466,14 +466,14 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
         if (std::find(resultTypes.begin(), resultTypes.end(),
                       AgentParser::OutputType::GATECOUNTS) != resultTypes.end()) {
             std::string outFile = clp.getOuputFile() + "_gatecounts.csv";
-            std::ofstream gatecountStream(outFile.c_str());
+            std::ofstream gatecountStream(outFile.c_str(), std::ios::binary);
             DO_TIMED("Writing gatecounts",
                      currentMap.getInternalMap().outputSummary(gatecountStream, ','))
         }
         if (std::find(resultTypes.begin(), resultTypes.end(), AgentParser::OutputType::TRAILS) !=
             resultTypes.end()) {
             std::string outFile = clp.getOuputFile() + "_trails.cat";
-            std::ofstream trailStream(outFile.c_str());
+            std::ofstream trailStream(outFile.c_str(), std::ios::binary);
             DO_TIMED("Writing trails",
                      exportUtils::writeMapShapesAsCat(recordTrails->map, trailStream))
         }
