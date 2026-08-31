@@ -7,7 +7,8 @@
 set -e
 
 echo "Checking for submodule commits not pushed"
-CHNG=$(git submodule foreach --quiet 'git diff --stat main origin/main')
+CHNG=$(git submodule foreach --quiet \
+  'git merge-base --is-ancestor HEAD origin/main 2>/dev/null || echo "$name"')
 if [ ! -z "$CHNG" -a "$CHNG" != " " ]; then
     echo "Submodules not pushed"
     exit 1
