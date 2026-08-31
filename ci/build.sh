@@ -1,8 +1,8 @@
+#!/bin/bash
 # SPDX-FileCopyrightText: 2017 Christian Sailer
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-#!/bin/sh
 
 source /opt/qt511/bin/qt511-env.sh
 if [ ! -d build ]; then
