@@ -11,8 +11,16 @@
 
 #include "salalib/entityparsing.hpp"
 
+#include <cerrno>
 #include <cstring>
+#include <fstream>
+#include <iostream>
+#include <iterator>
+#include <optional>
+#include <ostream>
 #include <sstream>
+#include <string>
+#include <vector>
 
 void StepDepthParser::parse(size_t argc, char **argv) {
 

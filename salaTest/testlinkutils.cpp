@@ -6,6 +6,10 @@
 
 #include "catch_amalgamated.hpp"
 #include "salalib/shapemapgroupdata.hpp"
+#include <algorithm>
+#include <cmath>
+#include <utility>
+#include <vector>
 
 TEST_CASE("Test linking - fully filled grid (no geometry)", "") {
     double spacing = 0.5;

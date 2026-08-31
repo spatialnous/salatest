@@ -7,6 +7,9 @@
 #include "catch_amalgamated.hpp"
 
 #include "Catch/fakeit.hpp"
+#include <cstddef>
+#include <set>
+#include <string>
 
 TEST_CASE("push to layer") {
     using namespace dXreimpl;

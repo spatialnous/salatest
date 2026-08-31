@@ -7,6 +7,7 @@
 #include "catch_amalgamated.hpp"
 
 #include <fstream>
+#include <string>
 
 namespace {
     bool fileExists(const std::string &filename) {

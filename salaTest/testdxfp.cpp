@@ -8,6 +8,10 @@
 #include "salalib/genlib/point2f.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <cstddef>
+#include <sstream>
+#include <string>
+#include <vector>
 
 TEST_CASE("DXF Parsing (lines)") {
     const float epsilon = 0.001f;

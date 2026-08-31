@@ -9,8 +9,12 @@
 #include "runmethods.hpp"
 #include "simpletimer.hpp"
 
+#include <cstdlib>
 #include <cstring>
-#include <sstream>
+#include <fstream>
+#include <optional>
+#include <string>
+#include <utility>
 
 ExportParser::ExportParser() : m_exportMapIdx(std::nullopt), m_exportMode(ExportMode::NONE) {}
 

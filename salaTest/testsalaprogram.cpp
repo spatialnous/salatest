@@ -9,6 +9,8 @@
 #include "salalib/shapegraph.hpp"
 #include "salalib/shapemapgroupdata.hpp"
 #include <sstream>
+#include <utility>
+#include <vector>
 
 // Most of these test cases are adapted from salalib/salascript-tests.txt
 // with some added for completeness

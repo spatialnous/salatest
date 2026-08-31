@@ -6,6 +6,11 @@
 
 #include "catch_amalgamated.hpp"
 #include "salalib/shapemapgroupdata.hpp"
+#include <cstddef>
+#include <map>
+#include <memory>
+#include <utility>
+#include <vector>
 
 TEST_CASE("Failing empty drawing map conversion", "") {
     {

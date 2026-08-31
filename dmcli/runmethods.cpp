@@ -9,8 +9,11 @@
 #include "printcommunicator.hpp"
 #include "simpletimer.hpp"
 
+#include <iostream>
 #include <memory>
+#include <ostream>
 #include <sstream>
+#include <string>
 #include <vector>
 
 namespace dm_runmethods {

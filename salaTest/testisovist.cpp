@@ -9,6 +9,9 @@
 #include "salalib/salashape.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <cstddef>
+#include <memory>
+#include <vector>
 
 TEST_CASE("Simple Isovist") {
 

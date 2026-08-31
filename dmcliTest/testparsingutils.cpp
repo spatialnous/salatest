@@ -5,6 +5,8 @@
 #include "dmcli/parsingutils.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <string>
+#include <vector>
 
 TEST_CASE("AxialRadiusParsing success") {
     std::string testString = "5,1,n";

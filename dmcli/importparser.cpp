@@ -12,8 +12,13 @@
 #include "salalib/importutils.hpp"
 
 #include <cstring>
+#include <fstream>
 #include <memory>
+#include <optional>
+#include <ostream>
 #include <sstream>
+#include <utility>
+#include <vector>
 
 void ImportParser::parse(size_t argc, char *argv[]) {
     for (size_t i = 1; i < argc; ++i) {

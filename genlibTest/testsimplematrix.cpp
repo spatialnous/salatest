@@ -7,6 +7,8 @@
 #include "catch_amalgamated.hpp"
 
 #include <algorithm>
+#include <string>
+#include <utility>
 #include <vector>
 
 template <typename T>

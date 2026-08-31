@@ -9,6 +9,10 @@
 #include "salalib/shapemapgroupdata.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <cmath>
+#include <limits>
+#include <utility>
+#include <vector>
 
 TEST_CASE("Push values from shapemaps to VGA", "") {
 

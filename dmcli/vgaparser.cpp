@@ -11,6 +11,10 @@
 #include "simpletimer.hpp"
 
 #include <cstring>
+#include <iostream>
+#include <memory>
+#include <optional>
+#include <ostream>
 
 VgaParser::VgaParser()
     : m_vgaMode(VgaMode::NONE), m_localMeasures(false), m_globalMeasures(false) {}

@@ -10,6 +10,10 @@
 #include "simpletimer.hpp"
 
 #include <cstring>
+#include <iostream>
+#include <optional>
+#include <ostream>
+#include <string>
 
 void MapConvertParser::parse(size_t argc, char **argv) {
     for (size_t i = 1; i < argc; ++i) {

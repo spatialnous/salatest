@@ -9,7 +9,10 @@
 
 #include "catch_amalgamated.hpp"
 
+#include <cstddef>
 #include <fstream>
+#include <ostream>
+#include <sstream>
 
 TEST_CASE("AgentParserFail", "Parsing errors") {
     // missing arguments

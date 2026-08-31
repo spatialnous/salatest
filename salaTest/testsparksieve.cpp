@@ -6,7 +6,7 @@
 
 #include "catch_amalgamated.hpp"
 
-#include <map>
+#include <vector>
 
 TEST_CASE("One block garbage") {
     Point2f centre(1, 1);

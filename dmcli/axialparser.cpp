@@ -12,8 +12,12 @@
 
 #include "salalib/entityparsing.hpp"
 
+#include <algorithm>
 #include <cstring>
 #include <iostream>
+#include <optional>
+#include <string>
+#include <vector>
 
 AxialParser::AxialParser()
     : m_runFewestLines(false), m_runAnalysis(false), m_choice(false), m_local(false), m_rra(false) {

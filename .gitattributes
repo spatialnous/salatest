@@ -18,7 +18,6 @@
 testdata/**                         -text
 RegressionTest/BaselineBinaries/**  -text
 
-# Expected regression outputs: dmcli writes platform-native line endings via
-# plain std::ofstream, so these must convert on checkout to match it.
-# Do NOT pin these to eol=lf until dmcli writes in binary mode.
-RegressionTest/expected/**          text
+# Expected regression outputs: dmcli writes these in binary mode, so they are
+# LF on every platform. Freeze them so git never converts them either.
+RegressionTest/expected/**          -text

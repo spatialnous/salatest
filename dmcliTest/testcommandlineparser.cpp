@@ -13,7 +13,11 @@
 #include "Catch/fakeit.hpp"
 
 #include <cstring>
+#include <memory>
+#include <ostream>
 #include <sstream>
+#include <string>
+#include <vector>
 
 using namespace fakeit;
 

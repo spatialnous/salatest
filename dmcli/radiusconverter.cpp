@@ -7,6 +7,7 @@
 
 #include <cmath>
 #include <cstdlib>
+#include <string>
 
 double RadiusConverter::ConvertForVisibility(const std::string &radius) const {
     if (radius == "n") {

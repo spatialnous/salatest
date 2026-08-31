@@ -6,6 +6,9 @@
 #include "salalib/shapemapgroupdata.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <memory>
+#include <utility>
+#include <vector>
 
 TEST_CASE("Test getVisibleLines", "") {
     const float epsilon = 0.001f;

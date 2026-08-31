@@ -11,8 +11,10 @@
 #include "catch_amalgamated.hpp"
 #include "salalib/shapemapgroupdata.hpp"
 
-#include <iostream>
+#include <memory>
 #include <sstream>
+#include <utility>
+#include <vector>
 
 TEST_CASE("Testing ShapeGraph::writeAxialConnections") {
 

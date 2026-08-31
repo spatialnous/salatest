@@ -5,6 +5,8 @@
 #include "salalib/shapemap.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <memory>
+#include <vector>
 
 TEST_CASE("Test point in polygon in shapemap", "") {
     // The problem this test was made to demostrate was that shapemaps with

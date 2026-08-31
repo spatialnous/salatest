@@ -7,6 +7,8 @@
 #include "dmcli/segmentshortestpathparser.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <ostream>
+#include <sstream>
 
 TEST_CASE("SegmentShortestPathParser", "Error cases") {
     SECTION("Missing argument to -sspo") {

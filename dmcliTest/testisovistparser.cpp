@@ -10,6 +10,7 @@
 #include "catch_amalgamated.hpp"
 
 #include <fstream>
+#include <ostream>
 
 TEST_CASE("Isovistparser string constants") {
     IsovistParser parser;

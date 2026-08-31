@@ -4,6 +4,7 @@
 
 #include "printcommunicator.hpp"
 
+#include <cstddef>
 #include <iostream>
 
 void PrintCommunicator::CommPostMessage(size_t m, size_t x) const {

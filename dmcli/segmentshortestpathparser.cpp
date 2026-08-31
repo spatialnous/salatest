@@ -16,7 +16,13 @@
 #include "salalib/segmmodules/segmtulipshortestpath.hpp"
 
 #include <cstring>
+#include <iostream>
+#include <memory>
+#include <optional>
+#include <ostream>
 #include <sstream>
+#include <string>
+#include <vector>
 
 void SegmentShortestPathParser::parse(size_t argc, char **argv) {
 

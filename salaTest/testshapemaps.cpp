@@ -9,8 +9,12 @@
 
 #include "catch_amalgamated.hpp"
 
-#include <iostream>
-#include <sstream>
+#include <algorithm>
+#include <cstddef>
+#include <memory>
+#include <set>
+#include <utility>
+#include <vector>
 
 TEST_CASE("Test ShapeMap::copy()") {
 

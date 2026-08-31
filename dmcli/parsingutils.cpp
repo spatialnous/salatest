@@ -7,9 +7,12 @@
 #include "exceptions.hpp"
 
 #include <algorithm>
+#include <cstdlib>
 #include <cstring>
 #include <iostream>
 #include <sstream>
+#include <string>
+#include <vector>
 
 std::vector<double> dmcli::parseRadiusList(const std::string &radiusList) {
     std::vector<double> result;

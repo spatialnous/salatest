@@ -10,6 +10,8 @@
 #include "catch_amalgamated.hpp"
 
 #include <fstream>
+#include <ostream>
+#include <sstream>
 
 TEST_CASE("StepDepthParserFail", "Error cases") {
     SECTION("Missing argument to -sdp") {

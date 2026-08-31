@@ -8,6 +8,8 @@
 #include "salalib/genlib/point2f.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <cstddef>
+#include <vector>
 
 TEST_CASE("Test disk triangles generation", "") {
     const float epsilon = 0.001f;

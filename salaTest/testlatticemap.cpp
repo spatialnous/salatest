@@ -9,6 +9,12 @@
 #include "salalib/vgamodules/vgametricdepth.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <algorithm>
+#include <cmath>
+#include <memory>
+#include <sstream>
+#include <utility>
+#include <vector>
 
 TEST_CASE("Test MetaGraph construction", "") {
     const float epsilon = 0.001f;

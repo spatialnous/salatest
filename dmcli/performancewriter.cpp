@@ -6,7 +6,9 @@
 
 #include <algorithm>
 #include <fstream>
+#include <ostream>
 #include <sstream>
+#include <string>
 
 PerformanceWriter::PerformanceWriter(const std::string &filename) : m_filename(filename) {}
 

@@ -12,7 +12,10 @@
 
 #include "Catch/fakeit.hpp"
 
+#include <cstddef>
 #include <fstream>
+#include <set>
+#include <stdexcept>
 
 TEST_CASE("test attribute column") {
     AttributeColumnImpl col("colName");

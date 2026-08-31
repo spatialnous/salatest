@@ -13,7 +13,10 @@
 //  You probably shouldn't edit it directly.
 //  ----------------------------------------------------------
 
-#include "catch_amalgamated.hpp"
+#include "ThirdParty/Catch/catch_amalgamated.hpp"
+#include <string_view>
+#include <memory>
+#include <initializer_list>
 
 #ifndef CATCH_WINDOWS_H_PROXY_HPP_INCLUDED
 #define CATCH_WINDOWS_H_PROXY_HPP_INCLUDED

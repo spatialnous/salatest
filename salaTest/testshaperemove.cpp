@@ -6,8 +6,12 @@
 
 #include "catch_amalgamated.hpp"
 
-#include <iostream>
-#include <sstream>
+#include <algorithm>
+#include <cstddef>
+#include <map>
+#include <memory>
+#include <utility>
+#include <vector>
 
 TEST_CASE("Testing deleting shapes from shapemaps") {
     std::unique_ptr<ShapeMap> shapeMap(new ShapeMap("Test ShapeMap"));

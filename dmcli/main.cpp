@@ -7,6 +7,8 @@
 #include "modeparserregistry.hpp"
 #include "performancewriter.hpp"
 
+#include <cstddef>
+#include <exception>
 #include <iostream>
 
 int main(int argc, char *argv[]) {

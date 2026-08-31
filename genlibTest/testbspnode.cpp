@@ -7,6 +7,9 @@
 #include "salalib/genlib/line4f.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <memory>
+#include <utility>
+#include <vector>
 
 TEST_CASE("BSPTree::pickMidpointLine") {
     std::vector<Line4f> lines;

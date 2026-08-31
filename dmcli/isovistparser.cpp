@@ -11,8 +11,14 @@
 
 #include "salalib/entityparsing.hpp"
 
+#include <algorithm>
 #include <cstring>
+#include <fstream>
+#include <iostream>
+#include <optional>
+#include <ostream>
 #include <sstream>
+#include <string>
 
 IsovistParser::IsovistParser() {}
 

@@ -11,8 +11,17 @@
 #include "salalib/entityparsing.hpp"
 #include "salalib/gridproperties.hpp"
 
+#include <algorithm>
+#include <cerrno>
+#include <cstdlib>
 #include <cstring>
+#include <fstream>
+#include <iostream>
+#include <iterator>
+#include <optional>
+#include <ostream>
 #include <sstream>
+#include <vector>
 
 namespace {
     void fillGraph(MetaGraphDM &graph, const Point2f &point) {

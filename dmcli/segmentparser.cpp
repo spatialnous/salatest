@@ -11,7 +11,13 @@
 
 #include "salalib/analysistype.hpp"
 
+#include <cstdlib>
 #include <cstring>
+#include <iostream>
+#include <optional>
+#include <ostream>
+#include <string>
+#include <vector>
 
 SegmentParser::SegmentParser()
     : m_analysisType(InAnalysisType::NONE), m_radiusType(InRadiusType::NONE),

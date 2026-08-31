@@ -9,6 +9,7 @@
 #include "catch_amalgamated.hpp"
 
 #include <fstream>
+#include <vector>
 
 TEST_CASE("TestPerformanceWriting", "Simple test case") {
     SelfCleaningFile scf("timertest.csv");

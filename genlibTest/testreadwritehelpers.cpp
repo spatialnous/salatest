@@ -10,6 +10,9 @@
 #include "catch_amalgamated.hpp"
 
 #include <fstream>
+#include <map>
+#include <utility>
+#include <vector>
 
 TEST_CASE("vector reading and writing") {
     using namespace dXreadwrite;

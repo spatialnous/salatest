@@ -9,6 +9,7 @@
 
 #include "catch_amalgamated.hpp"
 
+#include <cstddef>
 #include <fstream>
 
 TEST_CASE("Test layer manager") {

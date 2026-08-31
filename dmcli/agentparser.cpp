@@ -13,9 +13,19 @@
 #include "salalib/entityparsing.hpp"
 #include "salalib/exportutils.hpp"
 
+#include <algorithm>
+#include <cerrno>
+#include <cstdlib>
 #include <cstring>
+#include <fstream>
+#include <functional>
 #include <iostream>
+#include <iterator>
+#include <memory>
+#include <optional>
 #include <sstream>
+#include <string>
+#include <vector>
 
 AgentParser::AgentParser() : m_agentMode(AgentMode::NONE) {}
 

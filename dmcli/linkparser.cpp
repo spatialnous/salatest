@@ -13,7 +13,10 @@
 #include "salalib/linkutils.hpp"
 
 #include <cstring>
+#include <fstream>
+#include <ostream>
 #include <sstream>
+#include <vector>
 
 void LinkParser::parse(size_t argc, char *argv[]) {
     for (size_t i = 1; i < argc;) {

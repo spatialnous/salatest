@@ -9,6 +9,9 @@
 #include "catch_amalgamated.hpp"
 
 #include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 TEST_CASE("Tests for split function", "") {
     {

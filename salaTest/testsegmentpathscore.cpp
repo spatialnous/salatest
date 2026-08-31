@@ -9,6 +9,9 @@
 #include "salalib/shapegraph.hpp"
 
 #include "catch_amalgamated.hpp"
+#include <cstddef>
+#include <memory>
+#include <vector>
 
 TEST_CASE("Shortest paths working examples", "") {
     const double epsilon = 0.001;

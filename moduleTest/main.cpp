@@ -2,4 +2,4 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "catch_amalgamated.hpp"
+#include "ThirdParty/Catch/catch_amalgamated.hpp"
