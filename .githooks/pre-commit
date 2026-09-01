@@ -31,7 +31,9 @@ REUSE_MAJOR=$(reuse --version | head -1 | sed -n 's/[^0-9]*\([0-9][0-9]*\).*/\1/
 reuse lint
 
 echo "Checking copyright years..."
-source "$SCRIPT_DIR/../salalib/.githooks/year-check.sh"
+CHECK="$SCRIPT_DIR/../salalib/.githooks/year-check.sh"
+[ -f "$CHECK" ] || { echo "$CHECK missing - run: git submodule update --init"; exit 1; }
+source "$CHECK"
 echo "Copyright years correct"
 
 echo "Running clang-format..."
