@@ -142,6 +142,7 @@ In addition to these flags, the following modifiers are available
 ### Mode options for `AGENTS`
 - `-am <agent mode>` one of
   - `standard`
+  - `weighted` (Standard, biased towards straight ahead)
   - `los-length` (Line of Sight length)
   - `occ-length` (Occluded length)
   - `occ-any` (Any occlusions)

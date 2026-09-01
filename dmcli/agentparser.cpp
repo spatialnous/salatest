@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2017 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -43,6 +43,8 @@ void AgentParser::parse(size_t argc, char *argv[]) {
             ENFORCE_ARGUMENT("-am", i)
             if (std::strcmp(argv[i], "standard") == 0) {
                 m_agentMode = AgentMode::STANDARD;
+            } else if (std::strcmp(argv[i], "weighted") == 0) {
+                m_agentMode = AgentMode::WEIGHTED;
             } else if (std::strcmp(argv[i], "los-length") == 0) {
                 m_agentMode = AgentMode::LOS_LENGTH;
             } else if (std::strcmp(argv[i], "occ-length") == 0) {
@@ -305,6 +307,9 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
     case AgentParser::NONE:
     case AgentParser::STANDARD:
         agentViewAlgorithm = AgentProgram::SEL_STANDARD;
+        break;
+    case AgentParser::WEIGHTED:
+        agentViewAlgorithm = AgentProgram::SEL_WEIGHTED;
         break;
     case AgentParser::LOS_LENGTH:
         agentViewAlgorithm = AgentProgram::SEL_LOS;

@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2017-2018 Christian Sailer
-# SPDX-FileCopyrightText: 2017-2024 Petros Koutsolampros
+# SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -13,6 +13,7 @@ set(salaTest_SRCS
     testgridproperties.cpp
     testisovistdef.cpp
     testmgraph.cpp
+    testagent.cpp
     testshapegraphs.cpp
     teststructsizes.cpp
     testsparksieve.cpp

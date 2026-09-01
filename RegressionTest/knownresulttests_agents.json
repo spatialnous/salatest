@@ -43,6 +43,36 @@
                 }
             ]
         },
+        "agents_weighted": {
+            "minVersion": "0.13.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "weighted",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "latticemap-data-csv"
+                    }
+                }
+            ]
+        },
         "agents_line_of_sight_length_look": {
             "minVersion": "0.8.0",
             "compareFiles": [

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2017 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -21,6 +21,7 @@ class AgentParser : public IModeParser {
         return "Mode options for AGENTS:\n"
                "-am <agent mode> one of:\n"
                "    standard\n"
+               "    weighted (Standard, biased towards straight ahead)\n"
                "    los-length (Line of Sight length)\n"
                "    occ-length (Occluded length)\n"
                "    occ-any (Any occlusions)\n"
@@ -58,6 +59,7 @@ class AgentParser : public IModeParser {
     enum AgentMode {
         NONE,
         STANDARD,
+        WEIGHTED,
         LOS_LENGTH,
         OCC_LENGTH,
         OCC_ANY,

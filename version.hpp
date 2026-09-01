@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2017 Christian Sailer
-// SPDX-FileCopyrightText: 2021 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2021-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -10,7 +10,7 @@
 
 // use these to define the depthmap versions
 #define DEPTHMAP_MAJOR_VERSION 0
-#define DEPTHMAP_MINOR_VERSION 12
+#define DEPTHMAP_MINOR_VERSION 13
 #define DEPTHMAP_REVISION_VERSION 0
 
 #define DEPTHMAP_MODULE_VERSION 10.04
