@@ -1,5 +1,5 @@
 version = 1
-SPDX-PackageName = "gensalatest"
+SPDX-PackageName = "salatest"
 SPDX-PackageSupplier = "Petros Koutsolampros <commits@pklampros.io>"
 SPDX-PackageDownloadLocation = "https://github.com/spatialnous/gensalatest"
 
