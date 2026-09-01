@@ -32,6 +32,7 @@ reuse lint
 
 echo "Checking copyright years..."
 CHECK="$SCRIPT_DIR/../salalib/.githooks/year-check.sh"
+EXTRA_YEAR_CHECK_EXCLUDES=(':!ThirdParty')
 [ -f "$CHECK" ] || { echo "$CHECK missing - run: git submodule update --init"; exit 1; }
 source "$CHECK"
 echo "Copyright years correct"
