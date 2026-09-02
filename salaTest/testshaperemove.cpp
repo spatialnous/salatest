@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/mapconverter.hpp"
-
 #include "catch_amalgamated.hpp"
+
+#include "salalib/mapconverter.hpp"
 
 #include <algorithm>
 #include <cstddef>

@@ -2,9 +2,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "selfcleaningfile.hpp"
-
 #include "catch_amalgamated.hpp"
+#include "selfcleaningfile.hpp"
 
 #include <fstream>
 #include <string>

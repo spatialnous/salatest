@@ -2,12 +2,11 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/parsers/dxfp.hpp"
+#include "catch_amalgamated.hpp"
 
 #include "salalib/genlib/comm.hpp"
 #include "salalib/genlib/point2f.hpp"
-
-#include "catch_amalgamated.hpp"
+#include "salalib/parsers/dxfp.hpp"
 
 #include <cstddef>
 #include <sstream>

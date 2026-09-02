@@ -2,11 +2,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/attributetablehelpers.hpp"
-
 #include "catch_amalgamated.hpp"
 
 #include "Catch/fakeit.hpp"
+#include "salalib/attributetablehelpers.hpp"
 
 #include <cstddef>
 #include <set>

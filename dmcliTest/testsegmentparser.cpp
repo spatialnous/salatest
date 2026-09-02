@@ -3,10 +3,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "argumentholder.hpp"
+#include "catch_amalgamated.hpp"
 
 #include "dmcli/segmentparser.hpp"
-
-#include "catch_amalgamated.hpp"
 
 TEST_CASE("Test segment mode and help") {
     SegmentParser parser;

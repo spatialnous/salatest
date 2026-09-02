@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include "catch_amalgamated.hpp"
+
 #include "salalib/metagraph.hpp"
 #include "salalib/shapemapgroupdata.hpp"
-
-#include "catch_amalgamated.hpp"
 
 #include <memory>
 #include <utility>

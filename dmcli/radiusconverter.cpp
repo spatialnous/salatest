@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "radiusconverter.hpp"
+
 #include "exceptions.hpp"
 
 #include <cmath>

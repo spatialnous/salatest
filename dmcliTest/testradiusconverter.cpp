@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "dmcli/radiusconverter.hpp"
-
 #include "catch_amalgamated.hpp"
+
+#include "dmcli/radiusconverter.hpp"
 
 TEST_CASE("ConvertForMetric", "") {
     RadiusConverter converter;

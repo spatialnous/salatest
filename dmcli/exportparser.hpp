@@ -5,8 +5,9 @@
 #pragma once
 
 #include "commandlineparser.hpp"
-#include "dminterface/metagraphdm.hpp"
 #include "imodeparser.hpp"
+
+#include "dminterface/metagraphdm.hpp"
 
 #include <cstddef>
 #include <optional>

@@ -3,11 +3,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "argumentholder.hpp"
+#include "catch_amalgamated.hpp"
 #include "selfcleaningfile.hpp"
 
 #include "dmcli/visprepparser.hpp"
-
-#include "catch_amalgamated.hpp"
 
 #include <fstream>
 #include <ostream>

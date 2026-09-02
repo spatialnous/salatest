@@ -6,8 +6,9 @@
 #pragma once
 
 #include "commandlineparser.hpp"
-#include "dminterface/metagraphdm.hpp"
 #include "performancesink.hpp"
+
+#include "dminterface/metagraphdm.hpp"
 
 #include <memory>
 #include <string>

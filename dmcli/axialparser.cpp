@@ -4,12 +4,12 @@
 
 #include "axialparser.hpp"
 
-#include "dminterface/options.hpp"
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "runmethods.hpp"
 #include "simpletimer.hpp"
 
+#include "dminterface/options.hpp"
 #include "salalib/entityparsing.hpp"
 
 #include <algorithm>

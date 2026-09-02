@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/axialpolygons.hpp"
-
 #include "catch_amalgamated.hpp"
+
+#include "salalib/axialpolygons.hpp"
 
 /**
  * This seems a bit silly, but this is a list of structs that are serialised by just dumping the

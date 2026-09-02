@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "dmcli/parsingutils.hpp"
-
 #include "catch_amalgamated.hpp"
+
+#include "dmcli/parsingutils.hpp"
 
 #include <string>
 #include <vector>

@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include "catch_amalgamated.hpp"
+
 #include "salalib/parsers/mapinfodata.hpp"
 #include "salalib/shapemap.hpp"
-
-#include "catch_amalgamated.hpp"
 
 #include <map>
 #include <sstream>

@@ -2,11 +2,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include "catch_amalgamated.hpp"
 #include "selfcleaningfile.hpp"
 
 #include "dmcli/performancewriter.hpp"
-
-#include "catch_amalgamated.hpp"
 
 #include <fstream>
 #include <vector>

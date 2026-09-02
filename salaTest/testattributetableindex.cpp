@@ -3,9 +3,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/attributetableindex.hpp"
-
 #include "catch_amalgamated.hpp"
+
+#include "salalib/attributetableindex.hpp"
 
 TEST_CASE("Check index creation") {
     AttributeTable table;

@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/genlib/simplematrix.hpp"
-
 #include "catch_amalgamated.hpp"
+
+#include "salalib/genlib/simplematrix.hpp"
 
 #include <algorithm>
 #include <string>

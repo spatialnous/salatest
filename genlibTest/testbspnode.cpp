@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include "catch_amalgamated.hpp"
+
 #include "salalib/genlib/bsptree.hpp"
 #include "salalib/genlib/comm.hpp"
 #include "salalib/genlib/line4f.hpp"
-
-#include "catch_amalgamated.hpp"
 
 #include <memory>
 #include <utility>

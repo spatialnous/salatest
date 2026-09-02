@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include "catch_amalgamated.hpp"
+
 #include "salalib/agents/agent.hpp"
 #include "salalib/agents/agentprogram.hpp"
-
-#include "catch_amalgamated.hpp"
 
 #include <cmath>
 #include <vector>

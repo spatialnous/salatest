@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/linkutils.hpp"
-
 #include "catch_amalgamated.hpp"
+
+#include "salalib/linkutils.hpp"
 #include "salalib/shapemapgroupdata.hpp"
 
 #include <algorithm>

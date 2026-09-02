@@ -5,11 +5,10 @@
 
 #pragma once
 
+#include "consts.hpp"
 #include "version_defs.hpp"
 
 #include "../version.hpp"
-
-#include "consts.hpp"
 
 #define INTERFACE_MAJOR_VERSION DEPTHMAP_MAJOR_VERSION
 #define INTERFACE_MINOR_VERSION DEPTHMAP_MINOR_VERSION

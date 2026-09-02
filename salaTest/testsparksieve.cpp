@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/sparksieve2.hpp"
-
 #include "catch_amalgamated.hpp"
+
+#include "salalib/sparksieve2.hpp"
 
 #include <vector>
 

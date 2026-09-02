@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "visprepparser.hpp"
+
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "runmethods.hpp"

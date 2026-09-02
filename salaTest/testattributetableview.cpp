@@ -3,9 +3,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/attributetableview.hpp"
-
 #include "catch_amalgamated.hpp"
+
+#include "salalib/attributetableview.hpp"
 
 TEST_CASE("Test Attribute view") {
     AttributeTable table;

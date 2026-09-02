@@ -3,12 +3,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "vgaparser.hpp"
-#include "dminterface/options.hpp"
+
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "radiusconverter.hpp"
 #include "runmethods.hpp"
 #include "simpletimer.hpp"
+
+#include "dminterface/options.hpp"
 
 #include <cstring>
 #include <iostream>

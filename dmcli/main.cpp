@@ -3,9 +3,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "commandlineparser.hpp"
-#include "dmcli/consts.hpp"
 #include "modeparserregistry.hpp"
 #include "performancewriter.hpp"
+
+#include "dmcli/consts.hpp"
 
 #include <cstddef>
 #include <exception>

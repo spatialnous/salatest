@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "salalib/gridproperties.hpp"
-
 #include "catch_amalgamated.hpp"
+
+#include "salalib/gridproperties.hpp"
 
 TEST_CASE("TestGridProperties", "Test the calculations of grid properties") {
     double maxDimension = 4.583;

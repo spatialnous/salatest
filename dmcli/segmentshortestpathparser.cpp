@@ -4,12 +4,12 @@
 
 #include "segmentshortestpathparser.hpp"
 
-#include "dminterface/comm.hpp"
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "runmethods.hpp"
 #include "simpletimer.hpp"
 
+#include "dminterface/comm.hpp"
 #include "salalib/entityparsing.hpp"
 #include "salalib/segmmodules/segmmetricshortestpath.hpp"
 #include "salalib/segmmodules/segmtopologicalshortestpath.hpp"

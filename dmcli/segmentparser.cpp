@@ -3,12 +3,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "segmentparser.hpp"
-#include "dminterface/options.hpp"
+
 #include "exceptions.hpp"
 #include "parsingutils.hpp"
 #include "runmethods.hpp"
 #include "simpletimer.hpp"
 
+#include "dminterface/options.hpp"
 #include "salalib/analysistype.hpp"
 
 #include <cstdlib>
