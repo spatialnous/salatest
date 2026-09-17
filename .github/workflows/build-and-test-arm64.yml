@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Petros Koutsolampros
+# SPDX-FileCopyrightText: 2024-2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -76,4 +76,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: dmcli-${{ matrix.os }}-${{ matrix.cpp_compiler }}
-        path: ${{ steps.strings.outputs.build-output-dir }}/dmcli/
+        path: ${{ steps.strings.outputs.build-output-dir }}/bin/dmcli*

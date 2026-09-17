@@ -1,25 +1,21 @@
 #!/bin/bash
 # SPDX-FileCopyrightText: 2017 Christian Sailer
-# SPDX-FileCopyrightText: 2024 Petros Koutsolampros
+# SPDX-FileCopyrightText: 2024-2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-
-EXEPREFIXDIR=""
 EXESUFFIX=""
-if [[ "$OSTYPE" == "cygwin" ]]; then
-    EXEPREFIXDIR="/Release"
-    EXESUFFIX=".exe"
-elif [[ "$OSTYPE" == "msys" ]]; then
-    EXEPREFIXDIR="/Release"
-    EXESUFFIX=".exe"
-fi
+
+# The .exe suffix depends on the OS...
+case "$OSTYPE" in
+    cygwin|msys|win32) EXESUFFIX=".exe" ;;
+esac
 
 echo Running unit tests
-./dmcliTest$EXEPREFIXDIR/dmcliTest$EXESUFFIX && \
-    ./salaTest$EXEPREFIXDIR/salaTest$EXESUFFIX && \
-    ./genlibTest$EXEPREFIXDIR/genlibTest$EXESUFFIX && \
-    ./moduleTest$EXEPREFIXDIR/moduleTest$EXESUFFIX --allow-running-no-tests || exit 1
+./bin/dmcliTest$EXESUFFIX && \
+    ./bin/salaTest$EXESUFFIX && \
+    ./bin/genlibTest$EXESUFFIX && \
+    ./bin/moduleTest$EXESUFFIX --allow-running-no-tests || exit 1
 # if that succeeds, run regression tests
 echo testing regression test framework
 cd ..

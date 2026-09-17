@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2017-2018 Christian Sailer
-# SPDX-FileCopyrightText: 2017-2024 Petros Koutsolampros
+# SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -9,6 +9,12 @@ project(salatest)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# Force all output under bin/
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+foreach(cfg IN ITEMS DEBUG RELEASE RELWITHDEBINFO MINSIZEREL)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${cfg} ${CMAKE_BINARY_DIR}/bin)
+endforeach()
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "^(GNU|Clang|AppleClang)$")
     set(CMAKE_COMPILE_WARNING_AS_ERROR ON)

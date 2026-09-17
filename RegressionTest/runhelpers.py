@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2017-2019 Christian Sailer
-# SPDX-FileCopyrightText: 2017-2024 Petros Koutsolampros
+# SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -74,8 +74,8 @@ def getExecutable(basedir):
 def getTestExecutable(basedir):
     sys = platform.system()
     if sys == "Windows":
-        return os.path.join(basedir, "dmcli", "release", "dmcli.exe")
+        return os.path.join(basedir, "bin", "dmcli.exe")
     else:
-        return os.path.join(basedir, "dmcli", "dmcli")
+        return os.path.join(basedir, "bin", "dmcli")
 
 

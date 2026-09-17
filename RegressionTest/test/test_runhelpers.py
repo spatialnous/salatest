@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2017 Christian Sailer
+# SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -41,9 +42,9 @@ class TestRunHelpers(unittest.TestCase):
         result = runhelpers.getTestExecutable("foo")
         sys = platform.system()
         if sys == "Windows":
-            self.assertEqual( result, "foo\\dmcli\\release\\dmcli.exe")
+            self.assertEqual( result, "foo\\bin\\dmcli.exe")
         else:
-            self.assertEqual( result, "foo/dmcli/dmcli" )
+            self.assertEqual( result, "foo/bin/dmcli" )
 
     
     def test_runExecutable(self):
