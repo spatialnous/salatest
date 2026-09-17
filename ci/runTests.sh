@@ -13,15 +13,16 @@ esac
 
 echo Running unit tests
 ls -l ./bin/
+command -v ldd >/dev/null && ldd ./bin/dmcliTest$EXESUFFIX
 
 for t in dmcliTest salaTest genlibTest moduleTest; do
     args=""
     [ "$t" = moduleTest ] && args="--allow-running-no-tests"
     echo "--- $t ---"
-    if ! "./bin/$t$EXESUFFIX" $args; then
-        echo "$t failed with exit code $?" >&2
-        exit 1
-    fi
+    "./bin/$t$EXESUFFIX" $args
+    rc=$?
+    echo "$t exit code: $rc"
+    [ $rc -ne 0 ] && exit 1
 done
 
 # if that succeeds, run regression tests
