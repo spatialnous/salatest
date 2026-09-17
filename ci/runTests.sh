@@ -12,10 +12,18 @@ case "$OSTYPE" in
 esac
 
 echo Running unit tests
-./bin/dmcliTest$EXESUFFIX && \
-    ./bin/salaTest$EXESUFFIX && \
-    ./bin/genlibTest$EXESUFFIX && \
-    ./bin/moduleTest$EXESUFFIX --allow-running-no-tests || exit 1
+ls -l ./bin/
+
+for t in dmcliTest salaTest genlibTest moduleTest; do
+    args=""
+    [ "$t" = moduleTest ] && args="--allow-running-no-tests"
+    echo "--- $t ---"
+    if ! "./bin/$t$EXESUFFIX" $args; then
+        echo "$t failed with exit code $?" >&2
+        exit 1
+    fi
+done
+
 # if that succeeds, run regression tests
 echo testing regression test framework
 cd ..
