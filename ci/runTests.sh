@@ -11,6 +11,16 @@ case "$OSTYPE" in
     cygwin|msys|win32) EXESUFFIX=".exe" ;;
 esac
 
+# MinGW links against the toolchain's libstdc++/libgcc, but the Windows loader
+# never searches the toolchain directory. Put it on PATH so the tests can start.
+if [ -n "$EXESUFFIX" ] && [ -f CMakeCache.txt ]; then
+    cxxdir=$(dirname "$(grep -m1 '^CMAKE_CXX_COMPILER:' CMakeCache.txt | cut -d= -f2)")
+    if [ -f "$cxxdir/libstdc++-6.dll" ]; then
+        export PATH="$cxxdir:$PATH"
+        echo "added $cxxdir to PATH for the MinGW runtime"
+    fi
+fi
+
 echo Running unit tests
 ls -l ./bin/
 command -v ldd >/dev/null && ldd ./bin/dmcliTest$EXESUFFIX
