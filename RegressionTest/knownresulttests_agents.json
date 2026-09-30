@@ -455,7 +455,7 @@
                 }
             ]
         },
-        "agents_defaults_runseed_12345_alocseed_0": {
+        "agents_defaults_runseed_12345_locseed_0": {
             "minVersion": "0.8.0",
             "compareFiles": [
                 "out.csv"
