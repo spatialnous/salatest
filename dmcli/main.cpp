@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
             if (args.printVersionMode()) {
                 args.printVersion();
             } else if (args.printQuirksMode()) {
-                args.printVersion();
+                args.printQuirks();
             } else {
                 args.printHelp();
             }
