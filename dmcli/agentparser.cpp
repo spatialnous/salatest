@@ -167,7 +167,7 @@ void AgentParser::parse(size_t argc, char *argv[]) {
                     std::string("-arunseed must be a number >=0, got ") + argv[i]);
             }
             m_runSeed = std::atoi(argv[i]);
-            if (m_runSeed <= 0) {
+            if (m_runSeed < 0) {
                 throw dmcli::CommandLineException(
                     std::string("-arunseed must be a number >=0, got ") + argv[i]);
             }
@@ -384,8 +384,11 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
     }
 
     auto rrlSeed = randomReleaseLocationSeed();
-    if (clp.mimicOptionSet("legacy-agent-loc-rng")) {
-        if (rrlSeed.has_value()) {
+    if (clp.mimicOptionSet("legacy-agent-loc-rng") && rrlSeed.has_value()) {
+        if (*rrlSeed == 0) {
+            // use the same set as the rest of the agent analysis
+            rrlSeed = std::nullopt;
+        } else {
             static constexpr std::array<unsigned int, 11> streamStart = {1,  2,  3,  5,  7, 11,
                                                                          13, 17, 19, 23, 29};
             rrlSeed = streamStart[static_cast<size_t>(m_randomReleaseLocationSeed)];
