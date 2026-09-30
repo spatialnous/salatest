@@ -154,7 +154,9 @@ void CommandLineParser::parse(size_t argc, char *argv[]) {
     }
     if (!quirksString.empty()) {
         m_enabledQuirks = dXstring::split(quirksString, ',');
-        for (const auto &op : m_enabledQuirks.value()) {
+        for (auto op : m_enabledQuirks.value()) {
+            dXstring::ltrim(op);
+            dXstring::rtrim(op);
             if (std::find(ACCEPTED_QUIRKS.begin(), ACCEPTED_QUIRKS.end(), op) ==
                 ACCEPTED_QUIRKS.end()) {
                 std::stringstream s;
@@ -170,7 +172,7 @@ void CommandLineParser::parse(size_t argc, char *argv[]) {
     m_valid = true;
 }
 
-bool CommandLineParser::quirkEnabled(const std::string &op) const {
+bool CommandLineParser::quirkKnown(const std::string &op) const {
     if (!m_enabledQuirks.has_value())
         return false;
     return std::find(m_enabledQuirks->begin(), m_enabledQuirks->end(), op) !=

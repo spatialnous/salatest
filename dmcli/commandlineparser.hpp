@@ -36,7 +36,7 @@ class CommandLineParser {
     void printHelp();
     void printVersion();
     void printQuirks();
-    bool quirkEnabled(const std::string &op) const;
+    bool quirkKnown(const std::string &op) const;
     void run(IPerformanceSink &perfWriter) const;
 
   private:
