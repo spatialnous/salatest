@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2017 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -240,15 +240,6 @@ TEST_CASE("AgentParserInputFail", "Bad or missing input") {
         REQUIRE_THROWS_WITH(parser.parse(ah.argc(), ah.argv()),
                             Catch::Matchers::ContainsSubstring(
                                 "Agent life in timesteps (-alife <timesteps>) is required"));
-    }
-
-    SECTION("No random starting poins, manual points or point file provided") {
-        AgentParser parser;
-        ArgumentHolder ah{"prog", "-ats",    "5000", "-arr",   "0.1", "-afov",
-                          "15",   "-asteps", "3",    "-alife", "1000"};
-        REQUIRE_THROWS_WITH(parser.parse(ah.argc(), ah.argv()),
-                            Catch::Matchers::ContainsSubstring(
-                                "Either -aloc, -alocfile or -alocseed must be given"));
     }
 
     SECTION("Manual points and pointfile provided") {

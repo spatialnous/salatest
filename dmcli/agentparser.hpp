@@ -47,8 +47,10 @@ class AgentParser : public IModeParser {
              "  -arunseed <seed> randomness seed for the run (default: "
           << pafmath::defaultSeed
           << ")\n"
-             "  -alocseed <seed> set agents to start at random locations with specific seed"
-             "(0 to 10)\n"
+             "  -alocseed <seed> set agents to start at random locations with specific seed "
+             "(default: "
+          << pafmath::defaultSeed
+          << ")\n"
              "  -alocfile <agent starting points file>\n"
              "  -aloc     <single agent starting point coordinates> provided in csv (x1,y1) "
              "for example \"0.1,0.2\". Provide multiple times for multiple links\n"

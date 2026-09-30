@@ -30,8 +30,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -61,8 +60,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -92,8 +90,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -124,7 +121,6 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng",
                         "-ot": "gatecounts"
                     }
                 }
@@ -147,8 +143,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -178,8 +173,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -209,8 +203,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -240,8 +233,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -271,8 +263,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -302,8 +293,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -333,8 +323,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -364,8 +353,7 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -395,8 +383,97 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-alocseed": "0"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "latticemap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_defaults_noseeds": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "standard",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "latticemap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_defaults_runseed_12345": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "standard",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-arunseed": "12345"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "latticemap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_defaults_runseed_12345_alocseed_0": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "standard",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-arunseed": "12345",
+                        "-alocseed": "0"
                     }
                 },
                 {
@@ -427,7 +504,6 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "5",
-                        "-mmo": "legacy-agent-loc-rng",
                         "-ot": "gatecounts"
                     }
                 }
@@ -451,7 +527,6 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng",
                         "-atrails": "0",
                         "-ot": "trails"
                     }
@@ -476,7 +551,6 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng",
                         "-atrails": "50",
                         "-ot": "trails"
                     }
@@ -501,9 +575,63 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng",
                         "-atrails": "1",
                         "-ot": "trails"
+                    }
+                }
+            ]
+        },
+        "agents_defaults_legacy_rng": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.csv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.graph",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "standard",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
+                    }
+                },
+                {
+                    "infile": "out.graph",
+                    "outfile": "out.csv",
+                    "mode": "EXPORT",
+                    "extraArgs": {
+                        "-em": "latticemap-data-csv"
+                    }
+                }
+            ]
+        },
+        "agents_gatecounts_legacy_rng": {
+            "minVersion": "0.8.0",
+            "compareFiles": [
+                "out.tsv"
+            ],
+            "steps": [
+                {
+                    "infile": "../../../../testdata/gallery_connected.graph",
+                    "outfile": "out.tsv",
+                    "mode": "AGENTS",
+                    "extraArgs": {
+                        "-am": "standard",
+                        "-ats": "5000",
+                        "-arr": "0.1",
+                        "-afov": "15",
+                        "-asteps": "3",
+                        "-alife": "1000",
+                        "-alocseed": "5",
+                        "-mmo": "legacy-agent-loc-rng",
+                        "-ot": "gatecounts"
                     }
                 }
             ]

@@ -187,9 +187,9 @@ void AgentParser::parse(size_t argc, char *argv[]) {
                 throw dmcli::CommandLineException(message.str().c_str());
             }
             m_randomReleaseLocationSeed = std::atoi(argv[i]);
-            if (m_randomReleaseLocationSeed < 0 || m_randomReleaseLocationSeed > 10) {
+            if (m_randomReleaseLocationSeed < 0) {
                 throw dmcli::CommandLineException(
-                    std::string("-alocseed must be a number between 0 and 10, got ") + argv[i]);
+                    std::string("-alocseed must be a number >= 0, got ") + argv[i]);
             }
         } else if (std::strcmp(argv[i], "-alocfile") == 0) {
             if (!points.empty()) {
@@ -273,10 +273,6 @@ void AgentParser::parse(size_t argc, char *argv[]) {
     if (m_agentLifeTimesteps == 0) {
         throw dmcli::CommandLineException(
             "Agent life in timesteps (-alife <timesteps>) is required");
-    }
-
-    if (pointFile.empty() && points.empty() && m_randomReleaseLocationSeed == -1) {
-        throw dmcli::CommandLineException("Either -aloc, -alocfile or -alocseed must be given");
     }
 
     if (!pointFile.empty()) {
@@ -385,13 +381,20 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
 
     auto rrlSeed = randomReleaseLocationSeed();
     if (clp.mimicOptionSet("legacy-agent-loc-rng") && rrlSeed.has_value()) {
+        if (rrlSeed < 0 || rrlSeed > 10) {
+            // it was only possible to select from the streams below and
+            // there's only 11 of them
+            std::stringstream s;
+            s << "-alocseed must be a number between 0 and 10, got " << rrlSeed.value();
+            throw dmcli::CommandLineException(s.str());
+        }
         if (*rrlSeed == 0) {
             // use the same set as the rest of the agent analysis
             rrlSeed = std::nullopt;
         } else {
             static constexpr std::array<unsigned int, 11> streamStart = {1,  2,  3,  5,  7, 11,
                                                                          13, 17, 19, 23, 29};
-            rrlSeed = streamStart[static_cast<size_t>(m_randomReleaseLocationSeed)];
+            rrlSeed = streamStart[static_cast<size_t>(*rrlSeed)];
         }
     }
 
