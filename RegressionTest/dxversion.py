@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Petros Koutsolampros
+# SPDX-FileCopyrightText: 2024-2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -15,7 +15,7 @@ class dXversion():
     def __eq__(self, other):
         return (self.version[0] == other.version[0] and
             self.version[1] == other.version[1] and
-            self.version[2] > other.version[2])
+            self.version[2] == other.version[2])
 
     def __gt__(self, other):
         return (self.version[0] > other.version[0] or

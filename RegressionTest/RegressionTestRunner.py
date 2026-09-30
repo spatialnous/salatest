@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2017-2019 Christian Sailer
-# SPDX-FileCopyrightText: 2017-2024 Petros Koutsolampros
+# SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -94,13 +94,13 @@ class RegressionTestRunner():
             compareFiles = case["compareFiles"]
 
             if usesBaseBinary and self.__baseVersion < minVersion:
-                good = self.config.allowSkipCases
+                good = good and self.config.allowSkipCases
                 reason = ("Baseline binary can not run for test: " + name
                     + " (Binary version \"" + str(self.__baseVersion)
                     + "\" < Test minimum version \"" + str(minVersion) + "\")");
                 print (f"  {bcolours.WARNING}Skipping: " + reason + f"{bcolours.ENDC}")
             elif self.__testVersion < minVersion:
-                good = self.config.allowSkipCases
+                good = good and self.config.allowSkipCases
                 reason = ("Test binary can not run for test: " + name
                     + " (Test version \"" + str(self.__baseVersion)
                     + "\" < Test minimum version \"" + str(minVersion) + "\")");
