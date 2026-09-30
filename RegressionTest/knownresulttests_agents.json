@@ -30,7 +30,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -60,7 +61,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -90,7 +92,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -121,6 +124,7 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng",
                         "-ot": "gatecounts"
                     }
                 }
@@ -143,7 +147,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -173,7 +178,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -203,7 +209,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -233,7 +240,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -263,7 +271,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -293,7 +302,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -323,7 +333,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -353,7 +364,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -383,7 +395,8 @@
                         "-afov": "15",
                         "-asteps": "3",
                         "-alife": "1000",
-                        "-alocseed": "0"
+                        "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -414,6 +427,7 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "5",
+                        "-mmo": "legacy-agent-loc-rng",
                         "-ot": "gatecounts"
                     }
                 }
@@ -437,6 +451,7 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng",
                         "-atrails": "0",
                         "-ot": "trails"
                     }
@@ -461,6 +476,7 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng",
                         "-atrails": "50",
                         "-ot": "trails"
                     }
@@ -485,6 +501,7 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "0",
+                        "-mmo": "legacy-agent-loc-rng",
                         "-atrails": "1",
                         "-ot": "trails"
                     }

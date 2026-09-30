@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2017 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -9,6 +9,7 @@
 #include "salalib/genlib/point2f.hpp"
 
 #include <cstddef>
+#include <sstream>
 #include <string>
 
 class SegmentShortestPathParser : public IModeParser {
@@ -18,12 +19,18 @@ class SegmentShortestPathParser : public IModeParser {
     std::string getModeName() const override { return "SEGMENTSHORTESTPATH"; }
 
     std::string getHelp() const override {
-        return "Mode options for lattice map SEGMENTSHORTESTPATH are:\n"
-               "  -sspo <shortest path origin point> point where to calculate shortest path "
-               "between.\n"
-               "  -sspd <shortest path destination point> point where to calculate shortest path "
-               "between.\n"
-               "  -sspt <type> step type. One of metric, tulip or topological.\n";
+        std::stringstream s;
+        s << "Mode options for Segment Map Shortest Path (mode: " << getModeName()
+          << "):\n"
+             "  -sspo    <shortest path origin point> point where to calculate shortest path "
+             "between.\n"
+             "  -sspd    <shortest path destination point> point where to calculate shortest path "
+             "between.\n"
+             "  -sspt    <type> step type. One of metric, tulip or topological.\n"
+             "  -sspseed <seed> randomness seed for the run (default: "
+          << pafmath::defaultSeed //
+          << ")\n";
+        return s.str();
     }
 
     enum class StepType { NONE, TULIP, METRIC, TOPOLOGICAL };
@@ -42,4 +49,5 @@ class SegmentShortestPathParser : public IModeParser {
     Point2f m_destinationPoint;
 
     StepType m_stepType;
+    int m_seed = -1;
 };

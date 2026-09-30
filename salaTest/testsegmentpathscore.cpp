@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2020-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -60,7 +60,7 @@ TEST_CASE("Shortest paths working examples", "") {
         REQUIRE_FALSE(segmentMap->getAttributeTable().hasColumn("Angular Shortest Path Angle"));
         REQUIRE_FALSE(segmentMap->getAttributeTable().hasColumn("Angular Shortest Path Order"));
         SegmentTulipShortestPath(*segmentMap.get(), 1024, shapesInRegion.begin()->first,
-                                 shapesInRegion.rbegin()->first)
+                                 shapesInRegion.rbegin()->first, pafmath::defaultSeed)
             .run(nullptr);
         REQUIRE(segmentMap->getAttributeTable().hasColumn("Angular Shortest Path Angle"));
         REQUIRE(segmentMap->getAttributeTable().hasColumn("Angular Shortest Path Order"));

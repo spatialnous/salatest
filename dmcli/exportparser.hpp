@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2017 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -11,6 +11,7 @@
 
 #include <cstddef>
 #include <optional>
+#include <sstream>
 #include <string>
 
 class ExportParser : public IModeParser {
@@ -18,16 +19,19 @@ class ExportParser : public IModeParser {
     std::string getModeName() const override { return "EXPORT"; }
 
     std::string getHelp() const override {
-        return "Mode options for EXPORT:\n"
-               "-ei <export index> map index in type group\n"
-               "-em <export mode> one of:\n"
-               "    latticemap-data-csv\n"
-               "    latticemap-connections-csv\n"
-               "    latticemap-links-csv\n"
-               "    shapegraph-map-csv\n"
-               "    shapegraph-map-mif\n"
-               "    shapegraph-connections-csv\n"
-               "    shapegraph-links-unlinks-csv\n";
+        std::stringstream s;
+        s << "Mode options for Exporting (mode: " << getModeName()
+          << "):\n"
+             "  -ei <export index> map index in type group\n"
+             "  -em <export mode> one of:\n"
+             "      latticemap-data-csv\n"
+             "      latticemap-connections-csv\n"
+             "      latticemap-links-csv\n"
+             "      shapegraph-map-csv\n"
+             "      shapegraph-map-mif\n"
+             "      shapegraph-connections-csv\n"
+             "      shapegraph-links-unlinks-csv\n";
+        return s.str();
     }
 
   public:

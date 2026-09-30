@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2017 Christian Sailer
+// SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -16,6 +17,7 @@
 #include <cstring>
 #include <iostream>
 #include <optional>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -27,20 +29,23 @@ AxialParser::AxialParser()
 std::string AxialParser::getModeName() const { return "AXIAL"; }
 
 std::string AxialParser::getHelp() const {
-    return "Mode options for Axial Analysis:\n"
-           "  -xl <x>,<y> Calculate all lines map from this seed point (can be used more than "
-           "once)\n"
-           "  -xf Calculate fewest lines map from all lines map\n"
-           "  -xa <radius/list of radii> run axial anlysis with specified radii\n"
-           " All modes expect to find the required input in the in graph\n"
-           " Any combination of flags above can be specified, they will always be run in the order "
-           "-aa -af -au -ax\n"
-           " Further flags for axial analysis are:\n"
-           "   -xac Include choice (betweenness)\n"
-           "   -xal Include local measures\n"
-           "   -xar Include RA, RRA and total depth\n"
-           "   -xaw <map attribute name> perform weighted analysis using this attribute\n"
-           "\n";
+    std::stringstream s;
+    s << "Mode options for Axial Analysis (mode: " << getModeName()
+      << "):\n"
+         "  -xl  <x>,<y> Calculate all lines map from this seed point (can be used more than "
+         "once)\n"
+         "  -xf  Calculate fewest lines map from all lines map\n"
+         "  -xa  <radius/list of radii> run axial anlysis with specified radii\n"
+         "All modes expect to find the required input in the in graph\n"
+         "Any combination of flags above can be specified, they will always be run in the order "
+         "-aa -af -au -ax\n"
+         "Further flags for axial analysis are:\n"
+         "  -xac Include choice (betweenness)\n"
+         "  -xal Include local measures\n"
+         "  -xar Include RA, RRA and total depth\n"
+         "  -xaw <map attribute name> perform weighted analysis using this attribute\n"
+         "\n";
+    return s.str();
 }
 
 void AxialParser::parse(size_t argc, char **argv) {

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2017 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -10,6 +10,7 @@
 #include "salalib/importtypedefs.hpp"
 
 #include <cstddef>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -18,16 +19,18 @@ class ImportParser : public IModeParser {
     std::string getModeName() const override { return "IMPORT"; }
 
     std::string getHelp() const override {
-        return "Mode options for IMPORT:\n"
-               "   The file provided by -f here will be used as the base. If that file"
-               "is not a graph, a new graph will be created and the file will be imported\n"
-               "   -if <file(s) to import> one or more files to import\n"
-               "   -it Import map type (to convert to)\n"
-               "       Possible map types:\n"
-               "         - drawing (default, does not preserve attributes, typically for dxf "
-               "files)\n"
-               "         - data (preserves attributes, typically for csv and tsv files)\n"
-               "   -iaa will import and attach attributes to an existing map\n";
+        std::stringstream s;
+        s << "Mode options for Importing (mode: " << getModeName()
+          << "):\n"
+             "  The file provided by -f here will be used as the base. If that file"
+             "is not a graph, a new graph will be created and the file will be imported\n"
+             "  -if  <file(s) to import> one or more files to import\n"
+             "  -it  <type> Import map type (to convert to). Possible map types:\n"
+             "       drawing (default, does not preserve attributes, typically for dxf "
+             "files)\n"
+             "       data (preserves attributes, typically for csv and tsv files)\n"
+             "  -iaa will import and attach attributes to an existing map\n";
+        return s.str();
     }
 
   public:

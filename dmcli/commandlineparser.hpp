@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2017 Christian Sailer
+// SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -7,6 +8,7 @@
 #include <cstddef>
 #include <optional>
 #include <string>
+#include <vector>
 
 class IModeParserFactory;
 class IModeParser;
@@ -30,6 +32,7 @@ class CommandLineParser {
 
     void printHelp();
     void printVersion();
+    bool mimicOptionSet(const std::string &op) const;
     void run(IPerformanceSink &perfWriter) const;
 
   private:
@@ -42,6 +45,7 @@ class CommandLineParser {
     bool m_printProgress;
     bool m_ignoreDisplayData = false;
     std::optional<std::string> m_mimicVersion = std::nullopt;
+    std::optional<std::vector<std::string>> m_mimicOptions = std::nullopt;
 
     const IModeParserFactory &m_parserFactory;
     IModeParser *m_modeParser;

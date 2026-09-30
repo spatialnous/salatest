@@ -1,4 +1,5 @@
 ﻿// SPDX-FileCopyrightText: 2017 Christian Sailer
+// SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -9,6 +10,7 @@
 #include "salalib/genlib/point2f.hpp"
 
 #include <cstddef>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -21,16 +23,19 @@ class VisPrepParser : public IModeParser {
     std::string getModeName() const override { return "VISPREP"; }
 
     std::string getHelp() const override {
-        return "Mode options for VISPREP (visual analysis preparation) are:\n"
-               "  -pg <gridsize> floating point number defining the grid spacing. If this\n"
-               "      is provided it will create a new map\n"
-               "  -pp <fillpoint> point where to fill. Can be repeated\n"
-               "  -pf <fillpoint file> a file with a point per line to fill\n"
-               "  -pr <max visibility> restrict visibility (-1 is unrestricted, default)\n"
-               "  -pb Make boundary graph\n"
-               "  -pm Make graph\n"
-               "  -pu Unmake graph\n"
-               "  -pl Remove links when unmaking\n";
+        std::stringstream s;
+        s << "Mode options for Visual Analysis Preparation (mode: " << getModeName()
+          << "):\n"
+             "  -pg <gridsize> floating point number defining the grid spacing. If this\n"
+             "      is provided it will create a new map\n"
+             "  -pp <fillpoint> point where to fill. Can be repeated\n"
+             "  -pf <fillpoint file> a file with a point per line to fill\n"
+             "  -pr <max visibility> restrict visibility (-1 is unrestricted, default)\n"
+             "  -pb Make boundary graph\n"
+             "  -pm Make graph\n"
+             "  -pu Unmake graph\n"
+             "  -pl Remove links when unmaking\n";
+        return s.str();
     }
 
     void parse(size_t argc, char **argv) override;

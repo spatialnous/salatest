@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2017 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -9,6 +9,7 @@
 #include "salalib/genlib/point2f.hpp"
 
 #include <cstddef>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -19,12 +20,15 @@ class StepDepthParser : public IModeParser {
     std::string getModeName() const override { return "STEPDEPTH"; }
 
     std::string getHelp() const override {
-        return "Mode options for lattice map STEPDEPTH are:\n"
-               "  -sdp <step depth point> point where to calculate step depth from. Can be "
-               "repeated\n"
-               "  -sdf <step depth point file> a file with a point per line to calculate step "
-               "depth from\n"
-               "  -sdt <type> step type. One of metric, angular or visual\n";
+        std::stringstream s;
+        s << "Mode options for Step Depth (mode: " << getModeName()
+          << "):\n"
+             "  -sdp <step depth point> point where to calculate step depth from. Can be "
+             "repeated\n"
+             "  -sdf <step depth point file> a file with a point per line to calculate step "
+             "depth from\n"
+             "  -sdt <type> step type. One of metric, angular or visual\n";
+        return s.str();
     }
 
     enum class StepType { NONE, ANGULAR, METRIC, VISUAL };

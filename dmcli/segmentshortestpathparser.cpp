@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2020-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -15,6 +15,7 @@
 #include "salalib/segmmodules/segmtopologicalshortestpath.hpp"
 #include "salalib/segmmodules/segmtulipshortestpath.hpp"
 
+#include <cstdlib>
 #include <cstring>
 #include <iostream>
 #include <memory>
@@ -65,6 +66,20 @@ void SegmentShortestPathParser::parse(size_t argc, char **argv) {
             } else {
                 throw dmcli::CommandLineException(std::string("Invalid step type: ") + argv[i]);
             }
+        } else if (std::strcmp(argv[i], "-sspseed") == 0) {
+            if (m_seed > 0) {
+                throw dmcli::CommandLineException("-sspseed can only be used once");
+            }
+            ENFORCE_ARGUMENT("-sspseed", i)
+            if (!dmcli::has_only_digits(argv[i])) {
+                throw dmcli::CommandLineException(
+                    std::string("-sspseed must be a number >=0, got ") + argv[i]);
+            }
+            m_seed = std::atoi(argv[i]);
+            if (m_seed <= 0) {
+                throw dmcli::CommandLineException(
+                    std::string("-sspseed must be a number >=0, got ") + argv[i]);
+            }
         }
     }
 
@@ -80,6 +95,10 @@ void SegmentShortestPathParser::parse(size_t argc, char **argv) {
     m_originPoint = parsed[0];
     m_destinationPoint = parsed[1];
 
+    if (m_seed < 0) {
+        m_seed = pafmath::defaultSeed;
+    }
+
     if (m_stepType == StepType::NONE) {
         throw dmcli::CommandLineException("Step depth type (-sspt) must be provided");
     }
@@ -91,7 +110,7 @@ void SegmentShortestPathParser::run(const CommandLineParser &clp,
 
     std::optional<std::string> mimicVersion = clp.getMimickVersion();
 
-    std::cout << "ok\nSelecting cells... " << std::flush;
+    std::cout << "ok\nSelecting origins and destinations... " << std::flush;
 
     auto graphRegion = metaGraph.getRegion();
 
@@ -116,9 +135,10 @@ void SegmentShortestPathParser::run(const CommandLineParser &clp,
     switch (m_stepType) {
     case SegmentShortestPathParser::StepType::TULIP: {
         auto &map = dm_runmethods::safeGetDisplayedShapeGraph(metaGraph);
-        DO_TIMED(
-            "Calculating tulip shortest path",
-            SegmentTulipShortestPath(map.getInternalMap(), 1024, refFrom, refTo).run(comm.get()))
+        DO_TIMED("Calculating tulip shortest path",
+                 SegmentTulipShortestPath(map.getInternalMap(), 1024, refFrom, refTo,
+                                          static_cast<unsigned int>(m_seed))
+                     .run(comm.get()))
         map.overrideDisplayedAttribute(-2); // <- override if it's already showing
         map.setDisplayedAttribute(SegmentTulipShortestPath::Column::ANGULAR_SHORTEST_PATH_ANGLE);
         break;

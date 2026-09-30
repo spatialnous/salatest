@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2017 Christian Sailer
+// SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -9,9 +10,14 @@
 #include "interfaceversion.hpp"
 #include "parsingutils.hpp"
 
+#include "salalib/genlib/stringutils.hpp"
+
 #include <algorithm>
 #include <cstring>
 #include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 void CommandLineParser::printHelp() {
     std::cout << "Usage: " << APP_NAME
@@ -23,7 +29,8 @@ void CommandLineParser::printHelp() {
               << "-t <times.csv> enables output of runtimes as csv file\n"
               << "-p enables text progress printing\n"
               << "-idd ignore display data in metagraph files\n"
-              << "-mmv mimic a previous version's quirks\n"
+              << "-mmv <version> mimic a previous version's quirks\n"
+              << "-mmo <quirk,quirk> mimic specific quirks\n"
 
               << "Possible modes are:\n";
     std::for_each(m_parserFactory.getModeParsers().begin(), m_parserFactory.getModeParsers().end(),
@@ -46,6 +53,7 @@ CommandLineParser::CommandLineParser(const IModeParserFactory &parserFactory)
 void CommandLineParser::parse(size_t argc, char *argv[]) {
     m_valid = false;
     m_printVersionMode = false;
+    std::string mimicOptionsString = "";
     if (argc <= 1) {
         throw dmcli::CommandLineException(
             "No commandline parameters provided - don't know what to do");
@@ -90,8 +98,11 @@ void CommandLineParser::parse(size_t argc, char *argv[]) {
         } else if (std::strcmp("-idd", argv[i]) == 0) {
             m_ignoreDisplayData = true;
         } else if (std::strcmp("-mmv", argv[i]) == 0) {
-            ENFORCE_ARGUMENT("-t", i)
+            ENFORCE_ARGUMENT("-mmv", i)
             m_mimicVersion = argv[i];
+        } else if (std::strcmp("-mmo", argv[i]) == 0) {
+            ENFORCE_ARGUMENT("-mmo", i)
+            mimicOptionsString = argv[i];
         }
         ++i;
     }
@@ -105,8 +116,57 @@ void CommandLineParser::parse(size_t argc, char *argv[]) {
     if (m_outputFile.empty()) {
         throw dmcli::CommandLineException("-o for output file is required");
     }
+    if (m_mimicVersion.has_value()) {
+        std::vector<std::string> acceptedMimicVersions = {
+            "depthmapX 0.8.0",   //
+            "depthmapX 0.9.0",   //
+            "depthmapXcli 0.9.0" //
+        };
+        if (std::find(acceptedMimicVersions.begin(), acceptedMimicVersions.end(), m_mimicVersion) ==
+            acceptedMimicVersions.end()) {
+            std::stringstream s;
+            s << "Mimic version suggested (" << m_mimicVersion.value()
+              << ") is not a known accepted value."
+                 "Accepted values are:";
+            for (const auto &v : acceptedMimicVersions) {
+                s << v;
+                if (v != *acceptedMimicVersions.rbegin()) {
+                    s << ",";
+                }
+            }
+            std::cout << s.str();
+        }
+    }
+    if (!mimicOptionsString.empty()) {
+        std::vector<std::string> acceptedMimicOptions = {
+            "legacy-agent-loc-rng" //
+        };
+        m_mimicOptions = dXstring::split(mimicOptionsString, ',');
+        for (const auto &op : m_mimicOptions.value()) {
+            if (std::find(acceptedMimicOptions.begin(), acceptedMimicOptions.end(), op) ==
+                acceptedMimicOptions.end()) {
+                std::stringstream s;
+                s << "Mimic option suggested (" << op
+                  << ") is not a known accepted value."
+                     "Accepted values are:";
+                for (const auto &v : acceptedMimicOptions) {
+                    s << v;
+                    if (v != *acceptedMimicOptions.rbegin()) {
+                        s << ",";
+                    }
+                }
+                std::cout << s.str();
+            }
+        }
+    }
     m_modeParser->parse(argc, argv);
     m_valid = true;
+}
+
+bool CommandLineParser::mimicOptionSet(const std::string &op) const {
+    if (!m_mimicOptions.has_value())
+        return false;
+    return std::find(m_mimicOptions->begin(), m_mimicOptions->end(), op) != m_mimicOptions->end();
 }
 
 void CommandLineParser::run(IPerformanceSink &perfWriter) const {

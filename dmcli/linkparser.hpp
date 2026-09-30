@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2017 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -8,6 +8,7 @@
 #include "imodeparser.hpp"
 
 #include <cstddef>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -22,22 +23,25 @@ class LinkParser : public IModeParser {
     std::string getModeName() const override { return "LINK"; }
 
     std::string getHelp() const override {
-        return "Mode options for LINK:\n"
-               "  -lmt <type> Map type group to select displayed map from. One of:\n"
-               "       latticemaps (default, vga: link)\n"
-               "       shapegraphs (axial:link/unlink, segment:link, convex:link)\n"
-               "  -lm  <mode> one of:\n"
-               "       link (default)\n"
-               "       unlink\n"
-               "  -lt  <type> one of:\n"
-               "       coords (default, provided as x,y or x1,y1,x2,y2 coordinates)\n"
-               "       refs (provided as the ids (Ref) of the shapes)\n"
-               "  -lnk <single link/unlink coordinates> provided in csv (x1,y1,x2,y2)\n"
-               "       for example \"0.1,0.2,0.2,0.4\" to create a link from 0.1,0.2\n"
-               "       to 0.2,0.4. In the case of axial-map unlinks a single (x,y) set may\n"
-               "       be provided. In the case of refs provide the ids in csv (reffrom,refto)"
-               "       Provide multiple times for multiple links/unlinks\n"
-               "  -lf  <links file> as in -lnk\n";
+        std::stringstream s;
+        s << "Mode options for Linking (mode: " << getModeName()
+          << "):\n"
+             "  -lmt <type> Map type group to select displayed map from. One of:\n"
+             "       latticemaps (default, vga: link)\n"
+             "       shapegraphs (axial:link/unlink, segment:link, convex:link)\n"
+             "  -lm  <mode> one of:\n"
+             "       link (default)\n"
+             "       unlink\n"
+             "  -lt  <type> one of:\n"
+             "       coords (default, provided as x,y or x1,y1,x2,y2 coordinates)\n"
+             "       refs   (provided as the ids (Ref) of the shapes)\n"
+             "  -lnk <single link/unlink coordinates> provided in csv (x1,y1,x2,y2)\n"
+             "       for example \"0.1,0.2,0.2,0.4\" to create a link from 0.1,0.2\n"
+             "       to 0.2,0.4. In the case of axial-map unlinks a single (x,y) set may\n"
+             "       be provided. In the case of refs provide the ids in csv (reffrom,refto)"
+             "       Provide multiple times for multiple links/unlinks\n"
+             "  -lf  <links file> as in -lnk\n";
+        return s.str();
     }
 
   public:

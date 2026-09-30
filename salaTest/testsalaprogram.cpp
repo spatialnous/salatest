@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2017 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -86,7 +86,7 @@ TEST_CASE("Trivial scripts") {
 
     SalaGrf graph;
     SalaObj context = SalaObj(SalaObj::S_LATTICEMAPOBJ, graph);
-    SalaProgram program(context);
+    SalaProgram program(context, pafmath::defaultSeed);
     program.parse(script);
     SalaObj result = program.evaluate();
     REQUIRE(result == expected);
@@ -105,7 +105,7 @@ TEST_CASE("Trivial errors") {
 
     SalaGrf graph;
     SalaObj context = SalaObj(SalaObj::S_LATTICEMAPOBJ, graph);
-    SalaProgram program(context);
+    SalaProgram program(context, pafmath::defaultSeed);
     program.parse(script);
     REQUIRE_THROWS_WITH(program.evaluate(), "Unknown exception");
 }
@@ -123,7 +123,7 @@ TEST_CASE("Variables from outer scope are accessible in inner scope") {
 
     SalaGrf graph;
     SalaObj context = SalaObj(SalaObj::S_LATTICEMAPOBJ, graph);
-    SalaProgram program(context);
+    SalaProgram program(context, pafmath::defaultSeed);
     program.parse(script);
     SalaObj result = program.evaluate();
     REQUIRE(result.toInt() == expected.toInt());
@@ -218,7 +218,7 @@ TEST_CASE("Shapemap scripts") {
     SalaGrf graph;
     graph.map.shape = shapeGraph.get();
     SalaObj context = SalaObj(SalaObj::S_SHAPEMAPOBJ, graph);
-    SalaProgram program(context);
+    SalaProgram program(context, pafmath::defaultSeed);
     program.parse(script);
     program.runupdate(static_cast<int>(newCol));
 
@@ -351,7 +351,7 @@ TEST_CASE("Shapemap scripts with unexpected results") {
     SalaGrf graph;
     graph.map.shape = shapeGraph.get();
     SalaObj context = SalaObj(SalaObj::S_SHAPEMAPOBJ, graph);
-    SalaProgram program(context);
+    SalaProgram program(context, pafmath::defaultSeed);
     program.parse(script);
     program.runupdate(static_cast<int>(newCol));
 

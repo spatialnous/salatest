@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2018-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -17,6 +17,7 @@
 #include <iostream>
 #include <optional>
 #include <ostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -27,22 +28,25 @@ SegmentParser::SegmentParser()
 std::string SegmentParser::getModeName() const { return "SEGMENT"; }
 
 std::string SegmentParser::getHelp() const {
-    return "Mode options for Segment Analysis:\n"
-           "  -st  <type of analysis> one of:\n"
-           "       tulip (Angular Tulip - Faster)\n"
-           "       angular (Angular Full - Slower)\n"
-           "       topological\n"
-           "       metric\n"
-           "       tulip-leaf-choice\n"
-           "  -sr  <radius/list of radii>\n"
-           "  -srt <radius type> (only for Tulip) one of:\n"
-           "       steps\n"
-           "       metric\n"
-           "       angular\n"
-           "  -sic to include choice (only for Angular Tulip)\n"
-           "  -stb <tulip bins> (4 to 1024, 1024 approximates full angular)\n"
-           "  -swa <map attribute name> perform weighted analysis using this attribute (only for "
-           "Tulip)\n";
+    std::stringstream s;
+    s << "Mode options for Segment Analysis (mode: " << getModeName()
+      << "):\n"
+         "  -st  <type of analysis> one of:\n"
+         "       tulip   (Angular Tulip - Faster)\n"
+         "       angular (Angular Full - Slower)\n"
+         "       topological\n"
+         "       metric\n"
+         "       tulip-leaf-choice\n"
+         "  -sr  <radius/list of radii>\n"
+         "  -srt <radius type> (only for Tulip) one of:\n"
+         "       steps\n"
+         "       metric\n"
+         "       angular\n"
+         "  -sic include choice (only for Angular Tulip)\n"
+         "  -stb <tulip bins> (4 to 1024, 1024 approximates full angular)\n"
+         "  -swa <map attribute name> perform weighted analysis using this attribute (only "
+         "for Tulip)\n";
+    return s.str();
 }
 
 void SegmentParser::parse(size_t argc, char **argv) {

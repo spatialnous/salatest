@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2018 Petros Koutsolampros
+// SPDX-FileCopyrightText: 2018-2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -9,6 +9,7 @@
 #include "salalib/shapemap.hpp"
 
 #include <cstddef>
+#include <sstream>
 
 class MapConvertParser : public IModeParser {
   public:
@@ -21,19 +22,22 @@ class MapConvertParser : public IModeParser {
     std::string getModeName() const override { return "MAPCONVERT"; }
 
     std::string getHelp() const override {
-        return "Mode options for Map Conversion:\n"
-               "  -co Output map type (to convert to)\n"
-               "      Possible input/output map types:\n"
-               "        - drawing\n"
-               "        - axial\n"
-               "        - segment\n"
-               "        - data\n"
-               "        - convex\n"
-               "  -con Output map name\n"
-               "  -cir Remove input map\n"
-               "  -coc Copy attributes to output map (Only between DATA, AXIAL and SEGMENT)\n"
-               "  -crsl <%> Percent of line length of axial stubs to remove (Only for AXIAL -> "
-               "SEGMENT)\n\n";
+        std::stringstream s;
+        s << "Mode options for Map Conversion (mode: " << getModeName()
+          << "):\n"
+             "  -co   <type> Output map type (to convert to). Possible input/output map "
+             "types:\n"
+             "        drawing\n"
+             "        axial\n"
+             "        segment\n"
+             "        data\n"
+             "        convex\n"
+             "  -con  <name> Output map name\n"
+             "  -cir  Remove input map\n"
+             "  -coc  Copy attributes to output map (Only between DATA, AXIAL and SEGMENT)\n"
+             "  -crsl <%> Percent of line length of axial stubs to remove (Only for AXIAL -> "
+             "SEGMENT)\n\n";
+        return s.str();
     }
     void parse(size_t argc, char **argv) override;
     void run(const CommandLineParser &clp, IPerformanceSink &perfWriter) const override;

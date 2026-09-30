@@ -14,6 +14,7 @@
 #include "salalib/exportutils.hpp"
 
 #include <algorithm>
+#include <array>
 #include <cerrno>
 #include <cstdlib>
 #include <cstring>
@@ -156,6 +157,20 @@ void AgentParser::parse(size_t argc, char *argv[]) {
                 throw dmcli::CommandLineException(std::string("-alife must be a number >0, got ") +
                                                   argv[i]);
             }
+        } else if (std::strcmp(argv[i], "-arunseed") == 0) {
+            if (m_runSeed > 0) {
+                throw dmcli::CommandLineException("-arunseed can only be used once");
+            }
+            ENFORCE_ARGUMENT("-arunseed", i)
+            if (!dmcli::has_only_digits(argv[i])) {
+                throw dmcli::CommandLineException(
+                    std::string("-arunseed must be a number >=0, got ") + argv[i]);
+            }
+            m_runSeed = std::atoi(argv[i]);
+            if (m_runSeed <= 0) {
+                throw dmcli::CommandLineException(
+                    std::string("-arunseed must be a number >=0, got ") + argv[i]);
+            }
         } else if (std::strcmp(argv[i], "-alocseed") == 0) {
             if (!pointFile.empty()) {
                 throw dmcli::CommandLineException(
@@ -231,6 +246,10 @@ void AgentParser::parse(size_t argc, char *argv[]) {
 
     if (m_agentMode == AgentMode::NONE) {
         m_agentMode = AgentMode::STANDARD;
+    }
+
+    if (m_runSeed < 0) {
+        m_runSeed = pafmath::defaultSeed;
     }
 
     if (m_totalSystemTimestemps == 0) {
@@ -364,6 +383,15 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
         }
     }
 
+    auto rrlSeed = randomReleaseLocationSeed();
+    if (clp.mimicOptionSet("legacy-agent-loc-rng")) {
+        if (rrlSeed.has_value()) {
+            static constexpr std::array<unsigned int, 11> streamStart = {1,  2,  3,  5,  7, 11,
+                                                                         13, 17, 19, 23, 29};
+            rrlSeed = streamStart[static_cast<size_t>(m_randomReleaseLocationSeed)];
+        }
+    }
+
     // the ui and code suggest that the results can be put on a separate
     // 'data map', but the functionality does not seem to actually be
     // there thus it is skipped for now
@@ -372,8 +400,8 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
     auto analysis = std::unique_ptr<IAnalysis>(new AgentAnalysis(
         currentMap.getInternalMap(), totalSystemTimestemps(), releaseRate(),
         static_cast<size_t>(agentLifeTimesteps()), static_cast<unsigned short>(agentFOV()),
-        static_cast<size_t>(agentStepsBeforeTurnDecision()), agentViewAlgorithm,
-        randomReleaseLocationSeed(), getReleasePoints(), gateLayer, recordTrails));
+        static_cast<size_t>(agentStepsBeforeTurnDecision()), agentViewAlgorithm, runSeed(), rrlSeed,
+        getReleasePoints(), gateLayer, recordTrails));
 
     std::cout << "ok\nRunning agent analysis... " << std::flush;
     DO_TIMED("Running agent analysis",

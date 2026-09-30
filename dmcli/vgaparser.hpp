@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2017 Christian Sailer
+// SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -8,6 +9,7 @@
 #include "imodeparser.hpp"
 
 #include <cstddef>
+#include <sstream>
 #include <string>
 
 class VgaParser : public IModeParser {
@@ -15,11 +17,19 @@ class VgaParser : public IModeParser {
     std::string getModeName() const override { return "VGA"; }
 
     std::string getHelp() const override {
-        return "Mode options for VGA:\n"
-               "-vm <vga mode> one of isovist, visiblity, metric, angular, thruvision\n"
-               "-vg turn on global measures for visibility, requires radius between 1 and 99 or n\n"
-               "-vl turn on local measures for visibility\n"
-               "-vr set visibility radius\n";
+        std::stringstream s;
+        s << "Mode options for Visibility Graph Analysis (mode: " << getModeName()
+          << "):\n"
+             "-vm <vga mode> one of:"
+             "    isovist\n"
+             "    visiblity\n"
+             "    metric\n"
+             "    angular\n"
+             "    thruvision\n"
+             "-vg turn on global measures for visibility, requires radius between 1 and 99 or n\n"
+             "-vl turn on local measures for visibility\n"
+             "-vr <radius> set visibility radius\n";
+        return s.str();
     }
 
   public:
