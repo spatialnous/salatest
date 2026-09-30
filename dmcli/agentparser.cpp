@@ -380,7 +380,7 @@ void AgentParser::run(const CommandLineParser &clp, IPerformanceSink &perfWriter
     }
 
     auto rrlSeed = randomReleaseLocationSeed();
-    if (clp.mimicOptionSet("legacy-agent-loc-rng") && rrlSeed.has_value()) {
+    if (clp.quirkEnabled("legacy-agent-loc-rng") && rrlSeed.has_value()) {
         if (rrlSeed < 0 || rrlSeed > 10) {
             // it was only possible to select from the streams below and
             // there's only 11 of them

@@ -25,12 +25,12 @@ void CommandLineParser::printHelp() {
                  "<times.csv>] [-p] [mode options]\n"
               << "       " << APP_NAME << " -v prints the current version\n"
               << "       " << APP_NAME << " -h prints this help text\n"
-              << "-s enables simple mode\n"
-              << "-t <times.csv> enables output of runtimes as csv file\n"
-              << "-p enables text progress printing\n"
-              << "-idd ignore display data in metagraph files\n"
-              << "-mmv <version> mimic a previous version's quirks\n"
-              << "-mmo <quirk,quirk> mimic specific quirks\n"
+              << "-s    enables simple mode\n"
+              << "-t    <times.csv> enables output of runtimes as csv file\n"
+              << "-p    enables text progress printing\n"
+              << "-idd  ignore display data in metagraph files\n"
+              << "-mmv  <version> mimic a previous version's quirks\n"
+              << "-qrks <quirk,quirk> enable specific quirks (-lq to list)\n"
 
               << "Possible modes are:\n";
     std::for_each(m_parserFactory.getModeParsers().begin(), m_parserFactory.getModeParsers().end(),
@@ -46,6 +46,17 @@ void CommandLineParser::printHelp() {
 
 void CommandLineParser::printVersion() { std::cout << TITLE_BASE << "\n" << std::flush; }
 
+void CommandLineParser::printQuirks() {
+    std::stringstream s;
+    for (const auto &v : ACCEPTED_QUIRKS) {
+        s << v;
+        if (v != *ACCEPTED_QUIRKS.rbegin()) {
+            s << ",";
+        }
+    }
+    std::cout << s.str() << std::flush;
+}
+
 CommandLineParser::CommandLineParser(const IModeParserFactory &parserFactory)
     : m_valid(false), m_printVersionMode(false), m_simpleMode(false), m_printProgress(false),
       m_parserFactory(parserFactory), m_modeParser(nullptr) {}
@@ -53,7 +64,8 @@ CommandLineParser::CommandLineParser(const IModeParserFactory &parserFactory)
 void CommandLineParser::parse(size_t argc, char *argv[]) {
     m_valid = false;
     m_printVersionMode = false;
-    std::string mimicOptionsString = "";
+    m_printQuirksMode = false;
+    std::string quirksString = "";
     if (argc <= 1) {
         throw dmcli::CommandLineException(
             "No commandline parameters provided - don't know what to do");
@@ -63,6 +75,9 @@ void CommandLineParser::parse(size_t argc, char *argv[]) {
             return;
         } else if (std::strcmp("-v", argv[i]) == 0) {
             m_printVersionMode = true;
+            return;
+        } else if (std::strcmp("-lq", argv[i]) == 0) {
+            m_printQuirksMode = true;
             return;
         } else if (std::strcmp("-m", argv[i]) == 0) {
             if (m_modeParser) {
@@ -100,9 +115,9 @@ void CommandLineParser::parse(size_t argc, char *argv[]) {
         } else if (std::strcmp("-mmv", argv[i]) == 0) {
             ENFORCE_ARGUMENT("-mmv", i)
             m_mimicVersion = argv[i];
-        } else if (std::strcmp("-mmo", argv[i]) == 0) {
-            ENFORCE_ARGUMENT("-mmo", i)
-            mimicOptionsString = argv[i];
+        } else if (std::strcmp("-qrks", argv[i]) == 0) {
+            ENFORCE_ARGUMENT("-qrks", i)
+            quirksString = argv[i];
         }
         ++i;
     }
@@ -137,25 +152,17 @@ void CommandLineParser::parse(size_t argc, char *argv[]) {
             std::cout << s.str();
         }
     }
-    if (!mimicOptionsString.empty()) {
-        std::vector<std::string> acceptedMimicOptions = {
-            "legacy-agent-loc-rng" //
-        };
-        m_mimicOptions = dXstring::split(mimicOptionsString, ',');
-        for (const auto &op : m_mimicOptions.value()) {
-            if (std::find(acceptedMimicOptions.begin(), acceptedMimicOptions.end(), op) ==
-                acceptedMimicOptions.end()) {
+    if (!quirksString.empty()) {
+        m_enabledQuirks = dXstring::split(quirksString, ',');
+        for (const auto &op : m_enabledQuirks.value()) {
+            if (std::find(ACCEPTED_QUIRKS.begin(), ACCEPTED_QUIRKS.end(), op) ==
+                ACCEPTED_QUIRKS.end()) {
                 std::stringstream s;
-                s << "Mimic option suggested (" << op
+                s << "Quirk suggested (" << op
                   << ") is not a known accepted value."
                      "Accepted values are:";
-                for (const auto &v : acceptedMimicOptions) {
-                    s << v;
-                    if (v != *acceptedMimicOptions.rbegin()) {
-                        s << ",";
-                    }
-                }
                 std::cout << s.str();
+                printQuirks();
             }
         }
     }
@@ -163,10 +170,11 @@ void CommandLineParser::parse(size_t argc, char *argv[]) {
     m_valid = true;
 }
 
-bool CommandLineParser::mimicOptionSet(const std::string &op) const {
-    if (!m_mimicOptions.has_value())
+bool CommandLineParser::quirkEnabled(const std::string &op) const {
+    if (!m_enabledQuirks.has_value())
         return false;
-    return std::find(m_mimicOptions->begin(), m_mimicOptions->end(), op) != m_mimicOptions->end();
+    return std::find(m_enabledQuirks->begin(), m_enabledQuirks->end(), op) !=
+           m_enabledQuirks->end();
 }
 
 void CommandLineParser::run(IPerformanceSink &perfWriter) const {

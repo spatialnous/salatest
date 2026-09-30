@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2017 Christian Sailer
+// SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -19,6 +20,8 @@ int main(int argc, char *argv[]) {
         args.parse(static_cast<size_t>(argc), argv);
         if (!args.isValid()) {
             if (args.printVersionMode()) {
+                args.printVersion();
+            } else if (args.printQuirksMode()) {
                 args.printVersion();
             } else {
                 args.printHelp();

@@ -599,7 +599,7 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "0",
-                        "-mmo": "legacy-agent-loc-rng"
+                        "-qrks": "legacy-agent-loc-rng"
                     }
                 },
                 {
@@ -630,7 +630,7 @@
                         "-asteps": "3",
                         "-alife": "1000",
                         "-alocseed": "5",
-                        "-mmo": "legacy-agent-loc-rng",
+                        "-qrks": "legacy-agent-loc-rng",
                         "-ot": "gatecounts"
                     }
                 }
