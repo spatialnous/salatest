@@ -273,7 +273,7 @@
             ]
         },
         "agents_defaults_noseeds": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.graph"
             ],
@@ -294,7 +294,7 @@
             ]
         },
         "agents_defaults_runseed_12345": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.graph"
             ],
@@ -316,7 +316,7 @@
             ]
         },
         "agents_defaults_runseed_12345_locseed_0": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.graph"
             ],

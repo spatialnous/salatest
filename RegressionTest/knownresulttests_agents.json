@@ -14,7 +14,7 @@
     },
     "testcases": {
         "agents_defaults": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -44,7 +44,7 @@
             ]
         },
         "agents_weighted": {
-            "minVersion": "0.13.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -74,7 +74,7 @@
             ]
         },
         "agents_line_of_sight_length_look": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -104,7 +104,7 @@
             ]
         },
         "agents_line_of_sight_length_look_only_map": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.tsv"
             ],
@@ -127,7 +127,7 @@
             ]
         },
         "agents_occluded_length_look": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -157,7 +157,7 @@
             ]
         },
         "agents_any_occlusion_look": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -187,7 +187,7 @@
             ]
         },
         "agents_occlusion_group_bins_45_look": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -217,7 +217,7 @@
             ]
         },
         "agents_occlusion_group_bins_60_look": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -247,7 +247,7 @@
             ]
         },
         "agents_furthest_occlusion_per_bin_look": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -277,7 +277,7 @@
             ]
         },
         "agents_per_bin_far_distance_look": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -307,7 +307,7 @@
             ]
         },
         "agents_per_bin_angle_look": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -337,7 +337,7 @@
             ]
         },
         "agents_per_bin_far_distance_and_angle_look": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -367,7 +367,7 @@
             ]
         },
         "agents_per_bin_memory_look": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -397,7 +397,7 @@
             ]
         },
         "agents_defaults_noseeds": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -426,7 +426,7 @@
             ]
         },
         "agents_defaults_runseed_12345": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -456,7 +456,7 @@
             ]
         },
         "agents_defaults_runseed_12345_locseed_0": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.csv"
             ],
@@ -487,7 +487,7 @@
             ]
         },
         "agents_gatecounts": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.tsv"
             ],
@@ -510,7 +510,7 @@
             ]
         },
         "agents_trails_all": {
-            "minVersion": "0.9.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.cat"
             ],
@@ -534,7 +534,7 @@
             ]
         },
         "agents_trails_50": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.cat"
             ],
@@ -558,7 +558,7 @@
             ]
         },
         "agents_trails_1": {
-            "minVersion": "0.8.0",
+            "minVersion": "0.14.0",
             "compareFiles": [
                 "out.cat"
             ],
