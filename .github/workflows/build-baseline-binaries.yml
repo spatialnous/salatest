@@ -91,7 +91,8 @@ jobs:
 
     - name: Smoke test on the build machine
       shell: bash
-      run: '${{ steps.bin.outputs.path }}' -v
+      run: |
+        '${{ steps.bin.outputs.path }}' -v
 
     # The step that actually proves the floor: run it somewhere OLD.
     - name: Verify it launches on an old distro
