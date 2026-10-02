@@ -31,16 +31,22 @@ class RegressionTestRunner():
         self.__testVersion = self.getVersion(".", self.testBinary)
 
     def getVersion(self, runDir, binary):
-        if (os.path.isfile(os.path.join(runDir, binary))):
-            return dXversion(runhelpers.runExecutable(runDir, [binary, "-v"])[1].strip())
-        else:
-            return dXversion("0.8.0")
+        path = os.path.join(runDir, binary)
+        if not os.path.isfile(path):
+            raise RuntimeError("Baseline/test binary not found: " + path)
+        ok, output = runhelpers.runExecutable(runDir, [binary, "-v"])
+        if not ok:
+            raise RuntimeError(binary + " exists but could not be run:\n" + output)
+        return dXversion(output.strip())
         
     def getHelpText(self, runDir, binary):
-        if (os.path.isfile(os.path.join(runDir, binary))):
-            return runhelpers.runExecutable(runDir, [binary, "-h"])[1]
-        else:
-            return ""
+        path = os.path.join(runDir, binary)
+        if not os.path.isfile(path):
+            raise RuntimeError("Baseline/test binary not found: " + path)
+        ok, output = runhelpers.runExecutable(runDir, [binary, "-h"])
+        if not ok:
+            raise RuntimeError(binary + " exists but could not be run:\n" + output)
+        return output.strip()
         
     def canIgnoreDisplayData(self, runDir, binary):
         return "-idd" in self.getHelpText(runDir, binary)

@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2017 Christian Sailer
+# SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -11,8 +12,8 @@ import os
 def writeConfig(filename, rundir):
     with open(filename, "w") as f:
         f.write('{ "rundir": "'+ rundir +'",\n')
-        f.write('  "basebinlocation": "../baselineBinaries",\n')
-        f.write('  "testbinlocation": "../..",\n')
+        f.write('  "basebinlocation": "../BaselineBinaries",\n')
+        f.write('  "testbinlocation": "../../build-RegressionTest",\n')
         f.write('  "allowskip": true,\n')
         f.write('  "testcases": {\n')
         f.write('    "test1": {\n')

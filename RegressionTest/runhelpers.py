@@ -60,7 +60,7 @@ def runExecutable( workingDir, arguments, step = 0 ):
                 output = f.read()
         if os.path.exists( errfilename ):
             with open( errfilename, "r") as f:
-                error = f.read();
+                error = f.read()
         return (result.returncode == 0, output)
 
 def getExecutable(basedir):
