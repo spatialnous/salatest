@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: 2024-2026 Petros Koutsolampros
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+name: Run clang-tidy on an ubuntu-latest
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Configure CMake
+      run: >
+        cmake -B /src/build
+        -DCMAKE_CXX_COMPILER=clang++
+        -DCMAKE_C_COMPILER=clang
+        -DCMAKE_BUILD_TYPE=Release
+        -DSALALIB_CLANG_TIDY=ON
+        -S /src
+
+    - name: Build
+      run: cmake --build /src/build
