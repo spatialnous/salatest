@@ -52,16 +52,17 @@ def runExecutable( workingDir, arguments, step = 0 ):
     with cd(workingDir):
         outfilename = "out-" + str(step) + ".txt"
         errfilename = "err-" + str(step) + ".txt"
-        with open(outfilename, "w") as outfile:
-            result = subprocess.run(arguments, stdout = outfile, stderr = subprocess.STDOUT )
+        with open(outfilename, "w") as outfile, open(errfilename, "w") as errfile:
+            result = subprocess.run(arguments, stdout = outfile, stderr = errfile )
         output = ""
-        if os.path.exists(outfilename):
-            with open( outfilename, "r" ) as f:
-                output = f.read()
-        if os.path.exists( errfilename ):
-            with open( errfilename, "r") as f:
-                error = f.read()
-        return (result.returncode == 0, output)
+
+        def read(name):
+            if os.path.exists(name):
+                with open(name, "r") as f:
+                    return f.read()
+            return ""
+
+        return (result.returncode == 0, read(outfilename), read(errfilename))
 
 def getExecutable(basedir):
     sys = platform.system()

@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2017 Christian Sailer
+# SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -13,14 +14,14 @@ class TestRegressionTestRunner(unittest.TestCase):
         if self.counter >= 0:
             self.counter = self.counter - 1
         if self.counter == 0:
-            return (False, "Failed")
+            return (False, "", "Failed")
         if not os.path.exists(workingdir):
             os.makedirs(workingdir)
         with open(os.path.join(workingdir, "outfile.graph"), "w") as f:
             f.write("123")
         with open(os.path.join(workingdir, "runtimes.csv"), "w") as f:
             f.write("action,duration\n")
-        return (True, "")    
+        return (True, "", "")    
         
 
     def test_RegressionTestRunnerAllGoesWell(self):

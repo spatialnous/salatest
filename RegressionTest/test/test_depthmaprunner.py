@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2017 Christian Sailer
+# SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -71,30 +72,30 @@ class DepthmapRegressioRunnerTest(unittest.TestCase):
         if timingsFile:
             with open (os.path.join(rundir, timingsFile), "w") as f:
                 f.write('"action","duration"\n')
-        return (True, "")
+        return (True, "", "")
 
     def runfuncDifferentResults(self, rundir, args):
         outpath = os.path.join(rundir, self.getOutfile(args))
         with open (outpath, "w") as f:
             f.write(self.__outContent)
         self.__outContent = self.__outContent + "x"    
-        return (True, "")
+        return (True, "", "")
         
     def runfuncWriteNoFile(self, rundir, args, dontWriteFor):
         if not args[0] == dontWriteFor:
             outpath = os.path.join(rundir, self.getOutfile(args))
             with open (outpath, "w") as f:
                 f.write("123")
-        return (True, "")
+        return (True, "", "")
 
     def runfuncFail(self, rundir, args, failFor, shouldOtherRun):
         if args[0] == failFor:
-            return (False, "Boom!")
+            return (False, "", "Boom!")
         if shouldOtherRun:
             outpath = os.path.join(rundir, self.getOutfile(args))
             with open (outpath, "w") as f:
                 f.write("123")
-            return (True, "")
+            return (True, "", "")
         else:
             self.fail("Should not have been called for " + args[0])
        

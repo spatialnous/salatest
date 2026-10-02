@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2017-2019 Christian Sailer
-# SPDX-FileCopyrightText: 2017-2024 Petros Koutsolampros
+# SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -48,7 +48,7 @@ class DepthmapRegressionRunner():
     def runTestCaseBase(self, name, cmds, compareFiles, extraArgs = []):
         baseDir = self.makeBaseDir(name)
         for step, cmd in enumerate(cmds):
-            (baseSuccess, baseOut) = self.__baseRunner.runDepthmap(cmd, baseDir, extraArgs, step)
+            (baseSuccess, baseOut, baseError) = self.__baseRunner.runDepthmap(cmd, baseDir, extraArgs, step)
             if not baseSuccess:
                 print("Baseline run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
                 print(baseOut)
@@ -66,7 +66,7 @@ class DepthmapRegressionRunner():
     def runTestCaseTest(self, name, cmds, compareFiles, extraArgs = []):
         testDir = self.makeTestDir(name)
         for step, cmd in enumerate(cmds):
-            (testSuccess, testOut) = self.__testRunner.runDepthmap(cmd, testDir, extraArgs, step)
+            (testSuccess, testOut, testError) = self.__testRunner.runDepthmap(cmd, testDir, extraArgs, step)
             if not testSuccess:
                 print("Test run failed at step " + str(step) + " with arguments " + pprint.pformat(cmd.toCmdArray()))
                 print(testOut)

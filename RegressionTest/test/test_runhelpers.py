@@ -49,23 +49,26 @@ class TestRunHelpers(unittest.TestCase):
     
     def test_runExecutable(self):
         with DisposableDirectory("testdir", True) as d:
-            retcode, output = runhelpers.runExecutable( d.name(), [sys.executable, "-c", "print('foo')"])
+            retcode, output, error = runhelpers.runExecutable( d.name(), [sys.executable, "-c", "print('foo')"])
             self.assertTrue(retcode)
             self.assertEqual(output, "foo\n")
+            self.assertEqual(error, "")
 
     def test_runExecutableFail(self):
         with DisposableDirectory("testdir") as d:
             runhelpers.prepareDirectory(d.name())
-            retcode, output = runhelpers.runExecutable( d.name(), [sys.executable, "-c", "exit(-1)"])
+            retcode, output, error = runhelpers.runExecutable( d.name(), [sys.executable, "-c", "exit(-1)"])
             self.assertFalse(retcode)
             self.assertEqual(output, "")
+            self.assertEqual(error, "")
 
     def test_runExecutableException(self):
         with DisposableDirectory("testdir") as d:
             runhelpers.prepareDirectory(d.name())
-            retcode, output = runhelpers.runExecutable( d.name(), [sys.executable, "-c", "raise Exception()"])
+            retcode, output, error = runhelpers.runExecutable( d.name(), [sys.executable, "-c", "raise Exception()"])
             self.assertFalse(retcode)
-            self.assertTrue(output.startswith('Traceback (most recent call last):\n  File "<string>", line 1, in <module>'))
+            self.assertEqual(output, "")
+            self.assertTrue(error.startswith('Traceback (most recent call last):\n  File "<string>", line 1, in <module>'))
 
 if __name__=="__main__":
     unittest.main()

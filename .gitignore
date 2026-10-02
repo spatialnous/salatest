@@ -3,6 +3,7 @@
 build-RegressionTest
 build-*/
 RegressionTest/rundir
+err-0.txt
 __pycache__
 CMakeLists.txt.u*
 *_BACKUP_*
