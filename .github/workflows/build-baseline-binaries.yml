@@ -49,6 +49,26 @@ jobs:
         ref: ${{ inputs.ref }}
         submodules: recursive
 
+    - name: Resolve extra CMake flags
+      id: flags
+      shell: bash
+      run: |
+        EXTRA='${{ matrix.extra }}'
+        if [ '${{ runner.os }}' = 'Linux' ]; then
+          # CMake's FindOpenMP resolves OpenMP_gomp_LIBRARY to libgomp.SO even when the
+          # static archive sits beside it, and -static then refuses to link a shared
+          # object. CMAKE_FIND_LIBRARY_SUFFIXES=.a does NOT override this - the cache
+          # variable has to be set explicitly.
+          GOMP_A=$("${CXX:-g++}" -print-file-name=libgomp.a)
+          if [ ! -f "$GOMP_A" ]; then
+            echo "::error::no static libgomp found - a dynamic link would silently reintroduce a glibc floor"
+            exit 1
+          fi
+          echo "using static libgomp: $GOMP_A"
+          EXTRA="$EXTRA -DOpenMP_gomp_LIBRARY=$GOMP_A"
+        fi
+        echo "extra=$EXTRA" >> "$GITHUB_OUTPUT"
+
     - name: Configure CMake
       # macOS has no static libSystem, so deployment target is its equivalent
       # compatibility floor. Harmless on the other platforms.
@@ -57,7 +77,7 @@ jobs:
       run: >
         cmake -B ${{ github.workspace }}/build
         -DCMAKE_BUILD_TYPE=Release
-        ${{ matrix.extra }}
+        ${{ steps.flags.outputs.extra }}
         -S ${{ github.workspace }}
 
     - name: Build dmcli
