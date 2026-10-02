@@ -1,0 +1,116 @@
+# SPDX-FileCopyrightText: 2026 Petros Koutsolampros
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+name: Build baseline binaries
+
+# Deliberate, on-demand only. Baselines are a REFERENCE VERSION: triggering on
+# push would silently move the thing the regression suite measures against.
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Tag, branch or SHA to build the baseline from (e.g. v0.8.0)"
+        required: true
+        type: string
+
+jobs:
+  baseline:
+    name: ${{ matrix.dir }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # Explicit include, not a cross product: every entry is bespoke, and
+        # `dir` must match runhelpers.getExecutable's
+        # <platform.system()>_<platform.machine()> convention exactly.
+        include:
+          - os: ubuntu-latest
+            dir: Linux_x86_64
+            extra: -DCMAKE_EXE_LINKER_FLAGS=-static
+            oldimage: ubuntu:20.04
+          - os: ubuntu-24.04-arm
+            dir: Linux_aarch64
+            extra: -DCMAKE_EXE_LINKER_FLAGS=-static
+            oldimage: ubuntu:20.04
+          - os: macos-15-intel
+            dir: Darwin_x86_64
+            extra: ""
+          - os: macos-latest
+            dir: Darwin_arm64
+            extra: ""
+          - os: windows-latest
+            dir: Windows_AMD64
+            extra: -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ inputs.ref }}
+        submodules: recursive
+
+    - name: Configure CMake
+      # macOS has no static libSystem, so deployment target is its equivalent
+      # compatibility floor. Harmless on the other platforms.
+      env:
+        MACOSX_DEPLOYMENT_TARGET: "10.13"
+      run: >
+        cmake -B ${{ github.workspace }}/build
+        -DCMAKE_BUILD_TYPE=Release
+        ${{ matrix.extra }}
+        -S ${{ github.workspace }}
+
+    - name: Build dmcli
+      run: cmake --build ${{ github.workspace }}/build --target dmcli --config Release
+
+    - name: Locate the binary
+      id: bin
+      shell: bash
+      run: |
+        BIN="${{ github.workspace }}/build/bin/dmcli"
+        [ -f "$BIN.exe" ] && BIN="$BIN.exe"
+        [ -f "$BIN" ] || { echo "dmcli not found at $BIN"; exit 1; }
+        echo "path=$BIN" >> "$GITHUB_OUTPUT"
+
+    - name: Report the compatibility floor
+      shell: bash
+      run: |
+        BIN='${{ steps.bin.outputs.path }}'
+        ls -l "$BIN"
+        case "${{ runner.os }}" in
+          Linux)
+            echo "versioned glibc symbols required (none == fully static):"
+            objdump -T "$BIN" | grep -oE 'GLIBC[X]*_[0-9.]+' | sort -Vu || echo "  none"
+            file "$BIN"
+            ;;
+          macOS)
+            otool -l "$BIN" | grep -A4 LC_BUILD_VERSION || true
+            otool -L "$BIN"
+            ;;
+        esac
+
+    - name: Smoke test on the build machine
+      shell: bash
+      run: '${{ steps.bin.outputs.path }}' -v
+
+    # The step that actually proves the floor: run it somewhere OLD.
+    - name: Verify it launches on an old distro
+      if: matrix.oldimage != ''
+      shell: bash
+      run: |
+        docker run --rm -v "$(dirname '${{ steps.bin.outputs.path }}')":/b \
+          ${{ matrix.oldimage }} /b/dmcli -v
+
+    - name: Stage and archive under the harness directory name
+      shell: bash
+      run: |
+        mkdir -p "staged/${{ matrix.dir }}"
+        cp '${{ steps.bin.outputs.path }}' "staged/${{ matrix.dir }}/"
+        chmod 755 "staged/${{ matrix.dir }}/"*
+        tar -C staged -cf "baseline-${{ matrix.dir }}.tar" "${{ matrix.dir }}"
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: baseline-${{ matrix.dir }}
+        path: baseline-${{ matrix.dir }}.tar
+        if-no-files-found: error
