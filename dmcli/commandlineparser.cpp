@@ -58,8 +58,8 @@ void CommandLineParser::printQuirks() {
 }
 
 CommandLineParser::CommandLineParser(const IModeParserFactory &parserFactory)
-    : m_valid(false), m_printVersionMode(false), m_simpleMode(false), m_printProgress(false),
-      m_parserFactory(parserFactory), m_modeParser(nullptr) {}
+    : m_valid(false), m_printVersionMode(false), m_printQuirksMode(false), m_simpleMode(false),
+      m_printProgress(false), m_parserFactory(parserFactory), m_modeParser(nullptr) {}
 
 void CommandLineParser::parse(size_t argc, char *argv[]) {
     m_valid = false;
