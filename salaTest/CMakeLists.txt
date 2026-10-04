@@ -33,6 +33,7 @@ set(salaTest_SRCS
     testpushvalues.cpp
     testisovist.cpp
     testsegmentpathscore.cpp
+    testivga.cpp
 ) # salaTest_SRCS
 
 set(external_SRCS
