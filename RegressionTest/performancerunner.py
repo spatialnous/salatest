@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2017-2019 Christian Sailer
-# SPDX-FileCopyrightText: 2017-2024 Petros Koutsolampros
+# SPDX-FileCopyrightText: 2017-2026 Petros Koutsolampros
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -108,7 +108,7 @@ class PerformanceRunner(depthmaprunner.DepthmapRegressionRunner):
 
         testFile = aggregatePerformanceStats(self.makeTestDir(name),self.perfConfig.runsPerInstance, len(cmds), nameTemplate)
         baseFile = aggregatePerformanceStats(self.makeBaseDir(name),self.perfConfig.runsPerInstance, len(cmds), nameTemplate)
-        message = checkPerformance(testFile, baseFile, self.perfConfig.relativeThresholdInPercent, self.perfConfig.absoluteThresholdInSeconds)
+        message = checkPerformance(baseFile, testFile, self.perfConfig.relativeThresholdInPercent, self.perfConfig.absoluteThresholdInSeconds)
         if message:
             return (False, message)
         return (True, "")
