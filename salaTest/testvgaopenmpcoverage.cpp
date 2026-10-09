@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: 2026 Petros Koutsolampros
 //
-// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-or-later
 //
 // Serial-vs-OpenMP equivalence test for the VGA modules.
 
