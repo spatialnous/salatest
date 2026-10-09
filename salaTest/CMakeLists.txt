@@ -34,6 +34,7 @@ set(salaTest_SRCS
     testisovist.cpp
     testsegmentpathscore.cpp
     testivga.cpp
+    testvgaopenmpcoverage.cpp
 ) # salaTest_SRCS
 
 set(external_SRCS
