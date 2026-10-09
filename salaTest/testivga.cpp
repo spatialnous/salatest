@@ -5,15 +5,15 @@
 #include "catch_amalgamated.hpp"
 
 #include "salalib/pixelref.hpp"
-#include "salalib/vgamodules/vgautils.hpp"
+#include "salalib/vgamodules/vgatypes.hpp"
 
 #include <optional>
 
 TEST_CASE("RefIndex") {
-    REQUIRE_THROWS_WITH(VGAUtils::RefIndex({5, 8, 14, 1256, 727}),
+    REQUIRE_THROWS_WITH(VGATypes::RefIndex({5, 8, 14, 1256, 727}),
                         "RefIndex: refs must be strictly ascending");
 
-    VGAUtils::RefIndex refIdx({5, 8, 14, 727, 1256});
+    VGATypes::RefIndex refIdx({5, 8, 14, 727, 1256});
     REQUIRE(refIdx.idx(14) == 2);
     REQUIRE(refIdx.idx(5) == 0);
     REQUIRE(refIdx.idx(727) == 3);
